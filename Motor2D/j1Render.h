@@ -41,6 +41,7 @@ public:
 
 	// Load GameFile
 	bool Load(pugi::xml_node);
+	bool Save();
 
 public:
 

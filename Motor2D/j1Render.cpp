@@ -93,13 +93,31 @@ bool j1Render::CleanUp()
 bool j1Render::Load(pugi::xml_node render_node) 
 {
 	bool ret = true;
-	if (render_node == NULL) LOG("There is no render node on Render Module Load function");
+	if (render_node == NULL) {
+		ret = false;
+		LOG("There is no render node on Render Module Load function");
+	}
 	else 
 	{
 		camera.x = render_node.child("camera").attribute("x").as_int();
 		camera.y = render_node.child("camera").attribute("y").as_int();
-
 	}
+	return ret;
+}
+
+bool j1Render::Save()
+{
+	bool ret = true;
+	pugi::xml_document tempgame_file;
+
+	pugi::xml_node save_node = tempgame_file.append_child("save");
+	pugi::xml_node render_node = save_node.append_child(name.GetString());
+	pugi::xml_node camera_node = render_node.append_child("camera");
+	camera_node.append_attribute("x") = camera.x;
+	camera_node.append_attribute("y") = camera.y;
+
+	tempgame_file.save_file("savegame.xml");
+
 	return ret;
 }
 
