@@ -116,7 +116,7 @@ bool j1Render::Save()
 	camera_node.append_attribute("x") = camera.x;
 	camera_node.append_attribute("y") = camera.y;
 
-	tempgame_file.save_file("savegame.xml");
+	if (!tempgame_file.save_file("savegame.xml")) ret = false;
 
 	return ret;
 }
