@@ -6,6 +6,9 @@
 #include "j1Map.h"
 #include <math.h>
 
+class orientation;
+class renderorder;
+
 j1Map::j1Map() : j1Module(), map_loaded(false)
 {
 	name.create("map");
@@ -43,7 +46,7 @@ bool j1Map::CleanUp()
 
 	// TODO 2: Make sure you clean up any memory allocated
 	// from tilesets / map
-
+	delete map_info;
 
 	map_file.reset();
 
@@ -68,6 +71,10 @@ bool j1Map::Load(const char* file_name)
 	{
 		// TODO 3: Create and call a private function to load and fill
 		// all your map data
+		if (!LoadMapData(map_file.first_child)) {
+			LOG("Could not load map data from %s. pugi error: %s", file_name, result.description());
+			ret = false;
+		}
 	}
 
 	// TODO 4: Create and call a private function to load a tileset
@@ -85,3 +92,11 @@ bool j1Map::Load(const char* file_name)
 	return ret;
 }
 
+bool j1Map::LoadMapData(pugi::xml_node map_node) {
+	bool ret = true;
+
+	map_info->mapVersion = map_node.attribute("version").as_int();
+	if (map_node.attribute("orientation").as_string() == "orthogonal")
+		map_info->orient = orientation::ORTHOGONAL;
+
+}
