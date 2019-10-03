@@ -32,6 +32,9 @@ void j1Map::Draw()
 		return;
 
 	// TODO 5: Prepare the loop to iterate all the tiles in a layer
+	for (int i = 0; i < data.layers.count; i++) {
+
+	}
 
 	// TODO 9: Complete the draw function
 
@@ -106,6 +109,23 @@ bool j1Map::Load(const char* file_name)
 	// TODO 4: Iterate all layers and load each of them
 	// Load layer info ----------------------------------------------
 
+	pugi::xml_node layer;
+	for (layer = map_file.child("map").child("layer"); layer && ret; layer = layer.next_sibling("layer"))
+	{
+		MapLayer* set = new MapLayer();
+
+		if (ret == true)
+		{
+			ret = LoadLayer(layer, set);
+		}
+
+		if (ret == true)
+		{
+			ret = LoadLayer(layer, set);
+		}
+
+		data.layers.add(set);
+	}
 
 	if(ret == true)
 	{
@@ -126,7 +146,7 @@ bool j1Map::Load(const char* file_name)
 
 		// TODO 4: Add info here about your loaded layers
 		// Adapt this code with your own variables
-		/*
+		
 		p2List_item<MapLayer*>* item_layer = data.layers.start;
 		while(item_layer != NULL)
 		{
@@ -135,7 +155,7 @@ bool j1Map::Load(const char* file_name)
 			LOG("name: %s", l->name.GetString());
 			LOG("tile width: %d tile height: %d", l->width, l->height);
 			item_layer = item_layer->next;
-		}*/
+		}
 	}
 
 	map_loaded = ret;
@@ -287,6 +307,15 @@ bool j1Map::LoadLayer(pugi::xml_node& node, MapLayer* layer)
 	
 	for (tilegid = node.child("data").child("tile"); tilegid && ret; tilegid = tilegid.next_sibling("tile")) {
 		layer->tiles[pos] = tilegid.attribute("gid").as_int();
+		if(layer->tiles[pos] == tilegid.attribute("gid").as_int())
+			pos++;
 	}
-
+	if (pos > 0)
+		LOG("Size of array: %i", pos);
+	else {
+		ret = false;
+		LOG("Error in tiles array");
+	}
+	
+	return ret;
 }
