@@ -32,8 +32,14 @@ void j1Map::Draw()
 		return;
 
 	// TODO 5: Prepare the loop to iterate all the tiles in a layer
-	for (int i = 0; i < data.layers.count; i++) {
+	p2List<MapLayer*> layers = data.layers;
+	
+	for (int i = 0; i < layers.count; i++) {
+		for (int j = 0; j < layers[i]->width; j++) {
+			for (int t = 0; t < layers[i]->height; t++) {
 
+			}
+		}
 	}
 
 	// TODO 9: Complete the draw function
