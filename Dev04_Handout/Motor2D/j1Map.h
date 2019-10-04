@@ -15,7 +15,11 @@ struct MapLayer {
 // ----------------------------------------------------
 
 	// TODO 6: Short function to get the value of x,y
+uint Get() {
 
+
+	return ret;
+};
 
 
 // ----------------------------------------------------
