@@ -32,15 +32,26 @@ void j1Map::Draw()
 		return;
 
 	// TODO 5: Prepare the loop to iterate all the tiles in a layer
-	p2List<MapLayer*> layersList = data.layers;
-	
-	for (int i = 0; i < layersList.count; i++) {
-		MapLayer* layer = layersList[i];
-		for (unsigned int* j = 0; j < layer[i].tiles; j++) {
-			
+	p2List_item<Layer*>* item_layer = data.layers.start;
+	while (item_layer != NULL)
+	{
+		Layer* l = item_layer->data;
+		item_layer = item_layer->next;
+		for (int i = 0; i <l->width ; i++)
+		{
+			for (int j = 0; j < l->height; j++)
+			{
+				if (l->gid[l->Get(i, j)] != 0)
+				{
+					l->Get(i, j);
+					SDL_Texture* texture = data.tilesets.start->data->texture;
+					iPoint position = PosConverter(i, j);
+					SDL_Rect* sect = &data.tilesets.start->data->TileToRect(l->gid[l->Get(i, j)]);
+					App->render->Blit(texture, position.x, position.y, sect);
+				}
+			}
 		}
 	}
-
 	// TODO 9: Complete the draw function
 
 }
@@ -65,7 +76,6 @@ bool j1Map::CleanUp()
 	// TODO 2: clean up all layer data
 	// Remove all layers
 	data.layers.clear();
-
 	// Clean up the pugui tree
 	map_file.reset();
 
@@ -113,24 +123,19 @@ bool j1Map::Load(const char* file_name)
 
 	// TODO 4: Iterate all layers and load each of them
 	// Load layer info ----------------------------------------------
-
-	pugi::xml_node layer;
-	for (layer = map_file.child("map").child("layer"); layer && ret; layer = layer.next_sibling("layer"))
+	pugi::xml_node layernode;
+	for (layernode = map_file.child("map").child("layer"); layernode && ret; layernode = layernode.next_sibling("layer"))
 	{
-		MapLayer* set = new MapLayer();
+		Layer* set1 = new Layer();
 
 		if (ret == true)
 		{
-			ret = LoadLayer(layer, set);
+			ret = LoadLayer(layernode, set1);
 		}
 
-		if (ret == true)
-		{
-			ret = LoadLayer(layer, set);
-		}
-
-		data.layers.add(set);
+		data.layers.add(set1);
 	}
+
 
 	if(ret == true)
 	{
@@ -148,14 +153,14 @@ bool j1Map::Load(const char* file_name)
 			LOG("spacing: %d margin: %d", s->spacing, s->margin);
 			item = item->next;
 		}
-
+	
 		// TODO 4: Add info here about your loaded layers
 		// Adapt this code with your own variables
 		
-		p2List_item<MapLayer*>* item_layer = data.layers.start;
+		p2List_item<Layer*>* item_layer = data.layers.start;
 		while(item_layer != NULL)
 		{
-			MapLayer* l = item_layer->data;
+			Layer* l = item_layer->data;
 			LOG("Layer ----");
 			LOG("name: %s", l->name.GetString());
 			LOG("tile width: %d tile height: %d", l->width, l->height);
@@ -295,32 +300,45 @@ bool j1Map::LoadTilesetImage(pugi::xml_node& tileset_node, TileSet* set)
 	return ret;
 }
 
-// TODO 3: Create the definition for a function that loads a single layer
-bool j1Map::LoadLayer(pugi::xml_node& node, MapLayer* layer)
+ //TODO 3: Create the definition for a function that loads a single layer
+bool j1Map::LoadLayer(pugi::xml_node& layer, Layer* set)
 {
 	bool ret = true;
+	set->name.create(layer.attribute("name").as_string());
+	set->width = layer.attribute("width").as_int();
+	set->height = layer.attribute("height").as_int();
+	set->gid = new uint[set->width * set->height];
 
-	layer->name.create(node.attribute("name").as_string());
-	layer->width = node.attribute("width").as_int();
-	layer->height = node.attribute("height").as_int();
-	layer->tiles = new unsigned int[layer->width * layer->height];
-	int size = (layer->width * layer->height) * sizeof(unsigned int);
-	memset(layer->tiles, 0, size);
-	
-	pugi::xml_node tilegid;
-	int pos = 0;
-	
-	for (tilegid = node.child("data").child("tile"); tilegid && ret; tilegid = tilegid.next_sibling("tile")) {
-		layer->tiles[pos] = tilegid.attribute("gid").as_int();
-		if(layer->tiles[pos] == tilegid.attribute("gid").as_int())
-			pos++;
-	}
-	if (pos > 0)
-		LOG("Size of array: %i", pos);
-	else {
-		ret = false;
-		LOG("Error in tiles array");
-	}
-	
+	memset(set->gid,0, set->width * set->height);
+
+pugi::xml_node tilesgid;
+int i = 0;
+for (tilesgid = layer.child("data").child("tile"); tilesgid && ret; tilesgid = tilesgid.next_sibling("tile"))
+{
+	set->gid[i] = tilesgid.attribute("gid").as_uint();
+	i++;
+}
 	return ret;
+}
+
+SDL_Rect TileSet::TileToRect(uint tileid) 
+{
+	uint id= tileid - firstgid;
+	SDL_Rect rect;
+	rect.w = tile_width;
+	rect.h = tile_height;
+	rect.x = margin + ((rect.w + spacing) * (id % num_tiles_width));
+	rect.y = margin + ((rect.h + spacing) * (id / num_tiles_width));
+	return rect;
+}
+
+iPoint j1Map :: PosConverter(int x, int y){
+
+	iPoint ret;
+
+	ret.x = x * data.tile_width;
+	ret.y = y * data.tile_height;
+
+	return ret;
+
 }
