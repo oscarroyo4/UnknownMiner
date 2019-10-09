@@ -42,10 +42,7 @@ struct TileSet
 	int					num_tiles_height;
 	int					offset_x;
 	int					offset_y;
-	SDL_Rect getrect(int firstgid) {
 
-
-	}
 };
 
 enum MapTypes

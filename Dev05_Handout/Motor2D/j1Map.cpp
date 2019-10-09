@@ -32,8 +32,29 @@ void j1Map::Draw()
 		return;
 
 	// TODO 5(old): Prepare the loop to draw all tilesets + Blit
-	MapLayer* layer = data.layers.start->data; // for now we just use the first layer and tileset
+	//MapLayer* item_layer = data.layers.start->data; // for now we just use the first layer and tileset
 	TileSet* tileset = data.tilesets.start->data;
+
+	p2List_item<MapLayer*>* item_layer = data.layers.start;
+	while (item_layer != NULL)
+	{
+		MapLayer* l = item_layer->data;
+		item_layer = item_layer->next;
+		for (int i = 0; i < l->width; i++)
+		{
+			for (int j = 0; j < l->height; j++)
+			{
+				if (l->data[l->Get(i, j)] != 0)
+				{
+					l->Get(i, j);
+					SDL_Texture* texture = data.tilesets.start->data->texture;
+					iPoint position = MapToWorld(i, j);
+					SDL_Rect* sect = &data.tilesets.start->data->GetTileRect(l->data[l->Get(i, j)]);
+					App->render->Blit(texture, position.x, position.y, sect);
+				}
+			}
+		}
+	}
 
 	// TODO 10(old): Complete the draw function
 }
@@ -42,9 +63,16 @@ iPoint j1Map::MapToWorld(int x, int y) const
 {
 	iPoint ret(0,0);
 	// TODO 8(old): Create a method that translates x,y coordinates from map positions to world positions
+	if (data.type == MAPTYPE_ORTHOGONAL) {
+		ret.x = x * data.tile_width;
+		ret.y = y * data.tile_height;
+	} 	// TODO 1: Add isometric map to world coordinates
+	else if (data.type == MAPTYPE_ISOMETRIC) {
+		ret.x = (x - y) * (data.tile_width * 0.5f);
+		ret.y = (x + y) * (data.tile_height * 0.5f);
+	}
 
-	// TODO 1: Add isometric map to world coordinates
-	if(data.type)
+
 	return ret;
 }
 
@@ -53,15 +81,26 @@ iPoint j1Map::WorldToMap(int x, int y) const
 {
 	iPoint ret(0,0);
 	// TODO 2: Add orthographic world to map coordinates
-
+	if (data.type == MAPTYPE_ORTHOGONAL) {
+		ret.x = x / data.tile_width;
+		ret.y = y / data.tile_height;
+	}
 	// TODO 3: Add the case for isometric maps to WorldToMap
+	else if (data.type == MAPTYPE_ISOMETRIC) {
+		ret.x = (x / (data.tile_width / 2) + y / (data.tile_height / 2)) / 2;
+		ret.y = (y / (data.tile_height / 2) - (x / (data.tile_width / 2))) / 2;
+	}
 	return ret;
 }
 
 SDL_Rect TileSet::GetTileRect(int id) const
 {
-	SDL_Rect rect = {0, 0, 0, 0};
-	// TODO 7(old): Create a method that receives a tile id and returns it's Rect
+	int id_ = id - firstgid;
+	SDL_Rect rect;
+	rect.w = tile_width;
+	rect.h = tile_height;
+	rect.x = margin + ((rect.w + spacing) * (id_ % num_tiles_width));
+	rect.y = margin + ((rect.h + spacing) * (id_ / num_tiles_width));
 	return rect;
 }
 
@@ -104,7 +143,7 @@ bool j1Map::Load(const char* file_name)
 	bool ret = true;
 	p2SString tmp("%s%s", folder.GetString(), file_name);
 
-	pugi::xml_parse_result result = map_file.load_file(file_name);
+	pugi::xml_parse_result result = map_file.load_file(tmp.GetString());
 
 	if(result == NULL)
 	{
@@ -337,4 +376,15 @@ bool j1Map::LoadLayer(pugi::xml_node& node, MapLayer* layer)
 	}
 
 	return ret;
+}
+
+iPoint j1Map::PosConverter(int x, int y) {
+
+	iPoint ret;
+
+	ret.x = x * data.tile_width;
+	ret.y = y * data.tile_height;
+
+	return ret;
+
 }

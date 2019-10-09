@@ -25,7 +25,7 @@ struct MapLayer
 	// TODO 6 (old): Short function to get the value of x,y
 	inline uint Get(int x, int y) const
 	{
-		return 0;
+		return x + y * width;
 	}
 };
 
@@ -94,7 +94,7 @@ public:
 	// Coordinate translation methods
 	iPoint MapToWorld(int x, int y) const;
 	iPoint WorldToMap(int x, int y) const;
-
+	iPoint PosConverter(int x, int y);
 private:
 
 	bool LoadMap();
