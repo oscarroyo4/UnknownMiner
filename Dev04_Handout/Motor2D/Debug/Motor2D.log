@@ -1,7 +1,4 @@
-﻿  j1App.cpp
-  j1Map.cpp
-C:\Users\oscarrm9\Documents\GitHub\Handout\Dev04_Handout\Motor2D\j1Map.cpp(40,21): warning C4018:  '<': signed/unsigned mismatch
-  j1Scene.cpp
-  Generating Code...
-C:\Users\oscarrm9\Documents\GitHub\Handout\Dev04_Handout\Motor2D\j1Map.cpp(42,22): warning C4018:  '<': signed/unsigned mismatch
-  Motor2D.vcxproj -> C:\Users\oscarrm9\Documents\GitHub\Handout\Dev04_Handout\Debug\Motor 2D.exe
+﻿  j1Map.cpp
+H:\GitHub\Handout\Dev04_Handout\Motor2D\j1Map.cpp(40): warning C4018: '<': no coinciden signed/unsigned
+H:\GitHub\Handout\Dev04_Handout\Motor2D\j1Map.cpp(42): warning C4018: '<': no coinciden signed/unsigned
+  Motor2D.vcxproj -> H:\GitHub\Handout\Dev04_Handout\Debug\Motor 2D.exe

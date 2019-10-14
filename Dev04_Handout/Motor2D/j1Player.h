@@ -25,7 +25,7 @@ public:
 	virtual ~j1Player();
 
 	// Called before render is available
-	bool Awake(pugi::xml_node&);
+	//bool Awake(pugi::xml_node&);
 
 	// Called each loop iteration
 	bool Start();

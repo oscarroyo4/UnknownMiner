@@ -58,4 +58,5 @@ bool j1Player::Update() {
 	default:
 		break;
 	}
+	return true;
 }
