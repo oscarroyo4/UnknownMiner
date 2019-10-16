@@ -267,30 +267,30 @@ bool j1Map::LoadTilesetDetails(pugi::xml_node& tileset_node, TileSet* set)
 bool j1Map::LoadTilesetImage(pugi::xml_node& tileset_node, TileSet* set)
 {
 	bool ret = true;
-	//pugi::xml_node image = tileset_node.child("image");
+	pugi::xml_node image = tileset_node.child("image");
 
-	if(tileset_node == NULL)
+	if(image == NULL)
 	{
 		LOG("Error parsing tileset xml file: Cannot find 'image' tag.");
 		ret = false;
 	}
 	else
 	{
-		set->texture = App->tex->Load(PATH(folder.GetString(), tileset_node.attribute("source").as_string()));
+		set->texture = App->tex->Load(PATH(folder.GetString(), image.attribute("source").as_string()));
 		if (set->texture == NULL) {
 			LOG("Error loading texture: Cannot load texture.");
 			ret = false;
 		}
 		int w, h;
 		SDL_QueryTexture(set->texture, NULL, NULL, &w, &h);
-		set->tex_width = tileset_node.attribute("width").as_int();
+		set->tex_width = image.attribute("width").as_int();
 
 		if(set->tex_width <= 0)
 		{
 			set->tex_width = w;
 		}
 
-		set->tex_height = tileset_node.attribute("height").as_int();
+		set->tex_height = image.attribute("height").as_int();
 
 		if(set->tex_height <= 0)
 		{

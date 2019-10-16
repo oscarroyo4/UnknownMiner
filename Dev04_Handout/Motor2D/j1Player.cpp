@@ -41,7 +41,8 @@ bool j1Player::Update() {
 	//Input
 	if (input) {
 		if (App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
-			status = PLAYER_IDLE;
+			status = PLAYER_WALK;
+		else status = PLAYER_IDLE;
 	}
 	//Status
 	switch (status)
@@ -50,6 +51,7 @@ bool j1Player::Update() {
 		current_animation = &idle;
 		break;
 	case PLAYER_WALK:
+		current_animation = &walk;
 		break;
 	case PLAYER_JUMP:
 		break;
@@ -59,4 +61,13 @@ bool j1Player::Update() {
 		break;
 	}
 	return true;
+
+	Draw();
+}
+
+void j1Player::Draw()
+{
+	if (graphics != nullptr)
+		
+		App->render->Blit(graphics, position.x, position.y, &current_animation->GetCurrentFrame(), 1.0f);
 }

@@ -33,10 +33,15 @@ public:
 	// Called each loop iteration
 	bool Update();
 
+	// Called each loop iteration
+	void Draw();
+
 	// Called before quitting
 	bool CleanUp();
 
 private:
+	bool LoadPlayer();
+
 	iPoint position;
 	int life;
 	bool input = true;
