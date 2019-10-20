@@ -9,6 +9,9 @@
 #include "p2SString.h"
 #include "PugiXml\src\pugixml.hpp"
 
+#define SCREEN_WIDTH 320
+#define SCREEN_HEIGHT 180
+
 struct Collider;
 class j1App;
 

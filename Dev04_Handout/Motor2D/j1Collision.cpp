@@ -17,6 +17,12 @@ j1Collision::j1Collision()
 	matrix[COLLIDER_WALL][COLLIDER_PLAYER_SHOT] = true;
 	matrix[COLLIDER_WALL][COLLIDER_ENEMY_SHOT] = true;
 
+	matrix[COLLIDER_GROUND][COLLIDER_WALL] = false;
+	matrix[COLLIDER_GROUND][COLLIDER_PLAYER] = true;
+	matrix[COLLIDER_GROUND][COLLIDER_ENEMY] = true;
+	matrix[COLLIDER_GROUND][COLLIDER_PLAYER_SHOT] = true;
+	matrix[COLLIDER_GROUND][COLLIDER_ENEMY_SHOT] = true;
+
 	matrix[COLLIDER_PLAYER][COLLIDER_WALL] = true;
 	matrix[COLLIDER_PLAYER][COLLIDER_PLAYER] = false;
 	matrix[COLLIDER_PLAYER][COLLIDER_ENEMY] = true;
@@ -106,7 +112,7 @@ bool j1Collision::Update(float dt)
 
 void j1Collision::DebugDraw()
 {
-	if (App->input->GetKey(SDL_SCANCODE_F1) == KEY_REPEAT)
+	if (App->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN)
 		debug = !debug;
 
 	if (debug == false)
@@ -137,6 +143,9 @@ void j1Collision::DebugDraw()
 			break;
 		case COLLIDER_ENEMY_SHOT: // magenta
 			App->render->DrawQuad(colliders[i]->rect, 0, 255, 255, alpha);
+			break;
+		case COLLIDER_GROUND: // brown
+			App->render->DrawQuad(colliders[i]->rect, 139, 69, 19, alpha);
 			break;
 		}
 	}

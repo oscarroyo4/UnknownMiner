@@ -4,14 +4,19 @@
 #include "j1Module.h"
 #include "j1Input.h"
 #include "j1Textures.h"
+#include "j1Collision.h"
 #include "Animation.h"
 #include "p2Point.h"
 
 enum player_status {
 	PLAYER_IDLE,
-	PLAYER_WALK,
+	PLAYER_FORWARD,
+	PLAYER_BACKWARD,
 	PLAYER_JUMP,
-	PLAYER_INJUMPFINISH
+	PLAYER_JUMP_FORWARD,
+	PLAYER_IN_JUMP_FINISH,
+	PLAYER_PUNCH,
+	PLAYER_IN_PUNCH_FINISH
 };
 
 
@@ -31,7 +36,7 @@ public:
 	bool Start();
 
 	// Called each loop iteration
-	bool Update();
+	bool Update(float dt);
 
 	// Called each loop iteration
 	void Draw();
@@ -39,18 +44,32 @@ public:
 	// Called before quitting
 	bool CleanUp();
 
+
+	iPoint position;
 private:
 	bool LoadPlayer();
 
-	iPoint position;
 	int life;
+	int speed;
+
 	bool input = true;
 	bool jumpEnable = true;
+	bool punchEnable = true;
+
+	Uint32 punch_timer = 0;
+	Uint32 jump_timer = 0;
+
 	SDL_Texture* graphics;
 	Animation* current_animation = &idle;
 	Animation idle;
-	Animation walk;
-	float jump_timer = 0;
+	Animation backward;
+	Animation forward;
+	Animation punch;
+	Animation jump;
+
 	player_status status = PLAYER_IDLE;
+	SDL_Rect r;
+	Collider* colPlayer;
+	Collider* punchCol;
 };
 #endif //__j1PLAYER_H__

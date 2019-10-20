@@ -1,6 +1,7 @@
 #include "p2Defs.h"
 #include "p2Log.h"
 #include "j1App.h"
+#include "j1Player.h"
 #include "j1Window.h"
 #include "j1Render.h"
 
@@ -10,8 +11,8 @@ j1Render::j1Render() : j1Module()
 {
 	name.create("renderer");
 	background.r = 0;
-	background.g = 0;
-	background.b = 0;
+	background.g = 185;
+	background.b = 80;
 	background.a = 0;
 }
 
@@ -42,8 +43,8 @@ bool j1Render::Awake(pugi::xml_node& config)
 	}
 	else
 	{
-		camera.w = App->win->screen_surface->w;
-		camera.h = App->win->screen_surface->h;
+		camera.w = SCREEN_WIDTH;
+		camera.h = SCREEN_HEIGHT;
 		camera.x = 0;
 		camera.y = 0;
 	}
@@ -69,12 +70,15 @@ bool j1Render::PreUpdate()
 
 bool j1Render::Update(float dt)
 {
+	camera.x = -App->player->position.x + x_offset;
+	camera.y = -App->player->position.y + y_offset;
 	return true;
 }
 
 bool j1Render::PostUpdate()
 {
-	SDL_SetRenderDrawColor(renderer, background.r, background.g, background.g, background.a);
+	SDL_RenderSetLogicalSize(renderer, SCREEN_WIDTH, SCREEN_HEIGHT);
+	SDL_SetRenderDrawColor(renderer, background.r, background.g, background.b, background.a);
 	SDL_RenderPresent(renderer);
 	return true;
 }

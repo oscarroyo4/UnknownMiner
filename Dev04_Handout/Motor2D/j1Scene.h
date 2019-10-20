@@ -32,6 +32,8 @@ public:
 	// Called before quitting
 	bool CleanUp();
 
+	Collider* testCol;
+
 private:
 };
 

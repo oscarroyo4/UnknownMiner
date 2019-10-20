@@ -32,7 +32,7 @@ bool j1Scene::Awake()
 bool j1Scene::Start()
 {
 	App->map->Load("TiledMap.tmx");
-	App->player->Start();
+	testCol = App->collision->AddCollider({178, 368, 60, 10}, COLLIDER_GROUND);
 	return true;
 }
 
