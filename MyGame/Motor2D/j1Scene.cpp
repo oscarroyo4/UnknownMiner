@@ -31,7 +31,7 @@ bool j1Scene::Awake()
 // Called before the first frame
 bool j1Scene::Start()
 {
-	App->map->Load("TiledMap.tmx");
+	App->map->Load("TiledMap_2.tmx");
 	testCol = App->collision->AddCollider({178, 368, 60, 10}, COLLIDER_GROUND);
 	return true;
 }

@@ -1,1 +1,4 @@
-﻿  Motor2D.vcxproj -> C:\Users\oscarrm9\Documents\GitHub\Handout\MyGame\Debug\Motor 2D.exe
+﻿  j1Map.cpp
+H:\GitHub\Handout\MyGame\Motor2D\j1Map.cpp(40): warning C4018: '<': no coinciden signed/unsigned
+H:\GitHub\Handout\MyGame\Motor2D\j1Map.cpp(42): warning C4018: '<': no coinciden signed/unsigned
+  Motor2D.vcxproj -> H:\GitHub\Handout\MyGame\Debug\Motor 2D.exe
