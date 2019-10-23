@@ -11,11 +11,12 @@
 
 //#define PUNCH_TIME 80
 #define PUNCH_TIME 19
+#define G 1
 
 j1Player::j1Player() : j1Module()
 {
-	position.x = 180;
-	position.y = 536;
+	position.x = 130;
+	position.y = 620;
 
 	// idle animation (arcade sprite sheet)
 	idle.PushBack({ 0, 0, 32, 32 });
@@ -51,12 +52,17 @@ j1Player::~j1Player()
 
 bool j1Player::Start()
 {
+	bool ret = true;
 	LOG("Loading player");
 	graphics = App->tex->Load("maps/Character.png");
 	colPlayer = App->collision->AddCollider({position.x + 9, position.y + 16, 10, 16}, COLLIDER_PLAYER);
+	if (colPlayer == NULL) {
+		LOG("Could not load the collider");
+		ret = false;
+	}
 	life = 100;
 	speed = 1;
-	return true;
+	return ret;
 }
 
 // Unload assets
@@ -71,11 +77,8 @@ bool j1Player::CleanUp()
 bool j1Player::Update(float dt) {
 	//Input
 	if (input) {
-		for (int i = 0; i < App->map->groundCol.count(); i++) {
-			if (colPlayer->CheckCollision(App->map->groundCol.At(i)->data->rect)) inGround = true;
-			else inGround = false;
-		}
-		if (inGround) {
+		
+		if (OnGround()) {
 			
 			if (App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
 				status = PLAYER_BACKWARD;
@@ -91,26 +94,28 @@ bool j1Player::Update(float dt) {
 
 			else status = PLAYER_IDLE;
 		}
-		else status = PLAYER_IN_JUMP_FINISH;
+		else status = PLAYER_IN_AIR;
 	}
 	//Status
 	switch (status)
 	{
 	case PLAYER_IDLE:
 		jump.Reset();
+		vel.y = 0;
 		current_animation = &idle;
 		break;
 	case PLAYER_FORWARD:
-		position.x += speed;
+		vel.x = speed;
 		current_animation = &forward;
 		break;
 	case PLAYER_BACKWARD:
-		position.x -= speed;
+		vel.x -= speed;
 		current_animation = &backward;
 		break;
 	case PLAYER_JUMP:
 		if (jumpEnable == true) {
 			jumpEnable = false;
+			vel.y -= 10;
 			jump.Reset();
 			/* Sound
 			if (App->sounds->Play_chunk(jumpfx))
@@ -118,16 +123,10 @@ bool j1Player::Update(float dt) {
 				LOG("Could not play select sound. Mix_PlayChannel: %s", Mix_GetError());
 			}
 			*/
-			jump_timer = 1;
 		}
 		break;
-	case PLAYER_IN_JUMP_FINISH:
-		current_animation = &jump;
-		if (App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT) { position.x--; }
-		if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT) { position.x++; }
-		//Velcidad en el aire
-		position.y++;
-
+	case PLAYER_IN_AIR:
+		vel.y = G;
 		break;
 	case PLAYER_PUNCH:
 		if (punchEnable == true) {
@@ -174,23 +173,9 @@ bool j1Player::Update(float dt) {
 		}
 	}
 
-	if (jump_timer > 0)
-	{
-		jump_timer++;
-		current_animation = &jump;
-		if (jump_timer < 30) { position.y -= 2; }
-		else if (jump_timer < 38) { position.y -= 1; }
+	position.x += vel.x;
+	position.y += vel.y;
 
-		if (App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT) { position.x--; }
-		if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT) { position.x++; }
-
-		if (jump_timer > 38)
-		{
-			jumpEnable = true;
-			status = PLAYER_IN_JUMP_FINISH;
-			jump_timer = 0;
-		}
-	}
 
 	//Collider position
 	colPlayer->SetPos(position.x + 9, position.y + 16);
@@ -211,4 +196,13 @@ void j1Player::Draw()
 
 	r.x = position.x;
 	r.y = position.y;
+}
+
+bool j1Player::OnGround() {
+	bool ret = false;
+	for (int i = 0; i < App->map->groundCol.count(); i++) {
+		ret = colPlayer->CheckCollision(App->map->groundCol.At(i)->data->rect);
+		//return false;
+	}
+	return ret;
 }

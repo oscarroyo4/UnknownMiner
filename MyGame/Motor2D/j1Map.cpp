@@ -34,7 +34,6 @@ void j1Map::Draw()
 
 	// TODO 5: Prepare the loop to iterate all the tiles in a layer
 	p2List_item<Layer*>* item_layer = data.layers.start;
-	p2List_item<Collider*>* item_collider = groundCol.start;
 	while (item_layer != NULL)
 	{
 		Layer* l = item_layer->data;
@@ -49,13 +48,8 @@ void j1Map::Draw()
 					SDL_Texture* texture = data.tilesets.start->data->texture;
 					iPoint position = PosConverter(i, j);
 					SDL_Rect sect = data.tilesets.start->data->TileToRect(l->gid[l->Get(i, j)]);
-					if (l->name.GetString() == "Collision") {
-						item_collider->data = App->collision->AddCollider(sect, COLLIDER_GROUND);
-						item_collider = item_collider->next;
-					}
-					else {
-						App->render->Blit(texture, position.x, position.y, &sect);
-					}
+
+					App->render->Blit(texture, position.x, position.y, &sect);
 				}
 			}
 		}
@@ -173,6 +167,23 @@ bool j1Map::Load(const char* file_name)
 			LOG("name: %s", l->name.GetString());
 			LOG("tile width: %d tile height: %d", l->width, l->height);
 			item_layer = item_layer->next;
+			if (l->name == "Collision") {
+				for (int i = 0; i < l->width; i++)
+				{
+					for (int j = 0; j < l->height; j++)
+					{
+						if (l->gid[l->Get(i, j)] != 0)
+						{
+							l->Get(i, j);
+							iPoint position = PosConverter(i, j);
+							SDL_Rect sect = data.tilesets.start->data->TileToRect(l->gid[l->Get(i, j)]);
+
+							groundCol.add(App->collision->AddCollider({ position.x,position.y,sect.w,sect.h }, COLLIDER_GROUND));
+							LOG("Collider num: %i", groundCol.count());
+						}
+					}
+				}
+			}
 		}
 	}
 

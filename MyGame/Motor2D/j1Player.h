@@ -14,7 +14,7 @@ enum player_status {
 	PLAYER_BACKWARD,
 	PLAYER_JUMP,
 	PLAYER_JUMP_FORWARD,
-	PLAYER_IN_JUMP_FINISH,
+	PLAYER_IN_AIR,
 	PLAYER_PUNCH,
 	PLAYER_IN_PUNCH_FINISH
 };
@@ -44,6 +44,8 @@ public:
 	// Called before quitting
 	bool CleanUp();
 
+	bool OnGround();
+
 
 	iPoint position;
 private:
@@ -51,14 +53,13 @@ private:
 
 	int life;
 	int speed;
+	iPoint vel;
 
 	bool input = true;
 	bool jumpEnable = true;
 	bool punchEnable = true;
-	bool inGround = false;
 
 	Uint32 punch_timer = 0;
-	Uint32 jump_timer = 0;
 
 	SDL_Texture* graphics;
 	Animation* current_animation = &idle;
