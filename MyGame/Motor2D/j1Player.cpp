@@ -3,6 +3,7 @@
 #include "j1App.h"
 #include "j1Render.h"
 #include "j1Scene.h"
+#include "j1Map.h"
 #include "j1Input.h"
 #include "j1Textures.h"
 #include "Animation.h"
@@ -14,7 +15,7 @@
 j1Player::j1Player() : j1Module()
 {
 	position.x = 180;
-	position.y = 336;
+	position.y = 536;
 
 	// idle animation (arcade sprite sheet)
 	idle.PushBack({ 0, 0, 32, 32 });
@@ -70,7 +71,11 @@ bool j1Player::CleanUp()
 bool j1Player::Update(float dt) {
 	//Input
 	if (input) {
-		if (colPlayer->CheckCollision(App->scene->testCol->rect)) {
+		for (int i = 0; i < App->map->groundCol.count(); i++) {
+			if (colPlayer->CheckCollision(App->map->groundCol.At(i)->data->rect)) inGround = true;
+			else inGround = false;
+		}
+		if (inGround) {
 			
 			if (App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
 				status = PLAYER_BACKWARD;

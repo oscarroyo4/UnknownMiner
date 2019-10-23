@@ -5,6 +5,7 @@
 #include "p2List.h"
 #include "p2Point.h"
 #include "j1Module.h"
+#include "j1Collision.h"
 
 // TODO 1: Create a struct for the map layer
 // ----------------------------------------------------
@@ -90,6 +91,7 @@ public:
 
 	// TODO 8: Create a method that translates x,y coordinates from map positions to world positions
 	iPoint PosConverter(int x, int y);
+
 private:
 
 	bool LoadMap();
@@ -101,12 +103,14 @@ private:
 public:
 
 	MapData data;
+	p2List<Collider*> groundCol;
 
 private:
 
 	pugi::xml_document	map_file;
 	p2SString			folder;
 	bool				map_loaded;
+
 };
 
 #endif // __j1MAP_H__

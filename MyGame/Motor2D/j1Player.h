@@ -55,6 +55,7 @@ private:
 	bool input = true;
 	bool jumpEnable = true;
 	bool punchEnable = true;
+	bool inGround = false;
 
 	Uint32 punch_timer = 0;
 	Uint32 jump_timer = 0;

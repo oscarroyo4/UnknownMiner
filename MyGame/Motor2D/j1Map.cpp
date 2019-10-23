@@ -2,6 +2,7 @@
 #include "p2Log.h"
 #include "j1App.h"
 #include "j1Render.h"
+#include "j1Collision.h"
 #include "j1Textures.h"
 #include "j1Map.h"
 #include <math.h>
@@ -33,6 +34,7 @@ void j1Map::Draw()
 
 	// TODO 5: Prepare the loop to iterate all the tiles in a layer
 	p2List_item<Layer*>* item_layer = data.layers.start;
+	p2List_item<Collider*>* item_collider = groundCol.start;
 	while (item_layer != NULL)
 	{
 		Layer* l = item_layer->data;
@@ -46,8 +48,14 @@ void j1Map::Draw()
 					l->Get(i, j);
 					SDL_Texture* texture = data.tilesets.start->data->texture;
 					iPoint position = PosConverter(i, j);
-					SDL_Rect* sect = &data.tilesets.start->data->TileToRect(l->gid[l->Get(i, j)]);
-					App->render->Blit(texture, position.x, position.y, sect);
+					SDL_Rect sect = data.tilesets.start->data->TileToRect(l->gid[l->Get(i, j)]);
+					if (l->name.GetString() == "Collision") {
+						item_collider->data = App->collision->AddCollider(sect, COLLIDER_GROUND);
+						item_collider = item_collider->next;
+					}
+					else {
+						App->render->Blit(texture, position.x, position.y, &sect);
+					}
 				}
 			}
 		}
