@@ -61,7 +61,7 @@ bool j1Player::Start()
 		ret = false;
 	}
 	life = 100;
-	speed = 1;
+	speed = 2;
 	return ret;
 }
 
@@ -79,12 +79,18 @@ bool j1Player::Update(float dt) {
 	if (input) {
 		
 		if (OnGround()) {
-			
+			vel.y = 0;
+			jump.Reset();
+			jumpEnable = true;
 			if (App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
-				status = PLAYER_BACKWARD;
+				if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
+					status = PLAYER_JUMP;
+				else status = PLAYER_BACKWARD;
 
 			else if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT)
-				status = PLAYER_FORWARD;
+				if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
+					status = PLAYER_JUMP;
+				else status = PLAYER_FORWARD;
 
 			else if (App->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN)
 				status = PLAYER_PUNCH;
@@ -94,14 +100,18 @@ bool j1Player::Update(float dt) {
 
 			else status = PLAYER_IDLE;
 		}
-		else status = PLAYER_IN_AIR;
+		else {
+			if (App->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN)
+				status = PLAYER_PUNCH;
+			else
+				status = PLAYER_IN_AIR;
+		}
 	}
 	//Status
 	switch (status)
 	{
 	case PLAYER_IDLE:
-		jump.Reset();
-		vel.y = 0;
+		vel.x = 0;
 		current_animation = &idle;
 		break;
 	case PLAYER_FORWARD:
@@ -109,7 +119,7 @@ bool j1Player::Update(float dt) {
 		current_animation = &forward;
 		break;
 	case PLAYER_BACKWARD:
-		vel.x -= speed;
+		vel.x = -speed;
 		current_animation = &backward;
 		break;
 	case PLAYER_JUMP:
@@ -126,7 +136,7 @@ bool j1Player::Update(float dt) {
 		}
 		break;
 	case PLAYER_IN_AIR:
-		vel.y = G;
+		vel.y += G;
 		break;
 	case PLAYER_PUNCH:
 		if (punchEnable == true) {
@@ -202,7 +212,10 @@ bool j1Player::OnGround() {
 	bool ret = false;
 	for (int i = 0; i < App->map->groundCol.count(); i++) {
 		ret = colPlayer->CheckCollision(App->map->groundCol.At(i)->data->rect);
-		//return false;
+		if (ret) {
+			position.y = App->map->groundCol.At(i)->data->rect.y-32;
+			return ret;
+		}
 	}
 	return ret;
 }

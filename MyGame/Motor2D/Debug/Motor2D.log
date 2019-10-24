@@ -1,3 +1,3 @@
 ﻿  j1Player.cpp
-C:\Users\oscarrm9\Documents\GitHub\Handout\MyGame\Motor2D\j1Player.cpp(203,20): warning C4018:  '<': signed/unsigned mismatch
-  Motor2D.vcxproj -> C:\Users\oscarrm9\Documents\GitHub\Handout\MyGame\Debug\Motor 2D.exe
+c:\users\oscar\documents\github\handout\mygame\motor2d\j1player.cpp(213): warning C4018: '<': no coinciden signed/unsigned
+  Motor2D.vcxproj -> C:\Users\oscar\Documents\GitHub\Handout\MyGame\Debug\Motor 2D.exe
