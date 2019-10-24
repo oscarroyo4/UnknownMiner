@@ -13,10 +13,11 @@ enum player_status {
 	PLAYER_FORWARD,
 	PLAYER_BACKWARD,
 	PLAYER_JUMP,
-	PLAYER_JUMP_FORWARD,
 	PLAYER_IN_AIR,
 	PLAYER_PUNCH,
-	PLAYER_IN_PUNCH_FINISH
+	PLAYER_PUNCH_AIR,
+	PLAYER_IN_PUNCH_FINISH,
+	PLAYER_DEATH
 };
 
 
@@ -53,11 +54,13 @@ private:
 
 	int life;
 	int speed;
-	iPoint vel;
+	float airTimer;
+	fPoint vel;
 
 	bool input = true;
 	bool jumpEnable = true;
 	bool punchEnable = true;
+	bool dead = false;
 
 	Uint32 punch_timer = 0;
 
@@ -67,7 +70,9 @@ private:
 	Animation backward;
 	Animation forward;
 	Animation punch;
+	Animation punch_air;
 	Animation jump;
+	Animation death;
 
 	player_status status = PLAYER_IDLE;
 	SDL_Rect r;

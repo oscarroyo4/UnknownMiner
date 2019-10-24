@@ -11,7 +11,7 @@
 
 //#define PUNCH_TIME 80
 #define PUNCH_TIME 19
-#define G 1
+#define G 0.25
 
 j1Player::j1Player() : j1Module()
 {
@@ -35,6 +35,12 @@ j1Player::j1Player() : j1Module()
 	backward.PushBack({ 96, 0, 32, 32 });
 	backward.speed = 0.4f;
 
+	death.PushBack({ 0, 96, 32, 32 });
+	death.PushBack({ 32, 102, 32, 26 });
+	death.PushBack({ 64, 102, 32, 26 });
+	death.PushBack({ 96, 102, 32, 26 });
+	death.speed = 0.1f;
+	death.loop = false;
 
 	punch.PushBack({ 0, 32, 32, 32 });
 	punch.PushBack({ 32, 32, 32, 32 });
@@ -42,6 +48,13 @@ j1Player::j1Player() : j1Module()
 	punch.PushBack({ 96, 32, 32, 32 });
 	punch.speed = 0.2f;
 
+	punch_air.PushBack({ 0, 64, 32, 38 });
+	punch_air.PushBack({ 32, 64, 32, 38 });
+	punch_air.PushBack({ 64, 64, 32, 38 });
+	punch_air.PushBack({ 96, 64, 32, 38 });
+	punch_air.speed = 0.2f;
+	punch_air.loop = false;
+	
 	jump.PushBack({ 96, 0, 32, 32 });
 	jump.speed = 1.0f;
 }
@@ -76,8 +89,12 @@ bool j1Player::CleanUp()
 
 bool j1Player::Update(float dt) {
 	//Input
+	if (position.y > 800) {
+		status = PLAYER_DEATH;
+		input = false;
+	}
+
 	if (input) {
-		
 		if (OnGround()) {
 			vel.y = 0;
 			jump.Reset();
@@ -102,7 +119,7 @@ bool j1Player::Update(float dt) {
 		}
 		else {
 			if (App->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN)
-				status = PLAYER_PUNCH;
+				status = PLAYER_PUNCH_AIR;
 			else
 				status = PLAYER_IN_AIR;
 		}
@@ -125,7 +142,9 @@ bool j1Player::Update(float dt) {
 	case PLAYER_JUMP:
 		if (jumpEnable == true) {
 			jumpEnable = false;
-			vel.y -= 10;
+			current_animation = &jump;
+			vel.y -= 4;
+			airTimer = 4.0f;
 			jump.Reset();
 			/* Sound
 			if (App->sounds->Play_chunk(jumpfx))
@@ -137,6 +156,8 @@ bool j1Player::Update(float dt) {
 		break;
 	case PLAYER_IN_AIR:
 		vel.y += G;
+		if (airTimer <= 0) vel.x = 0;
+		else airTimer -= 0.1f;
 		break;
 	case PLAYER_PUNCH:
 		if (punchEnable == true) {
@@ -159,6 +180,14 @@ bool j1Player::Update(float dt) {
 		status = PLAYER_IDLE;
 		punch.Reset();
 		break;
+	case PLAYER_PUNCH_AIR:
+		current_animation = &punch_air;
+		break;
+
+	case PLAYER_DEATH:
+		input = false;
+		//Death animation
+		current_animation = &death;
 
 	default:
 		break;
