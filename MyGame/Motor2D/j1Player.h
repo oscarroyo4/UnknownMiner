@@ -60,6 +60,7 @@ private:
 	bool input = true;
 	bool jumpEnable = true;
 	bool punchEnable = true;
+	bool punchAirEnable = true;
 	bool dead = false;
 
 	Uint32 punch_timer = 0;

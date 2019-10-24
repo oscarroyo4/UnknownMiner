@@ -52,6 +52,7 @@ j1Player::j1Player() : j1Module()
 	punch_air.PushBack({ 32, 64, 32, 38 });
 	punch_air.PushBack({ 64, 64, 32, 38 });
 	punch_air.PushBack({ 96, 64, 32, 38 });
+	punch_air.PushBack({ 96, 0, 32, 32 });
 	punch_air.speed = 0.2f;
 	punch_air.loop = false;
 	
@@ -69,6 +70,9 @@ bool j1Player::Start()
 	LOG("Loading player");
 	graphics = App->tex->Load("maps/Character.png");
 	colPlayer = App->collision->AddCollider({position.x + 9, position.y + 16, 10, 16}, COLLIDER_PLAYER);
+	//groundColPlayer
+	//headColPlayer
+
 	if (colPlayer == NULL) {
 		LOG("Could not load the collider");
 		ret = false;
@@ -98,7 +102,10 @@ bool j1Player::Update(float dt) {
 		if (OnGround()) {
 			vel.y = 0;
 			jump.Reset();
+			punch_air.Reset();
 			jumpEnable = true;
+			airTimer = 4.0f;
+			punchAirEnable = true;
 			if (App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
 				if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
 					status = PLAYER_JUMP;
@@ -143,8 +150,7 @@ bool j1Player::Update(float dt) {
 		if (jumpEnable == true) {
 			jumpEnable = false;
 			current_animation = &jump;
-			vel.y -= 4;
-			airTimer = 4.0f;
+			vel.y = -3;
 			jump.Reset();
 			/* Sound
 			if (App->sounds->Play_chunk(jumpfx))
@@ -181,7 +187,20 @@ bool j1Player::Update(float dt) {
 		punch.Reset();
 		break;
 	case PLAYER_PUNCH_AIR:
-		current_animation = &punch_air;
+		if (punchAirEnable){
+			punchAirEnable = false;
+			current_animation = &punch_air;
+			vel.y = -4;
+			if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT) {
+				airTimer = 4.0f;
+				vel.x = 2;
+			}
+			else if (App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT) {
+				airTimer = 4.0f;
+				vel.x = -2;
+			}
+		}
+
 		break;
 
 	case PLAYER_DEATH:
@@ -242,7 +261,9 @@ bool j1Player::OnGround() {
 	for (int i = 0; i < App->map->groundCol.count(); i++) {
 		ret = colPlayer->CheckCollision(App->map->groundCol.At(i)->data->rect);
 		if (ret) {
-			position.y = App->map->groundCol.At(i)->data->rect.y-32;
+			if (vel.y > 0)
+				position.y = App->map->groundCol.At(i)->data->rect.y - 32;
+			else if (vel.y < 0)	position.y = App->map->groundCol.At(i)->data->rect.y + 1;
 			return ret;
 		}
 	}

@@ -1,24 +1,15 @@
 ﻿  j1Player.cpp
-c:\users\oscarrm9\documents\github\handout\mygame\motor2d\j1player.cpp(135): warning C4244: '=': conversion from 'int' to 'TYPE', possible loss of data
+c:\users\oscar\documents\github\handout\mygame\motor2d\j1player.cpp(142): warning C4244: '=': conversión de 'int' a 'TYPE'; posible pérdida de datos
           with
           [
               TYPE=float
           ]
-c:\users\oscarrm9\documents\github\handout\mygame\motor2d\j1player.cpp(139): warning C4244: '=': conversion from 'int' to 'TYPE', possible loss of data
+c:\users\oscar\documents\github\handout\mygame\motor2d\j1player.cpp(146): warning C4244: '=': conversión de 'int' a 'TYPE'; posible pérdida de datos
           with
           [
               TYPE=float
           ]
-c:\users\oscarrm9\documents\github\handout\mygame\motor2d\j1player.cpp(215): warning C4244: '+=': conversion from 'TYPE' to 'TYPE', possible loss of data
-          with
-          [
-              TYPE=float
-          ]
-          and
-          [
-              TYPE=int
-          ]
-c:\users\oscarrm9\documents\github\handout\mygame\motor2d\j1player.cpp(216): warning C4244: '+=': conversion from 'TYPE' to 'TYPE', possible loss of data
+c:\users\oscar\documents\github\handout\mygame\motor2d\j1player.cpp(234): warning C4244: '+=': conversión de 'TYPE' a 'TYPE'; posible pérdida de datos
           with
           [
               TYPE=float
@@ -27,5 +18,14 @@ c:\users\oscarrm9\documents\github\handout\mygame\motor2d\j1player.cpp(216): war
           [
               TYPE=int
           ]
-c:\users\oscarrm9\documents\github\handout\mygame\motor2d\j1player.cpp(242): warning C4018: '<': signed/unsigned mismatch
-  Motor2D.vcxproj -> C:\Users\oscarrm9\Documents\GitHub\Handout\MyGame\Debug\Motor 2D.exe
+c:\users\oscar\documents\github\handout\mygame\motor2d\j1player.cpp(235): warning C4244: '+=': conversión de 'TYPE' a 'TYPE'; posible pérdida de datos
+          with
+          [
+              TYPE=float
+          ]
+          and
+          [
+              TYPE=int
+          ]
+c:\users\oscar\documents\github\handout\mygame\motor2d\j1player.cpp(261): warning C4018: '<': no coinciden signed/unsigned
+  Motor2D.vcxproj -> C:\Users\oscar\Documents\GitHub\Handout\MyGame\Debug\Motor 2D.exe
