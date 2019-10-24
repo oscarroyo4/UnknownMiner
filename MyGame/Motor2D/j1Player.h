@@ -46,11 +46,13 @@ public:
 	bool CleanUp();
 
 	bool OnGround();
+	bool WallCollision();
 
 
 	iPoint position;
 private:
 	bool LoadPlayer();
+	bool ResetStates();
 
 	int life;
 	int speed;
@@ -78,6 +80,7 @@ private:
 	player_status status = PLAYER_IDLE;
 	SDL_Rect r;
 	Collider* colPlayer;
+	Collider* colPlayerWalls;
 	Collider* punchCol;
 };
 #endif //__j1PLAYER_H__

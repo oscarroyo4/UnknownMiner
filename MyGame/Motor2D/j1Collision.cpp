@@ -17,17 +17,18 @@ j1Collision::j1Collision()
 	matrix[COLLIDER_WALL][COLLIDER_PLAYER_SHOT] = true;
 	matrix[COLLIDER_WALL][COLLIDER_ENEMY_SHOT] = true;
 
-	matrix[COLLIDER_GROUND][COLLIDER_WALL] = false;
+	matrix[COLLIDER_GROUND][COLLIDER_WALL] = true;
 	matrix[COLLIDER_GROUND][COLLIDER_PLAYER] = true;
 	matrix[COLLIDER_GROUND][COLLIDER_ENEMY] = true;
-	matrix[COLLIDER_GROUND][COLLIDER_PLAYER_SHOT] = true;
-	matrix[COLLIDER_GROUND][COLLIDER_ENEMY_SHOT] = true;
+	matrix[COLLIDER_GROUND][COLLIDER_PLAYER_SHOT] = false;
+	matrix[COLLIDER_GROUND][COLLIDER_ENEMY_SHOT] = false;
 
 	matrix[COLLIDER_PLAYER][COLLIDER_WALL] = true;
 	matrix[COLLIDER_PLAYER][COLLIDER_PLAYER] = false;
 	matrix[COLLIDER_PLAYER][COLLIDER_ENEMY] = true;
 	matrix[COLLIDER_PLAYER][COLLIDER_PLAYER_SHOT] = false;
 	matrix[COLLIDER_PLAYER][COLLIDER_ENEMY_SHOT] = true;
+	matrix[COLLIDER_PLAYER][COLLIDER_GROUND] = true;
 
 	matrix[COLLIDER_ENEMY][COLLIDER_WALL] = true;
 	matrix[COLLIDER_ENEMY][COLLIDER_PLAYER] = true;
@@ -191,6 +192,15 @@ bool Collider::CheckCollision(const SDL_Rect& r) const
 	bool ret = true;
 
 	if (r.x + r.w < rect.x || rect.x + rect.w < r.x || r.y - r.h > rect.y || rect.y - rect.h > r.y) ret = false;
+
+	return ret;
+}
+
+bool Collider::CheckSideCollision(const SDL_Rect& r) const
+{
+	bool ret = false;
+
+	if (r.x + r.w > rect.x || rect.x + rect.w > r.x) ret = true;
 
 	return ret;
 }
