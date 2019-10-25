@@ -103,9 +103,12 @@ bool j1Player::ResetStates() {
 
 bool j1Player::Update(float dt) {
 	//Input
-	if (position.y > 800) {
+	if (position.y > 800 && status != PLAYER_DEATH) {
+		death.Reset();
+		deathTimer = 3.0f;
 		status = PLAYER_DEATH;
 		input = false;
+
 	}
 
 	if (input) {
@@ -134,7 +137,6 @@ bool j1Player::Update(float dt) {
 			else status = PLAYER_IDLE;
 		}
 		else {
-
 			WallCollision();
 			if (App->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN)
 				status = PLAYER_PUNCH_AIR;
@@ -220,9 +222,16 @@ bool j1Player::Update(float dt) {
 		break;
 
 	case PLAYER_DEATH:
-		input = false;
 		//Death animation
 		current_animation = &death;
+		if (deathTimer <= 0) {
+			position.x = 130;
+			position.y = 620;
+			input = true;
+			status = PLAYER_IN_AIR;
+		}
+		else deathTimer -= 0.1f;
+		break;
 
 	default:
 		break;
@@ -251,8 +260,12 @@ bool j1Player::Update(float dt) {
 	position.y += vel.y;
 
 	//Collider position
-	colPlayer->SetPos(position.x + 9, position.y + 16);
-	colPlayerWalls->SetPos(position.x + 8, position.y + 14);
+	if(vel.y > 0) colPlayer->SetPos(position.x + 9, position.y + 18);
+	else colPlayer->SetPos(position.x + 9, position.y + 16);
+	if(vel.x > 0) 	colPlayerWalls->SetPos(position.x + 9, position.y + 14);
+	else if(vel.x < 0) 	colPlayerWalls->SetPos(position.x + 7, position.y + 14);
+	else colPlayerWalls->SetPos(position.x + 8, position.y + 14);
+
 
 	//Function to draw the player
 	Draw();
@@ -278,9 +291,14 @@ bool j1Player::OnGround() {
 	for (int i = 0; i < App->map->groundCol.count(); i++) {
 		ret = colPlayer->CheckCollision(App->map->groundCol.At(i)->data->rect);
 		if (ret) {
-			if (vel.y > 0) 
+			if (vel.y > 0) {
 				position.y = App->map->groundCol.At(i)->data->rect.y - 32;
-			else if (vel.y < 0) position.y = App->map->groundCol.At(i)->data->rect.y + 1;
+				vel.x = 0;
+			}
+			else if (vel.y < 0) {
+			position.y = App->map->groundCol.At(i)->data->rect.y + 1;
+			vel.x = 0;
+			}
 			return ret;
 		}
 	}
@@ -293,8 +311,8 @@ bool j1Player::WallCollision() {
 	for (int i = 0; i < App->map->groundCol.count(); i++) {
 		ret = colPlayerWalls->CheckCollision(App->map->groundCol.At(i)->data->rect);
 		if (ret) {
-			if (vel.x > 0) position.x = App->map->groundCol.At(i)->data->rect.x - 22;
-			else if (vel.x < 0) position.x = App->map->groundCol.At(i)->data->rect.x + 10;
+			if (vel.x > 0) position.x = App->map->groundCol.At(i)->data->rect.x - 23;
+			else if (vel.x < 0) position.x = App->map->groundCol.At(i)->data->rect.x + 11;
 			break;
 		}
 	}

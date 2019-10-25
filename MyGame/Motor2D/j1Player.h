@@ -59,6 +59,7 @@ private:
 	int life;
 	int speed;
 	float airTimer;
+	float deathTimer;
 	fPoint vel;
 
 

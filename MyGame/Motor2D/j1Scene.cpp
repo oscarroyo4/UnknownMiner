@@ -32,7 +32,6 @@ bool j1Scene::Awake()
 bool j1Scene::Start()
 {
 	App->map->Load("TiledMap_2.tmx");
-	//testCol = App->collision->AddCollider({178, 368, 60, 10}, COLLIDER_GROUND);
 	return true;
 }
 
@@ -69,12 +68,6 @@ bool j1Scene::Update(float dt)
 	//App->render->Blit(img, 0, 0);
 	App->map->Draw();
 
-	p2SString title("Map:%dx%d Tiles:%dx%d Tilesets:%d",
-					App->map->data.width, App->map->data.height,
-					App->map->data.tile_width, App->map->data.tile_height,
-					App->map->data.tilesets.count());
-
-	App->win->SetTitle(title.GetString());
 	return true;
 }
 
