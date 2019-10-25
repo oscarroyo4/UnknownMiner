@@ -93,7 +93,9 @@ bool j1Scene::CleanUp()
 bool j1Scene::ChargeSecondLevel()
 {
 	App->player->input = false;
+	App->player->position.y = 620;
 	App->map->groundCol.clear();
+	App->collision->CleanUp();
 	App->map->CleanUp();
 	App->map->Load("TiledMap.tmx");
 	App->player->input = true;

@@ -1,2 +1,32 @@
-﻿  j1Scene.cpp
+﻿  j1Player.cpp
+c:\users\oscar\documents\github\handout\mygame\motor2d\j1player.cpp(151): warning C4244: '=': conversión de 'int' a 'TYPE'; posible pérdida de datos
+          with
+          [
+              TYPE=float
+          ]
+c:\users\oscar\documents\github\handout\mygame\motor2d\j1player.cpp(155): warning C4244: '=': conversión de 'int' a 'TYPE'; posible pérdida de datos
+          with
+          [
+              TYPE=float
+          ]
+c:\users\oscar\documents\github\handout\mygame\motor2d\j1player.cpp(254): warning C4244: '+=': conversión de 'TYPE' a 'TYPE'; posible pérdida de datos
+          with
+          [
+              TYPE=float
+          ]
+          and
+          [
+              TYPE=int
+          ]
+c:\users\oscar\documents\github\handout\mygame\motor2d\j1player.cpp(255): warning C4244: '+=': conversión de 'TYPE' a 'TYPE'; posible pérdida de datos
+          with
+          [
+              TYPE=float
+          ]
+          and
+          [
+              TYPE=int
+          ]
+c:\users\oscar\documents\github\handout\mygame\motor2d\j1player.cpp(286): warning C4018: '<': no coinciden signed/unsigned
+c:\users\oscar\documents\github\handout\mygame\motor2d\j1player.cpp(306): warning C4018: '<': no coinciden signed/unsigned
   Motor2D.vcxproj -> C:\Users\oscar\Documents\GitHub\Handout\MyGame\Debug\Motor 2D.exe

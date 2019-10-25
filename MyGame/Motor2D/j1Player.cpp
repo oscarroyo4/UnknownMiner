@@ -71,11 +71,6 @@ bool j1Player::Start()
 	graphics = App->tex->Load("maps/Character.png");
 	colPlayer = App->collision->AddCollider({position.x + 9, position.y + 16, 10, 16}, COLLIDER_PLAYER);
 	colPlayerWalls = App->collision->AddCollider({position.x + 8, position.y + 14, 12, 2}, COLLIDER_PLAYER);
-
-	if (colPlayer == NULL) {
-		LOG("Could not load the collider");
-		ret = false;
-	}
 	life = 100;
 	speed = 2;
 	return ret;
