@@ -179,7 +179,6 @@ bool j1Map::Load(const char* file_name)
 							SDL_Rect sect = data.tilesets.start->data->TileToRect(l->gid[l->Get(i, j)]);
 
 							groundCol.add(App->collision->AddCollider({ position.x,position.y,sect.w,sect.h }, COLLIDER_GROUND));
-							LOG("Collider num: %i", groundCol.count());
 						}
 					}
 				}

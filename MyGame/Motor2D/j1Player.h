@@ -4,6 +4,7 @@
 #include "j1Module.h"
 #include "j1Input.h"
 #include "j1Textures.h"
+#include "j1Audio.h"
 #include "j1Collision.h"
 #include "Animation.h"
 #include "p2Point.h"
@@ -31,7 +32,7 @@ public:
 	virtual ~j1Player();
 
 	// Called before render is available
-	//bool Awake(pugi::xml_node&);
+	bool Awake(pugi::xml_node& config);
 
 	// Called each loop iteration
 	bool Start();
@@ -53,11 +54,14 @@ public:
 	bool input = true;
 
 private:
+
 	bool LoadPlayer();
 	bool ResetStates();
 
 	int life;
 	int speed;
+	int deathLimit;
+	float deathTimer_config;
 	float airTimer;
 	float deathTimer;
 	fPoint vel;
@@ -70,7 +74,12 @@ private:
 
 	Uint32 punch_timer = 0;
 
+	p2SString texPath;
 	SDL_Texture* graphics;
+	int swoshFx;
+	int hitFx;
+	int jumpFx;
+
 	Animation* current_animation = &idle;
 	Animation idle;
 	Animation backward;

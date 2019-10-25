@@ -5,7 +5,6 @@
 #include "j1Scene.h"
 #include "j1Map.h"
 #include "j1Input.h"
-#include "j1Textures.h"
 #include "Animation.h"
 #include "j1Player.h"
 
@@ -15,6 +14,8 @@
 
 j1Player::j1Player() : j1Module()
 {
+	name.create("player");
+
 	position.x = 130;
 	position.y = 620;
 
@@ -64,15 +65,28 @@ j1Player::j1Player() : j1Module()
 j1Player::~j1Player()
 {}
 
+bool j1Player::Awake(pugi::xml_node& config) {
+	bool ret = true;
+	LOG("Loading player from config_file");
+
+	texPath = config.child("path").attribute("value").as_string();
+	life = config.child("propierties").attribute("life").as_int();
+	speed = config.child("propierties").attribute("speed").as_int();
+	deathLimit = config.child("death").attribute("height").as_int();
+	deathTimer_config = config.child("death").attribute("time").as_float();
+	return ret;
+}
+
 bool j1Player::Start()
 {
 	bool ret = true;
-	LOG("Loading player");
-	graphics = App->tex->Load("maps/Character.png");
+	graphics = App->tex->Load(texPath.GetString()); //Loading texture from path
+	swoshFx = App->audio->LoadFx("audio/fx/Swosh.ogg");
+	hitFx = App->audio->LoadFx("audio/fx/Swosh+Hit.ogg");
+	jumpFx = App->audio->LoadFx("audio/fx/Step1.ogg");
+	LOG("Creating player colliders");
 	colPlayer = App->collision->AddCollider({position.x + 9, position.y + 16, 10, 16}, COLLIDER_PLAYER);
 	colPlayerWalls = App->collision->AddCollider({position.x + 8, position.y + 14, 12, 2}, COLLIDER_PLAYER);
-	life = 100;
-	speed = 2;
 	return ret;
 }
 
@@ -90,7 +104,7 @@ bool j1Player::ResetStates() {
 	jump.Reset();
 	punch_air.Reset();
 	jumpEnable = true;
-	airTimer = 4.0f;
+	airTimer = deathTimer_config;
 	punchAirEnable = true;
 
 	return true;
@@ -98,9 +112,9 @@ bool j1Player::ResetStates() {
 
 bool j1Player::Update(float dt) {
 	//Input
-	if (position.y > 800 && status != PLAYER_DEATH) {
+	if (position.y > deathLimit && status != PLAYER_DEATH) {
 		death.Reset();
-		deathTimer = 3.0f;
+		deathTimer = deathTimer_config;
 		status = PLAYER_DEATH;
 		input = false;
 
@@ -161,12 +175,10 @@ bool j1Player::Update(float dt) {
 			current_animation = &jump;
 			vel.y = -3;
 			jump.Reset();
-			/* Sound
-			if (App->sounds->Play_chunk(jumpfx))
-			{
-				LOG("Could not play select sound. Mix_PlayChannel: %s", Mix_GetError());
-			}
-			*/
+			// Sound
+			//App->audio->PlayFx(jumpFx, false);
+			
+			
 		}
 		break;
 	case PLAYER_IN_AIR:
@@ -180,12 +192,9 @@ bool j1Player::Update(float dt) {
 			punchEnable = false;
 			punch.Reset();
 			punch_timer = 1;
-			/* Sound
-			if (App->sounds->Play_chunk(punchfx))
-			{
-				LOG("Could not play select sound. Mix_PlayChannel: %s", Mix_GetError());
-			}
-			*/
+			// Sound
+			App->audio->PlayFx(hitFx, false);
+
 			// Collider
 			punchCol = App->collision->AddCollider({ position.x + 19, position.y + 14, 10, 18 }, COLLIDER_PLAYER_SHOT);
 			//punchHit = false;
@@ -201,13 +210,14 @@ bool j1Player::Update(float dt) {
 			punchAirEnable = false;
 			current_animation = &punch_air;
 			vel.y = -4;
+			App->audio->PlayFx(swoshFx, false);
 			if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT) {
-				airTimer = 4.0f;
+				airTimer = deathTimer_config;
 				vel.x = 2;
 				status = PLAYER_IN_AIR;
 			}
 			else if (App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT) {
-				airTimer = 4.0f;
+				airTimer = deathTimer_config;
 				vel.x = -2;
 				status = PLAYER_IN_AIR;
 
@@ -306,8 +316,14 @@ bool j1Player::WallCollision() {
 	for (int i = 0; i < App->map->groundCol.count(); i++) {
 		ret = colPlayerWalls->CheckCollision(App->map->groundCol.At(i)->data->rect);
 		if (ret) {
-			if (vel.x > 0) position.x = App->map->groundCol.At(i)->data->rect.x - 23;
-			else if (vel.x < 0) position.x = App->map->groundCol.At(i)->data->rect.x + 11;
+			if (vel.x > 0) {
+				if(airTimer < 3) vel.x = 0;
+				position.x = App->map->groundCol.At(i)->data->rect.x - 23;
+			}
+			else if (vel.x < 0) {
+				if (airTimer < 3) vel.x = 0;
+				position.x = App->map->groundCol.At(i)->data->rect.x + 11;
+			}
 			break;
 		}
 	}

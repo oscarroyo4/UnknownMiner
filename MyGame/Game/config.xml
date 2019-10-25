@@ -2,7 +2,7 @@
 
 <config>
   <app>
-    <title>Unknow Miner</title>
+    <title>Unknown Miner</title>
     <organization>UPC</organization>
   </app>
 	
@@ -29,8 +29,9 @@
   <player>
     <initialPos1 x="130" y="620"/>
     <initialPos2 x="130" y="520"/>
+    <death height="800" time="4"/>
     <propierties life="100" speed="2"/>
-    <texPath path="maps/Character.png"/>
+    <path value="maps/Character.png"/>
   </player>
 
 </config>
