@@ -48,8 +48,10 @@ public:
 	bool OnGround();
 	bool WallCollision();
 
-
 	iPoint position;
+
+	bool input = true;
+
 private:
 	bool LoadPlayer();
 	bool ResetStates();
@@ -59,7 +61,7 @@ private:
 	float airTimer;
 	fPoint vel;
 
-	bool input = true;
+
 	bool jumpEnable = true;
 	bool punchEnable = true;
 	bool punchAirEnable = true;

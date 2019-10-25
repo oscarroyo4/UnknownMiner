@@ -12,7 +12,7 @@
 
 j1Scene::j1Scene() : j1Module()
 {
-	name.create("scene");
+	name.create("scene2");
 }
 
 // Destructor
@@ -22,7 +22,7 @@ j1Scene::~j1Scene()
 // Called before render is available
 bool j1Scene::Awake()
 {
-	LOG("Loading Scene");
+	LOG("Loading Scene 2");
 	bool ret = true;
 
 	return ret;
@@ -31,7 +31,7 @@ bool j1Scene::Awake()
 // Called before the first frame
 bool j1Scene::Start()
 {
-	App->map->Load("TiledMap_2.tmx");
+	App->map->Load("TiledMap.tmx");
 	//testCol = App->collision->AddCollider({178, 368, 60, 10}, COLLIDER_GROUND);
 	return true;
 }
@@ -63,9 +63,6 @@ bool j1Scene::Update(float dt)
 	if(App->input->GetKey(SDL_SCANCODE_RIGHT) == KEY_REPEAT)
 		App->render->camera.x += 1;
 
-	if (App->input->GetKey(SDL_SCANCODE_K) == KEY_DOWN)
-		ChargeSecondLevel();
-
 	//App->render->Blit(img, 0, 0);
 	App->map->Draw();
 
@@ -92,18 +89,7 @@ bool j1Scene::PostUpdate()
 // Called before quitting
 bool j1Scene::CleanUp()
 {
-	LOG("Freeing scene");
-
-	return true;
-}
-
-bool j1Scene::ChargeSecondLevel()
-{
-	App->player->input = false;
-	App->map->groundCol.clear();
-	App->map->CleanUp();
-	App->map->Load("TiledMap.tmx");
-	App->player->input = true;
+	LOG("Freeing scene 2");
 
 	return true;
 }

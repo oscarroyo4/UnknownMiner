@@ -1,7 +1,7 @@
 #ifndef __j1Collision_H__
 #define __j1Collision_H__
 
-#define MAX_COLLIDERS 800
+#define MAX_COLLIDERS 2000
 
 #include "j1Module.h"
 #include "SDL\include\SDL_rect.h"
@@ -39,7 +39,6 @@ struct Collider
 	}
 
 	bool CheckCollision(const SDL_Rect& r) const;
-	bool CheckSideCollision(const SDL_Rect& r) const;
 };
 
 class j1Collision : public j1Module

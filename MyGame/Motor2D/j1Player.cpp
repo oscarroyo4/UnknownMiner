@@ -109,18 +109,21 @@ bool j1Player::Update(float dt) {
 	}
 
 	if (input) {
-		WallCollision();
 		if (OnGround()) {
 			ResetStates();
-			if (App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
+			if (App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT) {
+				WallCollision();
 				if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
 					status = PLAYER_JUMP;
 				else status = PLAYER_BACKWARD;
+			}
 
-			else if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT)
+			else if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT) {
+				WallCollision();
 				if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
 					status = PLAYER_JUMP;
 				else status = PLAYER_FORWARD;
+			}
 
 			else if (App->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN)
 				status = PLAYER_PUNCH;
@@ -131,11 +134,14 @@ bool j1Player::Update(float dt) {
 			else status = PLAYER_IDLE;
 		}
 		else {
+
+			WallCollision();
 			if (App->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN)
 				status = PLAYER_PUNCH_AIR;
 			else
 				status = PLAYER_IN_AIR;
 		}
+		
 	}
 	//Status
 	switch (status)
@@ -201,10 +207,13 @@ bool j1Player::Update(float dt) {
 			if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT) {
 				airTimer = 4.0f;
 				vel.x = 2;
+				status = PLAYER_IN_AIR;
 			}
 			else if (App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT) {
 				airTimer = 4.0f;
 				vel.x = -2;
+				status = PLAYER_IN_AIR;
+
 			}
 		}
 
@@ -269,9 +278,9 @@ bool j1Player::OnGround() {
 	for (int i = 0; i < App->map->groundCol.count(); i++) {
 		ret = colPlayer->CheckCollision(App->map->groundCol.At(i)->data->rect);
 		if (ret) {
-			if (vel.y > 0)
+			if (vel.y > 0) 
 				position.y = App->map->groundCol.At(i)->data->rect.y - 32;
-			else if (vel.y < 0)	position.y = App->map->groundCol.At(i)->data->rect.y + 1;
+			else if (vel.y < 0) position.y = App->map->groundCol.At(i)->data->rect.y + 1;
 			return ret;
 		}
 	}

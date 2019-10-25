@@ -32,6 +32,8 @@ public:
 	// Called before quitting
 	bool CleanUp();
 
+	bool ChargeSecondLevel();
+
 	Collider* testCol;
 
 private:
