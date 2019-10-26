@@ -49,9 +49,16 @@ public:
 	bool OnGround();
 	bool WallCollision();
 
+
+	//Public variables
 	iPoint position;
 
 	bool input = true;
+
+	int initialX;
+	int initialY;
+	int initialX2;
+	int initialY2;
 
 private:
 
@@ -75,10 +82,15 @@ private:
 	Uint32 punch_timer = 0;
 
 	p2SString texPath;
+	p2SString swoshPath;
+	p2SString hitPath;
+	p2SString jumpPath;
+	p2SString landPath;
 	SDL_Texture* graphics;
 	int swoshFx;
 	int hitFx;
 	int jumpFx;
+	int landFx;
 
 	Animation* current_animation = &idle;
 	Animation idle;

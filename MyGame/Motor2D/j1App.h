@@ -15,6 +15,7 @@ class j1Scene;
 class j1Map;
 class j1Player;
 class j1Collision;
+class j1FadeToBlack;
 
 class j1App
 {
@@ -76,6 +77,7 @@ private:
 	bool SavegameNow() const;
 
 public:
+	pugi::xml_node config;
 
 	// Modules
 	j1Window*			win;
@@ -87,6 +89,7 @@ public:
 	j1Map*				map;
 	j1Player*			player;
 	j1Collision*		collision;
+	j1FadeToBlack*		fadetoblack;
 
 private:
 

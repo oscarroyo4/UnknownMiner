@@ -16,9 +16,6 @@ j1Player::j1Player() : j1Module()
 {
 	name.create("player");
 
-	position.x = 130;
-	position.y = 620;
-
 	// idle animation (arcade sprite sheet)
 	idle.PushBack({ 0, 0, 32, 32 });
 	idle.speed = 1.0f;
@@ -69,21 +66,32 @@ bool j1Player::Awake(pugi::xml_node& config) {
 	bool ret = true;
 	LOG("Loading player from config_file");
 
-	texPath = config.child("path").attribute("value").as_string();
+	texPath = config.child("path").attribute("tex").as_string();
+	swoshPath = config.child("path").attribute("swosh").as_string();
+	hitPath = config.child("path").attribute("hit").as_string();
+	jumpPath = config.child("path").attribute("jump").as_string();
+	landPath = config.child("path").attribute("land").as_string();
 	life = config.child("propierties").attribute("life").as_int();
 	speed = config.child("propierties").attribute("speed").as_int();
 	deathLimit = config.child("death").attribute("height").as_int();
 	deathTimer_config = config.child("death").attribute("time").as_float();
+	initialX = config.child("initialPos1").attribute("x").as_int();
+	initialY = config.child("initialPos1").attribute("y").as_int();
+	initialX2 = config.child("initialPos2").attribute("x").as_int();
+	initialY2 = config.child("initialPos2").attribute("y").as_int();
 	return ret;
 }
 
 bool j1Player::Start()
 {
 	bool ret = true;
+	position.x = initialX;
+	position.y = initialY;
 	graphics = App->tex->Load(texPath.GetString()); //Loading texture from path
-	swoshFx = App->audio->LoadFx("audio/fx/Swosh.ogg");
-	hitFx = App->audio->LoadFx("audio/fx/Swosh+Hit.ogg");
-	jumpFx = App->audio->LoadFx("audio/fx/Step1.ogg");
+	swoshFx = App->audio->LoadFx(swoshPath.GetString());
+	hitFx = App->audio->LoadFx(hitPath.GetString());
+	jumpFx = App->audio->LoadFx(jumpPath.GetString());
+	landFx = App->audio->LoadFx(landPath.GetString());
 	LOG("Creating player colliders");
 	colPlayer = App->collision->AddCollider({position.x + 9, position.y + 16, 10, 16}, COLLIDER_PLAYER);
 	colPlayerWalls = App->collision->AddCollider({position.x + 8, position.y + 14, 12, 2}, COLLIDER_PLAYER);
@@ -95,7 +103,9 @@ bool j1Player::CleanUp()
 {
 	LOG("Unloading player");
 	colPlayer->to_delete = true;
+	colPlayerWalls->to_delete = true;
 	SDL_DestroyTexture(graphics);
+	App->audio->CleanUp();
 	return true;
 }
 
@@ -111,7 +121,7 @@ bool j1Player::ResetStates() {
 }
 
 bool j1Player::Update(float dt) {
-	//Input
+	//If player falls
 	if (position.y > deathLimit && status != PLAYER_DEATH) {
 		death.Reset();
 		deathTimer = deathTimer_config;
@@ -119,7 +129,7 @@ bool j1Player::Update(float dt) {
 		input = false;
 
 	}
-
+	//Input
 	if (input) {
 		if (OnGround()) {
 			ResetStates();
@@ -146,7 +156,7 @@ bool j1Player::Update(float dt) {
 			else status = PLAYER_IDLE;
 		}
 		else {
-			WallCollision();
+			WallCollision(); //Detect horizontal collision
 			if (App->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN)
 				status = PLAYER_PUNCH_AIR;
 			else
@@ -176,7 +186,7 @@ bool j1Player::Update(float dt) {
 			vel.y = -3;
 			jump.Reset();
 			// Sound
-			//App->audio->PlayFx(jumpFx, false);
+			App->audio->PlayFx(jumpFx, 0);
 			
 			
 		}
@@ -193,7 +203,7 @@ bool j1Player::Update(float dt) {
 			punch.Reset();
 			punch_timer = 1;
 			// Sound
-			App->audio->PlayFx(hitFx, false);
+			App->audio->PlayFx(hitFx, 0);
 
 			// Collider
 			punchCol = App->collision->AddCollider({ position.x + 19, position.y + 14, 10, 18 }, COLLIDER_PLAYER_SHOT);
@@ -210,7 +220,7 @@ bool j1Player::Update(float dt) {
 			punchAirEnable = false;
 			current_animation = &punch_air;
 			vel.y = -4;
-			App->audio->PlayFx(swoshFx, false);
+			App->audio->PlayFx(swoshFx, 0);
 			if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT) {
 				airTimer = deathTimer_config;
 				vel.x = 2;
@@ -230,8 +240,14 @@ bool j1Player::Update(float dt) {
 		//Death animation
 		current_animation = &death;
 		if (deathTimer <= 0) {
-			position.x = 130;
-			position.y = 620;
+			if (App->scene->level_Loaded == 1) {
+				position.x = initialX;
+				position.y = initialY;
+			}
+			else {
+				position.x = initialX2;
+				position.y = initialY2;
+			}
 			input = true;
 			status = PLAYER_IN_AIR;
 		}
@@ -297,6 +313,7 @@ bool j1Player::OnGround() {
 		ret = colPlayer->CheckCollision(App->map->groundCol.At(i)->data->rect);
 		if (ret) {
 			if (vel.y > 0) {
+				App->audio->PlayFx(landFx, 0);
 				position.y = App->map->groundCol.At(i)->data->rect.y - 32;
 				vel.x = 0;
 			}

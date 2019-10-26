@@ -28,10 +28,10 @@
 
   <player>
     <initialPos1 x="130" y="620"/>
-    <initialPos2 x="130" y="520"/>
+    <initialPos2 x="120" y="260"/>
     <death height="800" time="4"/>
-    <propierties life="100" speed="2"/>
-    <path value="maps/Character.png"/>
+    <propierties life="100" speed="2" gravity="0.25"/>
+    <path tex="textures/Character.png" jump="audio/fx/Jump.wav" hit="audio/fx/Swosh+Hit.ogg" land="audio/fx/Landing.ogg" swosh="audio/fx/Swosh.ogg"/>
   </player>
 
 </config>

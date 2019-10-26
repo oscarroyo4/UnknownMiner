@@ -8,6 +8,7 @@
 #include "j1Window.h"
 #include "j1Map.h"
 #include "j1Player.h"
+#include "j1FadeToBlack.h"
 #include "j1Scene.h"
 
 j1Scene::j1Scene() : j1Module()
@@ -22,8 +23,9 @@ j1Scene::~j1Scene()
 // Called before render is available
 bool j1Scene::Awake()
 {
-	LOG("Loading Scene");
 	bool ret = true;
+	LOG("Loading Scene");
+	level_Loaded = 1;
 
 	return ret;
 }
@@ -31,7 +33,9 @@ bool j1Scene::Awake()
 // Called before the first frame
 bool j1Scene::Start()
 {
+
 	App->map->Load("TiledMap_2.tmx");
+	App->audio->PlayMusic("audio/music/cave_ambient.ogg", 1.0f);
 	return true;
 }
 
@@ -49,7 +53,7 @@ bool j1Scene::Update(float dt)
 
 	if(App->input->GetKey(SDL_SCANCODE_S) == KEY_DOWN)
 		App->SaveGame();
-
+	/*
 	if(App->input->GetKey(SDL_SCANCODE_UP) == KEY_REPEAT)
 		App->render->camera.y -= 1;
 
@@ -61,11 +65,13 @@ bool j1Scene::Update(float dt)
 
 	if(App->input->GetKey(SDL_SCANCODE_RIGHT) == KEY_REPEAT)
 		App->render->camera.x += 1;
-
-	if (App->input->GetKey(SDL_SCANCODE_K) == KEY_DOWN)
+	*/
+	if (App->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN)
+		ChargeFirstLevel();
+	if (App->input->GetKey(SDL_SCANCODE_F2) == KEY_DOWN)
 		ChargeSecondLevel();
 
-	//App->render->Blit(img, 0, 0);
+	//Render Map
 	App->map->Draw();
 
 	return true;
@@ -90,15 +96,52 @@ bool j1Scene::CleanUp()
 	return true;
 }
 
+bool j1Scene::ChargeFirstLevel()
+{
+	App->player->input = false;
+	App->player->CleanUp();
+
+	p2List_item<Collider*>* item;
+	for (item = App->map->groundCol.start; item != NULL; item = item->next)
+		item->data->to_delete = true;
+	App->map->groundCol.clear();
+	App->collision->CleanUp();
+
+	App->map->CleanUp();
+	App->map->Load("TiledMap_2.tmx");
+	App->audio->Awake(App->config);
+	App->audio->PlayMusic("audio/music/cave_ambient.ogg", 1.0f);
+	App->player->Start();
+	App->player->position.x = App->player->initialX;
+	App->player->position.y = App->player->initialY;
+	App->player->input = true;
+
+	level_Loaded = 1;
+
+	return true;
+}
+
 bool j1Scene::ChargeSecondLevel()
 {
 	App->player->input = false;
-	App->player->position.y = 620;
+	App->player->CleanUp();
+
+	p2List_item<Collider*>* item;
+	for (item = App->map->groundCol.start; item != NULL; item = item->next)
+		item->data->to_delete = true;
 	App->map->groundCol.clear();
 	App->collision->CleanUp();
+
 	App->map->CleanUp();
 	App->map->Load("TiledMap.tmx");
+	App->audio->Awake(App->config);
+	App->audio->PlayMusic("audio/music/cave_ambient.ogg", 1.0f);
+	App->player->Start();
+	App->player->position.x = App->player->initialX2;
+	App->player->position.y = App->player->initialY2;
 	App->player->input = true;
+
+	level_Loaded = 2;
 
 	return true;
 }

@@ -3,6 +3,7 @@
 
 #include "j1Module.h"
 
+
 struct SDL_Texture;
 
 class j1Scene : public j1Module
@@ -33,10 +34,13 @@ public:
 	bool CleanUp();
 
 	bool ChargeSecondLevel();
+	bool ChargeFirstLevel();
 
 	Collider* testCol;
+	int level_Loaded;
 
 private:
+	int ambientFx;
 };
 
 #endif // __j1SCENE_H__
