@@ -10,7 +10,6 @@
 
 //#define PUNCH_TIME 80
 #define PUNCH_TIME 19
-#define G 0.25
 
 j1Player::j1Player() : j1Module()
 {
@@ -19,8 +18,7 @@ j1Player::j1Player() : j1Module()
 	// idle animation (arcade sprite sheet)
 	idle.PushBack({ 0, 0, 32, 32 });
 	idle.speed = 1.0f;
-
-
+	
 	forward.PushBack({ 32, 0, 32, 32 });
 	forward.PushBack({ 96, 0, 32, 32 });
 	forward.PushBack({ 64, 0, 32, 32 });
@@ -73,6 +71,7 @@ bool j1Player::Awake(pugi::xml_node& config) {
 	landPath = config.child("path").attribute("land").as_string();
 	life = config.child("propierties").attribute("life").as_int();
 	speed = config.child("propierties").attribute("speed").as_int();
+	gravity = config.child("propierties").attribute("gravity").as_float();
 	deathLimit = config.child("death").attribute("height").as_int();
 	deathTimer_config = config.child("death").attribute("time").as_float();
 	initialX = config.child("initialPos1").attribute("x").as_int();
@@ -87,7 +86,7 @@ bool j1Player::Start()
 	bool ret = true;
 	position.x = initialX;
 	position.y = initialY;
-	graphics = App->tex->Load(texPath.GetString()); //Loading texture from path
+	graphics = App->tex->Load(texPath.GetString()); //Loading assets from config file
 	swoshFx = App->audio->LoadFx(swoshPath.GetString());
 	hitFx = App->audio->LoadFx(hitPath.GetString());
 	jumpFx = App->audio->LoadFx(jumpPath.GetString());
@@ -102,6 +101,13 @@ bool j1Player::Start()
 bool j1Player::CleanUp()
 {
 	LOG("Unloading player");
+	colPlayer->to_delete = true;
+	colPlayerWalls->to_delete = true;
+	SDL_DestroyTexture(graphics);
+	return true;
+}
+
+bool j1Player::Disable() {
 	colPlayer->to_delete = true;
 	colPlayerWalls->to_delete = true;
 	SDL_DestroyTexture(graphics);
@@ -121,48 +127,77 @@ bool j1Player::ResetStates() {
 }
 
 bool j1Player::Update(float dt) {
-	//If player falls
+	//If player falls, die
 	if (position.y > deathLimit && status != PLAYER_DEATH) {
 		death.Reset();
 		deathTimer = deathTimer_config;
 		status = PLAYER_DEATH;
 		input = false;
-
+	}
+	if (App->scene->level_Loaded == 1) {
+		if (position.x > 3060) {
+			App->scene->ChargeSecondLevel();
+		}
+	}
+	else {
+		if (position.x > 3070) {
+			App->scene->ChargeSecondLevel();
+		}
 	}
 	//Input
 	if (input) {
-		if (OnGround()) {
+		if (App->input->GetKey(SDL_SCANCODE_F10) == KEY_DOWN) {
 			ResetStates();
-			if (App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT) {
-				WallCollision();
-				if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
+			godmode = !godmode;
+		}
+		if (!godmode) {
+			if (OnGround()) {
+				ResetStates();
+				if (App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT) {
+					WallCollision(); //Detect horizontal collision
+					if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
+						status = PLAYER_JUMP;
+					else status = PLAYER_BACKWARD;
+				}
+
+				else if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT) {
+					WallCollision(); //Detect horizontal collision
+					if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
+						status = PLAYER_JUMP;
+					else status = PLAYER_FORWARD;
+				}
+
+				else if (App->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN)
+					status = PLAYER_PUNCH;
+
+				else if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
 					status = PLAYER_JUMP;
-				else status = PLAYER_BACKWARD;
+
+				else status = PLAYER_IDLE;
 			}
-
-			else if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT) {
-				WallCollision();
-				if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
-					status = PLAYER_JUMP;
-				else status = PLAYER_FORWARD;
+			else {
+				WallCollision(); //Detect horizontal collision
+				if (App->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN)
+					status = PLAYER_PUNCH_AIR;
+				else
+					status = PLAYER_IN_AIR;
 			}
-
-			else if (App->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN)
-				status = PLAYER_PUNCH;
-
-			else if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
-				status = PLAYER_JUMP;
-
-			else status = PLAYER_IDLE;
 		}
 		else {
-			WallCollision(); //Detect horizontal collision
-			if (App->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN)
-				status = PLAYER_PUNCH_AIR;
-			else
-				status = PLAYER_IN_AIR;
+			if (App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT) {
+				position.x -= speed*2;
+			}
+			else if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT) {
+				position.x += speed*3;
+			}
+			else if (App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT) {
+				position.y -= speed;
+			}
+			else if (App->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT) {
+				position.y += speed;
+			}
 		}
-		
+				
 	}
 	//Status
 	switch (status)
@@ -192,7 +227,7 @@ bool j1Player::Update(float dt) {
 		}
 		break;
 	case PLAYER_IN_AIR:
-		vel.y += G;
+		vel.y += gravity;
 		if (airTimer <= 0) vel.x = 0;
 		else airTimer -= 0.1f;
 
@@ -240,6 +275,7 @@ bool j1Player::Update(float dt) {
 		//Death animation
 		current_animation = &death;
 		if (deathTimer <= 0) {
+			input = true;
 			if (App->scene->level_Loaded == 1) {
 				position.x = initialX;
 				position.y = initialY;
@@ -248,7 +284,6 @@ bool j1Player::Update(float dt) {
 				position.x = initialX2;
 				position.y = initialY2;
 			}
-			input = true;
 			status = PLAYER_IN_AIR;
 		}
 		else deathTimer -= 0.1f;
@@ -277,6 +312,7 @@ bool j1Player::Update(float dt) {
 		}
 	}
 
+	//Change position from velocity
 	position.x += vel.x;
 	position.y += vel.y;
 
@@ -344,5 +380,6 @@ bool j1Player::WallCollision() {
 			break;
 		}
 	}
+
 	return ret;
 }

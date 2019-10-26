@@ -36,7 +36,7 @@ public:
 	bool ChargeSecondLevel();
 	bool ChargeFirstLevel();
 
-	Collider* testCol;
+	Collider* finishCol;
 	int level_Loaded;
 
 private:

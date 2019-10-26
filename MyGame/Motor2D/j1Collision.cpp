@@ -125,6 +125,9 @@ void j1Collision::DebugDraw()
 		case COLLIDER_GROUND: // brown
 			App->render->DrawQuad(colliders[i]->rect, 139, 69, 19, alpha);
 			break;
+		case COLLIDER_END: // oranje
+			App->render->DrawQuad(colliders[i]->rect, 255, 140, 0, alpha);
+			break;
 		}
 	}
 }

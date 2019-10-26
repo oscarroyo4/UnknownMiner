@@ -8,7 +8,6 @@
 #include "j1Window.h"
 #include "j1Map.h"
 #include "j1Player.h"
-#include "j1FadeToBlack.h"
 #include "j1Scene.h"
 
 j1Scene::j1Scene() : j1Module()
@@ -25,7 +24,6 @@ bool j1Scene::Awake()
 {
 	bool ret = true;
 	LOG("Loading Scene");
-	level_Loaded = 1;
 
 	return ret;
 }
@@ -36,6 +34,8 @@ bool j1Scene::Start()
 
 	App->map->Load("TiledMap_2.tmx");
 	App->audio->PlayMusic("audio/music/cave_ambient.ogg", 1.0f);
+	level_Loaded = 1;
+
 	return true;
 }
 
@@ -53,21 +53,10 @@ bool j1Scene::Update(float dt)
 
 	if(App->input->GetKey(SDL_SCANCODE_S) == KEY_DOWN)
 		App->SaveGame();
-	/*
-	if(App->input->GetKey(SDL_SCANCODE_UP) == KEY_REPEAT)
-		App->render->camera.y -= 1;
 
-	if(App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_REPEAT)
-		App->render->camera.y += 1;
-
-	if(App->input->GetKey(SDL_SCANCODE_LEFT) == KEY_REPEAT)
-		App->render->camera.x -= 1;
-
-	if(App->input->GetKey(SDL_SCANCODE_RIGHT) == KEY_REPEAT)
-		App->render->camera.x += 1;
-	*/
 	if (App->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN)
 		ChargeFirstLevel();
+
 	if (App->input->GetKey(SDL_SCANCODE_F2) == KEY_DOWN)
 		ChargeSecondLevel();
 

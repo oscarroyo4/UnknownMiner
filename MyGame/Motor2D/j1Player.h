@@ -45,10 +45,10 @@ public:
 
 	// Called before quitting
 	bool CleanUp();
+	bool Disable();
 
 	bool OnGround();
 	bool WallCollision();
-
 
 	//Public variables
 	iPoint position;
@@ -67,6 +67,7 @@ private:
 
 	int life;
 	int speed;
+	float gravity;
 	int deathLimit;
 	float deathTimer_config;
 	float airTimer;
@@ -78,6 +79,7 @@ private:
 	bool punchEnable = true;
 	bool punchAirEnable = true;
 	bool dead = false;
+	bool godmode = false;
 
 	Uint32 punch_timer = 0;
 
