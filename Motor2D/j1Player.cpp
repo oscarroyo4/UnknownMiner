@@ -124,6 +124,7 @@ bool j1Player::ResetStates() { //Reset all states before checking input
 	jumpEnable = true;
 	airTimer = deathTimer_config;
 	punchAirEnable = true;
+	App->scene->loaded = false;
 
 	return true;
 }
@@ -384,4 +385,13 @@ bool j1Player::WallCollision() {
 	}
 
 	return ret;
+}
+
+bool j1Player::Save(pugi::xml_node& data) const{
+	pugi::xml_node ply = data.append_child("player");
+
+	ply.append_attribute("x") = position.x;
+	ply.append_attribute("y") = position.y;
+
+	return true;
 }

@@ -280,20 +280,35 @@ const char* j1App::GetOrganization() const
 }
 
 // Load / Save
-void j1App::LoadGame()
+void j1App::LoadGame(const char* file)
 {
 	// we should be checking if that file actually exist
 	// from the "GetSaveGames" list
-
-	want_to_load = true;
+	pugi::xml_document data;
+	pugi::xml_parse_result result = data.load_file(file);
+	if (result == NULL) LOG("There is no savefile to load");
+	else {
+		load_game = file;
+		want_to_load = true;
+	}
 }
 
 // ---------------------------------------
-void j1App::SaveGame() const
+void j1App::SaveGame(const char* file) const
 {
 	// we should be checking if that file actually exist
 	// from the "GetSaveGames" list ... should we overwrite ?
-
+	pugi::xml_document data;
+	pugi::xml_parse_result result = data.load_file(file);
+	if (result == NULL) save_game.create(file);
+	else {
+		if (remove(file) == 0) {
+			save_game.create(file);
+		}
+		else {
+			LOG("Unable to delete save_game file!");
+		}
+	}
 	want_to_save = true;
 }
 

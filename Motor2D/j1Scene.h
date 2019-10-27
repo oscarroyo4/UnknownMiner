@@ -33,14 +33,22 @@ public:
 	// Called before quitting
 	bool CleanUp();
 
+	// Load / Save
+	bool Load(pugi::xml_node&);
+	bool Save(pugi::xml_node&) const;
+
+	// Change levels functions
 	bool ChargeSecondLevel();
 	bool ChargeFirstLevel();
 
 	Collider* finishCol;
 	int level_Loaded;
+	bool loaded;
 
 private:
 	int ambientFx;
+
+	int tempX = 0, tempY = 0;
 };
 
 #endif // __j1SCENE_H__

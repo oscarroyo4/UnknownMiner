@@ -47,6 +47,10 @@ public:
 	bool CleanUp();
 	bool Disable();
 
+	// Load / Save
+	bool Save(pugi::xml_node&) const;
+
+	// Collisions
 	bool OnGround();
 	bool WallCollision();
 
@@ -62,7 +66,6 @@ public:
 
 private:
 
-	bool LoadPlayer();
 	bool ResetStates();
 
 	int life;

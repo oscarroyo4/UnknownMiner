@@ -32,7 +32,7 @@ bool j1Scene::Awake()
 // Called before the first frame
 bool j1Scene::Start()
 {
-
+	loaded = false;
 	App->map->Load("TiledMap_2.tmx");
 	App->audio->PlayMusic("audio/music/cave_ambient.ogg", 1.0f);
 	level_Loaded = 1;
@@ -49,11 +49,11 @@ bool j1Scene::PreUpdate()
 // Called each loop iteration
 bool j1Scene::Update(float dt)
 {
-	if(App->input->GetKey(SDL_SCANCODE_L) == KEY_DOWN)
-		App->LoadGame();
+	if(App->input->GetKey(SDL_SCANCODE_F6) == KEY_DOWN)
+		App->LoadGame("saves/save_game.xml");
 
-	if(App->input->GetKey(SDL_SCANCODE_S) == KEY_DOWN)
-		App->SaveGame();
+	if(App->input->GetKey(SDL_SCANCODE_F5) == KEY_DOWN)
+		App->SaveGame("saves/save_game.xml");
 
 	if (App->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN)
 		App->fadetoblack->FadeToBlack(1);
@@ -105,8 +105,14 @@ bool j1Scene::ChargeFirstLevel()
 	App->audio->Awake(App->config);
 	App->audio->PlayMusic("audio/music/cave_ambient.ogg", 1.0f);
 	App->player->Start();
-	App->player->position.x = App->player->initialX;
-	App->player->position.y = App->player->initialY;
+	if (!loaded) {
+		App->player->position.x = App->player->initialX;
+		App->player->position.y = App->player->initialY;
+	}
+	else {
+		App->player->position.x = tempX;
+		App->player->position.y = tempY;
+	}
 	App->player->input = true;
 
 	level_Loaded = 1;
@@ -130,11 +136,42 @@ bool j1Scene::ChargeSecondLevel()
 	App->audio->Awake(App->config);
 	App->audio->PlayMusic("audio/music/cave_ambient.ogg", 1.0f);
 	App->player->Start();
-	App->player->position.x = App->player->initialX2;
-	App->player->position.y = App->player->initialY2;
+	if (!loaded) {
+		App->player->position.x = App->player->initialX2;
+		App->player->position.y = App->player->initialY2;
+	}
+	else { 
+		App->player->position.x = tempX;
+		App->player->position.y = tempY;
+	}
+
 	App->player->input = true;
 
 	level_Loaded = 2;
+
+	return true;
+}
+
+bool j1Scene::Load(pugi::xml_node& data) {
+	level_Loaded = data.child("scene").attribute("level").as_int();
+	App->player->input = false;
+	if (level_Loaded == 1) {
+		App->fadetoblack->FadeToBlack(1);
+		
+	}
+	else if (level_Loaded == 2) {
+		App->fadetoblack->FadeToBlack(2);
+	}
+	loaded = true;
+	tempX = data.parent().child("player").child("player").attribute("x").as_int();
+	tempY = data.parent().child("player").child("player").attribute("y").as_int();
+	return true;
+}
+
+bool j1Scene::Save(pugi::xml_node& data) const {
+	pugi::xml_node ply = data.append_child("scene");
+
+	ply.append_attribute("level") = level_Loaded;
 
 	return true;
 }
