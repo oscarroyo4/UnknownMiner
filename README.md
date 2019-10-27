@@ -1,8 +1,7 @@
-## Our project website
+## My project website
 
-#### This website was created to give a preview of our project about Fatal Fury.
-
-For the past six months our team from BalsdosaStudio has been working on a videogame project based on Fatal Fury a Neogeo game. First, we made a research of the game, and we made a wiki page, you will find a link down below, then we worked on a first prototype that had few mechanics, finally we released the alpha, the link of our game it's also at the bottom of the website.
+#### This website was created to give a preview of my project about Unkonwn Miner
+During these months I have been working on a videogame project  for the subject of videogame development. First I learned to use Tiled and later I have learned to save and load the information from a xml file. Finally I developed the videogame step by step.
 
 ## Website Contents
 
@@ -13,33 +12,33 @@ For the past six months our team from BalsdosaStudio has been working on a video
 
 ### Description of the game
 
-Our project tried to mimic the classic Neogeo game Fatal Fury, our alpha contains the three playable characters, Joe, Terry and Andy, also three playable maps. the gameplay is based on a 1v1 mode where the player1 selects one of the three main characters and competes against player2 that uses Terry with another skin. 
-The game has the basic mechanics of a 2D fighting game.
+My project is a Sidescroller plataformer where a player is a miner who moves forward to complete two levels. 
 
+### Controlls
+A, D - Lateral movement:
+A:Walk forward   D: walk backwards
+Space - First jump
+E - If the player is on the ground he hits the peakaxe, if he is in the air he makes the second jump.
+F1 - Go to the first map
+F2 - Go to the second map
+F3 - reset level
+F5 - Save current status
+F6 - Load last state
+F9 - show colliders
+F10 - God Mode (You don't collide with anything and you can fly everywhere)
 ### Team members
 
-
 > ![](https://raw.githubusercontent.com/oscarroyo4/Proyecto_1_BaldosaStudios/picts-wiki/IMG20190315120333.jpg)
-
-
-* Pau Raurell
-  * Q&A
-  * Github account: [pauraurell](https://github.com/pauraurell)
-
-* Victor Bosch
-  * Management
-  * Github account: [victorbr2](https://github.com/victorbr2/)
 
 * Oscar Royo
   * Code
   * Github account: [oscarroyo4](https://github.com/oscarroyo4)
+ I'm a student of the Polytechnic University of Catalonia and 19 years old.
 
-* Carlos de Yzaguirre
-  * Art/Design
-  * Github account: [CarlosDYZAB](https://github.com/CarlosDYZAB/)
-  
+thanks to.......... for the level art
+  * link: 
+
 ### Gameplay Video
-
 
 Here is the link of the video : [Fatal Fury Gameplay](https://www.youtube.com/watch?v=1nzazt-GIqE) <br/>
 
