@@ -28,7 +28,7 @@ My project is a Sidescroller plataformer where a player is a miner who moves for
  *F10 - God Mode (You don't collide with anything and you can fly everywhere)
 ### Team members
 
-<img src="https://raw.githubusercontent.com/oscarroyo4/UnknownMiner/Images/Semafor_Mias_1.jpg" width="100">
+<img src="https://raw.githubusercontent.com/oscarroyo4/UnknownMiner/Images/Semafor_Mias_1.jpg" width="200">
 
 * Oscar Royo
   * Code
