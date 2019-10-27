@@ -12,7 +12,7 @@ During these months I have been working on a videogame project  for the subject 
 
 ### Description of the game
 
-My project is a Sidescroller plataformer where a player is a miner who moves forward to complete two levels. 
+My project is a Sidescroller plataformer where a player is a miner who moves forward to complete two levels. He can only jump 1 height but with the help of the pickaxe he can jump up to 3 blocks, you have to hit with it in the air in order to make this big jump. You can't move in mid air, only if you use the second jump so be carefull when you fall down.
 
 ### Controlls
  * A - Walk forward   
