@@ -3,6 +3,8 @@
 #### This website was created to give a preview of my project about Unkonwn Miner
 During these months I have been working on a videogame project  for the subject of videogame development. First I learned to use Tiled and later I have learned to save and load the information from a xml file. Finally I developed the videogame step by step.
 
+Link to the project: https://github.com/oscarroyo4/UnknownMiner
+
 ## Website Contents
 
 - Description of the game
@@ -48,6 +50,6 @@ Here is the link of the video : [Unknown Miner Gameplay](https://www.youtube.com
 
 ### Download link
 
-[Download Alpha Here](https://github.com/oscarroyo4/UnkownMiner/releases/download/0.5/UnkownMiner.rar)
+[Download Alpha Here](https://github.com/oscarroyo4/UnkownMiner/releases/download/0.1/Unkown Miner.rar)
 
 
