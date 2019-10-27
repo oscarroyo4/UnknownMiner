@@ -40,10 +40,10 @@ My project is a Sidescroller plataformer where a player is a miner who moves for
 
 ### Gameplay Video
 
-Here is the link of the video : [Unknown Miner Gameplay](https://www.youtube.com/watch?v=1nzazt-GIqE) <br/>
+Here is the link of the video : [Unknown Miner Gameplay](https://www.youtube.com/watch?v=pM2DXTikZTY) <br/>
 
 
-[![](https://img.youtube.com/vi/1nzazt-GIqE/0.jpg)](https://www.youtube.com/watch?v=1nzazt-GIqE)
+[![](https://img.youtube.com/vi/pM2DXTikZTY/0.jpg)](https://www.youtube.com/watch?v=pM2DXTikZTY)
 
 
 ### Download link
