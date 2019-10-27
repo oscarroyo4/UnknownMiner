@@ -5,6 +5,7 @@
 #include "j1Textures.h"
 #include "j1Audio.h"
 #include "j1Render.h"
+#include "j1FadeToBlack.h"
 #include "j1Window.h"
 #include "j1Map.h"
 #include "j1Player.h"
@@ -55,10 +56,13 @@ bool j1Scene::Update(float dt)
 		App->SaveGame();
 
 	if (App->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN)
-		ChargeFirstLevel();
+		App->fadetoblack->FadeToBlack(1);
 
 	if (App->input->GetKey(SDL_SCANCODE_F2) == KEY_DOWN)
-		ChargeSecondLevel();
+		App->fadetoblack->FadeToBlack(2);
+
+	if (App->input->GetKey(SDL_SCANCODE_F3) == KEY_DOWN)
+		App->fadetoblack->FadeToBlack(level_Loaded);
 
 	//Render Map
 	App->map->Draw();

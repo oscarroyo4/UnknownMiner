@@ -51,7 +51,7 @@ public:
 	SDL_Color		background;
 
 	int x_offset = 50;
-	int y_offset = 100;
+	int y_offset = 80;
 };
 
 #endif // __j1RENDER_H__

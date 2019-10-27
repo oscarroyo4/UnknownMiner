@@ -3,6 +3,7 @@
 #include "j1App.h"
 #include "j1Render.h"
 #include "j1Scene.h"
+#include "j1FadeToBlack.h"
 #include "j1Map.h"
 #include "j1Input.h"
 #include "Animation.h"
@@ -84,9 +85,10 @@ bool j1Player::Awake(pugi::xml_node& config) {
 bool j1Player::Start()
 {
 	bool ret = true;
+	//Loading assets and propierties from config file
 	position.x = initialX;
 	position.y = initialY;
-	graphics = App->tex->Load(texPath.GetString()); //Loading assets from config file
+	graphics = App->tex->Load(texPath.GetString());
 	swoshFx = App->audio->LoadFx(swoshPath.GetString());
 	hitFx = App->audio->LoadFx(hitPath.GetString());
 	jumpFx = App->audio->LoadFx(jumpPath.GetString());
@@ -107,7 +109,7 @@ bool j1Player::CleanUp()
 	return true;
 }
 
-bool j1Player::Disable() {
+bool j1Player::Disable() { //Disable function for changing scene
 	colPlayer->to_delete = true;
 	colPlayerWalls->to_delete = true;
 	SDL_DestroyTexture(graphics);
@@ -115,7 +117,7 @@ bool j1Player::Disable() {
 	return true;
 }
 
-bool j1Player::ResetStates() {
+bool j1Player::ResetStates() { //Reset all states before checking input
 	vel.y = 0;
 	jump.Reset();
 	punch_air.Reset();
@@ -134,14 +136,14 @@ bool j1Player::Update(float dt) {
 		status = PLAYER_DEATH;
 		input = false;
 	}
-	if (App->scene->level_Loaded == 1) {
+	if (App->scene->level_Loaded == 1) { //If player finishes level
 		if (position.x > 3060) {
-			App->scene->ChargeSecondLevel();
+			App->fadetoblack->FadeToBlack(2);
 		}
 	}
 	else {
-		if (position.x > 3070) {
-			App->scene->ChargeSecondLevel();
+		if (position.x > 3030) {
+			App->fadetoblack->FadeToBlack(1);
 		}
 	}
 	//Input
