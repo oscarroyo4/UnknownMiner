@@ -1,5 +1,9 @@
-﻿  j1App.cpp
+﻿  j1Collision.cpp
   j1FadeToBlack.cpp
+  j1Main.cpp
+  j1App.cpp
+  j1Audio.cpp
+  j1Input.cpp
   j1Map.cpp
 j1Map.cpp(41): warning C4018: '<': no coinciden signed/unsigned
 j1Map.cpp(43): warning C4018: '<': no coinciden signed/unsigned
@@ -36,41 +40,14 @@ j1Player.cpp(320): warning C4244: '+=': conversión de 'TYPE' a 'TYPE'; posible 
           ]
 j1Player.cpp(351): warning C4018: '<': no coinciden signed/unsigned
 j1Player.cpp(372): warning C4018: '<': no coinciden signed/unsigned
-  j1Render.cpp
   j1Scene.cpp
+  p2Log.cpp
+  j1Render.cpp
+  j1Textures.cpp
+  j1Window.cpp
+  pugixml.cpp
   Generando código
-h:\github\handout\motor2d\pugixml\src\pugixml.cpp : fatal error C1001: Error interno en el compilador.
-  Archivo del compilador 'd:\agent\_work\3\s\src\vctools\Compiler\Utc\src\p2\main.c', línea 160
-   Para solucionar este problema, intente simplificar o cambiar el programa en aquellas líneas próximas a las ubicaciones que se enumeran a continuación.
-  Elija el comando Soporte técnico en el menú Ayuda de Visual C++ 
-   o abra el archivo de ayuda de soporte técnico para obtener más información
-    link!RaiseException()+0x62
-    link!CxxThrowException()+0x66
-    link!std::_Xout_of_range()+0x1f
-    link!InvokeCompilerPass()+0x33ed9
-    link!InvokeCompilerPass()+0x24db3
-    link!InvokeCompilerPass()+0x24ce4
-h:\github\handout\motor2d\pugixml\src\pugixml.cpp : fatal error C1001: Error interno en el compilador.
-  Archivo del compilador 'd:\agent\_work\3\s\src\vctools\Compiler\Utc\src\p2\main.c', línea 160
-   Para solucionar este problema, intente simplificar o cambiar el programa en aquellas líneas próximas a las ubicaciones que se enumeran a continuación.
-  Elija el comando Soporte técnico en el menú Ayuda de Visual C++ 
-   o abra el archivo de ayuda de soporte técnico para obtener más información
-    link!InvokeCompilerPass()+0x25201
-    link!InvokeCompilerPass()+0x25133
-    link!InvokeCompilerPass()+0x28acb
-    link!InvokeCompilerPass()+0x2858a
-    link!CloseTypeServerPDB()+0xbf3b4
-  
-    link!RaiseException()+0x62
-    link!CxxThrowException()+0x66
-    link!std::_Xout_of_range()+0x1f
-    link!InvokeCompilerPass()+0x33ed9
-    link!InvokeCompilerPass()+0x24db3
-    link!InvokeCompilerPass()+0x24ce4
-    link!InvokeCompilerPass()+0x25201
-    link!InvokeCompilerPass()+0x25133
-    link!InvokeCompilerPass()+0x28acb
-    link!InvokeCompilerPass()+0x2858a
-    link!CloseTypeServerPDB()+0xbf3b4
-  
-LINK : fatal error LNK1257: error de generación de código
+  Previous IPDB not found, fall back to full compilation.
+  All 727 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Generación de código finalizada
+  Motor2D.vcxproj -> H:\GitHub\Handout\Release\Motor 2D.exe
