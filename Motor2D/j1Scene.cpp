@@ -21,10 +21,13 @@ j1Scene::~j1Scene()
 {}
 
 // Called before render is available
-bool j1Scene::Awake()
+bool j1Scene::Awake(pugi::xml_node& config)
 {
 	bool ret = true;
 	LOG("Loading Scene");
+	tex1 = config.child("textures").attribute("tex1").as_string();
+	tex2 = config.child("textures").attribute("tex2").as_string();
+	ambient_audio = config.child("audio").attribute("src").as_string();
 
 	return ret;
 }
@@ -33,8 +36,8 @@ bool j1Scene::Awake()
 bool j1Scene::Start()
 {
 	loaded = false;
-	App->map->Load("TiledMap_2.tmx");
-	App->audio->PlayMusic("audio/music/cave_ambient.ogg", 1.0f);
+	App->map->Load(tex1.GetString());
+	App->audio->PlayMusic(ambient_audio.GetString(), 1.0f);
 	level_Loaded = 1;
 
 	return true;
@@ -49,6 +52,7 @@ bool j1Scene::PreUpdate()
 // Called each loop iteration
 bool j1Scene::Update(float dt)
 {
+	//Inputs for debug
 	if(App->input->GetKey(SDL_SCANCODE_F6) == KEY_DOWN)
 		App->LoadGame("saves/save_game.xml");
 
@@ -74,7 +78,7 @@ bool j1Scene::Update(float dt)
 bool j1Scene::PostUpdate()
 {
 	bool ret = true;
-
+	//Input for quiting
 	if(App->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
 		ret = false;
 
@@ -89,28 +93,28 @@ bool j1Scene::CleanUp()
 	return true;
 }
 
-bool j1Scene::ChargeFirstLevel()
+bool j1Scene::ChargeFirstLevel() //Changing to level 1
 {
 	App->player->input = false;
 	App->player->CleanUp();
 
 	p2List_item<Collider*>* item;
-	for (item = App->map->groundCol.start; item != NULL; item = item->next)
+	for (item = App->map->groundCol.start; item != NULL; item = item->next) //deleting all colliders
 		item->data->to_delete = true;
 	App->map->groundCol.clear();
-	App->collision->CleanUp();
+	App->collision->CleanUp(); //Cleaning collider cache
 
 	App->map->CleanUp();
-	App->map->Load("TiledMap_2.tmx");
+	App->map->Load(tex1.GetString());
 	App->audio->Awake(App->config);
-	App->audio->PlayMusic("audio/music/cave_ambient.ogg", 1.0f);
+	App->audio->PlayMusic(ambient_audio.GetString(), 1.0f); //Playing audio again
 	App->player->Start();
 	if (!loaded) {
-		App->player->position.x = App->player->initialX;
+		App->player->position.x = App->player->initialX; //Load position from config_file
 		App->player->position.y = App->player->initialY;
 	}
 	else {
-		App->player->position.x = tempX;
+		App->player->position.x = tempX; //Load position from save_file
 		App->player->position.y = tempY;
 	}
 	App->player->input = true;
@@ -120,28 +124,28 @@ bool j1Scene::ChargeFirstLevel()
 	return true;
 }
 
-bool j1Scene::ChargeSecondLevel()
+bool j1Scene::ChargeSecondLevel() //Changing to level 2
 {
 	App->player->input = false;
 	App->player->CleanUp();
 
 	p2List_item<Collider*>* item;
-	for (item = App->map->groundCol.start; item != NULL; item = item->next)
+	for (item = App->map->groundCol.start; item != NULL; item = item->next) //deleting all colliders
 		item->data->to_delete = true;
 	App->map->groundCol.clear();
-	App->collision->CleanUp();
+	App->collision->CleanUp();  //Cleaning collider cache
 
 	App->map->CleanUp();
-	App->map->Load("TiledMap.tmx");
+	App->map->Load(tex2.GetString());
 	App->audio->Awake(App->config);
-	App->audio->PlayMusic("audio/music/cave_ambient.ogg", 1.0f);
+	App->audio->PlayMusic(ambient_audio.GetString(), 1.0f); //Playing audio again
 	App->player->Start();
 	if (!loaded) {
-		App->player->position.x = App->player->initialX2;
+		App->player->position.x = App->player->initialX2; //Load position from config_file
 		App->player->position.y = App->player->initialY2;
 	}
 	else { 
-		App->player->position.x = tempX;
+		App->player->position.x = tempX; //Load position from save_file
 		App->player->position.y = tempY;
 	}
 

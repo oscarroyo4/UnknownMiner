@@ -96,6 +96,7 @@ private:
 	int hitFx;
 	int jumpFx;
 	int landFx;
+	int punchTime;
 
 	Animation* current_animation = &idle;
 	Animation idle;

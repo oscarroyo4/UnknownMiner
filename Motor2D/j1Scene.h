@@ -16,7 +16,7 @@ public:
 	virtual ~j1Scene();
 
 	// Called before render is available
-	bool Awake();
+	bool Awake(pugi::xml_node& config);
 
 	// Called before the first frame
 	bool Start();
@@ -47,6 +47,10 @@ public:
 
 private:
 	int ambientFx;
+
+	p2SString tex1;
+	p2SString tex2;
+	p2SString ambient_audio;
 
 	int tempX = 0, tempY = 0;
 };

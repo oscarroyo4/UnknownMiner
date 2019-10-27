@@ -9,9 +9,6 @@
 #include "Animation.h"
 #include "j1Player.h"
 
-//#define PUNCH_TIME 80
-#define PUNCH_TIME 19
-
 j1Player::j1Player() : j1Module()
 {
 	name.create("player");
@@ -79,6 +76,7 @@ bool j1Player::Awake(pugi::xml_node& config) {
 	initialY = config.child("initialPos1").attribute("y").as_int();
 	initialX2 = config.child("initialPos2").attribute("x").as_int();
 	initialY2 = config.child("initialPos2").attribute("y").as_int();
+	punchTime = config.child("propierties").attribute("punchTime").as_int();
 	return ret;
 }
 
@@ -137,19 +135,19 @@ bool j1Player::Update(float dt) {
 		status = PLAYER_DEATH;
 		input = false;
 	}
-	if (App->scene->level_Loaded == 1) { //If player finishes level
+	if (App->scene->level_Loaded == 1) { //If player finishes level 1
 		if (position.x > 3060) {
 			App->fadetoblack->FadeToBlack(2);
 		}
 	}
 	else {
-		if (position.x > 3030) {
+		if (position.x > 3030) { //If player finishes level 2
 			App->fadetoblack->FadeToBlack(1);
 		}
 	}
 	//Input
 	if (input) {
-		if (App->input->GetKey(SDL_SCANCODE_F10) == KEY_DOWN) {
+		if (App->input->GetKey(SDL_SCANCODE_F10) == KEY_DOWN) { //Activate godmode
 			ResetStates();
 			godmode = !godmode;
 		}
@@ -186,7 +184,7 @@ bool j1Player::Update(float dt) {
 					status = PLAYER_IN_AIR;
 			}
 		}
-		else {
+		else { //Godmode input
 			if (App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT) {
 				position.x -= speed*2;
 			}
@@ -253,18 +251,18 @@ bool j1Player::Update(float dt) {
 		status = PLAYER_IDLE;
 		punch.Reset();
 		break;
-	case PLAYER_PUNCH_AIR:
+	case PLAYER_PUNCH_AIR: //The second jump
 		if (punchAirEnable){
 			punchAirEnable = false;
 			current_animation = &punch_air;
 			vel.y = -4;
 			App->audio->PlayFx(swoshFx, 0);
-			if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT) {
+			if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT) { //Go right in air
 				airTimer = deathTimer_config;
 				vel.x = 2;
 				status = PLAYER_IN_AIR;
 			}
-			else if (App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT) {
+			else if (App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT) { //Go left in air
 				airTimer = deathTimer_config;
 				vel.x = -2;
 				status = PLAYER_IN_AIR;
@@ -279,7 +277,7 @@ bool j1Player::Update(float dt) {
 		current_animation = &death;
 		if (deathTimer <= 0) {
 			input = true;
-			if (App->scene->level_Loaded == 1) {
+			if (App->scene->level_Loaded == 1) { //Return to start
 				position.x = initialX;
 				position.y = initialY;
 			}
@@ -306,7 +304,7 @@ bool j1Player::Update(float dt) {
 			punchHit = true;
 		}
 		*/
-		if (punch_timer > PUNCH_TIME)
+		if (punch_timer > punchTime)
 		{
 			punchEnable = true;
 			status = PLAYER_IN_PUNCH_FINISH;
