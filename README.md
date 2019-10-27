@@ -31,9 +31,9 @@ My project is a Sidescroller plataformer where a player is a miner who moves for
 <img src="https://raw.githubusercontent.com/oscarroyo4/UnknownMiner/Images/Semafor_Mias_1.jpg" width="200">
 
 * Oscar Royo
-  * Code
+  * Code and some art
   * Github account: [oscarroyo4](https://github.com/oscarroyo4)
- I am 19 years old and I am a student of the Polytechnic University of Catalonia (UPC), of the Videogames Degree.
+  * I am 19 years old and I am a student of the Polytechnic University of Catalonia (UPC), of the Videogames Degree.
 
 Special thanks to Blarget2 for the level art
   * link: https://opengameart.org/users/blarget2
