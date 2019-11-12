@@ -133,7 +133,4 @@
   <ItemGroup>
     <ResourceCompile Include="Motor 2D.rc" />
   </ItemGroup>
-  <ItemGroup>
-    <Image Include="C:\Users\Oscar Royo\Downloads\UnknownMinerIcon.ico" />
-  </ItemGroup>
 </Project>
