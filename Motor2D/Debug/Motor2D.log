@@ -3,13 +3,34 @@
   j1FadeToBlack.cpp
   j1Main.cpp
   j1App.cpp
-  j1Audio.cpp
   j1Input.cpp
   j1Map.cpp
 H:\GitHub\Handout\Motor2D\j1Map.cpp(41): warning C4018: '<': no coinciden signed/unsigned
 H:\GitHub\Handout\Motor2D\j1Map.cpp(43): warning C4018: '<': no coinciden signed/unsigned
 H:\GitHub\Handout\Motor2D\j1Map.cpp(171): warning C4018: '<': no coinciden signed/unsigned
 H:\GitHub\Handout\Motor2D\j1Map.cpp(173): warning C4018: '<': no coinciden signed/unsigned
+  j1Pathfinding.cpp
+H:\GitHub\Handout\Motor2D\p2Point.h(114): warning C4244: 'argumento': conversión de 'TYPE' a 'float'; posible pérdida de datos
+          with
+          [
+              TYPE=int
+          ]
+  H:\GitHub\Handout\Motor2D\p2Point.h(110): note: durante la compilación de la función miembro de plantilla clase de 'TYPE p2Point<TYPE>::DistanceTo(const p2Point<TYPE> &) const'
+          with
+          [
+              TYPE=int
+          ]
+  H:\GitHub\Handout\Motor2D\j1Pathfinding.cpp(160): note: vea la referencia a la creación de instancias de plantilla de función 'TYPE p2Point<TYPE>::DistanceTo(const p2Point<TYPE> &) const' que se está compilando
+          with
+          [
+              TYPE=int
+          ]
+  H:\GitHub\Handout\Motor2D\j1PathFinding.h(81): note: vea la referencia a la creación de instancias de plantilla clase de 'p2Point<int>' que se está compilando
+H:\GitHub\Handout\Motor2D\p2Point.h(114): warning C4244: 'return': conversión de 'float' a 'TYPE'; posible pérdida de datos
+          with
+          [
+              TYPE=int
+          ]
   j1Player.cpp
 H:\GitHub\Handout\Motor2D\j1Player.cpp(211): warning C4244: '=': conversión de 'int' a 'TYPE'; posible pérdida de datos
           with
@@ -43,10 +64,9 @@ H:\GitHub\Handout\Motor2D\j1Player.cpp(318): warning C4244: '+=': conversión de
 H:\GitHub\Handout\Motor2D\j1Player.cpp(349): warning C4018: '<': no coinciden signed/unsigned
 H:\GitHub\Handout\Motor2D\j1Player.cpp(370): warning C4018: '<': no coinciden signed/unsigned
   j1Scene.cpp
-  p2Log.cpp
   j1Render.cpp
   j1Textures.cpp
   j1Window.cpp
-  pugixml.cpp
   Generando código...
+H:\GitHub\Handout\Motor2D\j1Pathfinding.cpp(232): warning C4715: 'j1PathFinding::CreatePath': no todas las rutas de acceso de control devuelven un valor
   Motor2D.vcxproj -> H:\GitHub\Handout\Debug\Unknown Miner.exe

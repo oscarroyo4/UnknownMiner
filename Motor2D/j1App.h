@@ -16,6 +16,7 @@ class j1Map;
 class j1Player;
 class j1Collision;
 class j1FadeToBlack;
+class j1PathFinding;
 
 class j1App
 {
@@ -90,6 +91,7 @@ public:
 	j1Player*			player;
 	j1Collision*		collision;
 	j1FadeToBlack*		fadetoblack;
+	j1PathFinding*		pathfinding;
 
 private:
 
