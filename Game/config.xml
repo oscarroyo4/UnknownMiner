@@ -38,5 +38,10 @@
     <propierties life="100" speed="2" gravity="0.25" punchTime="19"/>
     <path tex="textures/Character.png" jump="audio/fx/Jump.wav" hit="audio/fx/Swosh+Hit.ogg" land="audio/fx/Landing.ogg" swosh="audio/fx/Swosh.ogg"/>
   </player>
+  <airenemy>
+    <initialPos1 x="170" y="600"/>
+    <initialPos2 x="120" y="260"/>
+    <path tex="textures/AirEnemy.png" fly="audio/fx/Jump.wav" hit="audio/fx/Swosh+Hit.ogg" attack="audio/fx/Landing.ogg"/>
+  </airenemy>
 
 </config>

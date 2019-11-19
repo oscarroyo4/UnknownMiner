@@ -80,7 +80,7 @@ private:
 	SDL_Texture* graphics;
 	int hitFx;
 	int flyFx;
-	int atackFx;
+	int attackFx;
 	int punchTime;
 
 	Animation* current_animation = &idle;

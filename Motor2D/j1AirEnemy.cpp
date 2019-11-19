@@ -14,9 +14,10 @@ j1AirEnemy::j1AirEnemy() : j1Module()
 	name.create("airenemy");
 
 	// idle animation (arcade sprite sheet)
-	idle.PushBack({ 0, 0, 32, 32 });
+	//idle.PushBack({ 0, 0, 32, 32 });
+	idle.PushBack({ 0,0,15,5 });
 	idle.speed = 1.0f;
-
+	/*
 	fly.PushBack({ 32, 0, 32, 32 });
 	fly.PushBack({ 96, 0, 32, 32 });
 	fly.PushBack({ 64, 0, 32, 32 });
@@ -35,6 +36,7 @@ j1AirEnemy::j1AirEnemy() : j1Module()
 	attack.PushBack({ 64, 32, 32, 32 });
 	attack.PushBack({ 96, 32, 32, 32 });
 	attack.speed = 0.2f;
+	*/
 }
 
 // Destructor
@@ -69,9 +71,56 @@ bool j1AirEnemy::Start()
 	position.y = initialY;
 	graphics = App->tex->Load(texPath.GetString());
 	hitFx = App->audio->LoadFx(hitPath.GetString());
-	flyFx = App->audio->LoadFx(dlyPath.GetString());
+	flyFx = App->audio->LoadFx(flyPath.GetString());
 	attackFx = App->audio->LoadFx(attackPath.GetString());
 	LOG("Creating player colliders");
-	colEnemy = App->collision->AddCollider({ position.x, position.y, 10, 10 }, COLLIDER_ENEMY);
+	colAirEnemy = App->collision->AddCollider({ position.x, position.y-1, 15, 7 }, COLLIDER_ENEMY);
 	return ret;
+}
+
+// Unload assets
+bool j1AirEnemy::CleanUp()
+{
+	LOG("Unloading player");
+	colAirEnemy->to_delete = true;
+	SDL_DestroyTexture(graphics);
+	return true;
+}
+
+bool j1AirEnemy::Update(float dt) {
+
+	//Change position from velocity
+	position.x += vel.x;
+	position.y += vel.y;
+
+	//Collider position
+	if (vel.y > 0) colAirEnemy->SetPos(position.x, position.y-1);
+	else colAirEnemy->SetPos(position.x, position.y-1);
+	if (vel.x > 0) 	colAirEnemy->SetPos(position.x, position.y-1);
+	else if (vel.x < 0) 	colAirEnemy->SetPos(position.x, position.y-1);
+	else colAirEnemy->SetPos(position.x, position.y-1);
+
+	Draw();
+	return true;
+}
+
+void j1AirEnemy::Draw()
+{
+	if (graphics != nullptr) {
+		r = current_animation->GetCurrentFrame();
+		App->render->Blit(graphics, position.x, position.y, &r);
+
+	}
+
+	r.x = position.x;
+	r.y = position.y;
+}
+
+bool j1AirEnemy::Save(pugi::xml_node& data) const {
+	pugi::xml_node emy = data.append_child("airenemy");
+
+	emy.append_attribute("x") = position.x;
+	emy.append_attribute("y") = position.y;
+
+	return true;
 }
