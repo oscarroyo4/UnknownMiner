@@ -60,3 +60,18 @@ bool j1AirEnemy::Awake(pugi::xml_node& config) {
 	punchTime = config.child("propierties").attribute("punchTime").as_int();
 	return ret;
 }
+
+bool j1AirEnemy::Start()
+{
+	bool ret = true;
+	//Loading assets and propierties from config file
+	position.x = initialX;
+	position.y = initialY;
+	graphics = App->tex->Load(texPath.GetString());
+	hitFx = App->audio->LoadFx(hitPath.GetString());
+	flyFx = App->audio->LoadFx(dlyPath.GetString());
+	attackFx = App->audio->LoadFx(attackPath.GetString());
+	LOG("Creating player colliders");
+	colEnemy = App->collision->AddCollider({ position.x, position.y, 10, 10 }, COLLIDER_ENEMY);
+	return ret;
+}
