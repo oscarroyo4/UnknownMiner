@@ -209,10 +209,12 @@ bool j1Player::Update(float dt) {
 		break;
 	case PLAYER_FORWARD:
 		vel.x = speed;
+		lookforward = true;
 		current_animation = &forward;
 		break;
 	case PLAYER_BACKWARD:
 		vel.x = -speed;
+		lookforward = false;
 		current_animation = &backward;
 		break;
 	case PLAYER_JUMP:
@@ -242,7 +244,8 @@ bool j1Player::Update(float dt) {
 			App->audio->PlayFx(hitFx, 0);
 
 			// Collider
-			punchCol = App->collision->AddCollider({ position.x + 19, position.y + 14, 10, 18 }, COLLIDER_PLAYER_SHOT);
+			if (!lookforward) punchCol = App->collision->AddCollider({ position.x-1, position.y + 14, 10, 18 }, COLLIDER_PLAYER_SHOT);
+			else punchCol = App->collision->AddCollider({ position.x + 19, position.y + 14, 10, 18 }, COLLIDER_PLAYER_SHOT);
 			//punchHit = false;
 		}
 		break;
@@ -254,20 +257,26 @@ bool j1Player::Update(float dt) {
 	case PLAYER_PUNCH_AIR: //The second jump
 		if (punchAirEnable){
 			punchAirEnable = false;
-			current_animation = &punch_air;
 			vel.y = -4;
+			// Sound
 			App->audio->PlayFx(swoshFx, 0);
+
 			if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT) { //Go right in air
 				airTimer = deathTimer_config;
+				lookforward = true;
 				vel.x = 2;
 				status = PLAYER_IN_AIR;
 			}
 			else if (App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT) { //Go left in air
 				airTimer = deathTimer_config;
+				lookforward = false;
 				vel.x = -2;
 				status = PLAYER_IN_AIR;
-
 			}
+			// Collider
+			punchair_timer = 1;
+			if(!lookforward) punchCol = App->collision->AddCollider({ position.x - 1, position.y + 14, 10, 18 }, COLLIDER_PLAYER_SHOT);
+			else punchCol = App->collision->AddCollider({ position.x + 19, position.y + 14, 10, 18 }, COLLIDER_PLAYER_SHOT);
 		}
 
 		break;
@@ -312,6 +321,26 @@ bool j1Player::Update(float dt) {
 			punch_timer = 0;
 		}
 	}
+	if (punchair_timer > 0)
+	{
+		punchair_timer = punchair_timer + 1;
+		current_animation = &punch_air;
+		if(lookforward) punchCol->SetPos(position.x + 19, position.y + 14);
+		else punchCol->SetPos(position.x - 1, position.y + 14);
+		/* Collider and enemy hit
+		if (punchCol->CheckCollision(App->enemy->r) && punchHit == false) {
+			App->enemy->hit = true;
+			punchHit = true;
+		}
+		*/
+		if (punchair_timer > punchTime)
+		{
+			punchAirEnable = true;
+			status = PLAYER_IN_AIR;
+			punchCol->to_delete = true;
+			punchair_timer = 0;
+		}
+	}
 
 	//Change position from velocity
 	position.x += vel.x;
@@ -335,8 +364,10 @@ void j1Player::Draw()
 {
 	if (graphics != nullptr) {
 		r = current_animation->GetCurrentFrame();
-		App->render->Blit(graphics, position.x, position.y, &r);
-
+		if (lookforward) App->render->Blit(graphics, position.x, position.y, &r);
+		else {
+			App->render->Blit(graphics, position.x, position.y, &r, 1.0f, 0.0f, INT_MAX, INT_MAX, SDL_FLIP_HORIZONTAL);
+		}
 	}
 
 	r.x = position.x;

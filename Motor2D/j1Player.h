@@ -83,8 +83,10 @@ private:
 	bool punchAirEnable = true;
 	bool dead = false;
 	bool godmode = false;
+	bool lookforward = true;
 
 	Uint32 punch_timer = 0;
+	Uint32 punchair_timer = 0;
 
 	p2SString texPath;
 	p2SString swoshPath;

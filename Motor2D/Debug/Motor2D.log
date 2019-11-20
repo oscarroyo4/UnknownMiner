@@ -1,20 +1,26 @@
 ﻿  j1AirEnemy.cpp
-c:\users\oscar\documents\github\unknownminer\motor2d\j1airenemy.cpp(93): warning C4244: '+=': conversión de 'TYPE' a 'TYPE'; posible pérdida de datos
-          with
-          [
-              TYPE=float
-          ]
-          and
-          [
-              TYPE=int
-          ]
-c:\users\oscar\documents\github\unknownminer\motor2d\j1airenemy.cpp(94): warning C4244: '+=': conversión de 'TYPE' a 'TYPE'; posible pérdida de datos
-          with
-          [
-              TYPE=float
-          ]
-          and
-          [
-              TYPE=int
-          ]
-  Motor2D.vcxproj -> C:\Users\oscar\Documents\GitHub\UnknownMiner\Debug\Unknown Miner.exe
+C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1AirEnemy.cpp(110,11): warning C4244:  '=': conversion from 'int' to 'TYPE', possible loss of data
+C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1AirEnemy.cpp(110,11): warning C4244:         with
+C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1AirEnemy.cpp(110,11): warning C4244:         [
+C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1AirEnemy.cpp(110,11): warning C4244:             TYPE=float
+C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1AirEnemy.cpp(110,11): warning C4244:         ]
+C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1AirEnemy.cpp(125,21): warning C4244:  '+=': conversion from 'TYPE' to 'TYPE', possible loss of data
+C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1AirEnemy.cpp(125,21): warning C4244:         with
+C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1AirEnemy.cpp(125,21): warning C4244:         [
+C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1AirEnemy.cpp(125,21): warning C4244:             TYPE=float
+C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1AirEnemy.cpp(125,21): warning C4244:         ]
+C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1AirEnemy.cpp(125,21): warning C4244:         and
+C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1AirEnemy.cpp(125,21): warning C4244:         [
+C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1AirEnemy.cpp(125,21): warning C4244:             TYPE=int
+C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1AirEnemy.cpp(125,21): warning C4244:         ]
+C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1AirEnemy.cpp(126,21): warning C4244:  '+=': conversion from 'TYPE' to 'TYPE', possible loss of data
+C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1AirEnemy.cpp(126,21): warning C4244:         with
+C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1AirEnemy.cpp(126,21): warning C4244:         [
+C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1AirEnemy.cpp(126,21): warning C4244:             TYPE=float
+C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1AirEnemy.cpp(126,21): warning C4244:         ]
+C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1AirEnemy.cpp(126,21): warning C4244:         and
+C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1AirEnemy.cpp(126,21): warning C4244:         [
+C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1AirEnemy.cpp(126,21): warning C4244:             TYPE=int
+C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1AirEnemy.cpp(126,21): warning C4244:         ]
+C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1AirEnemy.cpp(154,20): warning C4018:  '<': signed/unsigned mismatch
+  Motor2D.vcxproj -> C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Debug\Unknown Miner.exe

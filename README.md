@@ -37,8 +37,11 @@ My project is a Sidescroller plataformer where a player is a miner who moves for
   * Github account: [oscarroyo4](https://github.com/oscarroyo4)
   * I am 19 years old and I am a student of the Polytechnic University of Catalonia (UPC), of the Videogames Degree.
 
-* Special thanks to Blarget2 for the level art
+* Special thanks to:
+  * Blarget2 for the level art
   * link: https://opengameart.org/users/blarget2
+  * Elthen (Ahmet Avci) for the bat sprites
+  * link: https://www.patreon.com/elthen
 
 ### Gameplay Video
 
