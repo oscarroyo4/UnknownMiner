@@ -83,6 +83,9 @@ private:
 	int attackFx;
 	int punchTime;
 
+	int pathSteps = 0;
+	iPoint nextPos;
+
 	Animation* current_animation = &idle;
 	Animation idle;
 	Animation fly;

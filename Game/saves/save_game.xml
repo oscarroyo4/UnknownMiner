@@ -6,14 +6,18 @@
 	<audio />
 	<map />
 	<scene>
-		<scene level="2" />
+		<scene level="1" />
 	</scene>
 	<player>
-		<player x="457" y="398" />
+		<player x="154" y="640" />
 	</player>
+	<airenemy>
+		<airenemy x="170" y="600" />
+	</airenemy>
 	<collision />
 	<fadetoblack />
+	<pathfinding />
 	<renderer>
-		<camera x="-407" y="-318" />
+		<camera x="-104" y="-560" />
 	</renderer>
 </game_state>

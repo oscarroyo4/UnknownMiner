@@ -9,6 +9,7 @@
 #include "j1Window.h"
 #include "j1Map.h"
 #include "j1Player.h"
+#include "j1AirEnemy.h"
 #include "j1Scene.h"
 
 j1Scene::j1Scene() : j1Module()
@@ -97,6 +98,7 @@ bool j1Scene::ChargeFirstLevel() //Changing to level 1
 {
 	App->player->input = false;
 	App->player->CleanUp();
+	App->airenemy->CleanUp();
 
 	p2List_item<Collider*>* item;
 	for (item = App->map->groundCol.start; item != NULL; item = item->next) //deleting all colliders
@@ -109,6 +111,7 @@ bool j1Scene::ChargeFirstLevel() //Changing to level 1
 	App->audio->Awake(App->config);
 	App->audio->PlayMusic(ambient_audio.GetString(), 1.0f); //Playing audio again
 	App->player->Start();
+	App->airenemy->Start();
 	if (!loaded) {
 		App->player->position.x = App->player->initialX; //Load position from config_file
 		App->player->position.y = App->player->initialY;
@@ -128,6 +131,7 @@ bool j1Scene::ChargeSecondLevel() //Changing to level 2
 {
 	App->player->input = false;
 	App->player->CleanUp();
+	App->airenemy->CleanUp();
 
 	p2List_item<Collider*>* item;
 	for (item = App->map->groundCol.start; item != NULL; item = item->next) //deleting all colliders
@@ -140,6 +144,7 @@ bool j1Scene::ChargeSecondLevel() //Changing to level 2
 	App->audio->Awake(App->config);
 	App->audio->PlayMusic(ambient_audio.GetString(), 1.0f); //Playing audio again
 	App->player->Start();
+	App->airenemy->Start();
 	if (!loaded) {
 		App->player->position.x = App->player->initialX2; //Load position from config_file
 		App->player->position.y = App->player->initialY2;

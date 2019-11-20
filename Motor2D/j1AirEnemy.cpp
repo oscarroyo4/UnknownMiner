@@ -6,8 +6,11 @@
 #include "j1FadeToBlack.h"
 #include "j1Map.h"
 #include "j1Input.h"
+#include "j1Player.h"
+#include "j1PathFinding.h"
 #include "Animation.h"
 #include "j1AirEnemy.h"
+#include <math.h>
 
 j1AirEnemy::j1AirEnemy() : j1Module()
 {
@@ -107,8 +110,17 @@ bool j1AirEnemy::Update(float dt) {
 	case AIRENEMY_IDLE:
 		break;
 	case AIRENEMY_FLY:
+		pathSteps = App->pathfinding->CreatePath(position, App->player->position);
 		current_animation = &fly;
-		vel.x = speed;
+		for (int i = 0; i == pathSteps; i++) {
+			nextPos.x = App->pathfinding->GetLastPath()->At(i)->x;
+			nextPos.y = App->pathfinding->GetLastPath()->At(i)->y;
+			while (position != nextPos) {
+				iPoint p = (position - nextPos).Normalize();
+				vel = { (float)p.x, (float)p.y };
+				
+			}
+		}
 		break;
 	case AIRENEMY_ATTACK:
 		break;

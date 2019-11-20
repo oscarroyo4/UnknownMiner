@@ -41,7 +41,7 @@ public:
 	// Math ------------------------------------------------
 	p2Point operator -(const p2Point &v) const
 	{
-		p2Vector2 r;
+		p2Point r;
 
 		r.x = x - v.x;
 		r.y = y - v.y;
@@ -51,7 +51,7 @@ public:
 
 	p2Point operator + (const p2Point &v) const
 	{
-		p2Vector2 r;
+		p2Point r;
 
 		r.x = x + v.x;
 		r.y = y + v.y;
@@ -89,6 +89,14 @@ public:
 	bool IsZero() const
 	{
 		return (x == 0 && y == 0);
+	}
+
+	p2Point& Normalize()
+	{
+		p2Point f;
+		f.x = x / sqrtf((x*x) + (y*y));
+		f.y = y / sqrtf((x*x) + (y*y));
+		return f;
 	}
 
 	p2Point& SetToZero()
