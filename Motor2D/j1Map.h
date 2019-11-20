@@ -89,7 +89,7 @@ public:
 	// Load new map
 	bool Load(const char* path);
 
-	bool LoadCollider(SDL_Rect collider);
+	bool CreateWalkabilityMap(int& width, int& height, uchar** buffer) const;
 
 	// TODO 8: Create a method that translates x,y coordinates from map positions to world positions
 	iPoint PosConverter(int x, int y);
@@ -101,6 +101,8 @@ private:
 	bool LoadTilesetImage(pugi::xml_node& tileset_node, TileSet* set);
 	// TODO 3: Create a method that loads a single laye
 	bool LoadLayer(pugi::xml_node& node, Layer* layer);
+
+	TileSet* GetTilesetFromTileId(int id) const;
 
 public:
 

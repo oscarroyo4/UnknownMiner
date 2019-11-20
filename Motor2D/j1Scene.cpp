@@ -6,6 +6,7 @@
 #include "j1Audio.h"
 #include "j1Render.h"
 #include "j1FadeToBlack.h"
+#include "j1PathFinding.h"
 #include "j1Window.h"
 #include "j1Map.h"
 #include "j1Player.h"
@@ -37,7 +38,16 @@ bool j1Scene::Awake(pugi::xml_node& config)
 bool j1Scene::Start()
 {
 	loaded = false;
-	App->map->Load(tex1.GetString());
+	
+	if (App->map->Load(tex1.GetString()) == true)
+	{
+		int w, h;
+		uchar* data = NULL;
+		if (App->map->CreateWalkabilityMap(w, h, &data))
+			App->pathfinding->SetMap(w, h, data);
+
+		RELEASE_ARRAY(data);
+	}
 	App->audio->PlayMusic(ambient_audio.GetString(), 1.0f);
 	level_Loaded = 1;
 

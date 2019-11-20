@@ -1,45 +1,6 @@
-﻿  j1AirEnemy.cpp
-c:\users\oscarrm9\documents\github\unknownminer\motor2d\j1airenemy.cpp(138): warning C4244: '+=': conversion from 'TYPE' to 'TYPE', possible loss of data
-          with
-          [
-              TYPE=float
-          ]
-          and
-          [
-              TYPE=int
-          ]
-c:\users\oscarrm9\documents\github\unknownminer\motor2d\j1airenemy.cpp(139): warning C4244: '+=': conversion from 'TYPE' to 'TYPE', possible loss of data
-          with
-          [
-              TYPE=float
-          ]
-          and
-          [
-              TYPE=int
-          ]
-c:\users\oscarrm9\documents\github\unknownminer\motor2d\j1airenemy.cpp(167): warning C4018: '<': signed/unsigned mismatch
-c:\users\oscarrm9\documents\github\unknownminer\motor2d\p2point.h(97): warning C4244: 'argument': conversion from 'TYPE' to 'float', possible loss of data
-          with
-          [
-              TYPE=int
-          ]
-  c:\users\oscarrm9\documents\github\unknownminer\motor2d\p2point.h(95): note: while compiling class template member function 'p2Point<int> &p2Point<int>::Normalize(void)'
-  c:\users\oscarrm9\documents\github\unknownminer\motor2d\j1airenemy.cpp(119): note: see reference to function template instantiation 'p2Point<int> &p2Point<int>::Normalize(void)' being compiled
-  c:\users\oscarrm9\documents\github\unknownminer\motor2d\j1player.h(58): note: see reference to class template instantiation 'p2Point<int>' being compiled
-c:\users\oscarrm9\documents\github\unknownminer\motor2d\p2point.h(97): warning C4244: '=': conversion from 'float' to 'TYPE', possible loss of data
-          with
-          [
-              TYPE=int
-          ]
-c:\users\oscarrm9\documents\github\unknownminer\motor2d\p2point.h(98): warning C4244: 'argument': conversion from 'TYPE' to 'float', possible loss of data
-          with
-          [
-              TYPE=int
-          ]
-c:\users\oscarrm9\documents\github\unknownminer\motor2d\p2point.h(98): warning C4244: '=': conversion from 'float' to 'TYPE', possible loss of data
-          with
-          [
-              TYPE=int
-          ]
-c:\users\oscarrm9\documents\github\unknownminer\motor2d\p2point.h(99): warning C4172: returning address of local variable or temporary: f
-  Motor2D.vcxproj -> C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Debug\Unknown Miner.exe
+﻿  j1Map.cpp
+h:\github\handout\motor2d\j1map.cpp(41): warning C4018: '<': no coinciden signed/unsigned
+h:\github\handout\motor2d\j1map.cpp(43): warning C4018: '<': no coinciden signed/unsigned
+h:\github\handout\motor2d\j1map.cpp(171): warning C4018: '<': no coinciden signed/unsigned
+h:\github\handout\motor2d\j1map.cpp(173): warning C4018: '<': no coinciden signed/unsigned
+  Motor2D.vcxproj -> H:\GitHub\Handout\Debug\Unknown Miner.exe

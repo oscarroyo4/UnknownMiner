@@ -98,7 +98,7 @@ bool j1AirEnemy::CleanUp()
 bool j1AirEnemy::Update(float dt) {
 
 	if (!OnGround()) {
-		if (App->input->GetKey(SDL_SCANCODE_J) == KEY_DOWN) status = AIRENEMY_DEATH;
+		if (App->input->GetKey(SDL_SCANCODE_J) == KEY_DOWN || life <= 0) status = AIRENEMY_DEATH;
 		if (App->input->GetKey(SDL_SCANCODE_K) == KEY_DOWN) status = AIRENEMY_FLY;
 	}
 	else {
@@ -112,7 +112,7 @@ bool j1AirEnemy::Update(float dt) {
 	case AIRENEMY_FLY:
 		pathSteps = App->pathfinding->CreatePath(position, App->player->position);
 		current_animation = &fly;
-		for (int i = 0; i == pathSteps; i++) {
+		for (int i = 0; i <= pathSteps; i++) {
 			nextPos.x = App->pathfinding->GetLastPath()->At(i)->x;
 			nextPos.y = App->pathfinding->GetLastPath()->At(i)->y;
 			while (position != nextPos) {

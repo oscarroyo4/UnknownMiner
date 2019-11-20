@@ -364,3 +364,72 @@ iPoint j1Map :: PosConverter(int x, int y){
 	return ret;
 
 }
+
+bool j1Map::CreateWalkabilityMap(int& width, int& height, uchar** buffer) const
+{
+	bool ret = false;
+	p2List_item<Layer*>* item;
+	item = data.layers.start;
+
+	for (item = data.layers.start; item != NULL; item = item->next)
+	{
+		Layer* layer = item->data;
+
+		if (layer->name == "Collision") {
+			uchar* map = new uchar[layer->width * layer->height];
+			memset(map, 1, layer->width * layer->height);
+
+			for (int y = 0; y < data.height; ++y)
+			{
+				for (int x = 0; x < data.width; ++x)
+				{
+
+					int i = (y * layer->width) + x;
+
+					int tile_id = layer->Get(x, y);
+					TileSet* tileset = (tile_id > 0) ? GetTilesetFromTileId(tile_id) : NULL;
+
+					if (tileset != NULL)
+					{
+						//map[i] = (tile_id - tileset->firstgid) > 0 ? 0 : 1;
+						if (layer->gid[i] > 0) { map[i] = 1; LOG("1"); }
+						else { map[i] = 0; LOG("0"); }
+						/*
+						TileType* ts = tileset->GetTileType(tile_id);
+						if(ts != NULL)
+						{
+							map[i] = ts->properties.Get("walkable", 1);
+						}
+						*/
+					}
+				}
+			}
+
+			*buffer = map;
+			width = data.width;
+			height = data.height;
+			ret = true;
+			break;
+		}
+	}
+	return ret;
+}
+
+TileSet* j1Map::GetTilesetFromTileId(int id) const
+{
+	p2List_item<TileSet*>* item = data.tilesets.start;
+	TileSet* set = item->data;
+
+	while (item)
+	{
+		if (id < item->data->firstgid)
+		{
+			set = item->prev->data;
+			break;
+		}
+		set = item->data;
+		item = item->next;
+	}
+
+	return set;
+}
