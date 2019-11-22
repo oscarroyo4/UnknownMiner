@@ -38,7 +38,8 @@ bool j1Scene::Awake(pugi::xml_node& config)
 bool j1Scene::Start()
 {
 	loaded = false;
-	
+	App->map->Load(tex1.GetString());
+	/*
 	if (App->map->Load(tex1.GetString()) == true)
 	{
 		int w, h;
@@ -47,7 +48,7 @@ bool j1Scene::Start()
 			App->pathfinding->SetMap(w, h, data);
 
 		RELEASE_ARRAY(data);
-	}
+	}*/
 	App->audio->PlayMusic(ambient_audio.GetString(), 1.0f);
 	level_Loaded = 1;
 

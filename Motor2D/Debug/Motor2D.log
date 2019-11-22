@@ -1,38 +1,6 @@
 ﻿  j1Map.cpp
-  j1Player.cpp
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1Player.cpp(211,11): warning C4244:  '=': conversion from 'int' to 'TYPE', possible loss of data
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1Player.cpp(211,11): warning C4244:         with
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1Player.cpp(211,11): warning C4244:         [
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1Player.cpp(211,11): warning C4244:             TYPE=float
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1Player.cpp(211,11): warning C4244:         ]
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1Player.cpp(216,11): warning C4244:  '=': conversion from 'int' to 'TYPE', possible loss of data
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1Player.cpp(216,11): warning C4244:         with
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1Player.cpp(216,11): warning C4244:         [
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1Player.cpp(216,11): warning C4244:             TYPE=float
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1Player.cpp(216,11): warning C4244:         ]
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1Player.cpp(316,19): warning C4018:  '>': signed/unsigned mismatch
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1Player.cpp(336,22): warning C4018:  '>': signed/unsigned mismatch
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1Player.cpp(345,21): warning C4244:  '+=': conversion from 'TYPE' to 'TYPE', possible loss of data
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1Player.cpp(345,21): warning C4244:         with
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1Player.cpp(345,21): warning C4244:         [
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1Player.cpp(345,21): warning C4244:             TYPE=float
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1Player.cpp(345,21): warning C4244:         ]
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1Player.cpp(345,21): warning C4244:         and
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1Player.cpp(345,21): warning C4244:         [
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1Player.cpp(345,21): warning C4244:             TYPE=int
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1Player.cpp(345,21): warning C4244:         ]
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1Player.cpp(346,21): warning C4244:  '+=': conversion from 'TYPE' to 'TYPE', possible loss of data
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1Player.cpp(346,21): warning C4244:         with
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1Player.cpp(346,21): warning C4244:         [
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1Player.cpp(346,21): warning C4244:             TYPE=float
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1Player.cpp(346,21): warning C4244:         ]
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1Player.cpp(346,21): warning C4244:         and
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1Player.cpp(346,21): warning C4244:         [
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1Player.cpp(346,21): warning C4244:             TYPE=int
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1Player.cpp(346,21): warning C4244:         ]
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1Player.cpp(379,20): warning C4018:  '<': signed/unsigned mismatch
-  j1Scene.cpp
-  Generating Code...
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1Player.cpp(400,20): warning C4018:  '<': signed/unsigned mismatch
-j1Map.obj : error LNK2019: unresolved external symbol "public: int __thiscall Properties::GetP(char const *,int)const " (?GetP@Properties@@QBEHPBDH@Z) referenced in function "public: bool __thiscall j1Map::CreateWalkabilityMap(int &,int &,unsigned char * *)const " (?CreateWalkabilityMap@j1Map@@QBE_NAAH0PAPAE@Z)
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Debug\Unknown Miner.exe : fatal error LNK1120: 1 unresolved externals
+C:\Users\oscarrm9\Desktop\UnknownMiner-286d4f17cf4b2aaff9927cd6471e0650c7213747\Motor2D\j1Map.cpp(41,21): warning C4018:  '<': signed/unsigned mismatch
+C:\Users\oscarrm9\Desktop\UnknownMiner-286d4f17cf4b2aaff9927cd6471e0650c7213747\Motor2D\j1Map.cpp(43,22): warning C4018:  '<': signed/unsigned mismatch
+C:\Users\oscarrm9\Desktop\UnknownMiner-286d4f17cf4b2aaff9927cd6471e0650c7213747\Motor2D\j1Map.cpp(171,23): warning C4018:  '<': signed/unsigned mismatch
+C:\Users\oscarrm9\Desktop\UnknownMiner-286d4f17cf4b2aaff9927cd6471e0650c7213747\Motor2D\j1Map.cpp(173,24): warning C4018:  '<': signed/unsigned mismatch
+  Motor2D.vcxproj -> C:\Users\oscarrm9\Desktop\UnknownMiner-286d4f17cf4b2aaff9927cd6471e0650c7213747\Debug\Unknown Miner.exe

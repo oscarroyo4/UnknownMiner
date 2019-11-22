@@ -110,9 +110,8 @@ bool j1AirEnemy::Update(float dt) {
 	case AIRENEMY_IDLE:
 		break;
 	case AIRENEMY_FLY:
-		//pathSteps = App->pathfinding->CreatePath(position, App->player->position);
+		pathSteps = App->pathfinding->CreatePath(position, App->player->position);
 		current_animation = &fly;
-		/*
 		for (int i = 0; i <= pathSteps; i++) {
 			nextPos.x = App->pathfinding->GetLastPath()->At(i)->x;
 			nextPos.y = App->pathfinding->GetLastPath()->At(i)->y;
@@ -122,7 +121,6 @@ bool j1AirEnemy::Update(float dt) {
 				
 			}
 		}
-		*/
 		break;
 	case AIRENEMY_ATTACK:
 		break;

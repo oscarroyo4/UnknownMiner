@@ -42,12 +42,12 @@ void j1Map::Draw()
 		{
 			for (int j = 0; j < l->height; j++)
 			{
-				if (l->data[l->Get(i, j)] != 0)
+				if (l->gid[l->Get(i, j)] != 0)
 				{
 					l->Get(i, j);
 					SDL_Texture* texture = data.tilesets.start->data->texture;
 					iPoint position = PosConverter(i, j);
-					SDL_Rect sect = data.tilesets.start->data->TileToRect(l->data[l->Get(i, j)]);
+					SDL_Rect sect = data.tilesets.start->data->TileToRect(l->gid[l->Get(i, j)]);
 
 					App->render->Blit(texture, position.x, position.y, &sect);
 				}
@@ -172,11 +172,11 @@ bool j1Map::Load(const char* file_name)
 				{
 					for (int j = 0; j < l->height; j++)
 					{
-						if (l->data[l->Get(i, j)] != 0)
+						if (l->gid[l->Get(i, j)] != 0)
 						{
 							l->Get(i, j);
 							iPoint position = PosConverter(i, j);
-							SDL_Rect sect = data.tilesets.start->data->TileToRect(l->data[l->Get(i, j)]);
+							SDL_Rect sect = data.tilesets.start->data->TileToRect(l->gid[l->Get(i, j)]);
 
 							groundCol.add(App->collision->AddCollider({ position.x,position.y,sect.w,sect.h }, COLLIDER_GROUND));
 						}
@@ -322,60 +322,24 @@ bool j1Map::LoadTilesetImage(pugi::xml_node& tileset_node, TileSet* set)
 	return ret;
 }
 
-// Load a group of properties from a node and fill a list with it
-bool j1Map::LoadProperties(pugi::xml_node& node, Properties& properties)
-{
-	bool ret = false;
-
-	pugi::xml_node data = node.child("properties");
-
-	if (data != NULL)
-	{
-		pugi::xml_node prop;
-
-		for (prop = data.child("property"); prop; prop = prop.next_sibling("property"))
-		{
-			Properties::Property* p = new Properties::Property();
-
-			p->name = prop.attribute("name").as_string();
-			p->value = prop.attribute("value").as_int();
-
-			properties.list.add(p);
-		}
-	}
-
-	return ret;
-}
-
  //TODO 3: Create the definition for a function that loads a single layer
 bool j1Map::LoadLayer(pugi::xml_node& layer, Layer* set)
 {
 	bool ret = true;
-
-	set->name = layer.attribute("name").as_string();
+	set->name.create(layer.attribute("name").as_string());
 	set->width = layer.attribute("width").as_int();
 	set->height = layer.attribute("height").as_int();
-	LoadProperties(layer, set->properties);
-	pugi::xml_node layer_data = layer.child("data");
+	set->gid = new uint[set->width * set->height];
 
-	if (layer_data == NULL)
+	memset(set->gid,0, set->width * set->height);
+
+	pugi::xml_node tilesgid;
+	int i = 0;
+	for (tilesgid = layer.child("data").child("tile"); tilesgid && ret; tilesgid = tilesgid.next_sibling("tile"))
 	{
-		LOG("Error parsing map xml file: Cannot find 'layer/data' tag.");
-		ret = false;
-		RELEASE(set);
+		set->gid[i] = tilesgid.attribute("gid").as_uint();
+		i++;
 	}
-	else
-	{
-		set->data = new uint[set->width * set->height];
-		memset(set->data, 0, set->width * set->height);
-
-		int i = 0;
-		for (pugi::xml_node tile = layer_data.child("tile"); tile; tile = tile.next_sibling("tile"))
-		{
-			set->data[i++] = tile.attribute("gid").as_int(0);
-		}
-	}
-
 	return ret;
 }
 
@@ -411,41 +375,43 @@ bool j1Map::CreateWalkabilityMap(int& width, int& height, uchar** buffer) const
 	{
 		Layer* layer = item->data;
 
-		if (layer->properties.GetP("Navigation", 0) == 0)
-			continue;
+		if (layer->name == "Collision") {
+			uchar* map = new uchar[layer->width * layer->height];
+			memset(map, 1, layer->width * layer->height);
 
-		uchar* map = new uchar[layer->width * layer->height];
-		memset(map, 1, layer->width * layer->height);
-
-		for (int y = 0; y < data.height; ++y)
-		{
-			for (int x = 0; x < data.width; ++x)
+			for (int y = 0; y < data.height; ++y)
 			{
-				int i = (y * layer->width) + x;
-
-				int tile_id = layer->Get(x, y);
-				TileSet* tileset = (tile_id > 0) ? GetTilesetFromTileId(tile_id) : NULL;
-
-				if (tileset != NULL)
+				for (int x = 0; x < data.width; ++x)
 				{
-					map[i] = (tile_id - tileset->firstgid) > 0 ? 0 : 1;
-					/*TileType* ts = tileset->GetTileType(tile_id);
-					if(ts != NULL)
+
+					int i = (y * layer->width) + x;
+
+					int tile_id = layer->Get(x, y);
+					TileSet* tileset = (tile_id > 0) ? GetTilesetFromTileId(tile_id) : NULL;
+
+					if (tileset != NULL)
 					{
-						map[i] = ts->properties.Get("walkable", 1);
-					}*/
+						//map[i] = (tile_id - tileset->firstgid) > 0 ? 0 : 1;
+						if (layer->gid[i] > 0) { map[i] = 1; LOG("1"); }
+						else { map[i] = 0; LOG("0"); }
+						/*
+						TileType* ts = tileset->GetTileType(tile_id);
+						if(ts != NULL)
+						{
+							map[i] = ts->properties.Get("walkable", 1);
+						}
+						*/
+					}
 				}
 			}
+
+			*buffer = map;
+			width = data.width;
+			height = data.height;
+			ret = true;
+			break;
 		}
-
-		*buffer = map;
-		width = data.width;
-		height = data.height;
-		ret = true;
-
-		break;
 	}
-
 	return ret;
 }
 
