@@ -9,16 +9,51 @@
 
 // TODO 1: Create a struct for the map layer
 // ----------------------------------------------------
+struct Properties
+{
+	struct Property
+	{
+		p2SString name;
+		int value;
+	};
+
+	~Properties()
+	{
+		p2List_item<Property*>* item;
+		item = list.start;
+
+		while (item != NULL)
+		{
+			RELEASE(item->data);
+			item = item->next;
+		}
+
+		list.clear();
+	}
+
+	int GetP(const char* name, int default_value = 0) const;
+
+	p2List<Property*>	list;
+};
+
 struct Layer {
-	p2SString name;
-	uint width;
-	uint height;
-	uint* gid;
+	p2SString	name;
+	int			width;
+	int			height;
+	uint* data;
+	Properties	properties;
+
+	Layer() : data(NULL)
+	{}
+
+	~Layer()
+	{
+		RELEASE(data);
+	}
+
 	inline uint Get(int x, int y) const
 	{
-
-		return x + y * width;
-
+		return data[(y * width) + x];
 	}
 };
 	// TODO 6: Short function to get the value of x,y
@@ -101,6 +136,7 @@ private:
 	bool LoadTilesetImage(pugi::xml_node& tileset_node, TileSet* set);
 	// TODO 3: Create a method that loads a single laye
 	bool LoadLayer(pugi::xml_node& node, Layer* layer);
+	bool LoadProperties(pugi::xml_node& node, Properties& properties);
 
 	TileSet* GetTilesetFromTileId(int id) const;
 

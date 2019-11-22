@@ -255,7 +255,7 @@ bool j1Player::Update(float dt) {
 		punch.Reset();
 		break;
 	case PLAYER_PUNCH_AIR: //The second jump
-		if (punchAirEnable){
+		if (punchAirEnable == true){
 			punchAirEnable = false;
 			vel.y = -4;
 			// Sound
@@ -335,7 +335,6 @@ bool j1Player::Update(float dt) {
 		*/
 		if (punchair_timer > punchTime)
 		{
-			punchAirEnable = true;
 			status = PLAYER_IN_AIR;
 			punchCol->to_delete = true;
 			punchair_timer = 0;
