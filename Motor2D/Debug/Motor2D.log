@@ -1,120 +1,91 @@
-﻿  j1AirEnemy.cpp
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1AirEnemy.cpp(138,21): warning C4244:  '+=': conversion from 'TYPE' to 'TYPE', possible loss of data
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1AirEnemy.cpp(138,21): warning C4244:         with
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1AirEnemy.cpp(138,21): warning C4244:         [
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1AirEnemy.cpp(138,21): warning C4244:             TYPE=float
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1AirEnemy.cpp(138,21): warning C4244:         ]
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1AirEnemy.cpp(138,21): warning C4244:         and
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1AirEnemy.cpp(138,21): warning C4244:         [
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1AirEnemy.cpp(138,21): warning C4244:             TYPE=int
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1AirEnemy.cpp(138,21): warning C4244:         ]
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1AirEnemy.cpp(139,21): warning C4244:  '+=': conversion from 'TYPE' to 'TYPE', possible loss of data
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1AirEnemy.cpp(139,21): warning C4244:         with
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1AirEnemy.cpp(139,21): warning C4244:         [
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1AirEnemy.cpp(139,21): warning C4244:             TYPE=float
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1AirEnemy.cpp(139,21): warning C4244:         ]
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1AirEnemy.cpp(139,21): warning C4244:         and
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1AirEnemy.cpp(139,21): warning C4244:         [
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1AirEnemy.cpp(139,21): warning C4244:             TYPE=int
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1AirEnemy.cpp(139,21): warning C4244:         ]
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1AirEnemy.cpp(167,20): warning C4018:  '<': signed/unsigned mismatch
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\p2Point.h(97,25): warning C4244:  'argument': conversion from 'TYPE' to 'float', possible loss of data
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\p2Point.h(97,25): warning C4244:         with
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\p2Point.h(97,25): warning C4244:         [
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\p2Point.h(97,25): warning C4244:             TYPE=int
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\p2Point.h(97,25): warning C4244:         ]
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\p2Point.h(95): message :  while compiling class template member function 'p2Point<int> &p2Point<int>::Normalize(void)'
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1AirEnemy.cpp(119): message :  see reference to function template instantiation 'p2Point<int> &p2Point<int>::Normalize(void)' being compiled
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1Player.h(58): message :  see reference to class template instantiation 'p2Point<int>' being compiled
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\p2Point.h(97,11): warning C4244:  '=': conversion from 'float' to 'TYPE', possible loss of data
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\p2Point.h(97,11): warning C4244:         with
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\p2Point.h(97,11): warning C4244:         [
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\p2Point.h(97,11): warning C4244:             TYPE=int
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\p2Point.h(97,11): warning C4244:         ]
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\p2Point.h(98,25): warning C4244:  'argument': conversion from 'TYPE' to 'float', possible loss of data
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\p2Point.h(98,25): warning C4244:         with
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\p2Point.h(98,25): warning C4244:         [
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\p2Point.h(98,25): warning C4244:             TYPE=int
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\p2Point.h(98,25): warning C4244:         ]
-  j1Collision.cpp
+﻿  EntityManager.cpp
+  j1AirEnemy.cpp
+c:\users\oscar\documents\github\unknownminer\motor2d\j1airenemy.cpp(138): warning C4244: '+=': conversión de 'TYPE' a 'TYPE'; posible pérdida de datos
+          with
+          [
+              TYPE=float
+          ]
+          and
+          [
+              TYPE=int
+          ]
+c:\users\oscar\documents\github\unknownminer\motor2d\j1airenemy.cpp(139): warning C4244: '+=': conversión de 'TYPE' a 'TYPE'; posible pérdida de datos
+          with
+          [
+              TYPE=float
+          ]
+          and
+          [
+              TYPE=int
+          ]
+c:\users\oscar\documents\github\unknownminer\motor2d\j1airenemy.cpp(167): warning C4018: '<': no coinciden signed/unsigned
+c:\users\oscar\documents\github\unknownminer\motor2d\p2point.h(97): warning C4244: 'argumento': conversión de 'TYPE' a 'float'; posible pérdida de datos
+          with
+          [
+              TYPE=int
+          ]
+  c:\users\oscar\documents\github\unknownminer\motor2d\p2point.h(95): note: durante la compilación de la función miembro de plantilla clase de 'p2Point<int> &p2Point<int>::Normalize(void)'
+  c:\users\oscar\documents\github\unknownminer\motor2d\j1airenemy.cpp(119): note: vea la referencia a la creación de instancias de plantilla de función 'p2Point<int> &p2Point<int>::Normalize(void)' que se está compilando
+  c:\users\oscar\documents\github\unknownminer\motor2d\entity.h(72): note: vea la referencia a la creación de instancias de plantilla clase de 'p2Point<int>' que se está compilando
+c:\users\oscar\documents\github\unknownminer\motor2d\p2point.h(97): warning C4244: '=': conversión de 'float' a 'TYPE'; posible pérdida de datos
+          with
+          [
+              TYPE=int
+          ]
+c:\users\oscar\documents\github\unknownminer\motor2d\p2point.h(98): warning C4244: 'argumento': conversión de 'TYPE' a 'float'; posible pérdida de datos
+          with
+          [
+              TYPE=int
+          ]
+c:\users\oscar\documents\github\unknownminer\motor2d\p2point.h(98): warning C4244: '=': conversión de 'float' a 'TYPE'; posible pérdida de datos
+          with
+          [
+              TYPE=int
+          ]
   j1FadeToBlack.cpp
-  j1Main.cpp
   j1App.cpp
-  j1Audio.cpp
-  j1Input.cpp
-  j1Map.cpp
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\p2Point.h(98,11): warning C4244:  '=': conversion from 'float' to 'TYPE', possible loss of data
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\p2Point.h(98,11): warning C4244:         with
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\p2Point.h(98,11): warning C4244:         [
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\p2Point.h(98,11): warning C4244:             TYPE=int
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\p2Point.h(98,11): warning C4244:         ]
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1Map.cpp(41,21): warning C4018:  '<': signed/unsigned mismatch
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1Map.cpp(43,22): warning C4018:  '<': signed/unsigned mismatch
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1Map.cpp(171,23): warning C4018:  '<': signed/unsigned mismatch
-  j1Pathfinding.cpp
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1Map.cpp(173,24): warning C4018:  '<': signed/unsigned mismatch
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\p2Point.h(122,24): warning C4244:  'argument': conversion from 'TYPE' to 'float', possible loss of data
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\p2Point.h(122,24): warning C4244:         with
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\p2Point.h(122,24): warning C4244:         [
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\p2Point.h(122,24): warning C4244:             TYPE=int
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\p2Point.h(122,24): warning C4244:         ]
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\p2Point.h(118): message :  while compiling class template member function 'TYPE p2Point<TYPE>::DistanceTo(const p2Point<TYPE> &) const'
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\p2Point.h(118): message :         with
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\p2Point.h(118): message :         [
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\p2Point.h(118): message :             TYPE=int
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\p2Point.h(118): message :         ]
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1Pathfinding.cpp(160): message :  see reference to function template instantiation 'TYPE p2Point<TYPE>::DistanceTo(const p2Point<TYPE> &) const' being compiled
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1Pathfinding.cpp(160): message :         with
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1Pathfinding.cpp(160): message :         [
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1Pathfinding.cpp(160): message :             TYPE=int
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1Pathfinding.cpp(160): message :         ]
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1PathFinding.h(81): message :  see reference to class template instantiation 'p2Point<int>' being compiled
   j1Player.cpp
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\p2Point.h(122,15): warning C4244:  'return': conversion from 'float' to 'TYPE', possible loss of data
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\p2Point.h(122,15): warning C4244:         with
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\p2Point.h(122,15): warning C4244:         [
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\p2Point.h(122,15): warning C4244:             TYPE=int
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\p2Point.h(122,15): warning C4244:         ]
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1Player.cpp(211,11): warning C4244:  '=': conversion from 'int' to 'TYPE', possible loss of data
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1Player.cpp(211,11): warning C4244:         with
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1Player.cpp(211,11): warning C4244:         [
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1Player.cpp(211,11): warning C4244:             TYPE=float
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1Player.cpp(211,11): warning C4244:         ]
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1Player.cpp(216,11): warning C4244:  '=': conversion from 'int' to 'TYPE', possible loss of data
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1Player.cpp(216,11): warning C4244:         with
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1Player.cpp(216,11): warning C4244:         [
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1Player.cpp(216,11): warning C4244:             TYPE=float
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1Player.cpp(216,11): warning C4244:         ]
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1Player.cpp(316,19): warning C4018:  '>': signed/unsigned mismatch
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1Player.cpp(336,22): warning C4018:  '>': signed/unsigned mismatch
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1Player.cpp(346,21): warning C4244:  '+=': conversion from 'TYPE' to 'TYPE', possible loss of data
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1Player.cpp(346,21): warning C4244:         with
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1Player.cpp(346,21): warning C4244:         [
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1Player.cpp(346,21): warning C4244:             TYPE=float
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1Player.cpp(346,21): warning C4244:         ]
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1Player.cpp(346,21): warning C4244:         and
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1Player.cpp(346,21): warning C4244:         [
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1Player.cpp(346,21): warning C4244:             TYPE=int
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1Player.cpp(346,21): warning C4244:         ]
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1Player.cpp(347,21): warning C4244:  '+=': conversion from 'TYPE' to 'TYPE', possible loss of data
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1Player.cpp(347,21): warning C4244:         with
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1Player.cpp(347,21): warning C4244:         [
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1Player.cpp(347,21): warning C4244:             TYPE=float
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1Player.cpp(347,21): warning C4244:         ]
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1Player.cpp(347,21): warning C4244:         and
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1Player.cpp(347,21): warning C4244:         [
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1Player.cpp(347,21): warning C4244:             TYPE=int
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1Player.cpp(347,21): warning C4244:         ]
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1Player.cpp(380,20): warning C4018:  '<': signed/unsigned mismatch
+c:\users\oscar\documents\github\unknownminer\motor2d\j1player.cpp(211): warning C4244: '=': conversión de 'int' a 'TYPE'; posible pérdida de datos
+          with
+          [
+              TYPE=float
+          ]
+c:\users\oscar\documents\github\unknownminer\motor2d\j1player.cpp(216): warning C4244: '=': conversión de 'int' a 'TYPE'; posible pérdida de datos
+          with
+          [
+              TYPE=float
+          ]
+c:\users\oscar\documents\github\unknownminer\motor2d\j1player.cpp(316): warning C4018: '>': no coinciden signed/unsigned
+c:\users\oscar\documents\github\unknownminer\motor2d\j1player.cpp(336): warning C4018: '>': no coinciden signed/unsigned
+c:\users\oscar\documents\github\unknownminer\motor2d\j1player.cpp(346): warning C4244: '+=': conversión de 'TYPE' a 'TYPE'; posible pérdida de datos
+          with
+          [
+              TYPE=float
+          ]
+          and
+          [
+              TYPE=int
+          ]
+c:\users\oscar\documents\github\unknownminer\motor2d\j1player.cpp(347): warning C4244: '+=': conversión de 'TYPE' a 'TYPE'; posible pérdida de datos
+          with
+          [
+              TYPE=float
+          ]
+          and
+          [
+              TYPE=int
+          ]
+c:\users\oscar\documents\github\unknownminer\motor2d\j1player.cpp(380): warning C4018: '<': no coinciden signed/unsigned
+c:\users\oscar\documents\github\unknownminer\motor2d\j1player.cpp(401): warning C4018: '<': no coinciden signed/unsigned
   j1Scene.cpp
-  p2Log.cpp
-  j1Render.cpp
-  j1Textures.cpp
-  j1Window.cpp
-  pugixml.cpp
-  Generating Code...
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1Player.cpp(401,20): warning C4018:  '<': signed/unsigned mismatch
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1Player.cpp(401,20): warning C4018: C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1Pathfinding.cpp(232) : warning C4715: 'j1PathFinding::CreatePath': not all control paths return a value
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1Player.cpp(401,20): warning C4018: C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\p2Point.h(99) : warning C4172: returning address of local variable or temporary: f
-  LINK : C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Debug\Unknown Miner.exe not found or not built by the last incremental link; performing full link
-  Motor2D.vcxproj -> C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Debug\Unknown Miner.exe
+c:\users\oscar\documents\github\unknownminer\motor2d\j1scene.cpp(113): error C2039: 'airenemy': no es un miembro de 'j1App'
+  c:\users\oscar\documents\github\unknownminer\motor2d\j1app.h(23): note: vea la declaración de 'j1App'
+c:\users\oscar\documents\github\unknownminer\motor2d\j1scene.cpp(126): error C2039: 'airenemy': no es un miembro de 'j1App'
+  c:\users\oscar\documents\github\unknownminer\motor2d\j1app.h(23): note: vea la declaración de 'j1App'
+c:\users\oscar\documents\github\unknownminer\motor2d\j1scene.cpp(146): error C2660: 'EntityManager::DeleteEntity': la función no acepta 0 argumentos
+  c:\users\oscar\documents\github\unknownminer\motor2d\entitymanager.h(46): note: vea la declaración de 'EntityManager::DeleteEntity'
+c:\users\oscar\documents\github\unknownminer\motor2d\j1scene.cpp(148): error C2143: error de sintaxis: falta ';' delante de '<template-id>'
+c:\users\oscar\documents\github\unknownminer\motor2d\j1scene.cpp(159): error C2039: 'airenemy': no es un miembro de 'j1App'
+  c:\users\oscar\documents\github\unknownminer\motor2d\j1app.h(23): note: vea la declaración de 'j1App'
+  Generando código...
+c:\users\oscar\documents\github\unknownminer\motor2d\p2point.h(99): warning C4172: devolución de dirección de la variable local o temporal: f

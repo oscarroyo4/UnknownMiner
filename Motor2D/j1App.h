@@ -17,7 +17,8 @@ class j1Player;
 class j1Collision;
 class j1FadeToBlack;
 class j1PathFinding;
-class j1AirEnemy;
+//class j1AirEnemy;
+class EntityManager;
 
 class j1App
 {
@@ -93,7 +94,8 @@ public:
 	j1Collision*		collision;
 	j1FadeToBlack*		fadetoblack;
 	j1PathFinding*		pathfinding;
-	j1AirEnemy*			airenemy;
+	//j1AirEnemy*			airenemy;
+	EntityManager*		entitymanager;
 
 private:
 

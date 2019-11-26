@@ -8,6 +8,7 @@
 #include "j1Collision.h"
 #include "Animation.h"
 #include "p2Point.h"
+#include "Entity.h"
 
 enum enemy_status {
 	AIRENEMY_IDLE,
@@ -18,7 +19,7 @@ enum enemy_status {
 };
 
 
-class j1AirEnemy : public j1Module
+class j1AirEnemy : public Entity
 {
 public:
 
@@ -51,7 +52,7 @@ public:
 	bool WallCollision();
 
 	//Public variables
-	iPoint position;
+	//iPoint position;
 
 	int initialX;
 	int initialY;

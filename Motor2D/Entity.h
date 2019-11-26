@@ -2,6 +2,7 @@
 #define _ENTITY_H
 
 #include "j1Module.h"
+#include "p2Point.h"
 
 enum class Types
 {
@@ -68,7 +69,7 @@ public:
 
 public:
 	Types entity_type;
-	SDL_Rect position_rect;
+	iPoint position;
 	SDL_Rect collision_rect;
 };
 

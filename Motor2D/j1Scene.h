@@ -2,6 +2,7 @@
 #define __j1SCENE_H__
 
 #include "j1Module.h"
+#include "Entity.h"
 
 
 struct SDL_Texture;
@@ -47,6 +48,8 @@ public:
 
 private:
 	int ambientFx;
+
+	Entity* player;
 
 	p2SString tex1;
 	p2SString tex2;

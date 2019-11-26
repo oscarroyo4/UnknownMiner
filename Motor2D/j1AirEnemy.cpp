@@ -12,7 +12,7 @@
 #include "j1AirEnemy.h"
 #include <math.h>
 
-j1AirEnemy::j1AirEnemy() : j1Module()
+j1AirEnemy::j1AirEnemy() : Entity(Types::enemy_air)
 {
 	name.create("airenemy");
 

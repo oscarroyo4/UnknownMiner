@@ -11,6 +11,7 @@
 #include "j1Map.h"
 #include "j1Player.h"
 #include "j1AirEnemy.h"
+#include "EntityManager.h"
 #include "j1Scene.h"
 
 j1Scene::j1Scene() : j1Module()
@@ -142,7 +143,7 @@ bool j1Scene::ChargeSecondLevel() //Changing to level 2
 {
 	App->player->input = false;
 	App->player->CleanUp();
-	App->airenemy->CleanUp();
+	App->entitymanager->DeleteEntity()
 
 	p2List_item<Collider*>* item;
 	for (item = App->map->groundCol.start; item != NULL; item = item->next) //deleting all colliders
