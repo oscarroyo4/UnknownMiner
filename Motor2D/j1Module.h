@@ -8,6 +8,7 @@
 
 #include "p2SString.h"
 #include "PugiXml\src\pugixml.hpp"
+#include "SDL/include/SDL.h"
 
 #define SCREEN_WIDTH 320
 #define SCREEN_HEIGHT 180
@@ -74,7 +75,7 @@ public:
 	}
 
 	// Callbacks ---
-	virtual void OnCollision(Collider*, Collider*) {}
+	//virtual void OnCollision(Collider*, Collider*) {}
 
 public:
 
