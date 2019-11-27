@@ -40,6 +40,7 @@ bool j1Scene::Start()
 {
 	loaded = false;
 	App->map->Load(tex1.GetString());
+	air_enemy = App->entitymanager->CreateEntity(Types::enemy_air);
 	/*
 	if (App->map->Load(tex1.GetString()) == true)
 	{
@@ -110,7 +111,7 @@ bool j1Scene::ChargeFirstLevel() //Changing to level 1
 {
 	App->player->input = false;
 	App->player->CleanUp();
-	App->airenemy->CleanUp();
+	if(air_enemy != nullptr) App->entitymanager->DeleteEntity(air_enemy);
 
 	p2List_item<Collider*>* item;
 	for (item = App->map->groundCol.start; item != NULL; item = item->next) //deleting all colliders
@@ -123,7 +124,7 @@ bool j1Scene::ChargeFirstLevel() //Changing to level 1
 	App->audio->Awake(App->config);
 	App->audio->PlayMusic(ambient_audio.GetString(), 1.0f); //Playing audio again
 	App->player->Start();
-	App->airenemy->Start();
+	air_enemy = App->entitymanager->CreateEntity(Types::enemy_air);
 	if (!loaded) {
 		App->player->position.x = App->player->initialX; //Load position from config_file
 		App->player->position.y = App->player->initialY;
@@ -143,7 +144,7 @@ bool j1Scene::ChargeSecondLevel() //Changing to level 2
 {
 	App->player->input = false;
 	App->player->CleanUp();
-	App->entitymanager->DeleteEntity()
+	App->entitymanager->DeleteEntity(air_enemy);
 
 	p2List_item<Collider*>* item;
 	for (item = App->map->groundCol.start; item != NULL; item = item->next) //deleting all colliders
@@ -156,7 +157,7 @@ bool j1Scene::ChargeSecondLevel() //Changing to level 2
 	App->audio->Awake(App->config);
 	App->audio->PlayMusic(ambient_audio.GetString(), 1.0f); //Playing audio again
 	App->player->Start();
-	App->airenemy->Start();
+	air_enemy = App->entitymanager->CreateEntity(Types::enemy_air);
 	if (!loaded) {
 		App->player->position.x = App->player->initialX2; //Load position from config_file
 		App->player->position.y = App->player->initialY2;

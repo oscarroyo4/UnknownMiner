@@ -12,11 +12,11 @@
 #include "j1Map.h"
 #include "j1App.h"
 #include "j1Player.h"
+#include "EntityManager.h"
 #include "j1Collision.h"
 #include "j1FadeToBlack.h"
 #include "j1Pathfinding.h"
 //#include "j1AirEnemy.h"
-#include "EntityManager.h"
 
 // Constructor
 j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
@@ -32,11 +32,12 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	scene = new j1Scene();
 	map = new j1Map();
 	player = new j1Player();
+	entitymanager = new EntityManager();
 	collision = new j1Collision();
 	fadetoblack = new j1FadeToBlack();
 	pathfinding = new j1PathFinding();
 	//airenemy = new j1AirEnemy();
-	entitymanager = new EntityManager();
+
 
 	// Ordered for awake / Start / Update
 	// Reverse order of CleanUp
@@ -46,8 +47,8 @@ j1App::j1App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(audio);
 	AddModule(map);
 	AddModule(scene);
-	AddModule(entitymanager);
 	AddModule(player);
+	AddModule(entitymanager);
 	//AddModule(airenemy);
 	AddModule(collision);
 	AddModule(fadetoblack);

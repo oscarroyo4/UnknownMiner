@@ -1,10 +1,10 @@
 #include "EntityManager.h"
+#include "p2Log.h"
 
 EntityManager::EntityManager()
 {
-	name.create("entity_manager");
-	player = (j1Player*)CreateEntity(Types::player);
-	airEnemy = (j1AirEnemy*)CreateEntity(Types::enemy_air);
+	name.create("entitymanager");
+	//player = (j1Player*)CreateEntity(Types::player);
 }
 
 //Destructor
@@ -14,20 +14,22 @@ EntityManager::~EntityManager()
 // Called before render is available
 bool EntityManager::Awake(pugi::xml_node& a)
 {
-	for (unsigned int i = 0; i < entities.count(); i++)
-	{
-		entities.At(i)->data->Awake(a.child(entities.At(i)->data->name.GetString()));
-	}
+	node = a;
 	return true;
 }
 
 // Called before the first frame
 bool EntityManager::Start()
 {
+	/*
+	bool ret = false;
 	for (unsigned int i = 0; i < entities.count(); i++)
 	{
-		entities.At(i)->data->Start();
+		ret = entities.At(i)->data->Start();
+		if (ret == false) break;
 	}
+	return ret;
+	*/
 	return true;
 }
 
@@ -95,6 +97,7 @@ Entity* EntityManager::CreateEntity(Types type)
 		break;
 
 	case Types::enemy_air:
+		//ret = new j1AirEnemy();
 		ret = new j1AirEnemy();
 		break;
 	case Types::enemy_ground:
@@ -104,8 +107,10 @@ Entity* EntityManager::CreateEntity(Types type)
 	if (ret != nullptr)
 	{
 		entities.add(ret);
-		//ret->Awake();
-		//ret->Start();
+		ret->entity_type = Types::enemy_air;
+		LOG("%s", ret->name.GetString());
+		ret->Awake(node.child(ret->name.GetString()));
+		ret->Start();
 	}
 	return ret;
 }

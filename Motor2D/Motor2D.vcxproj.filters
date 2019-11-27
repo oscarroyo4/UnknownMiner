@@ -34,9 +34,6 @@
     <ClCompile Include="j1Map.cpp">
       <Filter>Desenvolupament  ========\Modules</Filter>
     </ClCompile>
-    <ClCompile Include="j1Player.cpp">
-      <Filter>Desenvolupament  ========\Modules</Filter>
-    </ClCompile>
     <ClCompile Include="j1Collision.cpp">
       <Filter>Desenvolupament  ========\Modules</Filter>
     </ClCompile>
@@ -46,10 +43,13 @@
     <ClCompile Include="j1Pathfinding.cpp">
       <Filter>Desenvolupament  ========\Modules</Filter>
     </ClCompile>
-    <ClCompile Include="j1AirEnemy.cpp">
-      <Filter>Desenvolupament  ========\Modules</Filter>
-    </ClCompile>
     <ClCompile Include="EntityManager.cpp">
+      <Filter>Desenvolupament  ========\Modules\EntitySystem</Filter>
+    </ClCompile>
+    <ClCompile Include="j1AirEnemy.cpp">
+      <Filter>Desenvolupament  ========\Modules\EntitySystem</Filter>
+    </ClCompile>
+    <ClCompile Include="j1Player.cpp">
       <Filter>Desenvolupament  ========\Modules\EntitySystem</Filter>
     </ClCompile>
   </ItemGroup>
@@ -105,9 +105,6 @@
     <ClInclude Include="j1Map.h">
       <Filter>Desenvolupament  ========\Modules</Filter>
     </ClInclude>
-    <ClInclude Include="j1Player.h">
-      <Filter>Desenvolupament  ========\Modules</Filter>
-    </ClInclude>
     <ClInclude Include="Animation.h">
       <Filter>Desenvolupament  ========\Modules</Filter>
     </ClInclude>
@@ -121,13 +118,16 @@
     <ClInclude Include="j1Pathfinding.h">
       <Filter>Desenvolupament  ========\Modules</Filter>
     </ClInclude>
-    <ClInclude Include="j1AirEnemy.h">
-      <Filter>Desenvolupament  ========\Modules</Filter>
-    </ClInclude>
     <ClInclude Include="Entity.h">
       <Filter>Desenvolupament  ========\Modules\EntitySystem</Filter>
     </ClInclude>
     <ClInclude Include="EntityManager.h">
+      <Filter>Desenvolupament  ========\Modules\EntitySystem</Filter>
+    </ClInclude>
+    <ClInclude Include="j1AirEnemy.h">
+      <Filter>Desenvolupament  ========\Modules\EntitySystem</Filter>
+    </ClInclude>
+    <ClInclude Include="j1Player.h">
       <Filter>Desenvolupament  ========\Modules\EntitySystem</Filter>
     </ClInclude>
   </ItemGroup>

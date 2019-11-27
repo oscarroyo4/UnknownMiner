@@ -6,6 +6,7 @@
 #include "j1Player.h"
 #include "j1AirEnemy.h"
 #include "p2List.h"
+#include "PugiXml\src\pugixml.hpp"
 
 class Entity;
 
@@ -46,8 +47,11 @@ public:
 	bool DeleteEntity(Entity*);
 
 public:
+	pugi::xml_node node;
 	p2List <Entity*> entities;
 	j1Player* player;
-	j1AirEnemy* airEnemy;
+
+	SDL_Texture* airEnemy_graphics;
+	int airEnemy_;
 };
 #endif // !_ENTITYMANAGER_H

@@ -53,7 +53,7 @@ j1AirEnemy::~j1AirEnemy()
 
 bool j1AirEnemy::Awake(pugi::xml_node& config) {
 	bool ret = true;
-	LOG("Loading player from config_file");
+	LOG("Loading enemy from config_file");
 
 	texPath = config.child("path").attribute("tex").as_string();
 	hitPath = config.child("path").attribute("hit").as_string();
@@ -81,15 +81,16 @@ bool j1AirEnemy::Start()
 	hitFx = App->audio->LoadFx(hitPath.GetString());
 	flyFx = App->audio->LoadFx(flyPath.GetString());
 	attackFx = App->audio->LoadFx(attackPath.GetString());
-	LOG("Creating player colliders");
+	LOG("Creating enemy colliders");
 	colAirEnemy = App->collision->AddCollider({ position.x, position.y+2, 15, 8 }, COLLIDER_ENEMY);
+	if (graphics == nullptr || hitFx == -1 || flyFx == -1 || attackFx == -1 || colAirEnemy == nullptr) ret = false;
 	return ret;
 }
 
 // Unload assets
 bool j1AirEnemy::CleanUp()
 {
-	LOG("Unloading player");
+	LOG("Unloading enemy");
 	colAirEnemy->to_delete = true;
 	SDL_DestroyTexture(graphics);
 	return true;

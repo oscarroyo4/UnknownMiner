@@ -4,6 +4,8 @@
 #include "j1Module.h"
 #include "p2Point.h"
 
+struct Collider;
+
 enum class Types
 {
 	none = 0,
@@ -13,7 +15,7 @@ enum class Types
 	unknown
 };
 
-class Entity :public j1Module
+class Entity : public j1Module
 {
 public:
 	Entity(Types type) {
@@ -27,12 +29,6 @@ public:
 
 	// Called before render is available
 	virtual bool Awake(pugi::xml_node&)
-	{
-		return true;
-	}
-
-	// Called before the first frame
-	virtual bool Start()
 	{
 		return true;
 	}
@@ -70,7 +66,7 @@ public:
 public:
 	Types entity_type;
 	iPoint position;
-	SDL_Rect collision_rect;
+	Collider* collision_rect;
 };
 
 #endif // !ENTITY_H

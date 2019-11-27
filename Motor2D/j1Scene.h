@@ -50,6 +50,7 @@ private:
 	int ambientFx;
 
 	Entity* player;
+	Entity* air_enemy;
 
 	p2SString tex1;
 	p2SString tex2;
