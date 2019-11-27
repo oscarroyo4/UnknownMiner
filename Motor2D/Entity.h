@@ -66,7 +66,7 @@ public:
 public:
 	Types entity_type;
 	iPoint position;
-	Collider* collision_rect;
+	//Collider* collider;
 };
 
 #endif // !ENTITY_H

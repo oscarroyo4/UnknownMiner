@@ -10,7 +10,7 @@
 #include "p2Point.h"
 #include "Entity.h"
 
-enum enemy_status {
+enum airEnemy_status {
 	AIRENEMY_IDLE,
 	AIRENEMY_FLY,
 	AIRENEMY_ATTACK,
@@ -93,7 +93,7 @@ private:
 	Animation attack;
 	Animation death;
 
-	enemy_status status = AIRENEMY_IDLE;
+	airEnemy_status status = AIRENEMY_IDLE;
 	SDL_Rect r;
 	Collider* colAirEnemy;
 };

@@ -1,5 +1,5 @@
-#ifndef __j1PLAYER_H__
-#define __j1PLAYER_H__
+#ifndef __j1GROUNDENEMY_H__
+#define __j1GROUNDENEMY_H__
 
 #include "j1Module.h"
 #include "j1Input.h"
@@ -8,28 +8,26 @@
 #include "j1Collision.h"
 #include "Animation.h"
 #include "p2Point.h"
+#include "Entity.h"
 
-enum player_status {
-	PLAYER_IDLE,
-	PLAYER_FORWARD,
-	PLAYER_BACKWARD,
-	PLAYER_JUMP,
-	PLAYER_IN_AIR,
-	PLAYER_PUNCH,
-	PLAYER_PUNCH_AIR,
-	PLAYER_IN_PUNCH_FINISH,
-	PLAYER_DEATH
+enum groundEnemy_status {
+	GROUNDENEMY_IDLE,
+	GROUNDENEMY_IN_AIR,
+	GROUNDENEMY_MOVE,
+	GROUNDENEMY_ATTACK,
+	GROUNDENEMY_ATTACK_FINISH,
+	GROUNDENEMY_DEATH
 };
 
 
-class j1Player : public j1Module
+class j1GroundEnemy : public Entity
 {
 public:
 
-	j1Player();
+	j1GroundEnemy();
 
 	// Destructor
-	virtual ~j1Player();
+	virtual ~j1GroundEnemy();
 
 	// Called before render is available
 	bool Awake(pugi::xml_node& config);
@@ -55,9 +53,7 @@ public:
 	bool WallCollision();
 
 	//Public variables
-	iPoint position;
-
-	bool input = true;
+	//iPoint position;
 
 	int initialX;
 	int initialY;
@@ -72,47 +68,34 @@ private:
 	int speed;
 	float gravity;
 	int deathLimit;
-	float deathTimer_config;
-	float airTimer;
-	float deathTimer;
 	fPoint vel;
 
-
-	bool jumpEnable = true;
-	bool punchEnable = true;
-	bool punchAirEnable = true;
+	bool atackEnable = true;
 	bool dead = false;
-	bool godmode = false;
-	bool lookforward = true;
 
 	Uint32 punch_timer = 0;
-	Uint32 punchair_timer = 0;
 
 	p2SString texPath;
-	p2SString swoshPath;
 	p2SString hitPath;
-	p2SString jumpPath;
-	p2SString landPath;
+	p2SString movePath;
+	p2SString attackPath;
 	SDL_Texture* graphics;
-	int swoshFx;
 	int hitFx;
-	int jumpFx;
-	int landFx;
-	uint punchTime;
+	int moveFx;
+	int attackFx;
+	int punchTime;
+
+	int pathSteps = 0;
+	iPoint nextPos;
 
 	Animation* current_animation = &idle;
 	Animation idle;
-	Animation backward;
-	Animation forward;
-	Animation punch;
-	Animation punch_air;
-	Animation jump;
+	Animation move;
+	Animation attack;
 	Animation death;
 
-	player_status status = PLAYER_IDLE;
+	groundEnemy_status status = GROUNDENEMY_IN_AIR;
 	SDL_Rect r;
-	Collider* colPlayer;
-	Collider* colPlayerWalls;
-	Collider* punchCol;
+	Collider* colGroundEnemy;
 };
-#endif //__j1PLAYER_H__
+#endif //__j1GROUNDENEMY_H__

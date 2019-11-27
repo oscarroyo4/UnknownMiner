@@ -97,17 +97,18 @@ Entity* EntityManager::CreateEntity(Types type)
 		break;
 
 	case Types::enemy_air:
-		//ret = new j1AirEnemy();
 		ret = new j1AirEnemy();
+		ret->entity_type = Types::enemy_air;
 		break;
 	case Types::enemy_ground:
+		ret = new j1GroundEnemy();
+		ret->entity_type = Types::enemy_ground;
 		break;
 	}
 
 	if (ret != nullptr)
 	{
 		entities.add(ret);
-		ret->entity_type = Types::enemy_air;
 		LOG("%s", ret->name.GetString());
 		ret->Awake(node.child(ret->name.GetString()));
 		ret->Start();

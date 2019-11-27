@@ -51,6 +51,7 @@ private:
 
 	Entity* player;
 	Entity* air_enemy;
+	Entity* ground_enemy;
 
 	p2SString tex1;
 	p2SString tex2;

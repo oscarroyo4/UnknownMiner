@@ -5,6 +5,7 @@
 #include "Entity.h"
 #include "j1Player.h"
 #include "j1AirEnemy.h"
+#include "j1GroundEnemy.h"
 #include "p2List.h"
 #include "PugiXml\src\pugixml.hpp"
 
@@ -50,8 +51,5 @@ public:
 	pugi::xml_node node;
 	p2List <Entity*> entities;
 	j1Player* player;
-
-	SDL_Texture* airEnemy_graphics;
-	int airEnemy_;
 };
 #endif // !_ENTITYMANAGER_H

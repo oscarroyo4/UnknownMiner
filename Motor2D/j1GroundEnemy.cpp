@@ -9,33 +9,33 @@
 #include "j1Player.h"
 #include "j1PathFinding.h"
 #include "Animation.h"
-#include "j1AirEnemy.h"
+#include "j1GroundEnemy.h"
 #include <math.h>
 
-j1AirEnemy::j1AirEnemy() : Entity(Types::enemy_air)
+j1GroundEnemy::j1GroundEnemy() : Entity(Types::enemy_ground)
 {
-	name.create("airenemy");
+	name.create("groundenemy");
 
 	// idle animation (arcade sprite sheet)
-	idle.PushBack({ 0, 0, 16, 16 });
-	idle.PushBack({ 16, 0, 16, 16 });
-	idle.PushBack({ 32, 0, 16, 16 });
-	idle.PushBack({ 48, 0, 16, 16 });
-	idle.PushBack({ 64, 0, 16, 16 });
+	idle.PushBack({ 0, 0, 18, 16 });
+	idle.PushBack({ 18, 0, 18, 16 });
+	idle.PushBack({ 36, 0, 18, 16 });
+	idle.PushBack({ 54, 0, 18, 16 });
+	idle.PushBack({ 72, 0, 18, 16 });
 	idle.speed = 0.2f;
-	
-	fly.PushBack({ 0, 16, 16, 16 });
-	fly.PushBack({ 16, 16, 16, 16 });
-	fly.PushBack({ 32, 16, 16, 16 });
-	fly.PushBack({ 48, 16, 16, 16 });
-	fly.PushBack({ 64, 16, 16, 16 });
-	fly.speed = 0.2f;
 
-	death.PushBack({ 0, 32, 16, 16 });
-	death.PushBack({ 16, 32, 16, 16 });
-	death.PushBack({ 32, 32, 16, 16 });
-	death.PushBack({ 48, 32, 16, 16 });
-	death.PushBack({ 64, 32, 16, 16 });
+	move.PushBack({ 0, 16, 16, 16 });
+	move.PushBack({ 16, 16, 16, 16 });
+	move.PushBack({ 32, 16, 16, 16 });
+	move.PushBack({ 48, 16, 16, 16 });
+	move.PushBack({ 64, 16, 16, 16 });
+	move.speed = 0.2f;
+
+	death.PushBack({ 0, 48, 18, 16 });
+	death.PushBack({ 18, 48, 18, 16 });
+	death.PushBack({ 36, 48, 18, 16 });
+	death.PushBack({ 54, 48, 18, 16 });
+	death.PushBack({ 72, 48, 18, 16 });
 	death.speed = 0.2f;
 	death.loop = false;
 	/*
@@ -48,16 +48,16 @@ j1AirEnemy::j1AirEnemy() : Entity(Types::enemy_air)
 }
 
 // Destructor
-j1AirEnemy::~j1AirEnemy()
+j1GroundEnemy::~j1GroundEnemy()
 {}
 
-bool j1AirEnemy::Awake(pugi::xml_node& config) {
+bool j1GroundEnemy::Awake(pugi::xml_node& config) {
 	bool ret = true;
-	LOG("Loading air enemy from config_file");
+	LOG("Loading ground enemy from config_file");
 
 	texPath = config.child("path").attribute("tex").as_string();
 	hitPath = config.child("path").attribute("hit").as_string();
-	flyPath = config.child("path").attribute("jump").as_string();
+	movePath = config.child("path").attribute("jump").as_string();
 	attackPath = config.child("path").attribute("land").as_string();
 	life = config.child("propierties").attribute("life").as_int();
 	speed = config.child("propierties").attribute("speed").as_int();
@@ -71,7 +71,7 @@ bool j1AirEnemy::Awake(pugi::xml_node& config) {
 	return ret;
 }
 
-bool j1AirEnemy::Start()
+bool j1GroundEnemy::Start()
 {
 	bool ret = true;
 	//Loading assets and propierties from config file
@@ -79,57 +79,68 @@ bool j1AirEnemy::Start()
 	position.y = initialY;
 	graphics = App->tex->Load(texPath.GetString());
 	hitFx = App->audio->LoadFx(hitPath.GetString());
-	flyFx = App->audio->LoadFx(flyPath.GetString());
+	moveFx = App->audio->LoadFx(movePath.GetString());
 	attackFx = App->audio->LoadFx(attackPath.GetString());
-	LOG("Creating air enemy colliders");
-	colAirEnemy = App->collision->AddCollider({ position.x, position.y+2, 15, 8 }, COLLIDER_ENEMY);
-	if (graphics == nullptr || hitFx == -1 || flyFx == -1 || attackFx == -1 || colAirEnemy == nullptr) ret = false;
+	LOG("Creating ground enemy colliders");
+	colGroundEnemy = App->collision->AddCollider({ position.x + 3, position.y + 7, 15, 9 }, COLLIDER_ENEMY);
+	//if (graphics == nullptr || hitFx == 0 || moveFx == 0 || attackFx == 0 || collider == nullptr) ret = false;
 	return ret;
 }
 
 // Unload assets
-bool j1AirEnemy::CleanUp()
+bool j1GroundEnemy::CleanUp()
 {
-	LOG("Unloading air enemy");
-	colAirEnemy->to_delete = true;
+	LOG("Unloading ground enemy");
+	colGroundEnemy->to_delete = true;
 	SDL_DestroyTexture(graphics);
 	return true;
 }
 
-bool j1AirEnemy::Update(float dt) {
-
-	if (!OnGround()) {
-		if (App->input->GetKey(SDL_SCANCODE_J) == KEY_DOWN || life <= 0) status = AIRENEMY_DEATH;
-		if (App->input->GetKey(SDL_SCANCODE_K) == KEY_DOWN) status = AIRENEMY_FLY;
+bool j1GroundEnemy::Update(float dt) {
+	if (life <= 0) {
+		status = GROUNDENEMY_DEATH;
 	}
 	else {
-		vel.y = 0;
+		if (OnGround()) {
+			if (App->input->GetKey(SDL_SCANCODE_J) == KEY_DOWN) life = 0;
+			else if (App->input->GetKey(SDL_SCANCODE_K) == KEY_DOWN) status = GROUNDENEMY_MOVE;
+			else status = GROUNDENEMY_IDLE;
+		}
+		else {
+			status = GROUNDENEMY_IN_AIR;
+		}
 	}
+
 
 	switch (status)
 	{
-	case AIRENEMY_IDLE:
+	case GROUNDENEMY_IDLE:
+		current_animation = &idle;
+		vel.y = 0;
 		break;
-	case AIRENEMY_FLY:
+	case GROUNDENEMY_IN_AIR:
+		current_animation = &idle;
+		vel.y += gravity;
+		break;
+	case GROUNDENEMY_MOVE:
 		pathSteps = App->pathfinding->CreatePath(position, App->player->position);
-		current_animation = &fly;
+		current_animation = &move;
 		for (int i = 0; i <= pathSteps; i++) {
 			nextPos.x = App->pathfinding->GetLastPath()->At(i)->x;
 			nextPos.y = App->pathfinding->GetLastPath()->At(i)->y;
 			while (position != nextPos) {
 				iPoint p = (position - nextPos).Normalize();
 				vel = { (float)p.x, (float)p.y };
-				
+
 			}
 		}
 		break;
-	case AIRENEMY_ATTACK:
+	case GROUNDENEMY_ATTACK:
 		break;
-	case AIRENEMY_ATTACK_FINISH:
+	case GROUNDENEMY_ATTACK_FINISH:
 		break;
-	case AIRENEMY_DEATH:
+	case GROUNDENEMY_DEATH:
 		current_animation = &death;
-		vel.y += gravity;
 		break;
 	default:
 		break;
@@ -140,17 +151,17 @@ bool j1AirEnemy::Update(float dt) {
 	position.y += vel.y;
 
 	//Collider position
-	if (vel.y > 0) colAirEnemy->SetPos(position.x, position.y+2);
-	else colAirEnemy->SetPos(position.x, position.y + 2);
-	if (vel.x > 0) 	colAirEnemy->SetPos(position.x, position.y + 2);
-	else if (vel.x < 0) 	colAirEnemy->SetPos(position.x, position.y + 2);
-	else colAirEnemy->SetPos(position.x, position.y + 2);
+	if (vel.y > 0) colGroundEnemy->SetPos(position.x + 3, position.y + 7);
+	else colGroundEnemy->SetPos(position.x + 3, position.y + 7);
+	if (vel.x > 0) 	colGroundEnemy->SetPos(position.x + 3, position.y + 7);
+	else if (vel.x < 0) 	colGroundEnemy->SetPos(position.x + 3, position.y + 7);
+	else colGroundEnemy->SetPos(position.x + 3, position.y + 7);
 
 	Draw();
 	return true;
 }
 
-void j1AirEnemy::Draw()
+void j1GroundEnemy::Draw()
 {
 	if (graphics != nullptr) {
 		r = current_animation->GetCurrentFrame();
@@ -162,11 +173,11 @@ void j1AirEnemy::Draw()
 	r.y = position.y;
 }
 
-bool j1AirEnemy::OnGround() {
+bool j1GroundEnemy::OnGround() {
 
 	bool ret = false;
 	for (int i = 0; i < App->map->groundCol.count(); i++) {
-		ret = colAirEnemy->CheckCollision(App->map->groundCol.At(i)->data->rect);
+		ret = colGroundEnemy->CheckCollision(App->map->groundCol.At(i)->data->rect);
 		if (ret) {
 			if (vel.y > 0) {
 				App->audio->PlayFx(attackFx, 0);
@@ -183,8 +194,8 @@ bool j1AirEnemy::OnGround() {
 	return ret;
 }
 
-bool j1AirEnemy::Save(pugi::xml_node& data) const {
-	pugi::xml_node emy = data.append_child("airenemy");
+bool j1GroundEnemy::Save(pugi::xml_node & data) const {
+	pugi::xml_node emy = data.append_child("groundenemy");
 
 	emy.append_attribute("x") = position.x;
 	emy.append_attribute("y") = position.y;

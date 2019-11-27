@@ -41,6 +41,7 @@ bool j1Scene::Start()
 	loaded = false;
 	App->map->Load(tex1.GetString());
 	air_enemy = App->entitymanager->CreateEntity(Types::enemy_air);
+	ground_enemy = App->entitymanager->CreateEntity(Types::enemy_ground);
 	/*
 	if (App->map->Load(tex1.GetString()) == true)
 	{
@@ -112,6 +113,7 @@ bool j1Scene::ChargeFirstLevel() //Changing to level 1
 	App->player->input = false;
 	App->player->CleanUp();
 	if(air_enemy != nullptr) App->entitymanager->DeleteEntity(air_enemy);
+	if(ground_enemy != nullptr) App->entitymanager->DeleteEntity(ground_enemy);
 
 	p2List_item<Collider*>* item;
 	for (item = App->map->groundCol.start; item != NULL; item = item->next) //deleting all colliders
@@ -144,7 +146,8 @@ bool j1Scene::ChargeSecondLevel() //Changing to level 2
 {
 	App->player->input = false;
 	App->player->CleanUp();
-	App->entitymanager->DeleteEntity(air_enemy);
+	if (air_enemy != nullptr) App->entitymanager->DeleteEntity(air_enemy);
+	if (ground_enemy != nullptr) App->entitymanager->DeleteEntity(ground_enemy);
 
 	p2List_item<Collider*>* item;
 	for (item = App->map->groundCol.start; item != NULL; item = item->next) //deleting all colliders

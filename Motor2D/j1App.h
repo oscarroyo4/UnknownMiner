@@ -56,6 +56,8 @@ public:
 	void GetSaveGames(p2List<p2SString>& list_to_fill) const;
 
 private:
+	pugi::xml_document	config_file;
+	pugi::xml_node		app_config;
 
 	// Load config file
 	pugi::xml_node LoadConfig(pugi::xml_document&) const;

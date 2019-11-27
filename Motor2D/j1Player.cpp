@@ -335,7 +335,6 @@ bool j1Player::Update(float dt) {
 		*/
 		if (punchair_timer > punchTime)
 		{
-			punchAirEnable = true;
 			status = PLAYER_IN_AIR;
 			punchCol->to_delete = true;
 			punchair_timer = 0;

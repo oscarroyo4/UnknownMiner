@@ -45,5 +45,11 @@
       <propierties life="100" speed="1" gravity="0.25" punchTime="19"/>
       <path tex="textures/AirEnemy.png" fly="audio/fx/Jump.wav" hit="audio/fx/Swosh+Hit.ogg" attack="audio/fx/Landing.ogg"/>
     </airenemy>
+    <groundenemy>
+      <initialPos1 x="190" y="620"/>
+      <initialPos2 x="120" y="260"/>
+      <propierties life="100" speed="1" gravity="0.25" punchTime="19"/>
+      <path tex="textures/GroundEnemy.png" fly="audio/fx/Jump.wav" hit="audio/fx/Swosh+Hit.ogg" attack="audio/fx/Landing.ogg"/>
+    </groundenemy>
   </entitymanager>
 </config>
