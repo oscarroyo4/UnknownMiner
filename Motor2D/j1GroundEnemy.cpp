@@ -24,12 +24,12 @@ j1GroundEnemy::j1GroundEnemy() : Entity(Types::enemy_ground)
 	idle.PushBack({ 72, 0, 18, 16 });
 	idle.speed = 0.2f;
 
-	move.PushBack({ 0, 16, 16, 16 });
-	move.PushBack({ 16, 16, 16, 16 });
-	move.PushBack({ 32, 16, 16, 16 });
-	move.PushBack({ 48, 16, 16, 16 });
-	move.PushBack({ 64, 16, 16, 16 });
-	move.speed = 0.2f;
+	move.PushBack({ 0, 16, 18, 16 });
+	move.PushBack({ 18, 16, 18, 16 });
+	move.PushBack({ 36, 16, 18, 16 });
+	move.PushBack({ 54, 16, 18, 16 });
+	move.PushBack({ 72, 16, 18, 16 });
+	move.speed = 0.3f;
 
 	death.PushBack({ 0, 48, 18, 16 });
 	death.PushBack({ 18, 48, 18, 16 });
@@ -103,7 +103,7 @@ bool j1GroundEnemy::Update(float dt) {
 	else {
 		if (OnGround()) {
 			if (App->input->GetKey(SDL_SCANCODE_J) == KEY_DOWN) life = 0;
-			else if (App->input->GetKey(SDL_SCANCODE_K) == KEY_DOWN) status = GROUNDENEMY_MOVE;
+			else if (App->input->GetKey(SDL_SCANCODE_K) == KEY_REPEAT) status = GROUNDENEMY_MOVE;
 			else status = GROUNDENEMY_IDLE;
 		}
 		else {
@@ -115,16 +115,20 @@ bool j1GroundEnemy::Update(float dt) {
 	switch (status)
 	{
 	case GROUNDENEMY_IDLE:
+		move.Reset();
 		current_animation = &idle;
-		vel.y = 0;
+		vel = {0, 0};
 		break;
 	case GROUNDENEMY_IN_AIR:
 		current_animation = &idle;
 		vel.y += gravity;
 		break;
 	case GROUNDENEMY_MOVE:
-		pathSteps = App->pathfinding->CreatePath(position, App->player->position);
+		
+		//pathSteps = App->pathfinding->CreatePath(position, App->player->position);
 		current_animation = &move;
+		vel.x = speed;
+		/*
 		for (int i = 0; i <= pathSteps; i++) {
 			nextPos.x = App->pathfinding->GetLastPath()->At(i)->x;
 			nextPos.y = App->pathfinding->GetLastPath()->At(i)->y;
@@ -134,6 +138,7 @@ bool j1GroundEnemy::Update(float dt) {
 
 			}
 		}
+		*/
 		break;
 	case GROUNDENEMY_ATTACK:
 		break;

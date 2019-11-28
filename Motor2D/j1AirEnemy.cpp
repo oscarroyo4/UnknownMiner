@@ -100,7 +100,7 @@ bool j1AirEnemy::Update(float dt) {
 
 	if (!OnGround()) {
 		if (App->input->GetKey(SDL_SCANCODE_J) == KEY_DOWN || life <= 0) status = AIRENEMY_DEATH;
-		if (App->input->GetKey(SDL_SCANCODE_K) == KEY_DOWN) status = AIRENEMY_FLY;
+		if (App->input->GetKey(SDL_SCANCODE_K) == KEY_REPEAT) status = AIRENEMY_FLY;
 	}
 	else {
 		vel.y = 0;

@@ -66,6 +66,7 @@ public:
 public:
 	Types entity_type;
 	iPoint position;
+	fPoint vel;
 	//Collider* collider;
 };
 

@@ -67,7 +67,6 @@ private:
 	int speed;
 	float gravity;
 	int deathLimit;
-	fPoint vel;
 
 	bool atackEnable = true;
 	bool dead = false;

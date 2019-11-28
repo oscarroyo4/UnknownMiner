@@ -1,45 +1,26 @@
 ﻿  j1GroundEnemy.cpp
-H:\GitHub\Handout\Motor2D\j1GroundEnemy.cpp(150): warning C4244: '+=': conversión de 'TYPE' a 'TYPE'; posible pérdida de datos
-          with
-          [
-              TYPE=float
-          ]
-          and
-          [
-              TYPE=int
-          ]
-H:\GitHub\Handout\Motor2D\j1GroundEnemy.cpp(151): warning C4244: '+=': conversión de 'TYPE' a 'TYPE'; posible pérdida de datos
-          with
-          [
-              TYPE=float
-          ]
-          and
-          [
-              TYPE=int
-          ]
-H:\GitHub\Handout\Motor2D\j1GroundEnemy.cpp(179): warning C4018: '<': no coinciden signed/unsigned
-H:\GitHub\Handout\Motor2D\p2Point.h(97): warning C4244: 'argumento': conversión de 'TYPE' a 'float'; posible pérdida de datos
-          with
-          [
-              TYPE=int
-          ]
-  H:\GitHub\Handout\Motor2D\p2Point.h(95): note: durante la compilación de la función miembro de plantilla clase de 'p2Point<int> &p2Point<int>::Normalize(void)'
-  H:\GitHub\Handout\Motor2D\j1GroundEnemy.cpp(132): note: vea la referencia a la creación de instancias de plantilla de función 'p2Point<int> &p2Point<int>::Normalize(void)' que se está compilando
-  H:\GitHub\Handout\Motor2D\Entity.h(68): note: vea la referencia a la creación de instancias de plantilla clase de 'p2Point<int>' que se está compilando
-H:\GitHub\Handout\Motor2D\p2Point.h(97): warning C4244: '=': conversión de 'float' a 'TYPE'; posible pérdida de datos
-          with
-          [
-              TYPE=int
-          ]
-H:\GitHub\Handout\Motor2D\p2Point.h(98): warning C4244: 'argumento': conversión de 'TYPE' a 'float'; posible pérdida de datos
-          with
-          [
-              TYPE=int
-          ]
-H:\GitHub\Handout\Motor2D\p2Point.h(98): warning C4244: '=': conversión de 'float' a 'TYPE'; posible pérdida de datos
-          with
-          [
-              TYPE=int
-          ]
-H:\GitHub\Handout\Motor2D\p2Point.h(99): warning C4172: devolución de dirección de la variable local o temporal: f
-  Motor2D.vcxproj -> H:\GitHub\Handout\Debug\Unknown Miner.exe
+C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1GroundEnemy.cpp(130,11): warning C4244:  '=': conversion from 'int' to 'TYPE', possible loss of data
+C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1GroundEnemy.cpp(130,11): warning C4244:         with
+C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1GroundEnemy.cpp(130,11): warning C4244:         [
+C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1GroundEnemy.cpp(130,11): warning C4244:             TYPE=float
+C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1GroundEnemy.cpp(130,11): warning C4244:         ]
+C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1GroundEnemy.cpp(155,21): warning C4244:  '+=': conversion from 'TYPE' to 'TYPE', possible loss of data
+C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1GroundEnemy.cpp(155,21): warning C4244:         with
+C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1GroundEnemy.cpp(155,21): warning C4244:         [
+C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1GroundEnemy.cpp(155,21): warning C4244:             TYPE=float
+C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1GroundEnemy.cpp(155,21): warning C4244:         ]
+C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1GroundEnemy.cpp(155,21): warning C4244:         and
+C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1GroundEnemy.cpp(155,21): warning C4244:         [
+C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1GroundEnemy.cpp(155,21): warning C4244:             TYPE=int
+C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1GroundEnemy.cpp(155,21): warning C4244:         ]
+C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1GroundEnemy.cpp(156,21): warning C4244:  '+=': conversion from 'TYPE' to 'TYPE', possible loss of data
+C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1GroundEnemy.cpp(156,21): warning C4244:         with
+C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1GroundEnemy.cpp(156,21): warning C4244:         [
+C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1GroundEnemy.cpp(156,21): warning C4244:             TYPE=float
+C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1GroundEnemy.cpp(156,21): warning C4244:         ]
+C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1GroundEnemy.cpp(156,21): warning C4244:         and
+C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1GroundEnemy.cpp(156,21): warning C4244:         [
+C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1GroundEnemy.cpp(156,21): warning C4244:             TYPE=int
+C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1GroundEnemy.cpp(156,21): warning C4244:         ]
+C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1GroundEnemy.cpp(184,20): warning C4018:  '<': signed/unsigned mismatch
+  Motor2D.vcxproj -> C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Debug\Unknown Miner.exe
