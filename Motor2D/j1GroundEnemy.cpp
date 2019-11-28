@@ -31,6 +31,13 @@ j1GroundEnemy::j1GroundEnemy() : Entity(Types::enemy_ground)
 	move.PushBack({ 72, 16, 18, 16 });
 	move.speed = 0.3f;
 
+	hit.PushBack({ 0, 32, 18, 16 });
+	hit.PushBack({ 18, 32, 18, 16 });
+	hit.PushBack({ 36, 32, 18, 16 });
+	hit.PushBack({ 54, 32, 18, 16 });
+	hit.PushBack({ 72, 32, 18, 16 });
+	hit.speed = 0.2f;
+
 	death.PushBack({ 0, 48, 18, 16 });
 	death.PushBack({ 18, 48, 18, 16 });
 	death.PushBack({ 36, 48, 18, 16 });
@@ -38,6 +45,9 @@ j1GroundEnemy::j1GroundEnemy() : Entity(Types::enemy_ground)
 	death.PushBack({ 72, 48, 18, 16 });
 	death.speed = 0.2f;
 	death.loop = false;
+
+	inair.PushBack({ 54, 16, 18, 16 });
+
 	/*
 	attack.PushBack({ 0, 32, 32, 32 });
 	attack.PushBack({ 32, 32, 32, 32 });
@@ -67,7 +77,7 @@ bool j1GroundEnemy::Awake(pugi::xml_node& config) {
 	initialY = config.child("initialPos1").attribute("y").as_int();
 	initialX2 = config.child("initialPos2").attribute("x").as_int();
 	initialY2 = config.child("initialPos2").attribute("y").as_int();
-	punchTime = config.child("propierties").attribute("punchTime").as_int();
+	hitTime = config.child("propierties").attribute("hitTime").as_int();
 	return ret;
 }
 
@@ -101,13 +111,19 @@ bool j1GroundEnemy::Update(float dt) {
 		status = GROUNDENEMY_DEATH;
 	}
 	else {
-		if (OnGround()) {
-			if (App->input->GetKey(SDL_SCANCODE_J) == KEY_DOWN) life = 0;
-			else if (App->input->GetKey(SDL_SCANCODE_K) == KEY_REPEAT) status = GROUNDENEMY_MOVE;
-			else status = GROUNDENEMY_IDLE;
+		if (isHit == true) {
+			status = GROUNDENEMY_HIT;
 		}
-		else {
-			status = GROUNDENEMY_IN_AIR;
+		else 
+		{
+			if (OnGround()) {
+				if (App->input->GetKey(SDL_SCANCODE_J) == KEY_DOWN) life = 0;
+				else if (App->input->GetKey(SDL_SCANCODE_K) == KEY_REPEAT) status = GROUNDENEMY_MOVE;
+				else status = GROUNDENEMY_IDLE;
+			}
+			else {
+				status = GROUNDENEMY_IN_AIR;
+			}
 		}
 	}
 
@@ -120,7 +136,7 @@ bool j1GroundEnemy::Update(float dt) {
 		vel = {0, 0};
 		break;
 	case GROUNDENEMY_IN_AIR:
-		current_animation = &idle;
+		current_animation = &inair;
 		vel.y += gravity;
 		break;
 	case GROUNDENEMY_MOVE:
@@ -140,6 +156,13 @@ bool j1GroundEnemy::Update(float dt) {
 		}
 		*/
 		break;
+	case GROUNDENEMY_HIT:
+		hit.Reset();
+		life -= 50;
+		hit_timer = 1;
+		// Sound
+		App->audio->PlayFx(hitFx, 0);
+		break;
 	case GROUNDENEMY_ATTACK:
 		break;
 	case GROUNDENEMY_ATTACK_FINISH:
@@ -149,6 +172,18 @@ bool j1GroundEnemy::Update(float dt) {
 		break;
 	default:
 		break;
+	}
+
+	if (hit_timer > 0) {
+		hit_timer += 1;
+		current_animation = &hit;
+		vel.x = position.x - App->player->position.x / (uint)(position.x * App->player->position.x);
+		if (hit_timer > hitTime)
+		{
+			status = GROUNDENEMY_IDLE;
+			isHit = false;
+			hit_timer = 0;
+		}
 	}
 
 	//Change position from velocity
@@ -162,14 +197,14 @@ bool j1GroundEnemy::Update(float dt) {
 	else if (vel.x < 0) 	colGroundEnemy->SetPos(position.x + 3, position.y + 7);
 	else colGroundEnemy->SetPos(position.x + 3, position.y + 7);
 
-	Draw();
+	Draw(dt);
 	return true;
 }
 
-void j1GroundEnemy::Draw()
+void j1GroundEnemy::Draw(float dt)
 {
 	if (graphics != nullptr) {
-		r = current_animation->GetCurrentFrame();
+		r = current_animation->GetCurrentFrame(dt);
 		App->render->Blit(graphics, position.x, position.y, &r);
 
 	}

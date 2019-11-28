@@ -6,6 +6,8 @@
 #include "j1FadeToBlack.h"
 #include "j1Map.h"
 #include "j1Input.h"
+#include "EntityManager.h"
+#include "Entity.h"
 #include "Animation.h"
 #include "j1Player.h"
 
@@ -246,7 +248,7 @@ bool j1Player::Update(float dt) {
 			// Collider
 			if (!lookforward) punchCol = App->collision->AddCollider({ position.x-1, position.y + 14, 10, 18 }, COLLIDER_PLAYER_SHOT);
 			else punchCol = App->collision->AddCollider({ position.x + 19, position.y + 14, 10, 18 }, COLLIDER_PLAYER_SHOT);
-			//punchHit = false;
+			punchHit = false;
 		}
 		break;
 
@@ -323,16 +325,19 @@ bool j1Player::Update(float dt) {
 	}
 	if (punchair_timer > 0)
 	{
-		punchair_timer = punchair_timer + 1;
+		punchair_timer += 1;
 		current_animation = &punch_air;
 		if(lookforward) punchCol->SetPos(position.x + 19, position.y + 14);
 		else punchCol->SetPos(position.x - 1, position.y + 14);
-		/* Collider and enemy hit
-		if (punchCol->CheckCollision(App->enemy->r) && punchHit == false) {
-			App->enemy->hit = true;
-			punchHit = true;
+		// Collider and enemy hit
+		for (int i = 0; i < App->entitymanager->entities.count(); i++) {
+			Entity* enemy = App->entitymanager->entities.At(i)->data;
+			if (punchCol->CheckCollision(enemy->r) && punchHit == false) {
+				enemy->isHit = true;
+				punchHit = true;
+			}
 		}
-		*/
+		
 		if (punchair_timer > punchTime)
 		{
 			status = PLAYER_IN_AIR;
@@ -354,15 +359,15 @@ bool j1Player::Update(float dt) {
 
 
 	//Function to draw the player
-	Draw();
+	Draw(dt);
 
 	return true;
 }
 
-void j1Player::Draw()
+void j1Player::Draw(float dt)
 {
 	if (graphics != nullptr) {
-		r = current_animation->GetCurrentFrame();
+		r = current_animation->GetCurrentFrame(dt);
 		if (lookforward) App->render->Blit(graphics, position.x, position.y, &r);
 		else {
 			App->render->Blit(graphics, position.x, position.y, &r, 1.0f, 0.0f, INT_MAX, INT_MAX, SDL_FLIP_HORIZONTAL);

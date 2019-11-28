@@ -38,7 +38,7 @@ public:
 	bool Update(float dt);
 
 	// Called each loop iteration
-	void Draw();
+	void Draw(float dt);
 
 	// Called before quitting
 	bool CleanUp();
@@ -71,7 +71,7 @@ private:
 	bool atackEnable = true;
 	bool dead = false;
 
-	Uint32 punch_timer = 0;
+	Uint32 hit_timer = 0;
 
 	p2SString texPath;
 	p2SString hitPath;
@@ -81,7 +81,7 @@ private:
 	int hitFx;
 	int flyFx;
 	int attackFx;
-	int punchTime;
+	int hitTime;
 
 	int pathSteps = 0;
 	iPoint nextPos;
@@ -93,7 +93,6 @@ private:
 	Animation death;
 
 	airEnemy_status status = AIRENEMY_IDLE;
-	SDL_Rect r;
 	Collider* colAirEnemy;
 };
 #endif //__j1AIRENEMY_H__

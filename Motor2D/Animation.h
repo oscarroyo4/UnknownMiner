@@ -4,6 +4,7 @@
 #include "SDL/include/SDL_rect.h"
 #include "j1Render.h"
 #define MAX_FRAMES 25
+#define FRAMERATE_CORRECTION 30
 
 
 struct SDL_Renderer;
@@ -28,9 +29,9 @@ public:
 		frames[last_frame++] = rect;
 	}
 
-	SDL_Rect& GetCurrentFrame()
+	SDL_Rect& GetCurrentFrame(float dt)
 	{
-		current_frame += speed;
+		current_frame += speed * dt * FRAMERATE_CORRECTION;
 		if (current_frame >= last_frame)
 		{
 			current_frame = (loop) ? 0.0f : last_frame - 1;

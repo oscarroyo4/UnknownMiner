@@ -67,7 +67,8 @@ public:
 	Types entity_type;
 	iPoint position;
 	fPoint vel;
-	//Collider* collider;
+	SDL_Rect r;
+	bool isHit = false;
 };
 
 #endif // !ENTITY_H

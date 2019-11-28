@@ -26,6 +26,7 @@ j1Collision::j1Collision()
 	matrix[COLLIDER_PLAYER][COLLIDER_ENEMY_SHOT] = false;
 	matrix[COLLIDER_PLAYER][COLLIDER_GROUND] = true;
 
+	matrix[COLLIDER_PLAYER_SHOT][COLLIDER_ENEMY] = true;
 }
 
 

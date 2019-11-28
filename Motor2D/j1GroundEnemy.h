@@ -14,6 +14,7 @@ enum groundEnemy_status {
 	GROUNDENEMY_IDLE,
 	GROUNDENEMY_IN_AIR,
 	GROUNDENEMY_MOVE,
+	GROUNDENEMY_HIT,
 	GROUNDENEMY_ATTACK,
 	GROUNDENEMY_ATTACK_FINISH,
 	GROUNDENEMY_DEATH
@@ -39,7 +40,7 @@ public:
 	bool Update(float dt);
 
 	// Called each loop iteration
-	void Draw();
+	void Draw(float dt);
 
 	// Called before quitting
 	bool CleanUp();
@@ -72,7 +73,7 @@ private:
 	bool atackEnable = true;
 	bool dead = false;
 
-	Uint32 punch_timer = 0;
+	Uint32 hit_timer = 0;
 
 	p2SString texPath;
 	p2SString hitPath;
@@ -82,7 +83,7 @@ private:
 	int hitFx;
 	int moveFx;
 	int attackFx;
-	int punchTime;
+	int hitTime;
 
 	int pathSteps = 0;
 	iPoint nextPos;
@@ -90,11 +91,12 @@ private:
 	Animation* current_animation = &idle;
 	Animation idle;
 	Animation move;
+	Animation inair;
+	Animation hit;
 	Animation attack;
 	Animation death;
 
 	groundEnemy_status status = GROUNDENEMY_IN_AIR;
-	SDL_Rect r;
 	Collider* colGroundEnemy;
 };
 #endif //__j1GROUNDENEMY_H__

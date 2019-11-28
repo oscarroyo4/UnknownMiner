@@ -41,7 +41,7 @@ public:
 	bool Update(float dt);
 
 	// Called each loop iteration
-	void Draw();
+	void Draw(float dt);
 
 	// Called before quitting
 	bool CleanUp();
@@ -84,6 +84,7 @@ private:
 	bool dead = false;
 	bool godmode = false;
 	bool lookforward = true;
+	bool punchHit = false;
 
 	Uint32 punch_timer = 0;
 	Uint32 punchair_timer = 0;

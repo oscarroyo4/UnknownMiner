@@ -67,7 +67,7 @@ bool j1AirEnemy::Awake(pugi::xml_node& config) {
 	initialY = config.child("initialPos1").attribute("y").as_int();
 	initialX2 = config.child("initialPos2").attribute("x").as_int();
 	initialY2 = config.child("initialPos2").attribute("y").as_int();
-	punchTime = config.child("propierties").attribute("punchTime").as_int();
+	hitTime = config.child("propierties").attribute("hitTime").as_int();
 	return ret;
 }
 
@@ -146,14 +146,14 @@ bool j1AirEnemy::Update(float dt) {
 	else if (vel.x < 0) 	colAirEnemy->SetPos(position.x, position.y + 2);
 	else colAirEnemy->SetPos(position.x, position.y + 2);
 
-	Draw();
+	Draw(dt);
 	return true;
 }
 
-void j1AirEnemy::Draw()
+void j1AirEnemy::Draw(float dt)
 {
 	if (graphics != nullptr) {
-		r = current_animation->GetCurrentFrame();
+		r = current_animation->GetCurrentFrame(dt);
 		App->render->Blit(graphics, position.x, position.y, &r);
 
 	}

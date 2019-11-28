@@ -1,26 +1,2 @@
-﻿  j1GroundEnemy.cpp
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1GroundEnemy.cpp(130,11): warning C4244:  '=': conversion from 'int' to 'TYPE', possible loss of data
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1GroundEnemy.cpp(130,11): warning C4244:         with
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1GroundEnemy.cpp(130,11): warning C4244:         [
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1GroundEnemy.cpp(130,11): warning C4244:             TYPE=float
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1GroundEnemy.cpp(130,11): warning C4244:         ]
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1GroundEnemy.cpp(155,21): warning C4244:  '+=': conversion from 'TYPE' to 'TYPE', possible loss of data
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1GroundEnemy.cpp(155,21): warning C4244:         with
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1GroundEnemy.cpp(155,21): warning C4244:         [
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1GroundEnemy.cpp(155,21): warning C4244:             TYPE=float
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1GroundEnemy.cpp(155,21): warning C4244:         ]
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1GroundEnemy.cpp(155,21): warning C4244:         and
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1GroundEnemy.cpp(155,21): warning C4244:         [
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1GroundEnemy.cpp(155,21): warning C4244:             TYPE=int
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1GroundEnemy.cpp(155,21): warning C4244:         ]
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1GroundEnemy.cpp(156,21): warning C4244:  '+=': conversion from 'TYPE' to 'TYPE', possible loss of data
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1GroundEnemy.cpp(156,21): warning C4244:         with
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1GroundEnemy.cpp(156,21): warning C4244:         [
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1GroundEnemy.cpp(156,21): warning C4244:             TYPE=float
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1GroundEnemy.cpp(156,21): warning C4244:         ]
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1GroundEnemy.cpp(156,21): warning C4244:         and
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1GroundEnemy.cpp(156,21): warning C4244:         [
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1GroundEnemy.cpp(156,21): warning C4244:             TYPE=int
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1GroundEnemy.cpp(156,21): warning C4244:         ]
-C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Motor2D\j1GroundEnemy.cpp(184,20): warning C4018:  '<': signed/unsigned mismatch
+﻿  j1Collision.cpp
   Motor2D.vcxproj -> C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Debug\Unknown Miner.exe
