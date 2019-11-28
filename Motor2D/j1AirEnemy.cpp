@@ -57,8 +57,8 @@ bool j1AirEnemy::Awake(pugi::xml_node& config) {
 
 	texPath = config.child("path").attribute("tex").as_string();
 	hitPath = config.child("path").attribute("hit").as_string();
-	flyPath = config.child("path").attribute("jump").as_string();
-	attackPath = config.child("path").attribute("land").as_string();
+	flyPath = config.child("path").attribute("fly").as_string();
+	attackPath = config.child("path").attribute("attack").as_string();
 	life = config.child("propierties").attribute("life").as_int();
 	speed = config.child("propierties").attribute("speed").as_int();
 	gravity = config.child("propierties").attribute("gravity").as_float();

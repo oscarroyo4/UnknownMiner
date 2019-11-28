@@ -69,6 +69,7 @@ private:
 	int speed;
 	float gravity;
 	int deathLimit;
+	float hit_delay;
 
 	bool atackEnable = true;
 	bool dead = false;
@@ -79,10 +80,12 @@ private:
 	p2SString hitPath;
 	p2SString movePath;
 	p2SString attackPath;
+	p2SString deathPath;
 	SDL_Texture* graphics;
 	int hitFx;
 	int moveFx;
 	int attackFx;
+	int deathFx;
 	int hitTime;
 
 	int pathSteps = 0;

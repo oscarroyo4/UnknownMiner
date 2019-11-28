@@ -36,14 +36,14 @@ j1GroundEnemy::j1GroundEnemy() : Entity(Types::enemy_ground)
 	hit.PushBack({ 36, 32, 18, 16 });
 	hit.PushBack({ 54, 32, 18, 16 });
 	hit.PushBack({ 72, 32, 18, 16 });
-	hit.speed = 0.2f;
+	hit.speed = 0.3f;
 
 	death.PushBack({ 0, 48, 18, 16 });
 	death.PushBack({ 18, 48, 18, 16 });
 	death.PushBack({ 36, 48, 18, 16 });
 	death.PushBack({ 54, 48, 18, 16 });
 	death.PushBack({ 72, 48, 18, 16 });
-	death.speed = 0.2f;
+	death.speed = 0.3f;
 	death.loop = false;
 
 	inair.PushBack({ 54, 16, 18, 16 });
@@ -67,8 +67,9 @@ bool j1GroundEnemy::Awake(pugi::xml_node& config) {
 
 	texPath = config.child("path").attribute("tex").as_string();
 	hitPath = config.child("path").attribute("hit").as_string();
-	movePath = config.child("path").attribute("jump").as_string();
-	attackPath = config.child("path").attribute("land").as_string();
+	movePath = config.child("path").attribute("move").as_string();
+	attackPath = config.child("path").attribute("attack").as_string();
+	deathPath = config.child("path").attribute("death").as_string();
 	life = config.child("propierties").attribute("life").as_int();
 	speed = config.child("propierties").attribute("speed").as_int();
 	gravity = config.child("propierties").attribute("gravity").as_float();
@@ -91,6 +92,8 @@ bool j1GroundEnemy::Start()
 	hitFx = App->audio->LoadFx(hitPath.GetString());
 	moveFx = App->audio->LoadFx(movePath.GetString());
 	attackFx = App->audio->LoadFx(attackPath.GetString());
+	deathFx = App->audio->LoadFx(deathPath.GetString());
+	hit_delay = 1.0f;
 	LOG("Creating ground enemy colliders");
 	colGroundEnemy = App->collision->AddCollider({ position.x + 3, position.y + 7, 15, 9 }, COLLIDER_ENEMY);
 	//if (graphics == nullptr || hitFx == 0 || moveFx == 0 || attackFx == 0 || collider == nullptr) ret = false;
@@ -157,11 +160,25 @@ bool j1GroundEnemy::Update(float dt) {
 		*/
 		break;
 	case GROUNDENEMY_HIT:
-		hit.Reset();
-		life -= 50;
-		hit_timer = 1;
-		// Sound
-		App->audio->PlayFx(hitFx, 0);
+		if (hit_delay <= 0) {
+			if (hit_timer == 0) {
+				life -= 50;
+				hit.Reset();
+				if (life > 0) {
+					vel.x = (position.x - App->player->position.x);
+					hit_timer = 1;
+					// Sound
+					App->audio->PlayFx(hitFx, 0);
+				}
+				else {
+					// Sound
+					App->audio->PlayFx(deathFx, 0);
+					status = GROUNDENEMY_DEATH;
+				}
+			}
+		}
+		else hit_delay -= 0.1f;
+
 		break;
 	case GROUNDENEMY_ATTACK:
 		break;
@@ -177,11 +194,14 @@ bool j1GroundEnemy::Update(float dt) {
 	if (hit_timer > 0) {
 		hit_timer += 1;
 		current_animation = &hit;
-		vel.x = position.x - App->player->position.x / (uint)(position.x * App->player->position.x);
+
+		vel.x = vel.x/2.0f;
+		
 		if (hit_timer > hitTime)
 		{
 			status = GROUNDENEMY_IDLE;
 			isHit = false;
+			hit_delay = 1;
 			hit_timer = 0;
 		}
 	}
@@ -220,7 +240,7 @@ bool j1GroundEnemy::OnGround() {
 		ret = colGroundEnemy->CheckCollision(App->map->groundCol.At(i)->data->rect);
 		if (ret) {
 			if (vel.y > 0) {
-				App->audio->PlayFx(attackFx, 0);
+				App->audio->PlayFx(moveFx, 0);
 				position.y = App->map->groundCol.At(i)->data->rect.y - 15;
 				vel.x = 0;
 			}

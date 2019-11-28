@@ -1,2 +1,36 @@
-﻿  j1Collision.cpp
-  Motor2D.vcxproj -> C:\Users\oscarrm9\Documents\GitHub\UnknownMiner\Debug\Unknown Miner.exe
+﻿  j1GroundEnemy.cpp
+H:\GitHub\Handout\Motor2D\j1GroundEnemy.cpp(149): warning C4244: '=': conversión de 'int' a 'TYPE'; posible pérdida de datos
+          with
+          [
+              TYPE=float
+          ]
+H:\GitHub\Handout\Motor2D\j1GroundEnemy.cpp(168): warning C4244: '=': conversión de 'TYPE' a 'TYPE'; posible pérdida de datos
+          with
+          [
+              TYPE=int
+          ]
+          and
+          [
+              TYPE=float
+          ]
+H:\GitHub\Handout\Motor2D\j1GroundEnemy.cpp(200): warning C4018: '>': no coinciden signed/unsigned
+H:\GitHub\Handout\Motor2D\j1GroundEnemy.cpp(210): warning C4244: '+=': conversión de 'TYPE' a 'TYPE'; posible pérdida de datos
+          with
+          [
+              TYPE=float
+          ]
+          and
+          [
+              TYPE=int
+          ]
+H:\GitHub\Handout\Motor2D\j1GroundEnemy.cpp(211): warning C4244: '+=': conversión de 'TYPE' a 'TYPE'; posible pérdida de datos
+          with
+          [
+              TYPE=float
+          ]
+          and
+          [
+              TYPE=int
+          ]
+H:\GitHub\Handout\Motor2D\j1GroundEnemy.cpp(239): warning C4018: '<': no coinciden signed/unsigned
+  Motor2D.vcxproj -> H:\GitHub\Handout\Debug\Unknown Miner.exe

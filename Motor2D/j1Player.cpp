@@ -309,12 +309,16 @@ bool j1Player::Update(float dt) {
 	{
 		punch_timer = punch_timer + 1;
 		current_animation = &punch;
-		/* Collider and enemy hit
-		if (punchCol->CheckCollision(App->enemy->r) && punchHit == false) {
-			App->enemy->hit = true;
-			punchHit = true;
+
+		// Collider and enemy hit
+		for (int i = 0; i < App->entitymanager->entities.count(); i++) {
+			Entity* enemy = App->entitymanager->entities.At(i)->data;
+			if (punchCol->CheckCollision(enemy->r) && punchHit == false) {
+				enemy->isHit = true;
+				punchHit = true;
+			}
 		}
-		*/
+
 		if (punch_timer > punchTime)
 		{
 			punchEnable = true;
