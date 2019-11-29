@@ -50,6 +50,6 @@ public:
 public:
 	pugi::xml_node node;
 	p2List <Entity*> entities;
-	j1Player* player;
+	//Entity* playerEntity;
 };
 #endif // !_ENTITYMANAGER_H

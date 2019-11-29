@@ -56,11 +56,6 @@ public:
 	//Public variables
 	//iPoint position;
 
-	int initialX;
-	int initialY;
-	int initialX2;
-	int initialY2;
-
 private:
 
 	bool ResetStates();
@@ -71,7 +66,7 @@ private:
 	int deathLimit;
 	float hit_delay;
 
-	bool atackEnable = true;
+	bool attackEnable = true;
 	bool dead = false;
 
 	Uint32 hit_timer = 0;
@@ -101,5 +96,6 @@ private:
 
 	groundEnemy_status status = GROUNDENEMY_IN_AIR;
 	Collider* colGroundEnemy;
+	Collider* colGroundAttack;
 };
 #endif //__j1GROUNDENEMY_H__

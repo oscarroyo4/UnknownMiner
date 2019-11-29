@@ -32,14 +32,15 @@
     <audio src="audio/music/cave_ambient.ogg"/>
   </scene>
 
-  <player>
-    <initialPos1 x="130" y="620"/>
-    <initialPos2 x="120" y="260"/>
-    <death height="800" time="4"/>
-    <propierties life="100" speed="2" gravity="0.25" punchTime="19"/>
-    <path tex="textures/Character.png" jump="audio/fx/Jump.wav" hit="audio/fx/Swosh+Hit.ogg" land="audio/fx/Landing.ogg" swosh="audio/fx/Swosh.ogg"/>
-  </player>
+
   <entitymanager>
+    <player>
+      <initialPos1 x="130" y="620"/>
+      <initialPos2 x="120" y="260"/>
+      <death height="800" time="4"/>
+      <propierties life="100" speed="2" gravity="0.25" punchTime="19"/>
+      <path tex="textures/Character.png" jump="audio/fx/Jump.wav" hit="audio/fx/Swosh+Hit.ogg" land="audio/fx/Landing.ogg" swosh="audio/fx/Swosh.ogg"/>
+    </player>
     <airenemy>
       <initialPos1 x="170" y="600"/>
       <initialPos2 x="120" y="260"/>

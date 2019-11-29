@@ -94,7 +94,7 @@ public:
 	j1Audio*			audio;
 	j1Scene*			scene;
 	j1Map*				map;
-	j1Player*			player;
+	//j1Player*			player;
 	j1Collision*		collision;
 	j1FadeToBlack*		fadetoblack;
 	j1PathFinding*		pathfinding;

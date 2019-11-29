@@ -55,11 +55,6 @@ public:
 	//Public variables
 	//iPoint position;
 
-	int initialX;
-	int initialY;
-	int initialX2;
-	int initialY2;
-
 private:
 
 	bool ResetStates();

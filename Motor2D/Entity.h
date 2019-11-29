@@ -66,7 +66,14 @@ public:
 	iPoint position;
 	fPoint vel;
 	SDL_Rect r;
+	SDL_Rect r_collider;
+	bool input = true;
 	bool isHit = false;
+
+	int initialX;
+	int initialY;
+	int initialX2;
+	int initialY2;
 };
 
 #endif // !ENTITY_H

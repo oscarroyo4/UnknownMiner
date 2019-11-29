@@ -8,6 +8,7 @@
 #include "j1Collision.h"
 #include "Animation.h"
 #include "p2Point.h"
+#include "Entity.h"
 
 enum player_status {
 	PLAYER_IDLE,
@@ -22,7 +23,7 @@ enum player_status {
 };
 
 
-class j1Player : public j1Module
+class j1Player : public Entity
 {
 public:
 
@@ -55,14 +56,9 @@ public:
 	bool WallCollision();
 
 	//Public variables
-	iPoint position;
+	//iPoint position;
 
-	bool input = true;
-
-	int initialX;
-	int initialY;
-	int initialX2;
-	int initialY2;
+	Collider* colPlayer;
 
 private:
 
@@ -75,7 +71,7 @@ private:
 	float deathTimer_config;
 	float airTimer;
 	float deathTimer;
-	fPoint vel;
+	//fPoint vel;
 
 
 	bool jumpEnable = true;
@@ -111,9 +107,9 @@ private:
 	Animation death;
 
 	player_status status = PLAYER_IDLE;
-	SDL_Rect r;
-	Collider* colPlayer;
+
 	Collider* colPlayerWalls;
 	Collider* punchCol;
+	SDL_Rect r;
 };
 #endif //__j1PLAYER_H__

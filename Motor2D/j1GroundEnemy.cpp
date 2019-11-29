@@ -10,6 +10,7 @@
 #include "j1PathFinding.h"
 #include "Animation.h"
 #include "j1GroundEnemy.h"
+#include "EntityManager.h"
 #include <math.h>
 
 j1GroundEnemy::j1GroundEnemy() : Entity(Types::enemy_ground)
@@ -95,7 +96,8 @@ bool j1GroundEnemy::Start()
 	deathFx = App->audio->LoadFx(deathPath.GetString());
 	hit_delay = 1.0f;
 	LOG("Creating ground enemy colliders");
-	colGroundEnemy = App->collision->AddCollider({ position.x + 3, position.y + 7, 15, 9 }, COLLIDER_ENEMY);
+	r_collider = { position.x + 3, position.y + 7, 15, 9 };
+	colGroundEnemy = App->collision->AddCollider(r_collider, COLLIDER_ENEMY);
 	//if (graphics == nullptr || hitFx == 0 || moveFx == 0 || attackFx == 0 || collider == nullptr) ret = false;
 	return ret;
 }
@@ -129,8 +131,7 @@ bool j1GroundEnemy::Update(float dt) {
 			}
 		}
 	}
-
-
+	
 	switch (status)
 	{
 	case GROUNDENEMY_IDLE:
@@ -165,7 +166,7 @@ bool j1GroundEnemy::Update(float dt) {
 				life -= 50;
 				hit.Reset();
 				if (life > 0) {
-					vel.x = (position.x - App->player->position.x);
+					vel.x = (position.x - App->scene->player->position.x);
 					hit_timer = 1;
 					// Sound
 					App->audio->PlayFx(hitFx, 0);
@@ -180,10 +181,6 @@ bool j1GroundEnemy::Update(float dt) {
 		else hit_delay -= 0.1f;
 
 		break;
-	case GROUNDENEMY_ATTACK:
-		break;
-	case GROUNDENEMY_ATTACK_FINISH:
-		break;
 	case GROUNDENEMY_DEATH:
 		current_animation = &death;
 		if (colGroundEnemy != nullptr) colGroundEnemy->to_delete = true;
@@ -192,6 +189,7 @@ bool j1GroundEnemy::Update(float dt) {
 		break;
 	}
 
+	//Timer animation when player hits enemy
 	if (hit_timer > 0) {
 		hit_timer += 1;
 		current_animation = &hit;
@@ -207,17 +205,23 @@ bool j1GroundEnemy::Update(float dt) {
 		}
 	}
 
+	//Check if enemy hits player and hit it
+	if (colGroundEnemy->CheckCollision(App->scene->player->r_collider)) {
+		if (attackEnable) {
+			//App->player->
+			LOG("Player Hit");
+			attackEnable = false;
+		}
+	}
+	else attackEnable = true;
+
 	//Change position from velocity
 	position.x += vel.x;
 	position.y += vel.y;
 
 	//Collider position
-	if (vel.y > 0) colGroundEnemy->SetPos(position.x + 3, position.y + 7);
-	else colGroundEnemy->SetPos(position.x + 3, position.y + 7);
-	if (vel.x > 0) 	colGroundEnemy->SetPos(position.x + 3, position.y + 7);
-	else if (vel.x < 0) 	colGroundEnemy->SetPos(position.x + 3, position.y + 7);
-	else colGroundEnemy->SetPos(position.x + 3, position.y + 7);
-
+	colGroundEnemy->SetPos(position.x + 3, position.y + 7);
+	   	  
 	Draw(dt);
 	return true;
 }

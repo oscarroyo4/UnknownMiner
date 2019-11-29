@@ -46,12 +46,13 @@ public:
 	int level_Loaded;
 	bool loaded;
 
-private:
-	int ambientFx;
 
 	Entity* player;
 	Entity* air_enemy;
 	Entity* ground_enemy;
+
+private:
+	int ambientFx;
 
 	p2SString tex1;
 	p2SString tex2;

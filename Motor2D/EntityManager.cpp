@@ -4,7 +4,7 @@
 EntityManager::EntityManager()
 {
 	name.create("entitymanager");
-	//player = (j1Player*)CreateEntity(Types::player);
+	//playerEntity = CreateEntity(Types::player);
 }
 
 //Destructor
@@ -14,23 +14,18 @@ EntityManager::~EntityManager()
 // Called before render is available
 bool EntityManager::Awake(pugi::xml_node& a)
 {
+	//bool ret = playerEntity->Awake(a.child("player"));
+	bool ret = true;
 	node = a;
-	return true;
+	return ret;
 }
 
 // Called before the first frame
 bool EntityManager::Start()
 {
-	/*
-	bool ret = false;
-	for (unsigned int i = 0; i < entities.count(); i++)
-	{
-		ret = entities.At(i)->data->Start();
-		if (ret == false) break;
-	}
+	//bool ret = playerEntity->Start();
+	bool ret = true;
 	return ret;
-	*/
-	return true;
 }
 
 // Called each loop iteration
@@ -40,6 +35,7 @@ bool EntityManager::PreUpdate()
 	{
 		entities.At(i)->data->PreUpdate();
 	}
+	//playerEntity->PreUpdate();
 	return true;
 }
 
@@ -50,6 +46,7 @@ bool EntityManager::Update(float dt)
 	{
 		entities.At(i)->data->Update(dt);
 	}
+	//playerEntity->Update(dt);
 	return true;
 }
 
@@ -62,6 +59,8 @@ bool EntityManager::CleanUp()
 		entities.del(entities.At(i));
 	}
 	entities.clear();
+	//playerEntity->CleanUp();
+	//delete(playerEntity);
 	return true;
 }
 
@@ -93,9 +92,9 @@ Entity* EntityManager::CreateEntity(Types type)
 	switch (type)
 	{
 	case Types::player:
-		//ret = new j1Player(Types::player);
+		ret = new j1Player();
+		ret->entity_type = Types::player;
 		break;
-
 	case Types::enemy_air:
 		ret = new j1AirEnemy();
 		ret->entity_type = Types::enemy_air;
@@ -108,6 +107,9 @@ Entity* EntityManager::CreateEntity(Types type)
 
 	if (ret != nullptr)
 	{
+		/*
+		if (ret->entity_type != Types::player) entities.add(ret);
+		else playerEntity = ret;*/
 		entities.add(ret);
 		ret->Awake(node.child(ret->name.GetString()));
 		ret->Start();

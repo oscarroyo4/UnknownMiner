@@ -2,6 +2,7 @@
 #include "p2Log.h"
 #include "j1App.h"
 #include "j1Player.h"
+#include "j1Scene.h"
 #include "j1Window.h"
 #include "j1Render.h"
 
@@ -70,8 +71,8 @@ bool j1Render::PreUpdate()
 
 bool j1Render::Update(float dt)
 {
-	camera.x = -App->player->position.x + x_offset;
-	camera.y = -App->player->position.y + y_offset;
+	camera.x = -App->scene->player->position.x + x_offset;
+	camera.y = -App->scene->player->position.y + y_offset;
 	return true;
 }
 

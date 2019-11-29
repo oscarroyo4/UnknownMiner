@@ -40,6 +40,7 @@ bool j1Scene::Start()
 {
 	loaded = false;
 	App->map->Load(tex1.GetString());
+	player = App->entitymanager->CreateEntity(Types::player);
 	air_enemy = App->entitymanager->CreateEntity(Types::enemy_air);
 	ground_enemy = App->entitymanager->CreateEntity(Types::enemy_ground);
 	/*
@@ -109,9 +110,9 @@ bool j1Scene::CleanUp()
 }
 
 bool j1Scene::ChargeFirstLevel() //Changing to level 1
-{
-	App->player->input = false;
-	App->player->CleanUp();
+{	
+	player->input = false;
+	if (player != nullptr) App->entitymanager->DeleteEntity(player);
 	if(air_enemy != nullptr) App->entitymanager->DeleteEntity(air_enemy);
 	if(ground_enemy != nullptr) App->entitymanager->DeleteEntity(ground_enemy);
 
@@ -125,17 +126,16 @@ bool j1Scene::ChargeFirstLevel() //Changing to level 1
 	App->map->Load(tex1.GetString());
 	App->audio->Awake(App->config);
 	App->audio->PlayMusic(ambient_audio.GetString(), 1.0f); //Playing audio again
-	App->player->Start();
+	player = App->entitymanager->CreateEntity(Types::player);
 	air_enemy = App->entitymanager->CreateEntity(Types::enemy_air);
 	if (!loaded) {
-		App->player->position.x = App->player->initialX; //Load position from config_file
-		App->player->position.y = App->player->initialY;
+		player->position.x = player->initialX; //Load position from config_file
+		player->position.y = player->initialY;
 	}
 	else {
-		App->player->position.x = tempX; //Load position from save_file
-		App->player->position.y = tempY;
+		player->position.x = tempX; //Load position from save_file
+		player->position.y = tempY;
 	}
-	App->player->input = true;
 
 	level_Loaded = 1;
 
@@ -144,8 +144,8 @@ bool j1Scene::ChargeFirstLevel() //Changing to level 1
 
 bool j1Scene::ChargeSecondLevel() //Changing to level 2
 {
-	App->player->input = false;
-	App->player->CleanUp();
+	player->input = false;
+	if (player != nullptr) App->entitymanager->DeleteEntity(player);
 	if (air_enemy != nullptr) App->entitymanager->DeleteEntity(air_enemy);
 	if (ground_enemy != nullptr) App->entitymanager->DeleteEntity(ground_enemy);
 
@@ -159,18 +159,18 @@ bool j1Scene::ChargeSecondLevel() //Changing to level 2
 	App->map->Load(tex2.GetString());
 	App->audio->Awake(App->config);
 	App->audio->PlayMusic(ambient_audio.GetString(), 1.0f); //Playing audio again
-	App->player->Start();
+	player = App->entitymanager->CreateEntity(Types::player);
 	air_enemy = App->entitymanager->CreateEntity(Types::enemy_air);
 	if (!loaded) {
-		App->player->position.x = App->player->initialX2; //Load position from config_file
-		App->player->position.y = App->player->initialY2;
+		player->position.x = player->initialX2; //Load position from config_file
+		player->position.y = player->initialY2;
 	}
 	else { 
-		App->player->position.x = tempX; //Load position from save_file
-		App->player->position.y = tempY;
+		player->position.x = tempX; //Load position from save_file
+		player->position.y = tempY;
 	}
 
-	App->player->input = true;
+	player->input = true;
 
 	level_Loaded = 2;
 
@@ -179,7 +179,7 @@ bool j1Scene::ChargeSecondLevel() //Changing to level 2
 
 bool j1Scene::Load(pugi::xml_node& data) {
 	level_Loaded = data.child("scene").attribute("level").as_int();
-	App->player->input = false;
+	player->input = false;
 	if (level_Loaded == 1) {
 		App->fadetoblack->FadeToBlack(1);
 		

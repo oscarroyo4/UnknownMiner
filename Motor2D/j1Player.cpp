@@ -11,7 +11,7 @@
 #include "Animation.h"
 #include "j1Player.h"
 
-j1Player::j1Player() : j1Module()
+j1Player::j1Player() : Entity(Types::player)
 {
 	name.create("player");
 
@@ -94,7 +94,8 @@ bool j1Player::Start()
 	jumpFx = App->audio->LoadFx(jumpPath.GetString());
 	landFx = App->audio->LoadFx(landPath.GetString());
 	LOG("Creating player colliders");
-	colPlayer = App->collision->AddCollider({position.x + 9, position.y + 16, 10, 16}, COLLIDER_PLAYER);
+	r_collider = { position.x + 9, position.y + 16, 10, 16 };
+	colPlayer = App->collision->AddCollider(r_collider, COLLIDER_PLAYER);
 	colPlayerWalls = App->collision->AddCollider({position.x + 8, position.y + 14, 12, 2}, COLLIDER_PLAYER);
 	return ret;
 }
@@ -362,7 +363,7 @@ bool j1Player::Update(float dt) {
 	if(vel.x > 0) 	colPlayerWalls->SetPos(position.x + 9, position.y + 14);
 	else if(vel.x < 0) 	colPlayerWalls->SetPos(position.x + 7, position.y + 14);
 	else colPlayerWalls->SetPos(position.x + 8, position.y + 14);
-
+	r_collider.x = position.x + 9; r_collider.y = position.y + 18;
 
 	//Function to draw the player
 	Draw(dt);

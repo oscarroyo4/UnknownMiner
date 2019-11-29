@@ -10,6 +10,8 @@
 #include "j1PathFinding.h"
 #include "Animation.h"
 #include "j1AirEnemy.h"
+#include "Entity.h"
+#include "EntityManager.h"
 #include <math.h>
 
 j1AirEnemy::j1AirEnemy() : Entity(Types::enemy_air)
@@ -82,7 +84,8 @@ bool j1AirEnemy::Start()
 	flyFx = App->audio->LoadFx(flyPath.GetString());
 	attackFx = App->audio->LoadFx(attackPath.GetString());
 	LOG("Creating air enemy colliders");
-	colAirEnemy = App->collision->AddCollider({ position.x, position.y+2, 15, 8 }, COLLIDER_ENEMY);
+	r_collider = { position.x, position.y + 2, 15, 8 };
+	colAirEnemy = App->collision->AddCollider(r_collider, COLLIDER_ENEMY);
 	if (graphics == nullptr || hitFx == -1 || flyFx == -1 || attackFx == -1 || colAirEnemy == nullptr) ret = false;
 	return ret;
 }
@@ -124,7 +127,7 @@ bool j1AirEnemy::Update(float dt) {
 		vel = { 0, 0 };
 		break;
 	case AIRENEMY_FLY:
-		pathSteps = App->pathfinding->CreatePath(position, App->player->position);
+		pathSteps = App->pathfinding->CreatePath(position, App->scene->player->position);
 		current_animation = &fly;
 		for (int i = 0; i <= pathSteps; i++) {
 			nextPos.x = App->pathfinding->GetLastPath()->At(i)->x;
@@ -141,7 +144,7 @@ bool j1AirEnemy::Update(float dt) {
 			if (hit_timer == 0) {
 				life -= 50;
 				if (life > 0) {
-					vel.x = (position.x - App->player->position.x);
+					vel.x = (position.x - App->scene->player->position.x);
 					hit_timer = 1;
 					// Sound
 					App->audio->PlayFx(hitFx, 0);
