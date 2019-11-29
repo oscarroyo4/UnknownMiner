@@ -13,6 +13,7 @@
 enum airEnemy_status {
 	AIRENEMY_IDLE,
 	AIRENEMY_FLY,
+	AIRENEMY_HIT,
 	AIRENEMY_ATTACK,
 	AIRENEMY_ATTACK_FINISH,
 	AIRENEMY_DEATH
@@ -67,6 +68,7 @@ private:
 	int speed;
 	float gravity;
 	int deathLimit;
+	float hit_delay;
 
 	bool atackEnable = true;
 	bool dead = false;
@@ -77,10 +79,12 @@ private:
 	p2SString hitPath;
 	p2SString flyPath;
 	p2SString attackPath;
+	p2SString deathPath;
 	SDL_Texture* graphics;
 	int hitFx;
 	int flyFx;
 	int attackFx;
+	int deathFx;
 	int hitTime;
 
 	int pathSteps = 0;

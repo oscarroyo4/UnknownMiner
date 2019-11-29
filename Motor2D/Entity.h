@@ -4,8 +4,6 @@
 #include "j1Module.h"
 #include "p2Point.h"
 
-struct Collider;
-
 enum class Types
 {
 	none = 0,

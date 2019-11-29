@@ -124,6 +124,7 @@ bool j1Player::ResetStates() { //Reset all states before checking input
 	jumpEnable = true;
 	airTimer = deathTimer_config;
 	punchAirEnable = true;
+	punchHit = false;
 	App->scene->loaded = false;
 
 	return true;
@@ -279,6 +280,7 @@ bool j1Player::Update(float dt) {
 			punchair_timer = 1;
 			if(!lookforward) punchCol = App->collision->AddCollider({ position.x - 1, position.y + 14, 10, 18 }, COLLIDER_PLAYER_SHOT);
 			else punchCol = App->collision->AddCollider({ position.x + 19, position.y + 14, 10, 18 }, COLLIDER_PLAYER_SHOT);
+			punchHit = false;
 		}
 
 		break;

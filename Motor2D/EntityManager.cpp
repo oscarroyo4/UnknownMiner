@@ -109,7 +109,6 @@ Entity* EntityManager::CreateEntity(Types type)
 	if (ret != nullptr)
 	{
 		entities.add(ret);
-		LOG("%s", ret->name.GetString());
 		ret->Awake(node.child(ret->name.GetString()));
 		ret->Start();
 	}

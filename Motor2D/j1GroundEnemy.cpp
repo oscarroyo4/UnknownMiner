@@ -104,7 +104,7 @@ bool j1GroundEnemy::Start()
 bool j1GroundEnemy::CleanUp()
 {
 	LOG("Unloading ground enemy");
-	colGroundEnemy->to_delete = true;
+	if(colGroundEnemy != nullptr) colGroundEnemy->to_delete = true;
 	SDL_DestroyTexture(graphics);
 	return true;
 }
@@ -186,6 +186,7 @@ bool j1GroundEnemy::Update(float dt) {
 		break;
 	case GROUNDENEMY_DEATH:
 		current_animation = &death;
+		if (colGroundEnemy != nullptr) colGroundEnemy->to_delete = true;
 		break;
 	default:
 		break;

@@ -91,24 +91,37 @@ bool j1AirEnemy::Start()
 bool j1AirEnemy::CleanUp()
 {
 	LOG("Unloading air enemy");
-	colAirEnemy->to_delete = true;
+	if(colAirEnemy != nullptr) colAirEnemy->to_delete = true;
 	SDL_DestroyTexture(graphics);
 	return true;
 }
 
 bool j1AirEnemy::Update(float dt) {
 
-	if (!OnGround()) {
-		if (App->input->GetKey(SDL_SCANCODE_J) == KEY_DOWN || life <= 0) status = AIRENEMY_DEATH;
-		if (App->input->GetKey(SDL_SCANCODE_K) == KEY_REPEAT) status = AIRENEMY_FLY;
+	if (life <= 0) {
+		status = AIRENEMY_DEATH;
+		if (OnGround()) {
+			vel.y = 0;
+		}
 	}
 	else {
-		vel.y = 0;
+		if (isHit == true) {
+			status = AIRENEMY_HIT;
+		}
+		else
+		{
+			if (App->input->GetKey(SDL_SCANCODE_J) == KEY_DOWN) life = 0;
+			else if (App->input->GetKey(SDL_SCANCODE_K) == KEY_REPEAT) status = AIRENEMY_FLY;
+			else status = AIRENEMY_IDLE;
+		}
 	}
 
 	switch (status)
 	{
 	case AIRENEMY_IDLE:
+		fly.Reset();
+		current_animation = &idle;
+		vel = { 0, 0 };
 		break;
 	case AIRENEMY_FLY:
 		pathSteps = App->pathfinding->CreatePath(position, App->player->position);
@@ -123,6 +136,26 @@ bool j1AirEnemy::Update(float dt) {
 			}
 		}
 		break;
+	case AIRENEMY_HIT:
+		if (hit_delay <= 0) {
+			if (hit_timer == 0) {
+				life -= 50;
+				if (life > 0) {
+					vel.x = (position.x - App->player->position.x);
+					hit_timer = 1;
+					// Sound
+					App->audio->PlayFx(hitFx, 0);
+				}
+				else {
+					// Sound
+					App->audio->PlayFx(deathFx, 0);
+					status = AIRENEMY_DEATH;
+				}
+			}
+		}
+		else hit_delay -= 0.1f;
+
+		break;
 	case AIRENEMY_ATTACK:
 		break;
 	case AIRENEMY_ATTACK_FINISH:
@@ -130,9 +163,25 @@ bool j1AirEnemy::Update(float dt) {
 	case AIRENEMY_DEATH:
 		current_animation = &death;
 		vel.y += gravity;
+		if(colAirEnemy != nullptr) colAirEnemy->to_delete = true;
 		break;
 	default:
 		break;
+	}
+
+	if (hit_timer > 0) {
+		hit_timer += 1;
+		current_animation = &fly;
+
+		vel.x = vel.x / 1.5f;
+
+		if (hit_timer > hitTime)
+		{
+			status = AIRENEMY_IDLE;
+			isHit = false;
+			hit_delay = 1;
+			hit_timer = 0;
+		}
 	}
 
 	//Change position from velocity
