@@ -53,14 +53,10 @@ public:
 	bool OnGround();
 	bool WallCollision();
 
-	//Public variables
-	//iPoint position;
-
 private:
 
 	bool ResetStates();
 
-	int life;
 	int speed;
 	float gravity;
 	int deathLimit;

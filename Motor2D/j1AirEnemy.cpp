@@ -102,10 +102,8 @@ bool j1AirEnemy::CleanUp()
 bool j1AirEnemy::Update(float dt) {
 
 	if (life <= 0) {
-		status = AIRENEMY_DEATH;
-		if (OnGround()) {
-			vel.y = 0;
-		}
+		if (!dead) status = AIRENEMY_DEATH;
+		else vel = { 0,0 };
 	}
 	else {
 		if (isHit == true) {
@@ -140,6 +138,7 @@ bool j1AirEnemy::Update(float dt) {
 		}
 		break;
 	case AIRENEMY_HIT:
+		attackEnable = false;
 		if (hit_delay <= 0) {
 			if (hit_timer == 0) {
 				life -= 50;
@@ -152,6 +151,7 @@ bool j1AirEnemy::Update(float dt) {
 				else {
 					// Sound
 					App->audio->PlayFx(deathFx, 0);
+					//vel.x = (position.x - App->scene->player->position.x);
 					status = AIRENEMY_DEATH;
 				}
 			}
@@ -165,8 +165,16 @@ bool j1AirEnemy::Update(float dt) {
 		break;
 	case AIRENEMY_DEATH:
 		current_animation = &death;
-		vel.y += gravity;
-		if(colAirEnemy != nullptr) colAirEnemy->to_delete = true;
+		if (OnGround()) {
+			if (colAirEnemy != nullptr) colAirEnemy->to_delete = true;
+			dead = true;
+			vel.y = 0;
+		}
+		else {
+			//vel.x = vel.x / 1.5f;
+			vel.y += gravity;
+		}
+		attackEnable = false;
 		break;
 	default:
 		break;
@@ -186,6 +194,15 @@ bool j1AirEnemy::Update(float dt) {
 			hit_timer = 0;
 		}
 	}
+
+	//Check if enemy hits player and hit it
+	if (colAirEnemy->CheckCollision(App->scene->player->r_collider)) {
+		if (attackEnable) {
+			App->scene->player->isHit = true;
+			attackEnable = false;
+		}
+	}
+	else attackEnable = true;
 
 	//Change position from velocity
 	position.x += vel.x;
@@ -221,7 +238,6 @@ bool j1AirEnemy::OnGround() {
 		ret = colAirEnemy->CheckCollision(App->map->groundCol.At(i)->data->rect);
 		if (ret) {
 			if (vel.y > 0) {
-				App->audio->PlayFx(attackFx, 0);
 				position.y = App->map->groundCol.At(i)->data->rect.y - 15;
 				vel.x = 0;
 			}

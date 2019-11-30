@@ -59,13 +59,12 @@ private:
 
 	bool ResetStates();
 
-	int life;
 	int speed;
 	float gravity;
 	int deathLimit;
 	float hit_delay;
 
-	bool atackEnable = true;
+	bool attackEnable = true;
 	bool dead = false;
 
 	Uint32 hit_timer = 0;

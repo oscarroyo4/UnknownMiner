@@ -70,6 +70,8 @@ public:
 	bool input = true;
 	bool isHit = false;
 
+	int life;
+
 	int initialX;
 	int initialY;
 	int initialX2;

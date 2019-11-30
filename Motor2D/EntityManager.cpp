@@ -4,7 +4,6 @@
 EntityManager::EntityManager()
 {
 	name.create("entitymanager");
-	//playerEntity = CreateEntity(Types::player);
 }
 
 //Destructor
@@ -14,7 +13,6 @@ EntityManager::~EntityManager()
 // Called before render is available
 bool EntityManager::Awake(pugi::xml_node& a)
 {
-	//bool ret = playerEntity->Awake(a.child("player"));
 	bool ret = true;
 	node = a;
 	return ret;
@@ -23,7 +21,6 @@ bool EntityManager::Awake(pugi::xml_node& a)
 // Called before the first frame
 bool EntityManager::Start()
 {
-	//bool ret = playerEntity->Start();
 	bool ret = true;
 	return ret;
 }
@@ -35,7 +32,6 @@ bool EntityManager::PreUpdate()
 	{
 		entities.At(i)->data->PreUpdate();
 	}
-	//playerEntity->PreUpdate();
 	return true;
 }
 
@@ -46,7 +42,6 @@ bool EntityManager::Update(float dt)
 	{
 		entities.At(i)->data->Update(dt);
 	}
-	//playerEntity->Update(dt);
 	return true;
 }
 
@@ -59,8 +54,6 @@ bool EntityManager::CleanUp()
 		entities.del(entities.At(i));
 	}
 	entities.clear();
-	//playerEntity->CleanUp();
-	//delete(playerEntity);
 	return true;
 }
 
@@ -107,9 +100,6 @@ Entity* EntityManager::CreateEntity(Types type)
 
 	if (ret != nullptr)
 	{
-		/*
-		if (ret->entity_type != Types::player) entities.add(ret);
-		else playerEntity = ret;*/
 		entities.add(ret);
 		ret->Awake(node.child(ret->name.GetString()));
 		ret->Start();

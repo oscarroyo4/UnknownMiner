@@ -174,6 +174,7 @@ bool j1GroundEnemy::Update(float dt) {
 				else {
 					// Sound
 					App->audio->PlayFx(deathFx, 0);
+					attackEnable = false;
 					status = GROUNDENEMY_DEATH;
 				}
 			}
@@ -184,6 +185,7 @@ bool j1GroundEnemy::Update(float dt) {
 	case GROUNDENEMY_DEATH:
 		current_animation = &death;
 		if (colGroundEnemy != nullptr) colGroundEnemy->to_delete = true;
+		attackEnable = false;
 		break;
 	default:
 		break;
@@ -208,8 +210,7 @@ bool j1GroundEnemy::Update(float dt) {
 	//Check if enemy hits player and hit it
 	if (colGroundEnemy->CheckCollision(App->scene->player->r_collider)) {
 		if (attackEnable) {
-			//App->player->
-			LOG("Player Hit");
+			App->scene->player->isHit = true;
 			attackEnable = false;
 		}
 	}

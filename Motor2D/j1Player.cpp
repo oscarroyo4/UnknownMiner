@@ -133,11 +133,16 @@ bool j1Player::ResetStates() { //Reset all states before checking input
 
 bool j1Player::Update(float dt) {
 	//If player falls, die
-	if (position.y > deathLimit && status != PLAYER_DEATH) {
-		death.Reset();
-		deathTimer = deathTimer_config;
-		status = PLAYER_DEATH;
-		input = false;
+	if (position.y > deathLimit || status == PLAYER_DEATH) {
+		if (!dead) {
+			vel.x = 0;
+			death.Reset();
+			deathTimer = deathTimer_config;
+			status = PLAYER_DEATH;
+			input = false;
+			dead = true;
+		}
+
 	}
 	if (App->scene->level_Loaded == 1) { //If player finishes level 1
 		if (position.x > 3060) {
@@ -156,36 +161,41 @@ bool j1Player::Update(float dt) {
 			godmode = !godmode;
 		}
 		if (!godmode) {
-			if (OnGround()) {
-				ResetStates();
-				if (App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT) {
-					WallCollision(); //Detect horizontal collision
-					if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
-						status = PLAYER_JUMP;
-					else status = PLAYER_BACKWARD;
-				}
-
-				else if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT) {
-					WallCollision(); //Detect horizontal collision
-					if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
-						status = PLAYER_JUMP;
-					else status = PLAYER_FORWARD;
-				}
-
-				else if (App->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN)
-					status = PLAYER_PUNCH;
-
-				else if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
-					status = PLAYER_JUMP;
-
-				else status = PLAYER_IDLE;
+			if (isHit) {
+				status = PLAYER_HIT;
 			}
 			else {
-				WallCollision(); //Detect horizontal collision
-				if (App->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN)
-					status = PLAYER_PUNCH_AIR;
-				else
-					status = PLAYER_IN_AIR;
+				if (OnGround()) {
+					ResetStates();
+					if (App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT) {
+						WallCollision(); //Detect horizontal collision
+						if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
+							status = PLAYER_JUMP;
+						else status = PLAYER_BACKWARD;
+					}
+
+					else if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT) {
+						WallCollision(); //Detect horizontal collision
+						if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
+							status = PLAYER_JUMP;
+						else status = PLAYER_FORWARD;
+					}
+
+					else if (App->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN)
+						status = PLAYER_PUNCH;
+
+					else if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
+						status = PLAYER_JUMP;
+
+					else status = PLAYER_IDLE;
+				}
+				else {
+					WallCollision(); //Detect horizontal collision
+					if (App->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN)
+						status = PLAYER_PUNCH_AIR;
+					else
+						status = PLAYER_IN_AIR;
+				}
 			}
 		}
 		else { //Godmode input
@@ -229,8 +239,24 @@ bool j1Player::Update(float dt) {
 			jump.Reset();
 			// Sound
 			App->audio->PlayFx(jumpFx, 0);
-			
-			
+		}
+		break;
+	case PLAYER_HIT:
+		if (hit_timer == 0) {
+			life -= 50;
+			if (life > 0) {
+				int hitForce = punchTime/2;
+				if (lookforward) vel.x = -hitForce; //punchTime is the hit velocity
+				else vel.x = hitForce;
+				hit_timer = 1;
+				// Sound
+				App->audio->PlayFx(landFx, 0);
+			}
+			else {
+				// Sound
+				App->audio->PlayFx(landFx, 0);
+				status = PLAYER_DEATH;
+			}
 		}
 		break;
 	case PLAYER_IN_AIR:
@@ -290,6 +316,10 @@ bool j1Player::Update(float dt) {
 		//Death animation
 		current_animation = &death;
 		if (deathTimer <= 0) {
+			current_animation = &idle;
+			dead = false;
+			isHit = false;
+			life = 100;
 			input = true;
 			if (App->scene->level_Loaded == 1) { //Return to start
 				position.x = initialX;
@@ -317,8 +347,10 @@ bool j1Player::Update(float dt) {
 		for (int i = 0; i < App->entitymanager->entities.count(); i++) {
 			Entity* enemy = App->entitymanager->entities.At(i)->data;
 			if (punchCol->CheckCollision(enemy->r) && punchHit == false) {
-				enemy->isHit = true;
-				punchHit = true;
+				if (enemy->life > 0) {
+					enemy->isHit = true;
+					punchHit = true;
+				}
 			}
 		}
 
@@ -350,6 +382,22 @@ bool j1Player::Update(float dt) {
 			status = PLAYER_IN_AIR;
 			punchCol->to_delete = true;
 			punchair_timer = 0;
+		}
+	}
+
+	if (hit_timer > 0) {
+		hit_timer += 1;
+		current_animation = &idle;
+
+		if (WallCollision()) vel.x = 0;
+		else vel.x = vel.x / 1.5f;
+		LOG("%f", vel.x);
+		if (hit_timer > punchTime)
+		{
+			status = PLAYER_IDLE;
+			vel.x = 0;
+			isHit = false;
+			hit_timer = 0;
 		}
 	}
 

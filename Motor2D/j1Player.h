@@ -19,6 +19,7 @@ enum player_status {
 	PLAYER_PUNCH,
 	PLAYER_PUNCH_AIR,
 	PLAYER_IN_PUNCH_FINISH,
+	PLAYER_HIT,
 	PLAYER_DEATH
 };
 
@@ -64,15 +65,13 @@ private:
 
 	bool ResetStates();
 
-	int life;
+
 	int speed;
 	float gravity;
 	int deathLimit;
 	float deathTimer_config;
 	float airTimer;
 	float deathTimer;
-	//fPoint vel;
-
 
 	bool jumpEnable = true;
 	bool punchEnable = true;
@@ -84,6 +83,7 @@ private:
 
 	Uint32 punch_timer = 0;
 	Uint32 punchair_timer = 0;
+	Uint32 hit_timer = 0;
 
 	p2SString texPath;
 	p2SString swoshPath;

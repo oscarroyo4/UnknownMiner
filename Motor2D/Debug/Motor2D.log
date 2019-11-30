@@ -1,6 +1,6 @@
 ﻿  EntityManager.cpp
   j1AirEnemy.cpp
-H:\GitHub\Handout\Motor2D\j1AirEnemy.cpp(147): warning C4244: '=': conversión de 'TYPE' a 'TYPE'; posible pérdida de datos
+H:\GitHub\Handout\Motor2D\j1AirEnemy.cpp(146): warning C4244: '=': conversión de 'TYPE' a 'TYPE'; posible pérdida de datos
           with
           [
               TYPE=int
@@ -9,8 +9,8 @@ H:\GitHub\Handout\Motor2D\j1AirEnemy.cpp(147): warning C4244: '=': conversión d
           [
               TYPE=float
           ]
-H:\GitHub\Handout\Motor2D\j1AirEnemy.cpp(181): warning C4018: '>': no coinciden signed/unsigned
-H:\GitHub\Handout\Motor2D\j1AirEnemy.cpp(191): warning C4244: '+=': conversión de 'TYPE' a 'TYPE'; posible pérdida de datos
+H:\GitHub\Handout\Motor2D\j1AirEnemy.cpp(189): warning C4018: '>': no coinciden signed/unsigned
+H:\GitHub\Handout\Motor2D\j1AirEnemy.cpp(208): warning C4244: '+=': conversión de 'TYPE' a 'TYPE'; posible pérdida de datos
           with
           [
               TYPE=float
@@ -19,7 +19,7 @@ H:\GitHub\Handout\Motor2D\j1AirEnemy.cpp(191): warning C4244: '+=': conversión 
           [
               TYPE=int
           ]
-H:\GitHub\Handout\Motor2D\j1AirEnemy.cpp(192): warning C4244: '+=': conversión de 'TYPE' a 'TYPE'; posible pérdida de datos
+H:\GitHub\Handout\Motor2D\j1AirEnemy.cpp(209): warning C4244: '+=': conversión de 'TYPE' a 'TYPE'; posible pérdida de datos
           with
           [
               TYPE=float
@@ -28,14 +28,14 @@ H:\GitHub\Handout\Motor2D\j1AirEnemy.cpp(192): warning C4244: '+=': conversión 
           [
               TYPE=int
           ]
-H:\GitHub\Handout\Motor2D\j1AirEnemy.cpp(220): warning C4018: '<': no coinciden signed/unsigned
+H:\GitHub\Handout\Motor2D\j1AirEnemy.cpp(237): warning C4018: '<': no coinciden signed/unsigned
 H:\GitHub\Handout\Motor2D\p2Point.h(97): warning C4244: 'argumento': conversión de 'TYPE' a 'float'; posible pérdida de datos
           with
           [
               TYPE=int
           ]
   H:\GitHub\Handout\Motor2D\p2Point.h(95): note: durante la compilación de la función miembro de plantilla clase de 'p2Point<int> &p2Point<int>::Normalize(void)'
-  H:\GitHub\Handout\Motor2D\j1AirEnemy.cpp(136): note: vea la referencia a la creación de instancias de plantilla de función 'p2Point<int> &p2Point<int>::Normalize(void)' que se está compilando
+  H:\GitHub\Handout\Motor2D\j1AirEnemy.cpp(134): note: vea la referencia a la creación de instancias de plantilla de función 'p2Point<int> &p2Point<int>::Normalize(void)' que se está compilando
   H:\GitHub\Handout\Motor2D\Entity.h(66): note: vea la referencia a la creación de instancias de plantilla clase de 'p2Point<int>' que se está compilando
 H:\GitHub\Handout\Motor2D\p2Point.h(97): warning C4244: '=': conversión de 'float' a 'TYPE'; posible pérdida de datos
           with
@@ -73,16 +73,7 @@ H:\GitHub\Handout\Motor2D\j1GroundEnemy.cpp(169): warning C4244: '=': conversió
           [
               TYPE=float
           ]
-H:\GitHub\Handout\Motor2D\j1GroundEnemy.cpp(199): warning C4018: '>': no coinciden signed/unsigned
-H:\GitHub\Handout\Motor2D\j1GroundEnemy.cpp(219): warning C4244: '+=': conversión de 'TYPE' a 'TYPE'; posible pérdida de datos
-          with
-          [
-              TYPE=float
-          ]
-          and
-          [
-              TYPE=int
-          ]
+H:\GitHub\Handout\Motor2D\j1GroundEnemy.cpp(201): warning C4018: '>': no coinciden signed/unsigned
 H:\GitHub\Handout\Motor2D\j1GroundEnemy.cpp(220): warning C4244: '+=': conversión de 'TYPE' a 'TYPE'; posible pérdida de datos
           with
           [
@@ -92,21 +83,40 @@ H:\GitHub\Handout\Motor2D\j1GroundEnemy.cpp(220): warning C4244: '+=': conversi�
           [
               TYPE=int
           ]
-H:\GitHub\Handout\Motor2D\j1GroundEnemy.cpp(244): warning C4018: '<': no coinciden signed/unsigned
+H:\GitHub\Handout\Motor2D\j1GroundEnemy.cpp(221): warning C4244: '+=': conversión de 'TYPE' a 'TYPE'; posible pérdida de datos
+          with
+          [
+              TYPE=float
+          ]
+          and
+          [
+              TYPE=int
+          ]
+H:\GitHub\Handout\Motor2D\j1GroundEnemy.cpp(245): warning C4018: '<': no coinciden signed/unsigned
   j1Player.cpp
-H:\GitHub\Handout\Motor2D\j1Player.cpp(215): warning C4244: '=': conversión de 'int' a 'TYPE'; posible pérdida de datos
+H:\GitHub\Handout\Motor2D\j1Player.cpp(225): warning C4244: '=': conversión de 'int' a 'TYPE'; posible pérdida de datos
           with
           [
               TYPE=float
           ]
-H:\GitHub\Handout\Motor2D\j1Player.cpp(220): warning C4244: '=': conversión de 'int' a 'TYPE'; posible pérdida de datos
+H:\GitHub\Handout\Motor2D\j1Player.cpp(230): warning C4244: '=': conversión de 'int' a 'TYPE'; posible pérdida de datos
           with
           [
               TYPE=float
           ]
-H:\GitHub\Handout\Motor2D\j1Player.cpp(317): warning C4018: '<': no coinciden signed/unsigned
-H:\GitHub\Handout\Motor2D\j1Player.cpp(340): warning C4018: '<': no coinciden signed/unsigned
-H:\GitHub\Handout\Motor2D\j1Player.cpp(357): warning C4244: '+=': conversión de 'TYPE' a 'TYPE'; posible pérdida de datos
+H:\GitHub\Handout\Motor2D\j1Player.cpp(249): warning C4244: '=': conversión de 'int' a 'TYPE'; posible pérdida de datos
+          with
+          [
+              TYPE=float
+          ]
+H:\GitHub\Handout\Motor2D\j1Player.cpp(250): warning C4244: '=': conversión de 'int' a 'TYPE'; posible pérdida de datos
+          with
+          [
+              TYPE=float
+          ]
+H:\GitHub\Handout\Motor2D\j1Player.cpp(347): warning C4018: '<': no coinciden signed/unsigned
+H:\GitHub\Handout\Motor2D\j1Player.cpp(373): warning C4018: '<': no coinciden signed/unsigned
+H:\GitHub\Handout\Motor2D\j1Player.cpp(406): warning C4244: '+=': conversión de 'TYPE' a 'TYPE'; posible pérdida de datos
           with
           [
               TYPE=float
@@ -115,7 +125,7 @@ H:\GitHub\Handout\Motor2D\j1Player.cpp(357): warning C4244: '+=': conversión de
           [
               TYPE=int
           ]
-H:\GitHub\Handout\Motor2D\j1Player.cpp(358): warning C4244: '+=': conversión de 'TYPE' a 'TYPE'; posible pérdida de datos
+H:\GitHub\Handout\Motor2D\j1Player.cpp(407): warning C4244: '+=': conversión de 'TYPE' a 'TYPE'; posible pérdida de datos
           with
           [
               TYPE=float
@@ -124,8 +134,8 @@ H:\GitHub\Handout\Motor2D\j1Player.cpp(358): warning C4244: '+=': conversión de
           [
               TYPE=int
           ]
-H:\GitHub\Handout\Motor2D\j1Player.cpp(391): warning C4018: '<': no coinciden signed/unsigned
-H:\GitHub\Handout\Motor2D\j1Player.cpp(412): warning C4018: '<': no coinciden signed/unsigned
+H:\GitHub\Handout\Motor2D\j1Player.cpp(440): warning C4018: '<': no coinciden signed/unsigned
+H:\GitHub\Handout\Motor2D\j1Player.cpp(461): warning C4018: '<': no coinciden signed/unsigned
   j1Render.cpp
   j1Scene.cpp
   Generando código...
