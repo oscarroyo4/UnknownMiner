@@ -205,10 +205,10 @@ bool j1Player::Update(float dt) {
 				position.x += speed*3;
 			}
 			else if (App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT) {
-				position.y -= speed;
+				position.y -= speed*2;
 			}
 			else if (App->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT) {
-				position.y += speed;
+				position.y += speed*2;
 			}
 		}
 				

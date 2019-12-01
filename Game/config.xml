@@ -28,7 +28,7 @@
   </map>
 
   <scene>
-    <textures tex1="TiledMap_2.tmx" tex2="TiledMap.tmx"/>
+    <textures tex1="TiledMap_2.tmx" tex2="TiledMap.tmx" path_tex="textures/path.png"/>
     <audio src="audio/music/cave_ambient.ogg"/>
   </scene>
 

@@ -114,7 +114,7 @@ bool j1AirEnemy::Update(float dt) {
 		else
 		{
 			if (App->input->GetKey(SDL_SCANCODE_J) == KEY_DOWN) life = 0;
-			else if (App->input->GetKey(SDL_SCANCODE_K) == KEY_REPEAT) status = AIRENEMY_FLY;
+			else if (position.DistanceTo(App->scene->player->position) < 200 && App->scene->player->godmode == false) status = AIRENEMY_FLY;
 			else status = AIRENEMY_IDLE;
 		}
 	}
@@ -127,17 +127,47 @@ bool j1AirEnemy::Update(float dt) {
 		vel = { 0, 0 };
 		break;
 	case AIRENEMY_FLY:
-		pathSteps = App->pathfinding->CreatePath(position, App->scene->player->position);
 		current_animation = &fly;
-		for (int i = 0; i <= pathSteps; i++) {
-			nextPos.x = App->pathfinding->GetLastPath()->At(i)->x;
-			nextPos.y = App->pathfinding->GetLastPath()->At(i)->y;
-			while (position != nextPos) {
-				iPoint p = (position - nextPos).Normalize();
-				vel = { (float)p.x, (float)p.y };
-				
+		if (App->scene->player->life > 0) {
+			static iPoint origin;
+			iPoint p = App->scene->player->position;	//the destination is the position of the player
+			p = App->map->WorldToMap(p.x + 16, p.y + 16);
+			origin = App->map->WorldToMap(position.x + 14, position.y);	//The origin is the current enemy position
+			App->pathfinding->CreatePath(origin, p);//Creating path
+
+			const p2DynArray<iPoint>* path = App->pathfinding->GetLastPath();
+
+			if (path->At(1) != NULL)
+			{
+				// Move enemy to player
+				if (path->At(1)->x < origin.x) {
+					position.x -= speed;
+					flip = false;
+				}
+
+				if (path->At(1)->x > origin.x) {
+					position.x += speed;
+					flip = true;
+				}
+
+				if (path->At(1)->y > origin.y) {
+					position.y += speed;
+				}
+
+				if (path->At(1)->y < origin.y) {
+					position.y -= speed;
+				}
+			}
+			for (uint i = 0; i < path->Count(); ++i)
+			{
+				iPoint nextPoint = App->map->MapToWorld(path->At(i)->x, path->At(i)->y);
+				if (App->collision->debug)
+				{
+					App->render->Blit(App->scene->path_tex, nextPoint.x, nextPoint.y);
+				}
 			}
 		}
+		
 		break;
 	case AIRENEMY_HIT:
 		attackEnable = false;
@@ -161,10 +191,6 @@ bool j1AirEnemy::Update(float dt) {
 		else hit_delay -= 0.1f;
 
 		break;
-	case AIRENEMY_ATTACK:
-		break;
-	case AIRENEMY_ATTACK_FINISH:
-		break;
 	case AIRENEMY_DEATH:
 		current_animation = &death;
 		if (OnGround()) {
@@ -173,7 +199,6 @@ bool j1AirEnemy::Update(float dt) {
 			vel.y = 0;
 		}
 		else {
-			//vel.x = vel.x / 1.5f;
 			vel.y += gravity;
 		}
 		attackEnable = false;
@@ -210,12 +235,10 @@ bool j1AirEnemy::Update(float dt) {
 	position.x += vel.x;
 	position.y += vel.y;
 
+	//LOG("%i %i %f %f", position.x, position.y, vel.x, vel.y);
+
 	//Collider position
-	if (vel.y > 0) colAirEnemy->SetPos(position.x, position.y+2);
-	else colAirEnemy->SetPos(position.x, position.y + 2);
-	if (vel.x > 0) 	colAirEnemy->SetPos(position.x, position.y + 2);
-	else if (vel.x < 0) 	colAirEnemy->SetPos(position.x, position.y + 2);
-	else colAirEnemy->SetPos(position.x, position.y + 2);
+	colAirEnemy->SetPos(position.x, position.y + 2);
 
 	Draw(dt);
 	return true;
@@ -225,7 +248,8 @@ void j1AirEnemy::Draw(float dt)
 {
 	if (graphics != nullptr) {
 		r = current_animation->GetCurrentFrame(dt);
-		App->render->Blit(graphics, position.x, position.y, &r);
+		if (!flip) App->render->Blit(graphics, position.x, position.y, &r, 1.0f, 0.0f, INT_MAX, INT_MAX, SDL_FLIP_HORIZONTAL);
+		else App->render->Blit(graphics, position.x, position.y, &r);
 
 	}
 

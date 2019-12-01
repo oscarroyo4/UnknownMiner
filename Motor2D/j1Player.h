@@ -77,7 +77,6 @@ private:
 	bool punchEnable = true;
 	bool punchAirEnable = true;
 	bool dead = false;
-	bool godmode = false;
 	bool lookforward = true;
 	bool punchHit = false;
 

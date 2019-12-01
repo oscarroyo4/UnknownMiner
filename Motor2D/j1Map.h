@@ -14,6 +14,7 @@ struct Layer {
 	uint width;
 	uint height;
 	uint* gid;
+	uint nav;
 	inline uint Get(int x, int y) const
 	{
 
@@ -64,7 +65,7 @@ struct MapData
 	MapTypes			type;
 	p2List<TileSet*>	tilesets;
 	// TODO 2: Add a list/array of layers to the map!
-	p2List<Layer*> layers;
+	p2List<Layer*>		layers;
 };
 
 // ----------------------------------------------------
@@ -88,6 +89,9 @@ public:
 
 	// Load new map
 	bool Load(const char* path);
+
+	iPoint MapToWorld(int x, int y) const;
+	iPoint WorldToMap(int x, int y) const;
 
 	bool CreateWalkabilityMap(int& width, int& height, uchar** buffer) const;
 

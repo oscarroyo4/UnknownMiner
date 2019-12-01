@@ -52,9 +52,6 @@ public:
 	bool OnGround();
 	bool WallCollision();
 
-	//Public variables
-	//iPoint position;
-
 private:
 
 	bool ResetStates();
@@ -64,6 +61,7 @@ private:
 	int deathLimit;
 	float hit_delay;
 
+	bool flip;
 	bool attackEnable = true;
 	bool dead = false;
 

@@ -4,6 +4,8 @@
 #include "j1Module.h"
 #include "p2Point.h"
 
+#define DT_CORRECT 30
+
 enum class Types
 {
 	none = 0,
@@ -67,6 +69,7 @@ public:
 	fPoint vel;
 	SDL_Rect r;
 	SDL_Rect r_collider;
+	bool godmode = false;
 	bool input = true;
 	bool isHit = false;
 

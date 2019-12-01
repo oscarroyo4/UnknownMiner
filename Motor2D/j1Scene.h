@@ -53,11 +53,14 @@ public:
 	Entity* ground_enemy;
 	Entity* ground_enemy2;
 
+	SDL_Texture* path_tex = nullptr;
+
 private:
 	int ambientFx;
 
 	p2SString tex1;
 	p2SString tex2;
+	p2SString tex3;
 	p2SString ambient_audio;
 
 	iPoint tempP;

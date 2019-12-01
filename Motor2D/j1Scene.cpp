@@ -30,6 +30,7 @@ bool j1Scene::Awake(pugi::xml_node& config)
 	LOG("Loading Scene");
 	tex1 = config.child("textures").attribute("tex1").as_string();
 	tex2 = config.child("textures").attribute("tex2").as_string();
+	tex3 = config.child("textures").attribute("path_tex").as_string();
 	ambient_audio = config.child("audio").attribute("src").as_string();
 
 	return ret;
@@ -38,8 +39,9 @@ bool j1Scene::Awake(pugi::xml_node& config)
 // Called before the first frame
 bool j1Scene::Start()
 {
+	path_tex = App->tex->Load(tex3.GetString());
+
 	loaded = false;
-	App->map->Load(tex1.GetString());
 	player = App->entitymanager->CreateEntity(Types::player);
 	air_enemy = App->entitymanager->CreateEntity(Types::enemy_air);
 	air_enemy->position = air_enemy->initialPos1;
@@ -47,7 +49,9 @@ bool j1Scene::Start()
 	ground_enemy->position = ground_enemy->initialPos1;
 	ground_enemy2 = App->entitymanager->CreateEntity(Types::enemy_ground);
 	ground_enemy2->position = ground_enemy->initialPos2;
-	/*
+
+	//App->map->Load(tex1.GetString());
+	
 	if (App->map->Load(tex1.GetString()) == true)
 	{
 		int w, h;
@@ -56,7 +60,8 @@ bool j1Scene::Start()
 			App->pathfinding->SetMap(w, h, data);
 
 		RELEASE_ARRAY(data);
-	}*/
+	}
+
 	App->audio->PlayMusic(ambient_audio.GetString(), 1.0f);
 	level_Loaded = 1;
 
