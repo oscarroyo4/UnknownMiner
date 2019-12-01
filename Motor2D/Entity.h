@@ -72,10 +72,10 @@ public:
 
 	int life;
 
-	int initialX;
-	int initialY;
-	int initialX2;
-	int initialY2;
+	iPoint initialPos1;
+	iPoint initialPos2;
+	iPoint initialPos3;
+	iPoint initialPos4;
 };
 
 #endif // !ENTITY_H

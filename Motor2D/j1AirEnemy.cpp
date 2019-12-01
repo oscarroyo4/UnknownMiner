@@ -18,7 +18,7 @@ j1AirEnemy::j1AirEnemy() : Entity(Types::enemy_air)
 {
 	name.create("airenemy");
 
-	// idle animation (arcade sprite sheet)
+	//animations
 	idle.PushBack({ 0, 0, 16, 16 });
 	idle.PushBack({ 16, 0, 16, 16 });
 	idle.PushBack({ 32, 0, 16, 16 });
@@ -64,12 +64,16 @@ bool j1AirEnemy::Awake(pugi::xml_node& config) {
 	life = config.child("propierties").attribute("life").as_int();
 	speed = config.child("propierties").attribute("speed").as_int();
 	gravity = config.child("propierties").attribute("gravity").as_float();
-	deathLimit = config.child("death").attribute("height").as_int();
-	initialX = config.child("initialPos1").attribute("x").as_int();
-	initialY = config.child("initialPos1").attribute("y").as_int();
-	initialX2 = config.child("initialPos2").attribute("x").as_int();
-	initialY2 = config.child("initialPos2").attribute("y").as_int();
 	hitTime = config.child("propierties").attribute("hitTime").as_int();
+	deathLimit = config.child("death").attribute("height").as_int();
+
+	//All diferent enemy spawns
+	initialPos1.x = config.child("initialPos1").attribute("x").as_int();
+	initialPos1.y = config.child("initialPos1").attribute("y").as_int();
+	initialPos2.x = config.child("initialPos2").attribute("x").as_int();
+	initialPos2.y = config.child("initialPos2").attribute("y").as_int();
+	initialPos3.x = config.child("initialPos3").attribute("x").as_int();
+	initialPos3.y = config.child("initialPos3").attribute("y").as_int();
 	return ret;
 }
 
@@ -77,8 +81,6 @@ bool j1AirEnemy::Start()
 {
 	bool ret = true;
 	//Loading assets and propierties from config file
-	position.x = initialX;
-	position.y = initialY;
 	graphics = App->tex->Load(texPath.GetString());
 	hitFx = App->audio->LoadFx(hitPath.GetString());
 	flyFx = App->audio->LoadFx(flyPath.GetString());

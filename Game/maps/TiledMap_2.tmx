@@ -30024,6 +30024,9 @@
   </data>
  </layer>
  <layer id="2" name="Collision" width="200" height="50">
+  <properties>
+   <property name="Navigation" value="1"/>
+  </properties>
   <data>
    <tile/>
    <tile/>

@@ -49,7 +49,9 @@ public:
 
 	Entity* player;
 	Entity* air_enemy;
+	Entity* air_enemy2;
 	Entity* ground_enemy;
+	Entity* ground_enemy2;
 
 private:
 	int ambientFx;
@@ -58,7 +60,9 @@ private:
 	p2SString tex2;
 	p2SString ambient_audio;
 
-	int tempX = 0, tempY = 0;
+	iPoint tempP;
+	iPoint tempE1;
+	iPoint tempE2;
 };
 
 #endif // __j1SCENE_H__

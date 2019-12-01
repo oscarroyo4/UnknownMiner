@@ -15,7 +15,7 @@ j1Player::j1Player() : Entity(Types::player)
 {
 	name.create("player");
 
-	// idle animation (arcade sprite sheet)
+	//animations
 	idle.PushBack({ 0, 0, 32, 32 });
 	idle.speed = 1.0f;
 	
@@ -72,13 +72,13 @@ bool j1Player::Awake(pugi::xml_node& config) {
 	life = config.child("propierties").attribute("life").as_int();
 	speed = config.child("propierties").attribute("speed").as_int();
 	gravity = config.child("propierties").attribute("gravity").as_float();
+	punchTime = config.child("propierties").attribute("punchTime").as_int();
 	deathLimit = config.child("death").attribute("height").as_int();
 	deathTimer_config = config.child("death").attribute("time").as_float();
-	initialX = config.child("initialPos1").attribute("x").as_int();
-	initialY = config.child("initialPos1").attribute("y").as_int();
-	initialX2 = config.child("initialPos2").attribute("x").as_int();
-	initialY2 = config.child("initialPos2").attribute("y").as_int();
-	punchTime = config.child("propierties").attribute("punchTime").as_int();
+	initialPos1.x = config.child("initialPos1").attribute("x").as_int();
+	initialPos1.y = config.child("initialPos1").attribute("y").as_int();
+	initialPos2.x = config.child("initialPos2").attribute("x").as_int();
+	initialPos2.y = config.child("initialPos2").attribute("y").as_int();
 	return ret;
 }
 
@@ -86,8 +86,7 @@ bool j1Player::Start()
 {
 	bool ret = true;
 	//Loading assets and propierties from config file
-	position.x = initialX;
-	position.y = initialY;
+	position = initialPos1;
 	graphics = App->tex->Load(texPath.GetString());
 	swoshFx = App->audio->LoadFx(swoshPath.GetString());
 	hitFx = App->audio->LoadFx(hitPath.GetString());
@@ -322,12 +321,10 @@ bool j1Player::Update(float dt) {
 			life = 100;
 			input = true;
 			if (App->scene->level_Loaded == 1) { //Return to start
-				position.x = initialX;
-				position.y = initialY;
+				position = initialPos1;
 			}
 			else {
-				position.x = initialX2;
-				position.y = initialY2;
+				position = initialPos2;
 			}
 			status = PLAYER_IN_AIR;
 		}

@@ -42,14 +42,17 @@
       <path tex="textures/Character.png" jump="audio/fx/Jump.wav" hit="audio/fx/Swosh+Hit.ogg" land="audio/fx/Landing.ogg" swosh="audio/fx/Swosh.ogg"/>
     </player>
     <airenemy>
-      <initialPos1 x="170" y="600"/>
-      <initialPos2 x="120" y="260"/>
+      <initialPos1 x="560" y="528"/>
+      <initialPos2 x="976" y="160"/>
+      <initialPos3 x="2288" y="208"/>
       <propierties life="100" speed="1" gravity="0.25" hitTime="12"/>
       <path tex="textures/AirEnemy.png" fly="audio/fx/Jump.wav" hit="audio/fx/Swosh+Hit.ogg" attack="audio/fx/Landing.ogg"/>
     </airenemy>
     <groundenemy>
-      <initialPos1 x="190" y="620"/>
-      <initialPos2 x="120" y="260"/>
+      <initialPos1 x="1552" y="592"/>
+      <initialPos2 x="2768" y="656"/>
+      <initialPos3 x="336" y="320"/>
+      <initialPos4 x="1568" y="576"/>
       <propierties life="100" speed="1" gravity="0.25" hitTime="19"/>
       <path tex="textures/GroundEnemy.png" move="audio/fx/RatMove.ogg" hit="audio/fx/RatSqueak_2.ogg" attack="audio/fx/RatSqueak_1.ogg" death="audio/fx/RatDeath.ogg"/>
     </groundenemy>

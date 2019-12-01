@@ -42,7 +42,11 @@ bool j1Scene::Start()
 	App->map->Load(tex1.GetString());
 	player = App->entitymanager->CreateEntity(Types::player);
 	air_enemy = App->entitymanager->CreateEntity(Types::enemy_air);
+	air_enemy->position = air_enemy->initialPos1;
 	ground_enemy = App->entitymanager->CreateEntity(Types::enemy_ground);
+	ground_enemy->position = ground_enemy->initialPos1;
+	ground_enemy2 = App->entitymanager->CreateEntity(Types::enemy_ground);
+	ground_enemy2->position = ground_enemy->initialPos2;
 	/*
 	if (App->map->Load(tex1.GetString()) == true)
 	{
@@ -112,9 +116,11 @@ bool j1Scene::CleanUp()
 bool j1Scene::ChargeFirstLevel() //Changing to level 1
 {	
 	player->input = false;
-	if (player != nullptr) App->entitymanager->DeleteEntity(player);
-	if(air_enemy != nullptr) App->entitymanager->DeleteEntity(air_enemy);
-	if(ground_enemy != nullptr) App->entitymanager->DeleteEntity(ground_enemy);
+	if(player != nullptr)			App->entitymanager->DeleteEntity(player);
+	if (air_enemy != nullptr)		App->entitymanager->DeleteEntity(air_enemy);
+	if (air_enemy2 != nullptr)		App->entitymanager->DeleteEntity(air_enemy2);
+	if (ground_enemy != nullptr)	App->entitymanager->DeleteEntity(ground_enemy);
+	if (ground_enemy2 != nullptr)	App->entitymanager->DeleteEntity(ground_enemy2);
 
 	p2List_item<Collider*>* item;
 	for (item = App->map->groundCol.start; item != NULL; item = item->next) //deleting all colliders
@@ -126,16 +132,22 @@ bool j1Scene::ChargeFirstLevel() //Changing to level 1
 	App->map->Load(tex1.GetString());
 	App->audio->Awake(App->config);
 	App->audio->PlayMusic(ambient_audio.GetString(), 1.0f); //Playing audio again
+	//Create entities
 	player = App->entitymanager->CreateEntity(Types::player);
 	air_enemy = App->entitymanager->CreateEntity(Types::enemy_air);
+	air_enemy->position = air_enemy->initialPos1;
+	ground_enemy = App->entitymanager->CreateEntity(Types::enemy_ground);
+	ground_enemy->position = ground_enemy->initialPos1;
+	ground_enemy2 = App->entitymanager->CreateEntity(Types::enemy_ground);
+	ground_enemy2->position = ground_enemy->initialPos2;
 	if (!loaded) {
-		player->position.x = player->initialX; //Load position from config_file
-		player->position.y = player->initialY;
+		player->position = player->initialPos1; //Load position from config_file
 	}
 	else {
-		player->position.x = tempX; //Load position from save_file
-		player->position.y = tempY;
+		player->position = tempP; //Load position from save_file
 	}
+
+	player->input = true;
 
 	level_Loaded = 1;
 
@@ -145,9 +157,11 @@ bool j1Scene::ChargeFirstLevel() //Changing to level 1
 bool j1Scene::ChargeSecondLevel() //Changing to level 2
 {
 	player->input = false;
-	if (player != nullptr) App->entitymanager->DeleteEntity(player);
-	if (air_enemy != nullptr) App->entitymanager->DeleteEntity(air_enemy);
-	if (ground_enemy != nullptr) App->entitymanager->DeleteEntity(ground_enemy);
+	if (player != nullptr)			App->entitymanager->DeleteEntity(player);
+	if (air_enemy != nullptr)		App->entitymanager->DeleteEntity(air_enemy);
+	if (air_enemy2 != nullptr)		App->entitymanager->DeleteEntity(air_enemy2);
+	if (ground_enemy != nullptr)	App->entitymanager->DeleteEntity(ground_enemy);
+	if (ground_enemy2 != nullptr)	App->entitymanager->DeleteEntity(ground_enemy2);
 
 	p2List_item<Collider*>* item;
 	for (item = App->map->groundCol.start; item != NULL; item = item->next) //deleting all colliders
@@ -159,15 +173,21 @@ bool j1Scene::ChargeSecondLevel() //Changing to level 2
 	App->map->Load(tex2.GetString());
 	App->audio->Awake(App->config);
 	App->audio->PlayMusic(ambient_audio.GetString(), 1.0f); //Playing audio again
+	//Create entities
 	player = App->entitymanager->CreateEntity(Types::player);
 	air_enemy = App->entitymanager->CreateEntity(Types::enemy_air);
+	air_enemy->position = air_enemy->initialPos2;
+	air_enemy2 = App->entitymanager->CreateEntity(Types::enemy_air);
+	air_enemy2->position = air_enemy->initialPos3;
+	ground_enemy = App->entitymanager->CreateEntity(Types::enemy_ground);
+	ground_enemy->position = ground_enemy->initialPos3;
+	ground_enemy2 = App->entitymanager->CreateEntity(Types::enemy_ground);
+	ground_enemy2->position = ground_enemy->initialPos4;
 	if (!loaded) {
-		player->position.x = player->initialX2; //Load position from config_file
-		player->position.y = player->initialY2;
+		player->position = player->initialPos2; //Load position from config_file
 	}
 	else { 
-		player->position.x = tempX; //Load position from save_file
-		player->position.y = tempY;
+		player->position = tempP; //Load position from save_file
 	}
 
 	player->input = true;
@@ -188,8 +208,13 @@ bool j1Scene::Load(pugi::xml_node& data) {
 		App->fadetoblack->FadeToBlack(2);
 	}
 	loaded = true;
-	tempX = data.parent().child("player").child("player").attribute("x").as_int();
-	tempY = data.parent().child("player").child("player").attribute("y").as_int();
+	tempP.x = data.parent().child("player").child("player").attribute("x").as_int();
+	tempP.y = data.parent().child("player").child("player").attribute("y").as_int();
+	tempE1.x = data.parent().child("airenemy").child("airenemy").attribute("x").as_int();
+	tempE1.y = data.parent().child("airenemy").child("airenemy").attribute("y").as_int();
+	tempE2.x = data.parent().child("groundenemy").child("groundenemy").attribute("x").as_int();
+	tempE2.y = data.parent().child("groundenemy").child("groundenemy").attribute("y").as_int();
+
 	return true;
 }
 

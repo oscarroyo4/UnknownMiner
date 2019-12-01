@@ -5,7 +5,6 @@
 #include "j1Collision.h"
 #include "j1Textures.h"
 #include "j1Map.h"
-#include <math.h>
 
 j1Map::j1Map() : j1Module(), map_loaded(false)
 {
@@ -375,43 +374,41 @@ bool j1Map::CreateWalkabilityMap(int& width, int& height, uchar** buffer) const
 	{
 		Layer* layer = item->data;
 
-		if (layer->name == "Collision") {
-			uchar* map = new uchar[layer->width * layer->height];
-			memset(map, 1, layer->width * layer->height);
+		//if (layer->properties.Get("Navigation", 0) == 0)
+			continue;
 
-			for (int y = 0; y < data.height; ++y)
+		uchar * map = new uchar[layer->width * layer->height];
+		memset(map, 1, layer->width * layer->height);
+
+		for (int y = 0; y < data.height; ++y)
+		{
+			for (int x = 0; x < data.width; ++x)
 			{
-				for (int x = 0; x < data.width; ++x)
+				int i = (y * layer->width) + x;
+
+				int tile_id = layer->Get(x, y);
+				TileSet* tileset = (tile_id > 0) ? GetTilesetFromTileId(tile_id) : NULL;
+
+				if (tileset != NULL)
 				{
-
-					int i = (y * layer->width) + x;
-
-					int tile_id = layer->Get(x, y);
-					TileSet* tileset = (tile_id > 0) ? GetTilesetFromTileId(tile_id) : NULL;
-
-					if (tileset != NULL)
+					map[i] = (tile_id - tileset->firstgid) > 0 ? 0 : 1;
+					/*TileType* ts = tileset->GetTileType(tile_id);
+					if(ts != NULL)
 					{
-						//map[i] = (tile_id - tileset->firstgid) > 0 ? 0 : 1;
-						if (layer->gid[i] > 0) { map[i] = 1; LOG("1"); }
-						else { map[i] = 0; LOG("0"); }
-						/*
-						TileType* ts = tileset->GetTileType(tile_id);
-						if(ts != NULL)
-						{
-							map[i] = ts->properties.Get("walkable", 1);
-						}
-						*/
-					}
+						map[i] = ts->properties.Get("walkable", 1);
+					}*/
 				}
 			}
-
-			*buffer = map;
-			width = data.width;
-			height = data.height;
-			ret = true;
-			break;
 		}
+
+		*buffer = map;
+		width = data.width;
+		height = data.height;
+		ret = true;
+
+		break;
 	}
+
 	return ret;
 }
 
