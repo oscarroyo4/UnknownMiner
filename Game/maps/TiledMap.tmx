@@ -11,7 +11,7 @@
   <tile id="34" terrain="0,,0,0"/>
   <tile id="35" terrain=",0,0,0"/>
  </tileset>
- <layer id="3" name="3rd Layer" width="200" height="50">
+ <layer id="3" name="3rd Layer" width="200" height="50" nav="0">
   <data>
    <tile gid="59"/>
    <tile gid="59"/>
@@ -10015,7 +10015,7 @@
    <tile gid="59"/>
   </data>
  </layer>
- <layer id="4" name="2nd Layer" width="200" height="50">
+ <layer id="4" name="2nd Layer" width="200" height="50" nav="0">
   <data>
    <tile/>
    <tile/>
@@ -20019,7 +20019,7 @@
    <tile/>
   </data>
  </layer>
- <layer id="1" name="1st Layer" width="200" height="50">
+ <layer id="1" name="1st Layer" width="200" height="50" nav="0">
   <data>
    <tile gid="1"/>
    <tile gid="1"/>
@@ -30023,7 +30023,7 @@
    <tile gid="1"/>
   </data>
  </layer>
- <layer id="2" name="Collision" width="200" height="50">
+ <layer id="2" name="Collision" width="200" height="50" nav="1">
   <data>
    <tile/>
    <tile/>

@@ -134,7 +134,15 @@ bool j1Scene::ChargeFirstLevel() //Changing to level 1
 	App->collision->CleanUp(); //Cleaning collider cache
 
 	App->map->CleanUp();
-	App->map->Load(tex1.GetString());
+	if (App->map->Load(tex1.GetString()) == true)
+	{
+		int w, h;
+		uchar* data = NULL;
+		if (App->map->CreateWalkabilityMap(w, h, &data))
+			App->pathfinding->SetMap(w, h, data);
+
+		RELEASE_ARRAY(data);
+	}
 	App->audio->Awake(App->config);
 	App->audio->PlayMusic(ambient_audio.GetString(), 1.0f); //Playing audio again
 	//Create entities
@@ -175,7 +183,15 @@ bool j1Scene::ChargeSecondLevel() //Changing to level 2
 	App->collision->CleanUp();  //Cleaning collider cache
 
 	App->map->CleanUp();
-	App->map->Load(tex2.GetString());
+	if (App->map->Load(tex2.GetString()) == true)
+	{
+		int w, h;
+		uchar* data = NULL;
+		if (App->map->CreateWalkabilityMap(w, h, &data))
+			App->pathfinding->SetMap(w, h, data);
+
+		RELEASE_ARRAY(data);
+	}
 	App->audio->Awake(App->config);
 	App->audio->PlayMusic(ambient_audio.GetString(), 1.0f); //Playing audio again
 	//Create entities
