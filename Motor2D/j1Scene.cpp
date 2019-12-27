@@ -65,6 +65,9 @@ bool j1Scene::Start()
 	App->audio->PlayMusic(ambient_audio.GetString(), 1.0f);
 	level_Loaded = 1;
 
+	container = new SDL_Rect{ 0,0,3000,1000 };
+	map_line = App->tex->Load("textures/MapLine.png");
+
 	return true;
 }
 
@@ -93,8 +96,14 @@ bool j1Scene::Update(float dt)
 	if (App->input->GetKey(SDL_SCANCODE_F3) == KEY_DOWN)
 		App->fadetoblack->FadeToBlack(level_Loaded);
 
+
 	//Render Map
 	App->map->Draw();
+
+	//render preogress bar
+	map_line_pos.x = 0;
+	map_line_pos.y = 0;
+	App->render->Blit(map_line, map_line_pos.x, map_line_pos.y, container);
 
 	return true;
 }

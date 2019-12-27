@@ -54,6 +54,9 @@ public:
 	Entity* ground_enemy2;
 
 	SDL_Texture* path_tex = nullptr;
+	SDL_Texture* map_line;
+	iPoint map_line_pos;
+	SDL_Rect* container;
 
 private:
 	int ambientFx;
