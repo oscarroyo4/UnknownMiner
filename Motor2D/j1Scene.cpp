@@ -131,6 +131,8 @@ bool j1Scene::PostUpdate()
 bool j1Scene::CleanUp()
 {
 	LOG("Freeing scene");
+	App->tex->UnLoad(path_tex);
+	App->tex->UnLoad(map_line);
 
 	return true;
 }
@@ -149,7 +151,7 @@ bool j1Scene::ChargeFirstLevel() //Changing to level 1
 		item->data->to_delete = true;
 	App->map->groundCol.clear();
 	App->collision->CleanUp(); //Cleaning collider cache
-
+	App->pathfinding->CleanUp();
 	App->map->CleanUp();
 	if (App->map->Load(tex1.GetString()) == true)
 	{
@@ -198,7 +200,7 @@ bool j1Scene::ChargeSecondLevel() //Changing to level 2
 		item->data->to_delete = true;
 	App->map->groundCol.clear();
 	App->collision->CleanUp();  //Cleaning collider cache
-
+	App->pathfinding->CleanUp();
 	App->map->CleanUp();
 	if (App->map->Load(tex2.GetString()) == true)
 	{

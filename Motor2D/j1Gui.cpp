@@ -82,6 +82,7 @@ bool j1Gui::CleanUp()
 	{
 		App->tex->UnLoad(atlas);
 	}
+
 	return true;
 }
 
