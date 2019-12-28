@@ -79,6 +79,7 @@ bool j1Scene::Start()
 // Called each loop iteration
 bool j1Scene::PreUpdate()
 {
+
 	return true;
 }
 
@@ -270,12 +271,16 @@ bool j1Scene::CreateUI() {
 
 	App->gui->ClearUI();
 
+	int window_pos_x = 260;
+	int window_pos_y = 10;
+
 	image = App->gui->CreateUIElement(Type::IMAGE, nullptr, { 0, 0, 320, 180 }, { 0, 65, 160, 84 });
-	image2 = App->gui->CreateUIElement(Type::IMAGE, nullptr, { 132, 20, 43, 19 }, { 84, 21, 43, 19 });
-	window = App->gui->CreateUIElement(Type::WINDOW, nullptr, { 130, 50, 48, 64 }, { 34, 0, 48, 64 });
-	playButton = App->gui->CreateUIElement(Type::BUTTON, window, { 138, 55, 32, 9 }, { 0, 0, 32, 9 }, "PLAY", { 0, 0, 32, 9 }, { 0, 0, 32, 9 }, false, { 0,0,0,0 }, this);
-	optionsButton = App->gui->CreateUIElement(Type::BUTTON, window, { 138, 75, 32, 9 }, { 0, 9, 32, 9 }, "OPTIONS", { 0, 9, 32, 9 }, { 0, 9, 32, 9 }, false, { 0,0,0,0 }, this);
-	quitButton = App->gui->CreateUIElement(Type::BUTTON, window, { 138, 95, 32, 9 }, { 0, 18, 32, 9 }, "QUIT", { 0, 18, 32, 9 }, { 0, 18, 32, 9 }, false, { 0,0,0,0 }, this);
+	image2 = App->gui->CreateUIElement(Type::IMAGE, nullptr, { 40, 50, 70, 35 }, { 84, 21, 43, 19 });
+	window = App->gui->CreateUIElement(Type::WINDOW, nullptr, { window_pos_x, window_pos_y, 48, 42 }, { 34, 0, 48, 42 });
+	enterButton = App->gui->CreateUIElement(Type::BUTTON, nullptr, { 140, 110, 48, 14 }, { 128, 0, 32, 9 }, "ENTER", { 128, 0, 32, 9 }, { 128, 0, 32, 9 }, false, { 0,0,0,0 }, this);
+	optionsButton = App->gui->CreateUIElement(Type::BUTTON, window, { window_pos_x +8, window_pos_y+5, 32, 9 }, { 0, 9, 32, 9 }, "OPTIONS", { 0, 9, 32, 9 }, { 0, 9, 32, 9 }, false, { 0,0,0,0 }, this);
+	creditsButton = App->gui->CreateUIElement(Type::BUTTON, window, { window_pos_x + 8, window_pos_y + 17, 32, 9 }, { 128, 9, 32, 9 }, "CREDITS", { 128, 9, 32, 9 }, { 128, 9, 32, 9 }, false, { 0,0,0,0 }, this);
+	quitButton = App->gui->CreateUIElement(Type::BUTTON, window, { window_pos_x +8, window_pos_y+29, 32, 9 }, { 0, 18, 32, 9 }, "QUIT", { 0, 18, 32, 9 }, { 0, 18, 32, 9 }, false, { 0,0,0,0 }, this);
 
 	return true;
 }

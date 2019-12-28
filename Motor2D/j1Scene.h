@@ -80,8 +80,9 @@ private:
 	UI* window = nullptr;
 	UI* image = nullptr;
 	UI* image2 = nullptr;
-	UI* playButton = nullptr;
+	UI* enterButton = nullptr;
 	UI* optionsButton = nullptr;
+	UI* creditsButton = nullptr;
 	UI* quitButton = nullptr;
 };
 
