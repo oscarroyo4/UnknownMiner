@@ -1,44 +1,30 @@
-﻿  j1Player.cpp
-c:\users\carlos redolar\documents\github\unknownminer\motor2d\j1player.cpp(224): warning C4244: '=': conversión de 'int' a 'TYPE'; posible pérdida de datos
+﻿  j1Gui.cpp
+c:\users\carlos redolar\documents\github\unknownminer\motor2d\j1gui.cpp(56): warning C4018: '<': no coinciden signed/unsigned
+c:\users\carlos redolar\documents\github\unknownminer\motor2d\j1gui.cpp(65): warning C4018: '<': no coinciden signed/unsigned
+c:\users\carlos redolar\documents\github\unknownminer\motor2d\j1gui.cpp(144): warning C4018: '<': no coinciden signed/unsigned
+c:\users\carlos redolar\documents\github\unknownminer\motor2d\j1gui.cpp(153): warning C4018: '<': no coinciden signed/unsigned
+c:\users\carlos redolar\documents\github\unknownminer\motor2d\j1gui.cpp(168): warning C4018: '<': no coinciden signed/unsigned
+c:\users\carlos redolar\documents\github\unknownminer\motor2d\j1gui.cpp(179): warning C4018: '<': no coinciden signed/unsigned
+c:\users\carlos redolar\documents\github\unknownminer\motor2d\j1gui.cpp(245): warning C4018: '>': no coinciden signed/unsigned
+c:\users\carlos redolar\documents\github\unknownminer\motor2d\j1gui.cpp(252): warning C4018: '>': no coinciden signed/unsigned
+c:\users\carlos redolar\documents\github\unknownminer\motor2d\j1gui.cpp(373): warning C4244: '=': conversión de 'TYPE' a 'TYPE'; posible pérdida de datos
           with
-          [
-              TYPE=float
-          ]
-c:\users\carlos redolar\documents\github\unknownminer\motor2d\j1player.cpp(229): warning C4244: '=': conversión de 'int' a 'TYPE'; posible pérdida de datos
-          with
-          [
-              TYPE=float
-          ]
-c:\users\carlos redolar\documents\github\unknownminer\motor2d\j1player.cpp(248): warning C4244: '=': conversión de 'int' a 'TYPE'; posible pérdida de datos
-          with
-          [
-              TYPE=float
-          ]
-c:\users\carlos redolar\documents\github\unknownminer\motor2d\j1player.cpp(249): warning C4244: '=': conversión de 'int' a 'TYPE'; posible pérdida de datos
-          with
-          [
-              TYPE=float
-          ]
-c:\users\carlos redolar\documents\github\unknownminer\motor2d\j1player.cpp(344): warning C4018: '<': no coinciden signed/unsigned
-c:\users\carlos redolar\documents\github\unknownminer\motor2d\j1player.cpp(369): warning C4018: '<': no coinciden signed/unsigned
-c:\users\carlos redolar\documents\github\unknownminer\motor2d\j1player.cpp(402): warning C4244: '+=': conversión de 'TYPE' a 'TYPE'; posible pérdida de datos
-          with
-          [
-              TYPE=float
-          ]
-          and
           [
               TYPE=int
           ]
-c:\users\carlos redolar\documents\github\unknownminer\motor2d\j1player.cpp(403): warning C4244: '+=': conversión de 'TYPE' a 'TYPE'; posible pérdida de datos
-          with
+          and
           [
               TYPE=float
           ]
-          and
+c:\users\carlos redolar\documents\github\unknownminer\motor2d\j1gui.cpp(374): warning C4244: '=': conversión de 'TYPE' a 'TYPE'; posible pérdida de datos
+          with
           [
               TYPE=int
           ]
-c:\users\carlos redolar\documents\github\unknownminer\motor2d\j1player.cpp(436): warning C4018: '<': no coinciden signed/unsigned
-c:\users\carlos redolar\documents\github\unknownminer\motor2d\j1player.cpp(457): warning C4018: '<': no coinciden signed/unsigned
-  Motor2D.vcxproj -> C:\Users\Carlos Redolar\Documents\GitHub\UnknownMiner\Debug\Unknown Miner.exe
+          and
+          [
+              TYPE=float
+          ]
+  j1Scene.cpp
+c:\users\carlos redolar\documents\github\unknownminer\motor2d\j1scene.cpp(288): fatal error C1075: "{": no se encontró ningún token coincidente
+  Generando código...

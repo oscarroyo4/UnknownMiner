@@ -285,7 +285,31 @@ bool j1Scene::CreateUI() {
 	return true;
 }
 
-bool j1Scene::OnClick() {
-	LOG("Yeah fuck it");
-	return true;
+void j1Scene::OnClick(UI* element) {
+	if (element->type == Type::BUTTON)
+	{
+		ButtonUI* button = (ButtonUI*)element;
+		switch (button->action)
+		{
+		case ButtonAction::ENTER:
+			LOG("ENTER");
+			break;
+
+		case ButtonAction::OPTIONS:
+			LOG("OPTIONS");
+			break;
+
+		case ButtonAction::CREDITS:
+			LOG("CREDITS");
+			break;
+
+		case ButtonAction::QUIT:
+			LOG("QUIT");
+			break;
+
+		default:
+			break;
+	}
+	//LOG("Yeah fuck it");
+	//return true;
 }

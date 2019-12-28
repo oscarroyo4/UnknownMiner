@@ -8,6 +8,7 @@
 #include "j1Window.h"
 #include "j1Gui.h"
 #include "j1Audio.h"
+#include "j1Scene.h"
 
 j1Gui::j1Gui() : j1Module()
 {
@@ -471,7 +472,8 @@ bool ButtonUI::PreUpdate() {
 		//Button clicked
 		if (listener) 
 		{
-			listener->OnClick(this);
+			//listener->OnClick(this);
+			App->scene->OnClick(this);
 		}
 		LOG("Click");
 	}
