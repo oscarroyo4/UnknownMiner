@@ -86,11 +86,6 @@ bool j1Scene::PreUpdate()
 bool j1Scene::Update(float dt)
 {
 	//Inputs for debug
-	if(App->input->GetKey(SDL_SCANCODE_F6) == KEY_DOWN)
-		App->LoadGame("saves/save_game.xml");
-
-	if(App->input->GetKey(SDL_SCANCODE_F5) == KEY_DOWN)
-		App->SaveGame("saves/save_game.xml");
 
 	if (App->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN)
 		App->fadetoblack->FadeToBlack(1);
@@ -101,13 +96,18 @@ bool j1Scene::Update(float dt)
 	if (App->input->GetKey(SDL_SCANCODE_F3) == KEY_DOWN)
 		App->fadetoblack->FadeToBlack(level_Loaded);
 
+	if (App->input->GetKey(SDL_SCANCODE_F5) == KEY_DOWN)
+		App->SaveGame("saves/save_game.xml");
+
+	if (App->input->GetKey(SDL_SCANCODE_F6) == KEY_DOWN)
+		App->LoadGame("saves/save_game.xml");
 
 	//Render Map
 	App->map->Draw();
 
 	//render preogress bar
-	map_line_pos.x = 0;
-	map_line_pos.y = 0;
+	//map_line_pos.x = 0;
+	//map_line_pos.y = 0;
 	//App->render->Blit(map_line, map_line_pos.x, map_line_pos.y, container);
 
 	return true;
@@ -118,7 +118,10 @@ bool j1Scene::PostUpdate()
 {
 	bool ret = true;
 	//Input for quiting
-	if(App->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
+	if (App->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
+		if (menu) { App->gui->ClearUI(); player->input = true; menu = false; }
+		else { CreateUI(); player->input = false; menu = true; }
+	if(App->input->GetKey(SDL_SCANCODE_K) == KEY_DOWN)
 		ret = false;
 
 	return ret;
@@ -272,5 +275,10 @@ bool j1Scene::CreateUI() {
 	optionsButton = App->gui->CreateUIElement(Type::BUTTON, window, { 138, 75, 32, 9 }, { 0, 9, 32, 9 }, "OPTIONS", { 0, 9, 32, 9 }, { 0, 9, 32, 9 }, false, { 0,0,0,0 }, this);
 	quitButton = App->gui->CreateUIElement(Type::BUTTON, window, { 138, 95, 32, 9 }, { 0, 18, 32, 9 }, "QUIT", { 0, 18, 32, 9 }, { 0, 18, 32, 9 }, false, { 0,0,0,0 }, this);
 
+	return true;
+}
+
+bool j1Scene::OnClick() {
+	LOG("Yeah fuck it");
 	return true;
 }

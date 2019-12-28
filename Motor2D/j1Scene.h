@@ -34,6 +34,8 @@ public:
 	// Called before quitting
 	bool CleanUp();
 
+	bool OnClick();
+
 	// Load / Save
 	bool Load(pugi::xml_node&);
 	bool Save(pugi::xml_node&) const;
@@ -75,7 +77,6 @@ private:
 
 	//UI	
 	bool menu = true;
-	int counterTitle = 0;
 	UI* window = nullptr;
 	UI* image = nullptr;
 	UI* image2 = nullptr;
