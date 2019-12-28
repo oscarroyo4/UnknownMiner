@@ -6,6 +6,11 @@
 
 
 struct SDL_Texture;
+class GuiImage;
+class GuiText;
+class GuiButton;
+class GuiInputText;
+enum class Menu;
 
 class j1Menu : public j1Module
 {
@@ -39,8 +44,11 @@ public:
 	bool Save(pugi::xml_node&) const;
 
 	// Change levels functions
-	bool ChargeSecondLevel();
+	////bool ChargeSecondLevel();
 	bool ChargeFirstLevel();
+
+	// Create menu screens
+	void CreateMainScreen();
 
 	int level_Loaded;
 	bool loaded;
@@ -53,6 +61,11 @@ private:
 	p2SString tex2;
 	p2SString tex3;
 	p2SString music_audio;
+
+	int window_width;
+	int window_height;
+	bool fullscreen;
+	SDL_Texture* menu_background_tex;
 
 };
 

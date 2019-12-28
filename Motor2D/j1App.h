@@ -13,6 +13,7 @@ class j1Input;
 class j1Render;
 class j1Textures;
 class j1Audio;
+class j1Menu;
 class j1Scene;
 class j1Map;
 class j1Gui;
@@ -93,6 +94,7 @@ public:
 	j1Render*			render;
 	j1Textures*			tex;
 	j1Audio*			audio;
+	j1Menu*				menu;
 	j1Scene*			scene;
 	j1Map*				map;
 	j1Gui*				gui;
