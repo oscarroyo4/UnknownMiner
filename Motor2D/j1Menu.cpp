@@ -14,6 +14,7 @@
 #include "EntityManager.h"
 #include "j1Menu.h"
 #include "j1Scene.h"
+#include "j1Gui.h"
 
 j1Menu::j1Menu() : j1Module()
 {
@@ -34,20 +35,28 @@ bool j1Menu::Awake(pugi::xml_node& config)
 	tex3 = config.child("textures").attribute("path_tex").as_string();
 	music_audio = config.child("audio").attribute("src").as_string();
 
+	window_width = config.child("resolution").attribute("width").as_int(640);
+	window_height = config.child("resolution").attribute("height").as_int(480);
+
 	return ret;
 }
 
 // Called before the first frame
 bool j1Menu::Start()
 {
+	bool ret = true;
+
 	path_tex = App->tex->Load(tex3.GetString());
+	menu_background_tex = App->tex->Load("maps/menu_background.png");
 
 	loaded = false;
 
 	App->audio->PlayMusic(music_audio.GetString(), 1.0f);
 	level_Loaded = 1;
 
-	return true;
+	CreateMainScreen();
+
+	return ret;
 }
 
 // Called each loop iteration
@@ -102,4 +111,15 @@ bool j1Menu::Load(pugi::xml_node&) {
 }
 bool j1Menu::Save(pugi::xml_node&) const {
 	return true;
+}
+
+//Create initial menu screen
+void j1Menu::CreateMainScreen() {
+	SDL_Rect camera;
+	camera = App->render->camera;
+	
+	UI* background = App->gui->CreateUIElement(Type::IMAGE, nullptr, { 0, 0, window_height, window_width }, { 0, 0, 336, 504 });
+	App->gui->CreateUIElement(Type::IMAGE, background, { 0, 0, window_height, window_width }, { 0, 0, 336, 504 });
+
+	
 }
