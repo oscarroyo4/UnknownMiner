@@ -1,2 +1,44 @@
-﻿  j1Scene.cpp
+﻿  j1Player.cpp
+c:\users\carlos redolar\documents\github\unknownminer\motor2d\j1player.cpp(224): warning C4244: '=': conversión de 'int' a 'TYPE'; posible pérdida de datos
+          with
+          [
+              TYPE=float
+          ]
+c:\users\carlos redolar\documents\github\unknownminer\motor2d\j1player.cpp(229): warning C4244: '=': conversión de 'int' a 'TYPE'; posible pérdida de datos
+          with
+          [
+              TYPE=float
+          ]
+c:\users\carlos redolar\documents\github\unknownminer\motor2d\j1player.cpp(248): warning C4244: '=': conversión de 'int' a 'TYPE'; posible pérdida de datos
+          with
+          [
+              TYPE=float
+          ]
+c:\users\carlos redolar\documents\github\unknownminer\motor2d\j1player.cpp(249): warning C4244: '=': conversión de 'int' a 'TYPE'; posible pérdida de datos
+          with
+          [
+              TYPE=float
+          ]
+c:\users\carlos redolar\documents\github\unknownminer\motor2d\j1player.cpp(344): warning C4018: '<': no coinciden signed/unsigned
+c:\users\carlos redolar\documents\github\unknownminer\motor2d\j1player.cpp(369): warning C4018: '<': no coinciden signed/unsigned
+c:\users\carlos redolar\documents\github\unknownminer\motor2d\j1player.cpp(402): warning C4244: '+=': conversión de 'TYPE' a 'TYPE'; posible pérdida de datos
+          with
+          [
+              TYPE=float
+          ]
+          and
+          [
+              TYPE=int
+          ]
+c:\users\carlos redolar\documents\github\unknownminer\motor2d\j1player.cpp(403): warning C4244: '+=': conversión de 'TYPE' a 'TYPE'; posible pérdida de datos
+          with
+          [
+              TYPE=float
+          ]
+          and
+          [
+              TYPE=int
+          ]
+c:\users\carlos redolar\documents\github\unknownminer\motor2d\j1player.cpp(436): warning C4018: '<': no coinciden signed/unsigned
+c:\users\carlos redolar\documents\github\unknownminer\motor2d\j1player.cpp(457): warning C4018: '<': no coinciden signed/unsigned
   Motor2D.vcxproj -> C:\Users\Carlos Redolar\Documents\GitHub\UnknownMiner\Debug\Unknown Miner.exe

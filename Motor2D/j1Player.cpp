@@ -168,29 +168,29 @@ bool j1Player::Update(float dt) {
 					ResetStates();
 					if (App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT) {
 						WallCollision(); //Detect horizontal collision
-						if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
+						if (App->input->GetKey(SDL_SCANCODE_W) == KEY_DOWN)
 							status = PLAYER_JUMP;
 						else status = PLAYER_BACKWARD;
 					}
 
 					else if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT) {
 						WallCollision(); //Detect horizontal collision
-						if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
+						if (App->input->GetKey(SDL_SCANCODE_W) == KEY_DOWN)
 							status = PLAYER_JUMP;
 						else status = PLAYER_FORWARD;
 					}
 
-					else if (App->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN)
+					else if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
 						status = PLAYER_PUNCH;
 
-					else if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
+					else if (App->input->GetKey(SDL_SCANCODE_W) == KEY_DOWN)
 						status = PLAYER_JUMP;
 
 					else status = PLAYER_IDLE;
 				}
 				else {
 					WallCollision(); //Detect horizontal collision
-					if (App->input->GetKey(SDL_SCANCODE_E) == KEY_DOWN)
+					if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_DOWN)
 						status = PLAYER_PUNCH_AIR;
 					else
 						status = PLAYER_IN_AIR;
