@@ -265,7 +265,7 @@ bool j1Scene::CreateUI() {
 
 	App->gui->ClearUI();
 
-	//image = App->gui->CreateUIElement(Type::IMAGE, nullptr, { 132, 20, 43, 19 }, { 84, 1, 43, 19 });
+	image = App->gui->CreateUIElement(Type::IMAGE, nullptr, { 0, 0, 320, 180 }, { 0, 65, 160, 84 });
 	image2 = App->gui->CreateUIElement(Type::IMAGE, nullptr, { 132, 20, 43, 19 }, { 84, 21, 43, 19 });
 	window = App->gui->CreateUIElement(Type::WINDOW, nullptr, { 130, 50, 48, 64 }, { 34, 0, 48, 64 });
 	playButton = App->gui->CreateUIElement(Type::BUTTON, window, { 138, 55, 32, 9 }, { 0, 0, 32, 9 }, "PLAY", { 0, 0, 32, 9 }, { 0, 0, 32, 9 }, false, { 0,0,0,0 }, this);

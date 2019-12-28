@@ -23,9 +23,8 @@
     <path>data.zip</path>
   </file_system>
   <gui>
-
     <atlas source="maps/atlas_ui.png"/>
-
+    <background source="maps/menu_background.png"/>
   </gui>
   <map>
     <folder>maps/</folder>
