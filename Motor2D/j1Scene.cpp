@@ -40,6 +40,7 @@ bool j1Scene::Awake(pugi::xml_node& config)
 bool j1Scene::Start()
 {
 	path_tex = App->tex->Load(tex3.GetString());
+	map_line = App->tex->Load("textures/MapLine.png");
 
 	loaded = false;
 	player = App->entitymanager->CreateEntity(Types::player);
@@ -66,7 +67,6 @@ bool j1Scene::Start()
 	level_Loaded = 1;
 
 	container = new SDL_Rect{ 0,0,3000,1000 };
-	map_line = App->tex->Load("textures/MapLine.png");
 
 	return true;
 }

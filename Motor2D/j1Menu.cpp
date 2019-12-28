@@ -17,7 +17,7 @@
 
 j1Menu::j1Menu() : j1Module()
 {
-	name.create("scene");
+	name.create("menu");
 }
 
 // Destructor
@@ -28,7 +28,7 @@ j1Menu::~j1Menu()
 bool j1Menu::Awake(pugi::xml_node& config)
 {
 	bool ret = true;
-	LOG("Loading Scene");
+	LOG("Loading Menu");
 	tex1 = config.child("textures").attribute("tex1").as_string();
 	tex2 = config.child("textures").attribute("tex2").as_string();
 	tex3 = config.child("textures").attribute("path_tex").as_string();
@@ -94,5 +94,12 @@ bool j1Menu::CleanUp()
 {
 	LOG("Freeing scene");
 
+	return true;
+}
+
+bool j1Menu::Load(pugi::xml_node&) {
+	return true;
+}
+bool j1Menu::Save(pugi::xml_node&) const {
 	return true;
 }
