@@ -116,10 +116,10 @@ bool j1Menu::Save(pugi::xml_node&) const {
 //Create initial menu screen
 void j1Menu::CreateMainScreen() {
 	SDL_Rect camera;
-	camera = App->render->camera;
+	//camera = App->render->camera;
 	
-	UI* background = App->gui->CreateUIElement(Type::IMAGE, nullptr, { 0, 0, window_height, window_width }, { 0, 0, 336, 504 });
-	App->gui->CreateUIElement(Type::IMAGE, background, { 0, 0, window_height, window_width }, { 0, 0, 336, 504 });
+	//UI* background = App->gui->CreateUIElement(Type::IMAGE, nullptr, { 0, 0, window_height, window_width }, { 0, 0, 336, 504 });
+	//App->gui->CreateUIElement(Type::IMAGE, background, { 0, 0, window_height, window_width }, { 0, 0, 336, 504 });
 
 	
 }

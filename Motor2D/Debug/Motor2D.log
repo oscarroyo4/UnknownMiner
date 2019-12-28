@@ -1,2 +1,3 @@
 ﻿  j1Menu.cpp
-  Motor2D.vcxproj -> C:\Users\Carlos Redolar\Documents\GitHub\UnknownMiner\Debug\Unknown Miner.exe
+H:\GitHub\Handout\Motor2D\j1Menu.cpp(118): warning C4101: 'camera': variable local sin referencia
+  Motor2D.vcxproj -> H:\GitHub\Handout\Debug\Unknown Miner.exe

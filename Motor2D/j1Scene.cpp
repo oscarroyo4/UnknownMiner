@@ -108,7 +108,7 @@ bool j1Scene::Update(float dt)
 	//render preogress bar
 	map_line_pos.x = 0;
 	map_line_pos.y = 0;
-	App->render->Blit(map_line, map_line_pos.x, map_line_pos.y, container);
+	//App->render->Blit(map_line, map_line_pos.x, map_line_pos.y, container);
 
 	return true;
 }
