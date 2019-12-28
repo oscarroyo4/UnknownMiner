@@ -13,6 +13,7 @@
 #include "j1AirEnemy.h"
 #include "EntityManager.h"
 #include "j1Scene.h"
+#include "j1Gui.h"
 
 j1Scene::j1Scene() : j1Module()
 {
@@ -62,6 +63,9 @@ bool j1Scene::Start()
 
 		RELEASE_ARRAY(data);
 	}
+
+	UI* window = App->gui->CreateUIElement(Type::WINDOW, nullptr, { 10, 5, 0, 0 }, { 48, 0, 48, 64 });
+	App->gui->CreateUIElement(Type::BUTTON, window, { 1, 2, 16, 4 }, { 0, 0, 32, 9 }, "PLAY", { 0, 0, 32, 9 }, { 0, 0, 32, 9 }, false, { 0,0,0,0 }, this);
 
 	App->audio->PlayMusic(ambient_audio.GetString(), 1.0f);
 	level_Loaded = 1;

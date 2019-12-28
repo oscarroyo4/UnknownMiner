@@ -22,7 +22,11 @@
   <file_system>
     <path>data.zip</path>
   </file_system>
+  <gui>
 
+    <atlas source="maps/atlas_ui.png"/>
+
+  </gui>
   <map>
     <folder>maps/</folder>
   </map>

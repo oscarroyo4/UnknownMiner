@@ -156,3 +156,9 @@ void j1Input::GetMouseMotion(int& x, int& y)
 	x = mouse_motion_x;
 	y = mouse_motion_y;
 }
+
+void j1Input::GetMouseScreenPosition(int& x, int& y)
+{
+	x = mouse_x * App->win->GetScale();
+	y = mouse_y * App->win->GetScale();
+}
