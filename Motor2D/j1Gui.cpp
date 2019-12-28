@@ -33,7 +33,7 @@ bool j1Gui::Awake(pugi::xml_node& conf)
 bool j1Gui::Start()
 {
 	atlas = App->tex->Load(atlas_file_name.GetString());
-	click_sfx = App->audio->LoadFx("audio/fx/button_click.wav");
+	click_sfx = App->audio->LoadFx("audio/fx/Click.wav");
 
 	return true;
 }
@@ -123,9 +123,6 @@ UI* j1Gui::CreateUIElement(Type type, UI* p, SDL_Rect r, SDL_Rect sprite, p2SStr
 	{
 		ui->listener = nullptr;
 	}
-
-
-	//UIs.add(ui);
 
 	return UIs.add(ui)->data;
 }
@@ -423,7 +420,12 @@ ButtonUI::ButtonUI(Type type, UI* p, SDL_Rect r, SDL_Rect sprite, SDL_Rect sprit
 	sprite3 = spriten3;
 	over = false;
 	pushed = false;
-	quad = r;
+	if (p != nullptr) {
+		quad.x = p->quad.x + r.x;
+		quad.y = p->quad.y + r.y;
+		quad.w = r.w;
+		quad.h = r.h;
+	}else quad = r;
 }
 
 bool ButtonUI::PostUpdate() {

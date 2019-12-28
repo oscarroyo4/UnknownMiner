@@ -64,8 +64,9 @@ bool j1Scene::Start()
 		RELEASE_ARRAY(data);
 	}
 
-	UI* window = App->gui->CreateUIElement(Type::WINDOW, nullptr, { 10, 5, 0, 0 }, { 48, 0, 48, 64 });
-	App->gui->CreateUIElement(Type::BUTTON, window, { 1, 2, 16, 4 }, { 0, 0, 32, 9 }, "PLAY", { 0, 0, 32, 9 }, { 0, 0, 32, 9 }, false, { 0,0,0,0 }, this);
+	player->input = false;
+
+	CreateUI();
 
 	App->audio->PlayMusic(ambient_audio.GetString(), 1.0f);
 	level_Loaded = 1;
@@ -256,6 +257,20 @@ bool j1Scene::Save(pugi::xml_node& data) const {
 	pugi::xml_node ply = data.append_child("scene");
 
 	ply.append_attribute("level") = level_Loaded;
+
+	return true;
+}
+
+bool j1Scene::CreateUI() {
+
+	App->gui->ClearUI();
+
+	//image = App->gui->CreateUIElement(Type::IMAGE, nullptr, { 132, 20, 43, 19 }, { 84, 1, 43, 19 });
+	image2 = App->gui->CreateUIElement(Type::IMAGE, nullptr, { 132, 20, 43, 19 }, { 84, 21, 43, 19 });
+	window = App->gui->CreateUIElement(Type::WINDOW, nullptr, { 130, 50, 48, 64 }, { 34, 0, 48, 64 });
+	playButton = App->gui->CreateUIElement(Type::BUTTON, window, { 138, 55, 32, 9 }, { 0, 0, 32, 9 }, "PLAY", { 0, 0, 32, 9 }, { 0, 0, 32, 9 }, false, { 0,0,0,0 }, this);
+	optionsButton = App->gui->CreateUIElement(Type::BUTTON, window, { 138, 75, 32, 9 }, { 0, 9, 32, 9 }, "OPTIONS", { 0, 9, 32, 9 }, { 0, 9, 32, 9 }, false, { 0,0,0,0 }, this);
+	quitButton = App->gui->CreateUIElement(Type::BUTTON, window, { 138, 95, 32, 9 }, { 0, 18, 32, 9 }, "QUIT", { 0, 18, 32, 9 }, { 0, 18, 32, 9 }, false, { 0,0,0,0 }, this);
 
 	return true;
 }

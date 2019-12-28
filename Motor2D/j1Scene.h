@@ -42,6 +42,8 @@ public:
 	bool ChargeSecondLevel();
 	bool ChargeFirstLevel();
 
+	bool CreateUI();
+
 	Collider* finishCol;
 	int level_Loaded;
 	bool loaded;
@@ -69,6 +71,17 @@ private:
 	iPoint tempP;
 	iPoint tempE1;
 	iPoint tempE2;
+
+
+	//UI	
+	bool menu = true;
+	int counterTitle = 0;
+	UI* window = nullptr;
+	UI* image = nullptr;
+	UI* image2 = nullptr;
+	UI* playButton = nullptr;
+	UI* optionsButton = nullptr;
+	UI* quitButton = nullptr;
 };
 
 #endif // __j1SCENE_H__
