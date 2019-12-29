@@ -9,13 +9,18 @@ In this platformer game you must get the miner to leave the mine, to reach that 
 <img src="https://raw.githubusercontent.com/oscarroyo4/UnknownMiner/Images/Semafor_Mias_1.jpg" width="200">
 
 * Oscar Royo
-  * (explicar mas o menos que he hecho)
+  * All firsts assignments code
+  * UI module and UI elements
+  * UI art
   * Github account: [oscarroyo4](https://github.com/oscarroyo4)
   
 <img src="https://github.com/oscarroyo4/UnknownMiner/blob/Images/Foto_Carlos.jpg" width="200">
 
 * Carlos Redolar
-  * (explicar mas o menos que he hecho)
+  * UI menus
+  * UI art
+  * Save and load
+  * UML
   * Due to some problems I have joined the group later, and I have been part of this proyect only in the final term (third assignment)
   * Github account: [carlosredolar](https://github.com/carlosredolar)
 
@@ -37,6 +42,13 @@ In this platformer game you must get the miner to leave the mine, to reach that 
  * F6 - Load last status
  * F9 - Show colliders
  *F10 - God Mode (You don't collide with anything and you can fly everywhere)
+ 
+### Innovation
+ * Player can double jump
+ * Player can swap jump direction using the attack
+ * Fade to black in every scene change (load game included)
+ * Game can be paused
+ * Hit enemy and it knocks back
  
 ### Gameplay Video
 
