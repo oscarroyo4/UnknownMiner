@@ -20,15 +20,16 @@ j1Coin::j1Coin() : Entity(Types::coin)
 
 	coin_tex = nullptr;
 
-	float speed = 0.1f;
 	//Rotate
-	rotation.PushBack({ 20, 20, 160, 160 });
-	/*rotation.PushBack({ 30, 0, 21, 26 });
-	rotation.PushBack({ 63, 0, 14, 26 });
-	rotation.PushBack({ 96, 0, 8, 26 });
-	rotation.PushBack({ 124, 0, 14, 26 });
-	rotation.PushBack({ 151, 0, 21, 26 });*/
-	rotation.speed = 0.2f;
+	rotation.PushBack({ 1, 1, 16, 16 });
+	rotation.PushBack({ 18, 1, 16, 16 });
+	rotation.PushBack({ 35, 1, 16, 16 });
+	rotation.PushBack({ 52, 1, 16, 16 });
+	rotation.PushBack({ 69, 1, 16, 16 });
+	rotation.PushBack({ 52, 1, 16, 16 });
+	rotation.PushBack({ 35, 1, 16, 16 });
+	rotation.PushBack({ 18, 1, 16, 16 });
+	rotation.speed = 0.3f;
 }
 
 j1Coin::~j1Coin() {}
@@ -40,8 +41,8 @@ bool j1Coin::Awake(pugi::xml_node& config)
 	//Initialize variables from j1Coin.h
 	current_animation = &rotation;
 
-	position.x = App->scene->player->position.x +50;
-	position.y = App->scene->player->position.y +20;
+	position.x = App->scene->player->position.x + 50;
+	position.y = App->scene->player->position.y + 30;
 	coin_position = 0;
 
 	return ret;
@@ -53,7 +54,7 @@ bool j1Coin::Start()
 
 	coin_tex = App->tex->Load("textures/Coin.png");
 
-	r_collider = { position.x, position.y + 2, 10, 10 };
+	r_collider = { position.x, position.y, 16, 16 };
 	colCoin = App->collision->AddCollider(r_collider, COLLIDER_COIN);
 
 	return ret;
@@ -75,15 +76,20 @@ bool j1Coin::Update(float dt)
 {
 	bool ret = true;
 
-	App->render->Blit(coin_tex, position.x, position.y, &r);
 
 	if (coin_collected == true)
 	{
 		CollectCoin();
-		
-		
 	}
 	
+	if (coin_tex != nullptr) {
+		r = current_animation->GetCurrentFrame(dt);
+		App->render->Blit(coin_tex, position.x, position.y, &r);
+	}
+
+	r.x = position.x;
+	r.y = position.y;
+
 	return ret;
 }
 
