@@ -99,6 +99,8 @@ private:
 	UI* quitButton = nullptr;
 	UI* backButton = nullptr;
 	UI* resumeButton = nullptr;
+	UI* saveButton = nullptr;
+	UI* loadButton = nullptr;
 	UI* menuButton = nullptr;
 	UI* fullscreeenButton = nullptr;
 	UI* tick = nullptr;

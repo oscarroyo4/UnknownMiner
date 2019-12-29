@@ -399,10 +399,18 @@ void j1Scene::OnClick(UI* element) {
 			CreateInGameMenu();
 			LOG("resume");
 		}
+		else if (button->name == "SAVE") {
+			App->SaveGame("saves/save_game.xml");
+			LOG("save");
+		}
+		else if (button->name == "LOAD") {
+			App->LoadGame("saves/save_game.xml");
+			App->gui->ClearUI();			
+			LOG("load");
+		}
 		else if (button->name == "MENU") {
 			App->gui->ClearUI();
-			CreateUI();
-			
+			CreateUI();			
 			LOG("menu");
 		}
 		else if (button->name == "FULLSCREEN") {
@@ -491,9 +499,11 @@ bool j1Scene::CreatePauseMenu() {
 	int window_pos_y = 45;
 
 	window = App->gui->CreateUIElement(Type::WINDOW, nullptr, { window_pos_x, window_pos_y, 57, 79 }, { 196, 101, 57, 79 });
-	resumeButton = App->gui->CreateUIElement(Type::BUTTON, window, { window_pos_x + 9, window_pos_y + 15, 40, 12 }, { 161, 100, 32, 9 }, "RESUME", { 161, 100, 32, 9 }, { 161, 100, 32, 9 }, false, { 161, 100, 32, 9 }, this);
-	optionsButton = App->gui->CreateUIElement(Type::BUTTON, window, { window_pos_x + 13, window_pos_y + 40, 32, 9 }, { 0, 9, 32, 9 }, "OPTIONS", { 0, 9, 32, 9 }, { 0, 9, 32, 9 }, false, { 0,0,0,0 }, this);
-	menuButton = App->gui->CreateUIElement(Type::BUTTON, window, { window_pos_x + 13, window_pos_y + 55, 32, 9 }, { 161, 109, 32, 9 }, "MENU", { 161, 109, 32, 9 }, { 161, 109, 32, 9 }, false, { 0,0,0,0 }, this);
+	resumeButton = App->gui->CreateUIElement(Type::BUTTON, window, { window_pos_x + 9, window_pos_y + 8, 40, 12 }, { 161, 100, 32, 9 }, "RESUME", { 161, 100, 32, 9 }, { 161, 100, 32, 9 }, false, { 161, 100, 32, 9 }, this);
+	saveButton = App->gui->CreateUIElement(Type::BUTTON, window, { window_pos_x + 13, window_pos_y + 25, 32, 9 }, { 161, 137, 32, 9 }, "SAVE", { 161, 137, 32, 9 }, { 161, 137, 32, 9 }, false, { 0,0,0,0 }, this);
+	loadButton = App->gui->CreateUIElement(Type::BUTTON, window, { window_pos_x + 13, window_pos_y + 38, 32, 9 }, { 161, 146, 32, 9 }, "LOAD", { 161, 146, 32, 9 }, { 161, 146, 32, 9 }, false, { 0,0,0,0 }, this);
+	optionsButton = App->gui->CreateUIElement(Type::BUTTON, window, { window_pos_x + 13, window_pos_y + 51, 32, 9 }, { 0, 9, 32, 9 }, "OPTIONS", { 0, 9, 32, 9 }, { 0, 9, 32, 9 }, false, { 0,0,0,0 }, this);
+	menuButton = App->gui->CreateUIElement(Type::BUTTON, window, { window_pos_x + 13, window_pos_y + 64, 32, 9 }, { 161, 109, 32, 9 }, "MENU", { 161, 109, 32, 9 }, { 161, 109, 32, 9 }, false, { 0,0,0,0 }, this);
 
 	return true;
 }
