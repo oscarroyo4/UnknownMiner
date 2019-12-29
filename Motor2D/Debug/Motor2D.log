@@ -1,2 +1,47 @@
-﻿  j1Scene.cpp
+﻿  j1Player.cpp
+H:\GitHub\Handout\Motor2D\j1Player.cpp(224): warning C4244: '=': conversión de 'int' a 'TYPE'; posible pérdida de datos
+          with
+          [
+              TYPE=float
+          ]
+H:\GitHub\Handout\Motor2D\j1Player.cpp(229): warning C4244: '=': conversión de 'int' a 'TYPE'; posible pérdida de datos
+          with
+          [
+              TYPE=float
+          ]
+H:\GitHub\Handout\Motor2D\j1Player.cpp(248): warning C4244: '=': conversión de 'int' a 'TYPE'; posible pérdida de datos
+          with
+          [
+              TYPE=float
+          ]
+H:\GitHub\Handout\Motor2D\j1Player.cpp(249): warning C4244: '=': conversión de 'int' a 'TYPE'; posible pérdida de datos
+          with
+          [
+              TYPE=float
+          ]
+H:\GitHub\Handout\Motor2D\j1Player.cpp(344): warning C4018: '<': no coinciden signed/unsigned
+H:\GitHub\Handout\Motor2D\j1Player.cpp(369): warning C4018: '<': no coinciden signed/unsigned
+H:\GitHub\Handout\Motor2D\j1Player.cpp(402): warning C4244: '+=': conversión de 'TYPE' a 'TYPE'; posible pérdida de datos
+          with
+          [
+              TYPE=float
+          ]
+          and
+          [
+              TYPE=int
+          ]
+H:\GitHub\Handout\Motor2D\j1Player.cpp(403): warning C4244: '+=': conversión de 'TYPE' a 'TYPE'; posible pérdida de datos
+          with
+          [
+              TYPE=float
+          ]
+          and
+          [
+              TYPE=int
+          ]
+H:\GitHub\Handout\Motor2D\j1Player.cpp(436): warning C4018: '<': no coinciden signed/unsigned
+H:\GitHub\Handout\Motor2D\j1Player.cpp(457): warning C4018: '<': no coinciden signed/unsigned
+  j1Scene.cpp
+  j1Render.cpp
+  Generando código...
   Motor2D.vcxproj -> H:\GitHub\Handout\Debug\Unknown Miner.exe

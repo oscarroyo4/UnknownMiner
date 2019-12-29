@@ -83,12 +83,23 @@ bool j1Scene::Start()
 // Called each loop iteration
 bool j1Scene::PreUpdate()
 {
+	bool collectedNow = false;
 	if (coin1->collected) 
-		App->entitymanager->DeleteEntity(coin1);
+		App->entitymanager->DeleteEntity(coin1); collectedNow = true;
 	if (coin2->collected) 
-		App->entitymanager->DeleteEntity(coin2);
+		App->entitymanager->DeleteEntity(coin2); collectedNow = true;
 	if (coin3->collected) 
-		App->entitymanager->DeleteEntity(coin3);
+		App->entitymanager->DeleteEntity(coin3); collectedNow = true;
+
+	if (!menu && !pause_menu && collectedNow) {
+		for (int i = 0; i <= coins; i++) {
+			App->gui->DeleteUIElement(coinImage[i]);
+			if (i != 0) {
+				coinImage[i-1] = App->gui->CreateUIElement(Type::IMAGE, nullptr, { coinOffset * i, 15, 8, 8 }, { 161, 119, 8, 8 });
+			}
+		}
+	}
+
 	return true;
 }
 
@@ -464,6 +475,5 @@ bool j1Scene::CreateInGameMenu() {
 
 	App->gui->ClearUI();
 	lifeBar = App->gui->CreateUIElement(Type::IMAGE, nullptr, { 5, 5, 32, 9 }, { 0, 36, 32, 9 });
-	coinImage = App->gui->CreateUIElement(Type::IMAGE, nullptr, { 5, 15, 8, 8 }, { 161, 119, 8, 8 });
 	return true;
 }

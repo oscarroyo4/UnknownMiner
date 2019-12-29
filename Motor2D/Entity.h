@@ -64,10 +64,6 @@ public:
 		return true;
 	}
 
-	virtual void CollectCoin() {
-
-	}
-
 public:
 	Types entity_type;
 	iPoint position;

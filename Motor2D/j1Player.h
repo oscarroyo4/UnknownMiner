@@ -49,8 +49,6 @@ public:
 	bool CleanUp();
 	bool Disable();
 
-	void CollectCoin();
-
 	// Load / Save
 	bool Save(pugi::xml_node&) const;
 
@@ -67,7 +65,6 @@ private:
 
 	bool ResetStates();
 
-	int coins;
 	int speed;
 	float gravity;
 	int deathLimit;

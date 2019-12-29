@@ -70,6 +70,8 @@ public:
 	iPoint map_line_pos;
 	SDL_Rect* container;
 
+	int coins;
+
 private:
 	int ambientFx;
 
@@ -100,7 +102,8 @@ private:
 	UI* menuButton = nullptr;
 	UI* fullscreeenButton = nullptr;
 	UI* tick = nullptr;
-	UI* coinImage = nullptr;
+	UI* coinImage[6];
+	int coinOffset = 5;
 	UI* lifeBar = nullptr;
 	UI* lifeUI1 = nullptr;
 	UI* lifeUI2 = nullptr;

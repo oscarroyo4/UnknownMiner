@@ -76,8 +76,8 @@ bool j1Coin::PreUpdate()
 
 	if (colCoin->CheckCollision(App->scene->player->r_collider) && !collected)
 	{
-		App->scene->player->CollectCoin();
-		LOG("Coin");
+		App->scene->coins++;
+		LOG("Coin collected");
 		collected = true;
 	}
 	
