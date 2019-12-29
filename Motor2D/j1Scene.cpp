@@ -374,6 +374,7 @@ void j1Scene::OnClick(UI* element) {
 				LOG("exit fullscreen");
 				App->gui->ClearUI();
 				CreateOptions();
+				SDL_SetWindowFullscreen(App->win->window, SDL_WINDOW_RESIZABLE);
 			}
 			else
 			{
@@ -381,6 +382,7 @@ void j1Scene::OnClick(UI* element) {
 				LOG("fullscreen");
 				App->gui->ClearUI();
 				CreateOptions();
+				SDL_SetWindowFullscreen(App->win->window, SDL_WINDOW_FULLSCREEN);
 			}
 			
 		}
