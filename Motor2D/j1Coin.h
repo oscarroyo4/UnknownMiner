@@ -24,12 +24,17 @@ public:
 	bool CleanUp();
 
 	void OnCollision(Collider* c1, Collider* c2);
+	void CollectCoin();
+
 private:
 	Animation* current_animation = &rotation;
 	Animation		rotation;
 	SDL_Texture*	coin_tex;
 	Collider* colCoin;
 	int collected_coins = 0;
+	int coin_position;
+	bool coin_collected = false;
+	int coin_timer;
 };
 
 #endif // !_j1COIN_H

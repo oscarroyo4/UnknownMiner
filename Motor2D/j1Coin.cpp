@@ -28,6 +28,7 @@ j1Coin::j1Coin() : Entity(Types::coin)
 	rotation.PushBack({ 96, 0, 8, 26 });
 	rotation.PushBack({ 124, 0, 14, 26 });
 	rotation.PushBack({ 151, 0, 21, 26 });*/
+	rotation.speed = 0.2f;
 }
 
 j1Coin::~j1Coin() {}
@@ -39,8 +40,9 @@ bool j1Coin::Awake(pugi::xml_node& config)
 	//Initialize variables from j1Coin.h
 	current_animation = &rotation;
 
-	position.x = App->scene->player->position.x +20;
+	position.x = App->scene->player->position.x +50;
 	position.y = App->scene->player->position.y +20;
+	coin_position = 0;
 
 	return ret;
 }
@@ -61,6 +63,11 @@ bool j1Coin::PreUpdate()
 {
 	bool ret = true;
 
+	if (colCoin->CheckCollision(App->scene->player->r_collider))
+	{
+		coin_collected = true;
+	}
+	
 	return ret;
 }
 
@@ -70,6 +77,13 @@ bool j1Coin::Update(float dt)
 
 	App->render->Blit(coin_tex, position.x, position.y, &r);
 
+	if (coin_collected == true)
+	{
+		CollectCoin();
+		
+		
+	}
+	
 	return ret;
 }
 
@@ -92,17 +106,45 @@ bool j1Coin::CleanUp()
 
 void j1Coin::OnCollision(Collider* c1, Collider* c2)
 {
-	switch (c2->type)
+	if (colCoin->CheckCollision(App->scene->player->r_collider)) 
+	{
+		collected_coins++;
+		LOG("COIN");
+	}
+
+	/*switch (c2->type)
 	{
 	case COLLIDER_PLAYER:
 
-		coin_tex = nullptr;
-		colCoin->to_delete;
+		App->entitymanager->entities->Delete;
+		//colCoin->to_delete;
 		collected_coins++;
 		LOG("COIN");
 
 		break;
 	default:
 		break;
+	}*/
+}
+
+void j1Coin::CollectCoin() 
+{
+	
+	switch (coin_position)
+	{
+	case 0:
+		collected_coins = 1;
+		colCoin->SetPos(position.x + 100, position.y - 50);
+		break;
+
+	case 1:	
+		collected_coins = 2;
+		colCoin->SetPos(position.x + 250, position.y - 120);
+		break;
+
+	default:
+		break;
 	}
+	coin_position++;
+
 }
