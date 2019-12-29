@@ -326,6 +326,8 @@ void j1Scene::OnClick(UI* element) {
 			App->gui->ClearUI();
 			player->input = true;
 			menu = false;
+			pause_menu = false;
+			CreateInGameMenu();
 			LOG("enter");
 		}
 		else if (button->name == "OPTIONS") {
@@ -356,6 +358,7 @@ void j1Scene::OnClick(UI* element) {
 			player->input = true;
 			menu = false;
 			pause_menu = false;
+			CreateInGameMenu();
 			LOG("resume");
 		}
 		else if (button->name == "MENU") {
@@ -450,6 +453,7 @@ bool j1Scene::CreatePauseMenu() {
 bool j1Scene::CreateInGameMenu() {
 
 	App->gui->ClearUI();
-
+	lifeBar = App->gui->CreateUIElement(Type::IMAGE, nullptr, { 5, 5, 32, 9 }, { 0, 36, 32, 9 });
+	coinImage = App->gui->CreateUIElement(Type::IMAGE, nullptr, { 5, 15, 8, 8 }, { 161, 119, 8, 8 });
 	return true;
 }

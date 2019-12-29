@@ -100,6 +100,11 @@ private:
 	UI* menuButton = nullptr;
 	UI* fullscreeenButton = nullptr;
 	UI* tick = nullptr;
+	UI* coinImage = nullptr;
+	UI* lifeBar = nullptr;
+	UI* lifeUI1 = nullptr;
+	UI* lifeUI2 = nullptr;
+	UI* lifeUI3 = nullptr;
 };
 
 #endif // __j1SCENE_H__
