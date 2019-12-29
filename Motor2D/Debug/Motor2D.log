@@ -1,6 +1,6 @@
 ﻿  EntityManager.cpp
   j1AirEnemy.cpp
-h:\github\handout\motor2d\j1airenemy.cpp(178): warning C4244: '=': conversión de 'TYPE' a 'TYPE'; posible pérdida de datos
+c:\users\carlos redolar\documents\github\unknownminer\motor2d\j1airenemy.cpp(178): warning C4244: '=': conversión de 'TYPE' a 'TYPE'; posible pérdida de datos
           with
           [
               TYPE=int
@@ -9,8 +9,8 @@ h:\github\handout\motor2d\j1airenemy.cpp(178): warning C4244: '=': conversión d
           [
               TYPE=float
           ]
-h:\github\handout\motor2d\j1airenemy.cpp(216): warning C4018: '>': no coinciden signed/unsigned
-h:\github\handout\motor2d\j1airenemy.cpp(235): warning C4244: '+=': conversión de 'TYPE' a 'TYPE'; posible pérdida de datos
+c:\users\carlos redolar\documents\github\unknownminer\motor2d\j1airenemy.cpp(216): warning C4018: '>': no coinciden signed/unsigned
+c:\users\carlos redolar\documents\github\unknownminer\motor2d\j1airenemy.cpp(235): warning C4244: '+=': conversión de 'TYPE' a 'TYPE'; posible pérdida de datos
           with
           [
               TYPE=float
@@ -19,7 +19,7 @@ h:\github\handout\motor2d\j1airenemy.cpp(235): warning C4244: '+=': conversión 
           [
               TYPE=int
           ]
-h:\github\handout\motor2d\j1airenemy.cpp(236): warning C4244: '+=': conversión de 'TYPE' a 'TYPE'; posible pérdida de datos
+c:\users\carlos redolar\documents\github\unknownminer\motor2d\j1airenemy.cpp(236): warning C4244: '+=': conversión de 'TYPE' a 'TYPE'; posible pérdida de datos
           with
           [
               TYPE=float
@@ -28,24 +28,24 @@ h:\github\handout\motor2d\j1airenemy.cpp(236): warning C4244: '+=': conversión 
           [
               TYPE=int
           ]
-h:\github\handout\motor2d\j1airenemy.cpp(263): warning C4018: '<': no coinciden signed/unsigned
-h:\github\handout\motor2d\p2point.h(122): warning C4244: 'argumento': conversión de 'TYPE' a 'float'; posible pérdida de datos
+c:\users\carlos redolar\documents\github\unknownminer\motor2d\j1airenemy.cpp(263): warning C4018: '<': no coinciden signed/unsigned
+c:\users\carlos redolar\documents\github\unknownminer\motor2d\p2point.h(122): warning C4244: 'argumento': conversión de 'TYPE' a 'float'; posible pérdida de datos
           with
           [
               TYPE=int
           ]
-  h:\github\handout\motor2d\p2point.h(118): note: durante la compilación de la función miembro de plantilla clase de 'TYPE p2Point<TYPE>::DistanceTo(const p2Point<TYPE> &) const'
+  c:\users\carlos redolar\documents\github\unknownminer\motor2d\p2point.h(118): note: durante la compilación de la función miembro de plantilla clase de 'TYPE p2Point<TYPE>::DistanceTo(const p2Point<TYPE> &) const'
           with
           [
               TYPE=int
           ]
-  h:\github\handout\motor2d\j1airenemy.cpp(117): note: vea la referencia a la creación de instancias de plantilla de función 'TYPE p2Point<TYPE>::DistanceTo(const p2Point<TYPE> &) const' que se está compilando
+  c:\users\carlos redolar\documents\github\unknownminer\motor2d\j1airenemy.cpp(117): note: vea la referencia a la creación de instancias de plantilla de función 'TYPE p2Point<TYPE>::DistanceTo(const p2Point<TYPE> &) const' que se está compilando
           with
           [
               TYPE=int
           ]
-  h:\github\handout\motor2d\entity.h(69): note: vea la referencia a la creación de instancias de plantilla clase de 'p2Point<int>' que se está compilando
-h:\github\handout\motor2d\p2point.h(122): warning C4244: 'return': conversión de 'float' a 'TYPE'; posible pérdida de datos
+  c:\users\carlos redolar\documents\github\unknownminer\motor2d\entity.h(69): note: vea la referencia a la creación de instancias de plantilla clase de 'p2Point<int>' que se está compilando
+c:\users\carlos redolar\documents\github\unknownminer\motor2d\p2point.h(122): warning C4244: 'return': conversión de 'float' a 'TYPE'; posible pérdida de datos
           with
           [
               TYPE=int
@@ -55,17 +55,17 @@ h:\github\handout\motor2d\p2point.h(122): warning C4244: 'return': conversión d
   j1FadeToBlack.cpp
   j1Fonts.cpp
   j1GroundEnemy.cpp
-h:\github\handout\motor2d\j1groundenemy.cpp(166): warning C4244: '=': conversión de 'int' a 'TYPE'; posible pérdida de datos
+c:\users\carlos redolar\documents\github\unknownminer\motor2d\j1groundenemy.cpp(166): warning C4244: '=': conversión de 'int' a 'TYPE'; posible pérdida de datos
           with
           [
               TYPE=float
           ]
-h:\github\handout\motor2d\j1groundenemy.cpp(172): warning C4244: '=': conversión de 'int' a 'TYPE'; posible pérdida de datos
+c:\users\carlos redolar\documents\github\unknownminer\motor2d\j1groundenemy.cpp(172): warning C4244: '=': conversión de 'int' a 'TYPE'; posible pérdida de datos
           with
           [
               TYPE=float
           ]
-h:\github\handout\motor2d\j1groundenemy.cpp(199): warning C4244: '=': conversión de 'TYPE' a 'TYPE'; posible pérdida de datos
+c:\users\carlos redolar\documents\github\unknownminer\motor2d\j1groundenemy.cpp(199): warning C4244: '=': conversión de 'TYPE' a 'TYPE'; posible pérdida de datos
           with
           [
               TYPE=int
@@ -74,8 +74,8 @@ h:\github\handout\motor2d\j1groundenemy.cpp(199): warning C4244: '=': conversió
           [
               TYPE=float
           ]
-h:\github\handout\motor2d\j1groundenemy.cpp(231): warning C4018: '>': no coinciden signed/unsigned
-h:\github\handout\motor2d\j1groundenemy.cpp(250): warning C4244: '+=': conversión de 'TYPE' a 'TYPE'; posible pérdida de datos
+c:\users\carlos redolar\documents\github\unknownminer\motor2d\j1groundenemy.cpp(231): warning C4018: '>': no coinciden signed/unsigned
+c:\users\carlos redolar\documents\github\unknownminer\motor2d\j1groundenemy.cpp(250): warning C4244: '+=': conversión de 'TYPE' a 'TYPE'; posible pérdida de datos
           with
           [
               TYPE=float
@@ -84,7 +84,7 @@ h:\github\handout\motor2d\j1groundenemy.cpp(250): warning C4244: '+=': conversi�
           [
               TYPE=int
           ]
-h:\github\handout\motor2d\j1groundenemy.cpp(251): warning C4244: '+=': conversión de 'TYPE' a 'TYPE'; posible pérdida de datos
+c:\users\carlos redolar\documents\github\unknownminer\motor2d\j1groundenemy.cpp(251): warning C4244: '+=': conversión de 'TYPE' a 'TYPE'; posible pérdida de datos
           with
           [
               TYPE=float
@@ -93,38 +93,38 @@ h:\github\handout\motor2d\j1groundenemy.cpp(251): warning C4244: '+=': conversi�
           [
               TYPE=int
           ]
-h:\github\handout\motor2d\j1groundenemy.cpp(275): warning C4018: '<': no coinciden signed/unsigned
-h:\github\handout\motor2d\p2point.h(122): warning C4244: 'argumento': conversión de 'TYPE' a 'float'; posible pérdida de datos
+c:\users\carlos redolar\documents\github\unknownminer\motor2d\j1groundenemy.cpp(275): warning C4018: '<': no coinciden signed/unsigned
+c:\users\carlos redolar\documents\github\unknownminer\motor2d\p2point.h(122): warning C4244: 'argumento': conversión de 'TYPE' a 'float'; posible pérdida de datos
           with
           [
               TYPE=int
           ]
-  h:\github\handout\motor2d\p2point.h(118): note: durante la compilación de la función miembro de plantilla clase de 'TYPE p2Point<TYPE>::DistanceTo(const p2Point<TYPE> &) const'
+  c:\users\carlos redolar\documents\github\unknownminer\motor2d\p2point.h(118): note: durante la compilación de la función miembro de plantilla clase de 'TYPE p2Point<TYPE>::DistanceTo(const p2Point<TYPE> &) const'
           with
           [
               TYPE=int
           ]
-  h:\github\handout\motor2d\j1groundenemy.cpp(127): note: vea la referencia a la creación de instancias de plantilla de función 'TYPE p2Point<TYPE>::DistanceTo(const p2Point<TYPE> &) const' que se está compilando
+  c:\users\carlos redolar\documents\github\unknownminer\motor2d\j1groundenemy.cpp(127): note: vea la referencia a la creación de instancias de plantilla de función 'TYPE p2Point<TYPE>::DistanceTo(const p2Point<TYPE> &) const' que se está compilando
           with
           [
               TYPE=int
           ]
-  h:\github\handout\motor2d\entity.h(69): note: vea la referencia a la creación de instancias de plantilla clase de 'p2Point<int>' que se está compilando
-h:\github\handout\motor2d\p2point.h(122): warning C4244: 'return': conversión de 'float' a 'TYPE'; posible pérdida de datos
+  c:\users\carlos redolar\documents\github\unknownminer\motor2d\entity.h(69): note: vea la referencia a la creación de instancias de plantilla clase de 'p2Point<int>' que se está compilando
+c:\users\carlos redolar\documents\github\unknownminer\motor2d\p2point.h(122): warning C4244: 'return': conversión de 'float' a 'TYPE'; posible pérdida de datos
           with
           [
               TYPE=int
           ]
   j1Gui.cpp
-h:\github\handout\motor2d\j1gui.cpp(56): warning C4018: '<': no coinciden signed/unsigned
-h:\github\handout\motor2d\j1gui.cpp(65): warning C4018: '<': no coinciden signed/unsigned
-h:\github\handout\motor2d\j1gui.cpp(144): warning C4018: '<': no coinciden signed/unsigned
-h:\github\handout\motor2d\j1gui.cpp(153): warning C4018: '<': no coinciden signed/unsigned
-h:\github\handout\motor2d\j1gui.cpp(168): warning C4018: '<': no coinciden signed/unsigned
-h:\github\handout\motor2d\j1gui.cpp(179): warning C4018: '<': no coinciden signed/unsigned
-h:\github\handout\motor2d\j1gui.cpp(245): warning C4018: '>': no coinciden signed/unsigned
-h:\github\handout\motor2d\j1gui.cpp(252): warning C4018: '>': no coinciden signed/unsigned
-h:\github\handout\motor2d\j1gui.cpp(373): warning C4244: '=': conversión de 'TYPE' a 'TYPE'; posible pérdida de datos
+c:\users\carlos redolar\documents\github\unknownminer\motor2d\j1gui.cpp(56): warning C4018: '<': no coinciden signed/unsigned
+c:\users\carlos redolar\documents\github\unknownminer\motor2d\j1gui.cpp(65): warning C4018: '<': no coinciden signed/unsigned
+c:\users\carlos redolar\documents\github\unknownminer\motor2d\j1gui.cpp(144): warning C4018: '<': no coinciden signed/unsigned
+c:\users\carlos redolar\documents\github\unknownminer\motor2d\j1gui.cpp(153): warning C4018: '<': no coinciden signed/unsigned
+c:\users\carlos redolar\documents\github\unknownminer\motor2d\j1gui.cpp(168): warning C4018: '<': no coinciden signed/unsigned
+c:\users\carlos redolar\documents\github\unknownminer\motor2d\j1gui.cpp(179): warning C4018: '<': no coinciden signed/unsigned
+c:\users\carlos redolar\documents\github\unknownminer\motor2d\j1gui.cpp(245): warning C4018: '>': no coinciden signed/unsigned
+c:\users\carlos redolar\documents\github\unknownminer\motor2d\j1gui.cpp(252): warning C4018: '>': no coinciden signed/unsigned
+c:\users\carlos redolar\documents\github\unknownminer\motor2d\j1gui.cpp(373): warning C4244: '=': conversión de 'TYPE' a 'TYPE'; posible pérdida de datos
           with
           [
               TYPE=int
@@ -133,7 +133,7 @@ h:\github\handout\motor2d\j1gui.cpp(373): warning C4244: '=': conversión de 'TY
           [
               TYPE=float
           ]
-h:\github\handout\motor2d\j1gui.cpp(374): warning C4244: '=': conversión de 'TYPE' a 'TYPE'; posible pérdida de datos
+c:\users\carlos redolar\documents\github\unknownminer\motor2d\j1gui.cpp(374): warning C4244: '=': conversión de 'TYPE' a 'TYPE'; posible pérdida de datos
           with
           [
               TYPE=int
@@ -144,84 +144,75 @@ h:\github\handout\motor2d\j1gui.cpp(374): warning C4244: '=': conversión de 'TY
           ]
   j1Main.cpp
   j1App.cpp
-h:\github\handout\motor2d\j1app.cpp(217): warning C4477: 'sprintf_s' : la cadena de formato '%lu' requiere un argumento de tipo 'unsigned long', pero el argumento variádico 6 tiene el tipo 'uint64'
-  h:\github\handout\motor2d\j1app.cpp(217): note: considere el uso de ' %llu' en la cadena de formato
-  h:\github\handout\motor2d\j1app.cpp(217): note: considere el uso de ' %I64u' en la cadena de formato
-h:\github\handout\motor2d\j1app.cpp(221): warning C4018: '<': no coinciden signed/unsigned
+c:\users\carlos redolar\documents\github\unknownminer\motor2d\j1app.cpp(217): warning C4477: 'sprintf_s' : la cadena de formato '%lu' requiere un argumento de tipo 'unsigned long', pero el argumento variádico 6 tiene el tipo 'uint64'
+  c:\users\carlos redolar\documents\github\unknownminer\motor2d\j1app.cpp(217): note: considere el uso de ' %llu' en la cadena de formato
+  c:\users\carlos redolar\documents\github\unknownminer\motor2d\j1app.cpp(217): note: considere el uso de ' %I64u' en la cadena de formato
+c:\users\carlos redolar\documents\github\unknownminer\motor2d\j1app.cpp(221): warning C4018: '<': no coinciden signed/unsigned
   j1Audio.cpp
   j1Input.cpp
   j1Map.cpp
-h:\github\handout\motor2d\j1map.cpp(40): warning C4244: '=': conversión de 'float' a 'TYPE'; posible pérdida de datos
+c:\users\carlos redolar\documents\github\unknownminer\motor2d\j1map.cpp(40): warning C4244: '=': conversión de 'float' a 'TYPE'; posible pérdida de datos
           with
           [
               TYPE=int
           ]
-h:\github\handout\motor2d\j1map.cpp(41): warning C4244: '=': conversión de 'float' a 'TYPE'; posible pérdida de datos
+c:\users\carlos redolar\documents\github\unknownminer\motor2d\j1map.cpp(41): warning C4244: '=': conversión de 'float' a 'TYPE'; posible pérdida de datos
           with
           [
               TYPE=int
           ]
-h:\github\handout\motor2d\j1map.cpp(89): warning C4018: '<': no coinciden signed/unsigned
-h:\github\handout\motor2d\j1map.cpp(91): warning C4018: '<': no coinciden signed/unsigned
-h:\github\handout\motor2d\j1map.cpp(219): warning C4018: '<': no coinciden signed/unsigned
-h:\github\handout\motor2d\j1map.cpp(221): warning C4018: '<': no coinciden signed/unsigned
-h:\github\handout\motor2d\j1map.cpp(444): warning C4804: '>': uso no seguro del tipo 'bool' en la operación
+c:\users\carlos redolar\documents\github\unknownminer\motor2d\j1map.cpp(89): warning C4018: '<': no coinciden signed/unsigned
+c:\users\carlos redolar\documents\github\unknownminer\motor2d\j1map.cpp(91): warning C4018: '<': no coinciden signed/unsigned
+c:\users\carlos redolar\documents\github\unknownminer\motor2d\j1map.cpp(219): warning C4018: '<': no coinciden signed/unsigned
+c:\users\carlos redolar\documents\github\unknownminer\motor2d\j1map.cpp(221): warning C4018: '<': no coinciden signed/unsigned
+c:\users\carlos redolar\documents\github\unknownminer\motor2d\j1map.cpp(444): warning C4804: '>': uso no seguro del tipo 'bool' en la operación
   j1Pathfinding.cpp
-h:\github\handout\motor2d\p2point.h(122): warning C4244: 'argumento': conversión de 'TYPE' a 'float'; posible pérdida de datos
+c:\users\carlos redolar\documents\github\unknownminer\motor2d\p2point.h(122): warning C4244: 'argumento': conversión de 'TYPE' a 'float'; posible pérdida de datos
           with
           [
               TYPE=int
           ]
-  h:\github\handout\motor2d\p2point.h(118): note: durante la compilación de la función miembro de plantilla clase de 'TYPE p2Point<TYPE>::DistanceTo(const p2Point<TYPE> &) const'
+  c:\users\carlos redolar\documents\github\unknownminer\motor2d\p2point.h(118): note: durante la compilación de la función miembro de plantilla clase de 'TYPE p2Point<TYPE>::DistanceTo(const p2Point<TYPE> &) const'
           with
           [
               TYPE=int
           ]
-  h:\github\handout\motor2d\j1pathfinding.cpp(160): note: vea la referencia a la creación de instancias de plantilla de función 'TYPE p2Point<TYPE>::DistanceTo(const p2Point<TYPE> &) const' que se está compilando
+  c:\users\carlos redolar\documents\github\unknownminer\motor2d\j1pathfinding.cpp(160): note: vea la referencia a la creación de instancias de plantilla de función 'TYPE p2Point<TYPE>::DistanceTo(const p2Point<TYPE> &) const' que se está compilando
           with
           [
               TYPE=int
           ]
-  h:\github\handout\motor2d\j1pathfinding.h(81): note: vea la referencia a la creación de instancias de plantilla clase de 'p2Point<int>' que se está compilando
-h:\github\handout\motor2d\p2point.h(122): warning C4244: 'return': conversión de 'float' a 'TYPE'; posible pérdida de datos
+  c:\users\carlos redolar\documents\github\unknownminer\motor2d\j1pathfinding.h(81): note: vea la referencia a la creación de instancias de plantilla clase de 'p2Point<int>' que se está compilando
+c:\users\carlos redolar\documents\github\unknownminer\motor2d\p2point.h(122): warning C4244: 'return': conversión de 'float' a 'TYPE'; posible pérdida de datos
           with
           [
               TYPE=int
           ]
   j1PerfTimer.cpp
   j1Player.cpp
-h:\github\handout\motor2d\j1player.cpp(224): warning C4244: '=': conversión de 'int' a 'TYPE'; posible pérdida de datos
+c:\users\carlos redolar\documents\github\unknownminer\motor2d\j1player.cpp(224): warning C4244: '=': conversión de 'int' a 'TYPE'; posible pérdida de datos
           with
           [
               TYPE=float
           ]
-h:\github\handout\motor2d\j1player.cpp(229): warning C4244: '=': conversión de 'int' a 'TYPE'; posible pérdida de datos
+c:\users\carlos redolar\documents\github\unknownminer\motor2d\j1player.cpp(229): warning C4244: '=': conversión de 'int' a 'TYPE'; posible pérdida de datos
           with
           [
               TYPE=float
           ]
-h:\github\handout\motor2d\j1player.cpp(248): warning C4244: '=': conversión de 'int' a 'TYPE'; posible pérdida de datos
+c:\users\carlos redolar\documents\github\unknownminer\motor2d\j1player.cpp(248): warning C4244: '=': conversión de 'int' a 'TYPE'; posible pérdida de datos
           with
           [
               TYPE=float
           ]
-h:\github\handout\motor2d\j1player.cpp(249): warning C4244: '=': conversión de 'int' a 'TYPE'; posible pérdida de datos
+c:\users\carlos redolar\documents\github\unknownminer\motor2d\j1player.cpp(249): warning C4244: '=': conversión de 'int' a 'TYPE'; posible pérdida de datos
           with
           [
               TYPE=float
           ]
-h:\github\handout\motor2d\j1player.cpp(344): warning C4018: '<': no coinciden signed/unsigned
-h:\github\handout\motor2d\j1player.cpp(369): warning C4018: '<': no coinciden signed/unsigned
-h:\github\handout\motor2d\j1player.cpp(402): warning C4244: '+=': conversión de 'TYPE' a 'TYPE'; posible pérdida de datos
-          with
-          [
-              TYPE=float
-          ]
-          and
-          [
-              TYPE=int
-          ]
-h:\github\handout\motor2d\j1player.cpp(403): warning C4244: '+=': conversión de 'TYPE' a 'TYPE'; posible pérdida de datos
+c:\users\carlos redolar\documents\github\unknownminer\motor2d\j1player.cpp(344): warning C4018: '<': no coinciden signed/unsigned
+c:\users\carlos redolar\documents\github\unknownminer\motor2d\j1player.cpp(369): warning C4018: '<': no coinciden signed/unsigned
+c:\users\carlos redolar\documents\github\unknownminer\motor2d\j1player.cpp(402): warning C4244: '+=': conversión de 'TYPE' a 'TYPE'; posible pérdida de datos
           with
           [
               TYPE=float
@@ -230,17 +221,26 @@ h:\github\handout\motor2d\j1player.cpp(403): warning C4244: '+=': conversión de
           [
               TYPE=int
           ]
-h:\github\handout\motor2d\j1player.cpp(436): warning C4018: '<': no coinciden signed/unsigned
-h:\github\handout\motor2d\j1player.cpp(457): warning C4018: '<': no coinciden signed/unsigned
+c:\users\carlos redolar\documents\github\unknownminer\motor2d\j1player.cpp(403): warning C4244: '+=': conversión de 'TYPE' a 'TYPE'; posible pérdida de datos
+          with
+          [
+              TYPE=float
+          ]
+          and
+          [
+              TYPE=int
+          ]
+c:\users\carlos redolar\documents\github\unknownminer\motor2d\j1player.cpp(436): warning C4018: '<': no coinciden signed/unsigned
+c:\users\carlos redolar\documents\github\unknownminer\motor2d\j1player.cpp(457): warning C4018: '<': no coinciden signed/unsigned
   j1Scene.cpp
   j1Timer.cpp
   p2Log.cpp
   j1Render.cpp
   Generando código...
-h:\github\handout\motor2d\j1pathfinding.cpp(232): warning C4715: 'j1PathFinding::CreatePath': no todas las rutas de acceso de control devuelven un valor
+c:\users\carlos redolar\documents\github\unknownminer\motor2d\j1pathfinding.cpp(232): warning C4715: 'j1PathFinding::CreatePath': no todas las rutas de acceso de control devuelven un valor
   Compilando...
   j1Textures.cpp
   j1Window.cpp
   pugixml.cpp
   Generando código...
-  Motor2D.vcxproj -> H:\GitHub\Handout\Debug\Unknown Miner.exe
+  Motor2D.vcxproj -> C:\Users\Carlos Redolar\Documents\GitHub\UnknownMiner\Debug\Unknown Miner.exe
