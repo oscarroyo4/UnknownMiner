@@ -131,7 +131,7 @@ bool j1Scene::PostUpdate()
 	bool ret = true;
 	//Input for quiting
 	if (App->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
-		if (!menu) { CreateUI(); player->input = false; menu = true; }
+		if (!menu && !pause_menu) { CreatePauseMenu(); player->input = false; menu = false; pause_menu = true; }
 	if(App->input->GetKey(SDL_SCANCODE_F4) == KEY_DOWN || quit)
 		ret = false;
 
@@ -302,16 +302,18 @@ bool j1Scene::CreateUI() {
 
 	App->gui->ClearUI();
 
+	menu = true;
+
 	int window_pos_x = 260;
 	int window_pos_y = 10;
 
-	image = App->gui->CreateUIElement(Type::IMAGE, nullptr, { 0, 0, 320, 180 }, { 0, 65, 160, 84 });
+	image = App->gui->CreateUIElement(Type::IMAGE, nullptr, { 0, 0, 320, 180 }, { 0, 46, 160, 84 });
 	image2 = App->gui->CreateUIElement(Type::IMAGE, nullptr, { 40, 50, 70, 35 }, { 84, 21, 43, 19 });
 	window = App->gui->CreateUIElement(Type::WINDOW, nullptr, { window_pos_x, window_pos_y, 48, 42 }, { 34, 0, 48, 42 });
-	enterButton = App->gui->CreateUIElement(Type::BUTTON, nullptr, { 140, 110, 48, 14 }, { 128, 0, 32, 9 }, "ENTER", { 128, 0, 32, 9 }, { 128, 0, 32, 9 }, false, { 0,0,0,0 }, this);
+	enterButton = App->gui->CreateUIElement(Type::BUTTON, nullptr, { 140, 110, 48, 14 }, { 0, 0, 32, 9 }, "ENTER", { 0, 0, 32, 9 }, { 0, 0, 32, 9 }, false, { 0,0,0,0 }, this);
 	optionsButton = App->gui->CreateUIElement(Type::BUTTON, window, { window_pos_x +8, window_pos_y+5, 32, 9 }, { 0, 9, 32, 9 }, "OPTIONS", { 0, 9, 32, 9 }, { 0, 9, 32, 9 }, false, { 0,0,0,0 }, this);
-	creditsButton = App->gui->CreateUIElement(Type::BUTTON, window, { window_pos_x + 8, window_pos_y + 17, 32, 9 }, { 128, 9, 32, 9 }, "CREDITS", { 128, 9, 32, 9 }, { 128, 9, 32, 9 }, false, { 0,0,0,0 }, this);
-	quitButton = App->gui->CreateUIElement(Type::BUTTON, window, { window_pos_x +8, window_pos_y+29, 32, 9 }, { 0, 18, 32, 9 }, "QUIT", { 0, 18, 32, 9 }, { 0, 18, 32, 9 }, false, { 0,0,0,0 }, this);
+	creditsButton = App->gui->CreateUIElement(Type::BUTTON, window, { window_pos_x + 8, window_pos_y + 17, 32, 9 }, { 0, 18, 32, 9 }, "CREDITS", { 0, 18, 32, 9 }, { 0, 18, 32, 9 }, false, { 0,0,0,0 }, this);
+	quitButton = App->gui->CreateUIElement(Type::BUTTON, window, { window_pos_x +8, window_pos_y+29, 32, 9 }, { 0, 27, 32, 9 }, "QUIT", { 0, 27, 32, 9 }, { 0, 27, 32, 9 }, false, { 0,0,0,0 }, this);
 
 	return true;
 }
@@ -325,15 +327,96 @@ void j1Scene::OnClick(UI* element) {
 			App->gui->ClearUI();
 			player->input = true;
 			menu = false;
+			LOG("enter");
 		}
 		else if (button->name == "OPTIONS") {
+			App->gui->ClearUI();
+			CreateOptions();
 			LOG("options");
 		}
 		else if (button->name == "CREDITS") {
+			App->gui->ClearUI();
+			CreateCredits();
 			LOG("credits");
+		}
+		else if (button->name == "BACK") {
+			App->gui->ClearUI();
+			if (menu)
+			{
+				CreateUI();
+			}
+			else
+			{
+				CreatePauseMenu();
+			}
+			
+			LOG("back");
+		}
+		else if (button->name == "RESUME") {
+			App->gui->ClearUI();
+			player->input = true;
+			menu = false;
+			pause_menu = false;
+			LOG("resume");
+		}
+		else if (button->name == "MENU") {
+			App->gui->ClearUI();
+			CreateUI();
+			
+			LOG("menu");
 		}
 		else if (button->name == "QUIT") {
 			quit = true;
 		}
 	}
+}
+
+bool j1Scene::CreateOptions() {
+
+	App->gui->ClearUI();
+
+	int window_pos_x = 70;
+	int window_pos_y = 40;
+	if (menu)
+	{
+		image = App->gui->CreateUIElement(Type::IMAGE, nullptr, { 0, 0, 320, 180 }, { 0, 46, 160, 84 });
+		window = App->gui->CreateUIElement(Type::WINDOW, nullptr, { window_pos_x, window_pos_y, 170, 99 }, { 160, 0, 170, 99 });
+		backButton = App->gui->CreateUIElement(Type::BUTTON, nullptr, { 10, 10, 17, 11 }, { 137, 31, 17, 11 }, "BACK", { 137, 31, 17, 11 }, { 137, 31, 17, 11 }, false, { 0,0,0,0 }, this);
+	}
+	else
+	{
+		window = App->gui->CreateUIElement(Type::WINDOW, nullptr, { window_pos_x, window_pos_y, 170, 99 }, { 160, 0, 170, 99 });
+		backButton = App->gui->CreateUIElement(Type::BUTTON, nullptr, { 10, 10, 17, 11 }, { 137, 31, 17, 11 }, "BACK", { 137, 31, 17, 11 }, { 137, 31, 17, 11 }, false, { 0,0,0,0 }, this);
+	}
+	
+
+	return true;
+}
+
+bool j1Scene::CreateCredits() {
+
+	App->gui->ClearUI();
+
+	int window_pos_x = 110;
+	int window_pos_y = 40;
+
+	image = App->gui->CreateUIElement(Type::IMAGE, nullptr, { 0, 0, 320, 180 }, { 0, 131, 160, 84 });
+	backButton = App->gui->CreateUIElement(Type::BUTTON, nullptr, { 10, 10, 17, 11 }, { 137, 31, 17, 11 }, "BACK", { 137, 31, 17, 11 }, { 137, 31, 17, 11 }, false, { 0,0,0,0 }, this);
+
+	return true;
+}
+
+bool j1Scene::CreatePauseMenu() {
+
+	App->gui->ClearUI();
+
+	int window_pos_x = 130;
+	int window_pos_y = 45;
+
+	window = App->gui->CreateUIElement(Type::WINDOW, nullptr, { window_pos_x, window_pos_y, 57, 79 }, { 196, 101, 57, 79 });
+	resumeButton = App->gui->CreateUIElement(Type::BUTTON, window, { window_pos_x + 9, window_pos_y + 15, 40, 12 }, { 161, 100, 32, 9 }, "RESUME", { 161, 100, 32, 9 }, { 161, 100, 32, 9 }, false, { 161, 100, 32, 9 }, this);
+	optionsButton = App->gui->CreateUIElement(Type::BUTTON, window, { window_pos_x + 13, window_pos_y + 40, 32, 9 }, { 0, 9, 32, 9 }, "OPTIONS", { 0, 9, 32, 9 }, { 0, 9, 32, 9 }, false, { 0,0,0,0 }, this);
+	menuButton = App->gui->CreateUIElement(Type::BUTTON, window, { window_pos_x + 13, window_pos_y + 55, 32, 9 }, { 161, 109, 32, 9 }, "MENU", { 161, 109, 32, 9 }, { 161, 109, 32, 9 }, false, { 0,0,0,0 }, this);
+
+	return true;
 }
