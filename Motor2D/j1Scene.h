@@ -103,6 +103,7 @@ private:
 	UI* loadButton = nullptr;
 	UI* menuButton = nullptr;
 	UI* fullscreeenButton = nullptr;
+	UI* audioText = nullptr;
 	UI* audioSlider = nullptr;
 	UI* tick = nullptr;
 	UI* coinImage[6];

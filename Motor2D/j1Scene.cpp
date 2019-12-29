@@ -448,7 +448,8 @@ bool j1Scene::CreateOptions() {
 	{
 		image = App->gui->CreateUIElement(Type::IMAGE, nullptr, { 0, 0, 320, 180 }, { 0, 46, 160, 84 });
 		window = App->gui->CreateUIElement(Type::WINDOW, nullptr, { window_pos_x, window_pos_y, 170, 99 }, { 160, 0, 170, 99 });
-		audioSlider = App->gui->CreateUIElement(Type::SLIDER, nullptr, { 200, 20, 100, 10 }, { 220, 181, 100, 10 }, "VOLUME", { 161, 119, 8, 8 });
+		audioText = App->gui->CreateUIElement(Type::IMAGE, window, { window_pos_x + 13, window_pos_y + 20, 25, 5 }, { 225, 183, 25, 5 });
+		audioSlider = App->gui->CreateUIElement(Type::SLIDER, window, { window_pos_x + 13, window_pos_y + 30, 100, 6 }, { 222, 196, 100, 6 }, "VOLUME", { 253, 181, 15, 10 });
 		if (fullscreen)
 		{
 			fullscreeenButton = App->gui->CreateUIElement(Type::BUTTON, window, { window_pos_x + 13, window_pos_y + 53, 55, 11 }, { 163, 191, 55, 11 }, "FULLSCREEN", { 163, 191, 55, 11 }, { 163, 191, 55, 11 }, false, { 0,0,0,0 }, this);
@@ -463,7 +464,8 @@ bool j1Scene::CreateOptions() {
 	else
 	{
 		window = App->gui->CreateUIElement(Type::WINDOW, nullptr, { window_pos_x, window_pos_y, 170, 99 }, { 160, 0, 170, 99 });
-		audioSlider = App->gui->CreateUIElement(Type::SLIDER, nullptr, { 200, 20, 100, 10 }, { 220, 181, 100, 10 }, "VOLUME", { 161, 119, 8, 8 });
+		audioText = App->gui->CreateUIElement(Type::IMAGE, window, { window_pos_x + 13, window_pos_y + 20, 25, 5 }, { 225, 183, 25, 5 });
+		audioSlider = App->gui->CreateUIElement(Type::SLIDER, window, { window_pos_x + 13, window_pos_y + 30, 100, 6 }, { 222, 196, 100, 6 }, "VOLUME", { 253, 181, 15, 10 });
 		if (fullscreen)
 		{
 			fullscreeenButton = App->gui->CreateUIElement(Type::BUTTON, window, { window_pos_x + 13, window_pos_y + 53, 55, 11 }, { 163, 191, 55, 11 }, "FULLSCREEN", { 163, 191, 55, 11 }, { 163, 191, 55, 11 }, false, { 0,0,0,0 }, this);
