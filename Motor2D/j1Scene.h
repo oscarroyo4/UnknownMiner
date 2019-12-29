@@ -56,7 +56,9 @@ public:
 	Entity* air_enemy2;
 	Entity* ground_enemy;
 	Entity* ground_enemy2;
-	Entity* coin;
+	Entity* coin1;
+	Entity* coin2;
+	Entity* coin3;
 
 	SDL_Texture* path_tex = nullptr;
 	SDL_Texture* map_line;

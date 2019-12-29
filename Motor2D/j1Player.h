@@ -49,23 +49,25 @@ public:
 	bool CleanUp();
 	bool Disable();
 
+	void CollectCoin();
+
 	// Load / Save
 	bool Save(pugi::xml_node&) const;
+
+
 
 	// Collisions
 	bool OnGround();
 	bool WallCollision();
 
 	//Public variables
-	//iPoint position;
-
 	Collider* colPlayer;
 
 private:
 
 	bool ResetStates();
 
-
+	int coins;
 	int speed;
 	float gravity;
 	int deathLimit;

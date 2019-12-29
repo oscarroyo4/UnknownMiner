@@ -54,10 +54,18 @@
     <groundenemy>
       <initialPos1 x="1552" y="592"/>
       <initialPos2 x="2768" y="656"/>
-      <initialPos3 x="336" y="320"/>
+      <initialPos3 x="336" y="333"/>
       <initialPos4 x="1568" y="576"/>
       <propierties life="100" speed="1" gravity="0.25" hitTime="19"/>
       <path tex="textures/GroundEnemy.png" move="audio/fx/RatMove.ogg" hit="audio/fx/RatSqueak_2.ogg" attack="audio/fx/RatSqueak_1.ogg" death="audio/fx/RatDeath.ogg"/>
     </groundenemy>
+    <coin>
+      <initialPos1 x="350" y="605"/>
+      <initialPos2 x="1115" y="425"/>
+      <initialPos3 x="2188" y="558"/>
+      <initialPos4 x="370" y="330"/>
+      <initialPos5 x="1383" y="540"/>
+      <initialPos6 x="2645" y="202"/>
+    </coin>
   </entitymanager>
 </config>

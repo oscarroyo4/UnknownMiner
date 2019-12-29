@@ -64,6 +64,10 @@ public:
 		return true;
 	}
 
+	virtual void CollectCoin() {
+
+	}
+
 public:
 	Types entity_type;
 	iPoint position;
@@ -73,6 +77,7 @@ public:
 	bool godmode = false;
 	bool input = true;
 	bool isHit = false;
+	bool collected = false;
 
 	int life;
 
@@ -80,6 +85,8 @@ public:
 	iPoint initialPos2;
 	iPoint initialPos3;
 	iPoint initialPos4;
+	iPoint initialPos5;
+	iPoint initialPos6;
 };
 
 #endif // !ENTITY_H

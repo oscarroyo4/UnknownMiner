@@ -51,7 +51,12 @@ bool j1Scene::Start()
 	ground_enemy->position = ground_enemy->initialPos1;
 	ground_enemy2 = App->entitymanager->CreateEntity(Types::enemy_ground);
 	ground_enemy2->position = ground_enemy->initialPos2;
-	coin = App->entitymanager->CreateEntity(Types::coin);
+	coin1 = App->entitymanager->CreateEntity(Types::coin);
+	coin1->position = coin1->initialPos1;
+	coin2 = App->entitymanager->CreateEntity(Types::coin);
+	coin2->position = coin1->initialPos2;
+	coin3 = App->entitymanager->CreateEntity(Types::coin);
+	coin3->position = coin1->initialPos3;
 
 	//App->map->Load(tex1.GetString());
 	
@@ -80,7 +85,12 @@ bool j1Scene::Start()
 // Called each loop iteration
 bool j1Scene::PreUpdate()
 {
-
+	if (coin1->collected) 
+		App->entitymanager->DeleteEntity(coin1);
+	if (coin2->collected) 
+		App->entitymanager->DeleteEntity(coin2);
+	if (coin3->collected) 
+		App->entitymanager->DeleteEntity(coin3);
 	return true;
 }
 
@@ -146,7 +156,9 @@ bool j1Scene::ChargeFirstLevel() //Changing to level 1
 	if (air_enemy2 != nullptr)		App->entitymanager->DeleteEntity(air_enemy2);
 	if (ground_enemy != nullptr)	App->entitymanager->DeleteEntity(ground_enemy);
 	if (ground_enemy2 != nullptr)	App->entitymanager->DeleteEntity(ground_enemy2);
-	if (coin != nullptr)			App->entitymanager->DeleteEntity(coin);
+	if (coin1 != nullptr)			App->entitymanager->DeleteEntity(coin1);
+	if (coin2 != nullptr)			App->entitymanager->DeleteEntity(coin2);
+	if (coin3 != nullptr)			App->entitymanager->DeleteEntity(coin3);
 
 
 	p2List_item<Collider*>* item;
@@ -175,7 +187,12 @@ bool j1Scene::ChargeFirstLevel() //Changing to level 1
 	ground_enemy->position = ground_enemy->initialPos1;
 	ground_enemy2 = App->entitymanager->CreateEntity(Types::enemy_ground);
 	ground_enemy2->position = ground_enemy->initialPos2;
-	coin = App->entitymanager->CreateEntity(Types::coin);
+	coin1 = App->entitymanager->CreateEntity(Types::coin);
+	coin1->position = coin1->initialPos1;
+	coin2 = App->entitymanager->CreateEntity(Types::coin);
+	coin2->position = coin1->initialPos2;
+	coin3 = App->entitymanager->CreateEntity(Types::coin);
+	coin3->position = coin1->initialPos3;
 
 	if (!loaded) {
 		player->position = player->initialPos1; //Load position from config_file
@@ -199,7 +216,9 @@ bool j1Scene::ChargeSecondLevel() //Changing to level 2
 	if (air_enemy2 != nullptr)		App->entitymanager->DeleteEntity(air_enemy2);
 	if (ground_enemy != nullptr)	App->entitymanager->DeleteEntity(ground_enemy);
 	if (ground_enemy2 != nullptr)	App->entitymanager->DeleteEntity(ground_enemy2);
-	if (coin != nullptr)			App->entitymanager->DeleteEntity(coin);
+	if (coin1 != nullptr)			App->entitymanager->DeleteEntity(coin1);
+	if (coin2 != nullptr)			App->entitymanager->DeleteEntity(coin2);
+	if (coin3 != nullptr)			App->entitymanager->DeleteEntity(coin3);
 
 	p2List_item<Collider*>* item;
 	for (item = App->map->groundCol.start; item != NULL; item = item->next) //deleting all colliders
@@ -229,7 +248,12 @@ bool j1Scene::ChargeSecondLevel() //Changing to level 2
 	ground_enemy->position = ground_enemy->initialPos3;
 	ground_enemy2 = App->entitymanager->CreateEntity(Types::enemy_ground);
 	ground_enemy2->position = ground_enemy->initialPos4;
-	coin = App->entitymanager->CreateEntity(Types::coin);
+	coin1 = App->entitymanager->CreateEntity(Types::coin);
+	coin1->position = coin1->initialPos4;
+	coin2 = App->entitymanager->CreateEntity(Types::coin);
+	coin2->position = coin1->initialPos5;
+	coin3 = App->entitymanager->CreateEntity(Types::coin);
+	coin3->position = coin1->initialPos6;
 
 	if (!loaded) {
 		player->position = player->initialPos2; //Load position from config_file
