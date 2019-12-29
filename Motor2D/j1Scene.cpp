@@ -121,9 +121,8 @@ bool j1Scene::PostUpdate()
 	bool ret = true;
 	//Input for quiting
 	if (App->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
-		if (menu) { App->gui->ClearUI(); player->input = true; menu = false; }
-		else { CreateUI(); player->input = false; menu = true; }
-	if(App->input->GetKey(SDL_SCANCODE_K) == KEY_DOWN)
+		if (!menu) { CreateUI(); player->input = false; menu = true; }
+	if(App->input->GetKey(SDL_SCANCODE_F4) == KEY_DOWN || quit)
 		ret = false;
 
 	return ret;
@@ -299,7 +298,9 @@ void j1Scene::OnClick(UI* element) {
 		ButtonUI* button = (ButtonUI*)element;
 
 		if (button->name == "ENTER") {
-			LOG("enter");
+			App->gui->ClearUI();
+			player->input = true;
+			menu = false;
 		}
 		else if (button->name == "OPTIONS") {
 			LOG("options");
@@ -308,7 +309,7 @@ void j1Scene::OnClick(UI* element) {
 			LOG("credits");
 		}
 		else if (button->name == "QUIT") {
-			LOG("quit");
+			quit = true;
 		}
 	}
 }

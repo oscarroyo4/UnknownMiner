@@ -78,6 +78,7 @@ private:
 
 	//UI	
 	bool menu = true;
+	bool quit = false;
 	UI* window = nullptr;
 	UI* image = nullptr;
 	UI* image2 = nullptr;
