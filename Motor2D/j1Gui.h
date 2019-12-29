@@ -173,8 +173,6 @@ private:
 
 	iPoint mouse;
 	bool clickRet;
-
-	int slider;
 };
 
 
@@ -228,6 +226,8 @@ public:
 
 	//Audio
 	int click_sfx;
+
+	int slider;
 
 };
 

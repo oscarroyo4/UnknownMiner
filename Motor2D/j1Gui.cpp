@@ -35,6 +35,7 @@ bool j1Gui::Start()
 {
 	atlas = App->tex->Load(atlas_file_name.GetString());
 	click_sfx = App->audio->LoadFx("audio/fx/Click.wav");
+	slider = 89;
 
 	return true;
 }
@@ -495,10 +496,10 @@ SliderUI::SliderUI(Type type, UI* p, SDL_Rect r, SDL_Rect sprite, SDL_Rect sprit
 	base.w = r.w;
 	base.h = r.h;
 
-	quad.x = r.x;
-	quad.y = r.y;
-	quad.w = r.h;
-	quad.h = r.h;
+	quad.x = App->gui->slider + base.x;
+	quad.y = r.y - 2;
+	quad.w = spriten2.w;
+	quad.h = spriten2.h;
 
 	clickRet = false;
 }
@@ -524,26 +525,20 @@ bool SliderUI::PostUpdate()
 
 	App->render->BlitInQuad((SDL_Texture*)App->gui->GetAtlas(), sprite_, quad);
 
-	slider = quad.x + 10 - base.x;
-	
+	App->gui->slider = quad.x - base.x;
+
 	UI::PostUpdate();
 	return true;
 }
 
 bool SliderUI::PreUpdate()
 {
-	//here it goes the name to what you want to do
-	if (name == "music")
-	{
-		Mix_VolumeMusic((int)slider * 1.28);
-	}
-	else if (name == "fx")
-	{
-		p2List_item<Mix_Chunk*>* item = App->audio->fx.start;
-		while (item != nullptr) {
-			Mix_VolumeChunk(item->data, (int)slider * 1.28);
-			item = item->next;
-		}
+	Mix_VolumeMusic((int)App->gui->slider * 1.28);
+
+	p2List_item<Mix_Chunk*>* item = App->audio->fx.start;
+	while (item != nullptr) {
+		Mix_VolumeChunk(item->data, (int)App->gui->slider * 1.28);
+		item = item->next;
 	}
 	UI::PreUpdate();
 	return true;
