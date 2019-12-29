@@ -364,6 +364,23 @@ void j1Scene::OnClick(UI* element) {
 			
 			LOG("menu");
 		}
+		else if (button->name == "FULLSCREEN") {
+			if (fullscreen)
+			{
+				fullscreen = false;
+				LOG("exit fullscreen");
+				App->gui->ClearUI();
+				CreateOptions();
+			}
+			else
+			{
+				fullscreen = true;
+				LOG("fullscreen");
+				App->gui->ClearUI();
+				CreateOptions();
+			}
+			
+		}
 		else if (button->name == "QUIT") {
 			quit = true;
 		}
@@ -380,13 +397,23 @@ bool j1Scene::CreateOptions() {
 	{
 		image = App->gui->CreateUIElement(Type::IMAGE, nullptr, { 0, 0, 320, 180 }, { 0, 46, 160, 84 });
 		window = App->gui->CreateUIElement(Type::WINDOW, nullptr, { window_pos_x, window_pos_y, 170, 99 }, { 160, 0, 170, 99 });
+		if (fullscreen)
+		{
+			fullscreeenButton = App->gui->CreateUIElement(Type::BUTTON, window, { window_pos_x + 13, window_pos_y + 53, 55, 11 }, { 163, 191, 55, 11 }, "FULLSCREEN", { 163, 191, 55, 11 }, { 163, 191, 55, 11 }, false, { 0,0,0,0 }, this);
+		}
+		else
+		{
+			fullscreeenButton = App->gui->CreateUIElement(Type::BUTTON, window, { window_pos_x + 13, window_pos_y + 55, 53, 9 }, { 163, 181, 53, 9 }, "FULLSCREEN", { 163, 181, 53, 9 }, { 163, 181, 53, 9 }, false, { 0,0,0,0 }, this);	
+		}
 		backButton = App->gui->CreateUIElement(Type::BUTTON, nullptr, { 10, 10, 17, 11 }, { 137, 31, 17, 11 }, "BACK", { 137, 31, 17, 11 }, { 137, 31, 17, 11 }, false, { 0,0,0,0 }, this);
+		
 	}
 	else
 	{
 		window = App->gui->CreateUIElement(Type::WINDOW, nullptr, { window_pos_x, window_pos_y, 170, 99 }, { 160, 0, 170, 99 });
 		backButton = App->gui->CreateUIElement(Type::BUTTON, nullptr, { 10, 10, 17, 11 }, { 137, 31, 17, 11 }, "BACK", { 137, 31, 17, 11 }, { 137, 31, 17, 11 }, false, { 0,0,0,0 }, this);
 	}
+
 	
 
 	return true;

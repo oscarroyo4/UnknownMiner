@@ -87,6 +87,7 @@ private:
 	bool menu = true;
 	bool pause_menu = false;
 	bool quit = false;
+	bool fullscreen = false;
 	UI* window = nullptr;
 	UI* image = nullptr;
 	UI* image2 = nullptr;
@@ -97,6 +98,8 @@ private:
 	UI* backButton = nullptr;
 	UI* resumeButton = nullptr;
 	UI* menuButton = nullptr;
+	UI* fullscreeenButton = nullptr;
+	UI* tick = nullptr;
 };
 
 #endif // __j1SCENE_H__
