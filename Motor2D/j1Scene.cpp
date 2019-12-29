@@ -281,13 +281,13 @@ bool j1Scene::ChargeSecondLevel() //Changing to level 2
 
 bool j1Scene::Load(pugi::xml_node& data) {
 	level_Loaded = data.child("scene").attribute("level").as_int();
-	player->input = false;
+	//player->input = false;
 	if (level_Loaded == 1) {
-		App->fadetoblack->FadeToBlack(1);
+		//App->fadetoblack->FadeToBlack(1);
 		
 	}
 	else if (level_Loaded == 2) {
-		App->fadetoblack->FadeToBlack(2);
+		//App->fadetoblack->FadeToBlack(2);
 	}
 	loaded = true;
 	tempP.x = data.parent().child("player").child("player").attribute("x").as_int();
