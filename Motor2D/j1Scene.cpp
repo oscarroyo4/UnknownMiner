@@ -140,7 +140,7 @@ bool j1Scene::PostUpdate()
 	bool ret = true;
 	//Input for menu
 	if (App->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
-		if (!menu && !pause_menu) { CreatePauseMenu(); player->input = false; menu = false; pause_menu = true; }
+		if (!menu && !pause_menu) { CreatePauseMenu(); player->input = false; menu = false; pause_menu = true; App->audio->PlayFx(App->gui->click_sfx);}
 	//Input for quit
 	if(App->input->GetKey(SDL_SCANCODE_F4) == KEY_DOWN || quit)
 		ret = false;
