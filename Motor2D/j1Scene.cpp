@@ -293,31 +293,22 @@ bool j1Scene::CreateUI() {
 	return true;
 }
 
-/*void j1Scene::OnClick(UI* element) {
+void j1Scene::OnClick(UI* element) {
 	if (element->type == Type::BUTTON)
 	{
 		ButtonUI* button = (ButtonUI*)element;
-		switch (button->action)
-		{
-		case ButtonAction::ENTER:
-			LOG("ENTER");
-			break;
 
-		case ButtonAction::OPTIONS:
-			LOG("OPTIONS");
-			break;
-
-		case ButtonAction::CREDITS:
-			LOG("CREDITS");
-			break;
-
-		case ButtonAction::QUIT:
-			LOG("QUIT");
-			break;
-
-		default:
-			break;
+		if (button->name == "ENTER") {
+			LOG("enter");
+		}
+		else if (button->name == "OPTIONS") {
+			LOG("options");
+		}
+		else if (button->name == "CREDITS") {
+			LOG("credits");
+		}
+		else if (button->name == "QUIT") {
+			LOG("quit");
+		}
 	}
-	//LOG("Yeah fuck it");
-	//return true;
-}*/
+}
