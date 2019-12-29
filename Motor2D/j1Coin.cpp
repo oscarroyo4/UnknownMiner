@@ -16,12 +16,11 @@
 
 j1Coin::j1Coin() : Entity(Types::coin)
 {
-	//type = Types::coin;
+	name.create("coin");
 
 	coin_tex = nullptr;
 
-	float speed = 0.1f;
-	//Rotate
+	//Rotate animation
 	rotation.PushBack({ 20, 20, 160, 160 });
 	/*rotation.PushBack({ 30, 0, 21, 26 });
 	rotation.PushBack({ 63, 0, 14, 26 });
@@ -44,6 +43,8 @@ bool j1Coin::Awake(pugi::xml_node& config)
 	position.y = App->scene->player->position.y +20;
 	coin_position = 0;
 
+	CoinFX = "audio/fx/Coin.wav";
+
 	return ret;
 }
 
@@ -52,6 +53,7 @@ bool j1Coin::Start()
 	bool ret = true;
 
 	coin_tex = App->tex->Load("textures/Coin.png");
+	App->audio->LoadFx(CoinFX.GetString());
 
 	r_collider = { position.x, position.y + 2, 10, 10 };
 	colCoin = App->collision->AddCollider(r_collider, COLLIDER_COIN);
@@ -80,7 +82,7 @@ bool j1Coin::Update(float dt)
 	if (coin_collected == true)
 	{
 		CollectCoin();
-		
+		if (!coinSound) { coinSound = true; App->audio->PlayFx(coinFx, 0); }
 		
 	}
 	

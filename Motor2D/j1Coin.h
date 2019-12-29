@@ -31,10 +31,13 @@ private:
 	Animation		rotation;
 	SDL_Texture*	coin_tex;
 	Collider* colCoin;
+	p2SString CoinFX;
+	bool coinSound = false;
 	int collected_coins = 0;
 	int coin_position;
 	bool coin_collected = false;
 	int coin_timer;
+	int coinFx;
 };
 
 #endif // !_j1COIN_H
