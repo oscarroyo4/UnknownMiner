@@ -14,6 +14,7 @@ enum class Type
 	IMAGE,
 	WINDOW,
 	TEXT,
+	SLIDER,
 	UNKNOWN
 };
 
@@ -146,6 +147,37 @@ public:
 	bool pushed;
 	bool over;
 };
+
+class SliderUI : public UI {
+public:
+
+	SliderUI(Type type, UI* p, SDL_Rect r, SDL_Rect sprite, SDL_Rect spriten2, bool d, bool f, SDL_Rect d_area);
+
+	// Destructor
+	virtual ~SliderUI() {}
+
+	bool Awake(pugi::xml_node&) { return true; };
+	// Call before first frame
+	bool Start() { return true; };
+	// Called before all Updates
+	bool PreUpdate();
+	// Called after all Updates
+	bool PostUpdate();
+	// Called before quitting
+	bool CleanUp() { return true; };
+	bool OnClick();
+
+private:
+	SDL_Rect base;
+	SDL_Rect sprite2;
+
+	iPoint mouse;
+	bool clickRet;
+
+	int slider;
+};
+
+
 // ---------------------------------------------------
 class j1Gui : public j1Module
 {

@@ -112,7 +112,11 @@ UI* j1Gui::CreateUIElement(Type type, UI* p, SDL_Rect r, SDL_Rect sprite, p2SStr
 	case Type::TEXT:
 		ui = new TextUI(Type::TEXT, p, r, str, drageable, drageable, drag_area);
 		break;
+	case Type::SLIDER:
+		ui = new SliderUI(Type::SLIDER, p, r, sprite, sprite2, drageable, drageable, drag_area);
+		break;
 	}
+	
 
 	
 	ui->name = str;
@@ -479,4 +483,85 @@ bool ButtonUI::PreUpdate() {
 	UI::PreUpdate();
 
 	return true;
+}
+
+
+SliderUI::SliderUI(Type type, UI* p, SDL_Rect r, SDL_Rect sprite, SDL_Rect spriten2, bool d, bool f, SDL_Rect d_area) :UI(type, r, p, d, f, d_area) {
+	name.create("ButtonUI");
+	sprite1 = sprite;
+	sprite2 = spriten2;
+	base.x = r.x;
+	base.y = r.y;
+	base.w = r.w;
+	base.h = r.h;
+
+	quad.x = r.x;
+	quad.y = r.y;
+	quad.w = r.h;
+	quad.h = r.h;
+
+	clickRet = false;
+}
+
+bool SliderUI::PostUpdate()
+{
+	iPoint dif_sprite = { 0,0 };
+	iPoint dif_sprite1 = { 0,0 };
+	SDL_Rect sprite = UI::Check_Printable_Rect(sprite1, dif_sprite);
+	SDL_Rect sprite_ = UI::Check_Printable_Rect(sprite2, dif_sprite1);
+	base.x = GetScreenPos().x + dif_sprite.x;
+	base.y = GetScreenPos().y + dif_sprite.y;
+
+	App->render->BlitInQuad((SDL_Texture*)App->gui->GetAtlas(), sprite, base);
+	
+	if (OnClick()) {
+		int xpos;
+		int ypos;
+		App->input->GetMousePosition(xpos, ypos);
+		if (xpos<base.x + base.w - 5 && xpos>base.x + 5)
+			quad.x = xpos - 5;
+	}
+
+	App->render->BlitInQuad((SDL_Texture*)App->gui->GetAtlas(), sprite_, quad);
+
+	slider = quad.x + 10 - base.x;
+	
+	UI::PostUpdate();
+	return true;
+}
+
+bool SliderUI::PreUpdate()
+{
+	//here it goes the name to what you want to do
+	if (name == "music")
+	{
+		Mix_VolumeMusic((int)slider * 1.28);
+	}
+	else if (name == "fx")
+	{
+		p2List_item<Mix_Chunk*>* item = App->audio->fx.start;
+		while (item != nullptr) {
+			Mix_VolumeChunk(item->data, (int)slider * 1.28);
+			item = item->next;
+		}
+	}
+	UI::PreUpdate();
+	return true;
+}
+
+bool SliderUI::OnClick()
+{
+	App->input->GetMousePosition(mouse.x, mouse.y);
+	if (mouse.x<quad.x + quad.w && mouse.x>quad.x) {
+		if (mouse.y<quad.y + quad.h && mouse.y>quad.y) {
+			if (App->input->GetMouseButtonDown(SDL_BUTTON_LEFT))
+				clickRet = true;
+		}
+	}
+
+	if (!App->input->GetMouseButtonDown(SDL_BUTTON_LEFT)) {
+		clickRet = false;
+	}
+
+	return clickRet;
 }

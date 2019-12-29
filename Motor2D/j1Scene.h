@@ -101,6 +101,7 @@ private:
 	UI* resumeButton = nullptr;
 	UI* menuButton = nullptr;
 	UI* fullscreeenButton = nullptr;
+	UI* audioSlider = nullptr;
 	UI* tick = nullptr;
 	UI* coinImage[6];
 	int coinOffset = 5;
