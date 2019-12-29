@@ -77,6 +77,7 @@ bool j1Scene::Start()
 	level_Loaded = 1;
 
 	container = new SDL_Rect{ 0,0,3000,1000 };
+	coins = 0;
 
 	return true;
 }
@@ -96,7 +97,8 @@ bool j1Scene::PreUpdate()
 	//Updating ui coins
 	if (!menu && !pause_menu && collectedNow) {
 		for (int i = 0; i <= coins; i++) {
-			App->gui->DeleteUIElement(coinImage[i]);
+			if(coinImage[i] != nullptr)
+				App->gui->DeleteUIElement(coinImage[i]);
 			if (i != 0) {
 				coinImage[i-1] = App->gui->CreateUIElement(Type::IMAGE, nullptr, { coinOffset * i, 15, 8, 8 }, { 161, 119, 8, 8 });
 			}

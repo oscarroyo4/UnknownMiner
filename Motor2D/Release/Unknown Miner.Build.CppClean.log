@@ -1,16 +1,39 @@
-h:\github\handout\motor2d\release\j1app.obj
-h:\github\handout\motor2d\release\j1audio.obj
-h:\github\handout\motor2d\release\j1collision.obj
-h:\github\handout\motor2d\release\j1fadetoblack.obj
-h:\github\handout\motor2d\release\j1input.obj
-h:\github\handout\motor2d\release\j1main.obj
-h:\github\handout\motor2d\release\j1map.obj
-h:\github\handout\motor2d\release\j1player.obj
-h:\github\handout\motor2d\release\j1render.obj
-h:\github\handout\motor2d\release\j1scene.obj
-h:\github\handout\motor2d\release\j1textures.obj
-h:\github\handout\motor2d\release\j1window.obj
-h:\github\handout\motor2d\release\p2log.obj
-h:\github\handout\motor2d\release\pugixml.obj
-h:\github\handout\motor2d\release\motor 2d.res
 h:\github\handout\motor2d\release\vc142.pdb
+h:\github\handout\motor2d\release\j1render.obj
+h:\github\handout\motor2d\release\p2log.obj
+h:\github\handout\motor2d\release\j1timer.obj
+h:\github\handout\motor2d\release\j1scene.obj
+h:\github\handout\motor2d\release\j1player.obj
+h:\github\handout\motor2d\release\j1perftimer.obj
+h:\github\handout\motor2d\release\j1pathfinding.obj
+h:\github\handout\motor2d\release\j1map.obj
+h:\github\handout\motor2d\release\j1input.obj
+h:\github\handout\motor2d\release\j1audio.obj
+h:\github\handout\motor2d\release\j1app.obj
+h:\github\handout\motor2d\release\j1main.obj
+h:\github\handout\motor2d\release\j1gui.obj
+h:\github\handout\motor2d\release\j1groundenemy.obj
+h:\github\handout\motor2d\release\j1fonts.obj
+h:\github\handout\motor2d\release\j1fadetoblack.obj
+h:\github\handout\motor2d\release\j1collision.obj
+h:\github\handout\motor2d\release\j1coin.obj
+h:\github\handout\motor2d\release\j1airenemy.obj
+h:\github\handout\motor2d\release\entitymanager.obj
+h:\github\handout\motor2d\release\pugixml.obj
+h:\github\handout\motor2d\release\j1window.obj
+h:\github\handout\motor2d\release\j1textures.obj
+h:\github\handout\release\unknown miner.exe
+h:\github\handout\release\unknown miner.pdb
+h:\github\handout\motor2d\release\motor 2d.res
+h:\github\handout\release\unknown miner.ipdb
+h:\github\handout\release\unknown miner.iobj
+h:\github\handout\motor2d\release\unknown miner.tlog\cl.command.1.tlog
+h:\github\handout\motor2d\release\unknown miner.tlog\cl.read.1.tlog
+h:\github\handout\motor2d\release\unknown miner.tlog\cl.write.1.tlog
+h:\github\handout\motor2d\release\unknown miner.tlog\link.command.1.tlog
+h:\github\handout\motor2d\release\unknown miner.tlog\link.read.1.tlog
+h:\github\handout\motor2d\release\unknown miner.tlog\link.write.1.tlog
+h:\github\handout\motor2d\release\unknown miner.tlog\rc.command.1.tlog
+h:\github\handout\motor2d\release\unknown miner.tlog\rc.read.1.tlog
+h:\github\handout\motor2d\release\unknown miner.tlog\rc.write.1.tlog
+h:\github\handout\motor2d\release\unknown miner.tlog\unknown miner.write.1u.tlog
