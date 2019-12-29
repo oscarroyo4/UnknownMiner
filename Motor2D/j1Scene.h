@@ -105,9 +105,7 @@ private:
 	UI* coinImage[6];
 	int coinOffset = 5;
 	UI* lifeBar = nullptr;
-	UI* lifeUI1 = nullptr;
-	UI* lifeUI2 = nullptr;
-	UI* lifeUI3 = nullptr;
+	UI* lifeUI = nullptr;
 };
 
 #endif // __j1SCENE_H__
