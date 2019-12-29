@@ -40,10 +40,10 @@ bool j1FadeToBlack::Update(float dt)
 		if (now >= total_time)
 		{
 			if (level == 1) {
-				App->scene->ChargeFirstLevel();
+				//App->scene->ChargeFirstLevel();
 			}
 			else if (level == 2) { 
-				App->scene->ChargeSecondLevel(); 
+				//App->scene->ChargeSecondLevel(); 
 			}
 			total_time += total_time;
 			start_time = SDL_GetTicks();

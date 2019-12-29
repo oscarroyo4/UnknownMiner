@@ -108,20 +108,38 @@ bool j1Scene::Update(float dt)
 {
 	//Inputs for debug
 
-	if (App->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN)
+	if (App->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN) {
 		App->fadetoblack->FadeToBlack(1);
+		ChargeFirstLevel();
+	}
 
-	if (App->input->GetKey(SDL_SCANCODE_F2) == KEY_DOWN)
+	if (App->input->GetKey(SDL_SCANCODE_F2) == KEY_DOWN) {
 		App->fadetoblack->FadeToBlack(2);
+		ChargeSecondLevel();		
+	}		
 
-	if (App->input->GetKey(SDL_SCANCODE_F3) == KEY_DOWN)
-		App->fadetoblack->FadeToBlack(level_Loaded);
+	if (App->input->GetKey(SDL_SCANCODE_F3) == KEY_DOWN) {
+		if (level_Loaded == 1)
+		{
+			App->fadetoblack->FadeToBlack(1);
+			ChargeFirstLevel();
+		}
+		else if (level_Loaded == 2)
+		{
+			App->fadetoblack->FadeToBlack(2);
+			ChargeSecondLevel();			
+		}
+	}
+		
+		//App->fadetoblack->FadeToBlack(level_Loaded);
 
 	if (App->input->GetKey(SDL_SCANCODE_F5) == KEY_DOWN)
 		App->SaveGame("saves/save_game.xml");
 
-	if (App->input->GetKey(SDL_SCANCODE_F6) == KEY_DOWN)
+	if (App->input->GetKey(SDL_SCANCODE_F6) == KEY_DOWN) 
 		App->LoadGame("saves/save_game.xml");
+	
+		
 
 	//Render Map
 	App->map->Draw();
@@ -283,11 +301,11 @@ bool j1Scene::Load(pugi::xml_node& data) {
 	level_Loaded = data.child("scene").attribute("level").as_int();
 	//player->input = false;
 	if (level_Loaded == 1) {
-		//App->fadetoblack->FadeToBlack(1);
+		App->fadetoblack->FadeToBlack(1);
 		
 	}
 	else if (level_Loaded == 2) {
-		//App->fadetoblack->FadeToBlack(2);
+		App->fadetoblack->FadeToBlack(2);
 	}
 	loaded = true;
 	tempP.x = data.parent().child("player").child("player").attribute("x").as_int();
