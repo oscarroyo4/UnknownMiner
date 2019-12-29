@@ -58,6 +58,8 @@ public:
 	void SaveGame(const char* file) const;
 	void GetSaveGames(p2List<p2SString>& list_to_fill) const;
 
+
+
 private:
 	pugi::xml_document	config_file;
 	pugi::xml_node		app_config;
@@ -83,6 +85,8 @@ private:
 	// Load / Save
 	bool LoadGameNow();
 	bool SavegameNow() const;
+
+	
 
 public:
 	pugi::xml_node config;

@@ -146,11 +146,13 @@ bool j1Player::Update(float dt) {
 	if (App->scene->level_Loaded == 1) { //If player finishes level 1
 		if (position.x > 3060) {
 			App->fadetoblack->FadeToBlack(2);
+			App->scene->ChargeSecondLevel();			
 		}
 	}
 	else {
 		if (position.x > 3030) { //If player finishes level 2
 			App->fadetoblack->FadeToBlack(1);
+			App->scene->ChargeFirstLevel();			
 		}
 	}
 	//Input
@@ -483,8 +485,9 @@ bool j1Player::Save(pugi::xml_node& data) const{
 
 bool j1Player::Load(pugi::xml_node& data)
 {
+	SDL_Delay(1000);
 	position.x = data.child("player").attribute("x").as_int();
 	position.y = data.child("player").attribute("y").as_int();
-
+	
 	return true;
 }
