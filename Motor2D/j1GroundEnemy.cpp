@@ -297,3 +297,11 @@ bool j1GroundEnemy::Save(pugi::xml_node & data) const {
 
 	return true;
 }
+
+bool j1GroundEnemy::Load(pugi::xml_node& data)
+{
+	position.x = data.child("groundenemy").attribute("x").as_int();
+	position.y = data.child("groundenemy").attribute("y").as_int();
+
+	return true;
+}

@@ -4,23 +4,33 @@
 	<window />
 	<textures />
 	<audio />
-	<map />
 	<scene>
 		<scene level="1" />
 	</scene>
-	<player>
-		<player x="154" y="640" />
-	</player>
-	<airenemy>
-		<airenemy x="170" y="600" />
-	</airenemy>
-  <groundenemy>
-    <groundenemy x="170" y="600" />
-  </groundenemy>
-	<collision />
-	<fadetoblack />
+	<map />
 	<pathfinding />
+	<entitymanager>
+		<player>
+			<player x="130" y="640" />
+		</player>
+		<airenemy>
+			<airenemy x="560" y="528" />
+		</airenemy>
+		<groundenemy>
+			<groundenemy x="1552" y="592" />
+		</groundenemy>
+		<groundenemy>
+			<groundenemy x="2768" y="656" />
+		</groundenemy>
+		<coin />
+		<coin />
+		<coin />
+	</entitymanager>
+	<collision />
+	<gui />
+	<fonts />
+	<fadetoblack />
 	<renderer>
-		<camera x="-104" y="-560" />
+		<camera x="-80" y="-560" />
 	</renderer>
 </game_state>

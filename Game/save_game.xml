@@ -1,9 +1,36 @@
-<!-- Save game for the game -->
-
+<?xml version="1.0"?>
 <game_state>
-
-  <renderer>
-    <camera x="100" y="0"/>
-  </renderer>
-
+	<input />
+	<window />
+	<textures />
+	<audio />
+	<scene>
+		<scene level="1" />
+	</scene>
+	<map />
+	<pathfinding />
+	<entitymanager>
+		<player>
+			<player x="200" y="640" />
+		</player>
+		<airenemy>
+			<airenemy x="560" y="528" />
+		</airenemy>
+		<groundenemy>
+			<groundenemy x="1552" y="592" />
+		</groundenemy>
+		<groundenemy>
+			<groundenemy x="2768" y="656" />
+		</groundenemy>
+		<coin />
+		<coin />
+		<coin />
+	</entitymanager>
+	<collision />
+	<gui />
+	<fonts />
+	<fadetoblack />
+	<renderer>
+		<camera x="-150" y="-560" />
+	</renderer>
 </game_state>

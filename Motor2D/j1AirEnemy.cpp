@@ -285,3 +285,11 @@ bool j1AirEnemy::Save(pugi::xml_node& data) const {
 
 	return true;
 }
+
+bool j1AirEnemy::Load(pugi::xml_node& data)
+{
+	position.x = data.child("airenemy").attribute("x").as_int();
+	position.y = data.child("airenemy").attribute("y").as_int();
+
+	return true;
+}

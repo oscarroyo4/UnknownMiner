@@ -149,7 +149,7 @@ bool j1Scene::PostUpdate()
 	bool ret = true;
 	//Input for menu
 	if (App->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
-		if (!menu && !pause_menu) { CreatePauseMenu(); player->input = false; menu = false; pause_menu = true; }
+		if (!menu && !pause_menu) { CreatePauseMenu(); player->input = false; menu = false; pause_menu = true; App->audio->PlayFx(App->gui->click_sfx);}
 	//Input for quit
 	if(App->input->GetKey(SDL_SCANCODE_F4) == KEY_DOWN || quit)
 		ret = false;
@@ -290,13 +290,13 @@ bool j1Scene::ChargeSecondLevel() //Changing to level 2
 
 bool j1Scene::Load(pugi::xml_node& data) {
 	level_Loaded = data.child("scene").attribute("level").as_int();
-	player->input = false;
+	//player->input = false;
 	if (level_Loaded == 1) {
-		App->fadetoblack->FadeToBlack(1);
+		//App->fadetoblack->FadeToBlack(1);
 		
 	}
 	else if (level_Loaded == 2) {
-		App->fadetoblack->FadeToBlack(2);
+		//App->fadetoblack->FadeToBlack(2);
 	}
 	loaded = true;
 	tempP.x = data.parent().child("player").child("player").attribute("x").as_int();

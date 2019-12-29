@@ -480,3 +480,11 @@ bool j1Player::Save(pugi::xml_node& data) const{
 
 	return true;
 }
+
+bool j1Player::Load(pugi::xml_node& data)
+{
+	position.x = data.child("player").attribute("x").as_int();
+	position.y = data.child("player").attribute("y").as_int();
+
+	return true;
+}
