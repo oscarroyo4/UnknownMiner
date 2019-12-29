@@ -67,7 +67,7 @@
       <initialPos4 x="370" y="330"/>
       <initialPos5 x="1383" y="540"/>
       <initialPos6 x="2645" y="202"/>
-      <audio src="audio/fx/cave_ambient.ogg"/>
+      <audio src="audio/fx/Coin.wav"/>
     </coin>
   </entitymanager>
 </config>
