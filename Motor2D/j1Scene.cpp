@@ -83,6 +83,7 @@ bool j1Scene::Start()
 // Called each loop iteration
 bool j1Scene::PreUpdate()
 {
+	//Coin detection for deleting them
 	bool collectedNow = false;
 	if (coin1->collected) 
 		App->entitymanager->DeleteEntity(coin1); collectedNow = true;
@@ -91,6 +92,7 @@ bool j1Scene::PreUpdate()
 	if (coin3->collected) 
 		App->entitymanager->DeleteEntity(coin3); collectedNow = true;
 
+	//Updating ui coins
 	if (!menu && !pause_menu && collectedNow) {
 		for (int i = 0; i <= coins; i++) {
 			App->gui->DeleteUIElement(coinImage[i]);
@@ -98,6 +100,13 @@ bool j1Scene::PreUpdate()
 				coinImage[i-1] = App->gui->CreateUIElement(Type::IMAGE, nullptr, { coinOffset * i, 15, 8, 8 }, { 161, 119, 8, 8 });
 			}
 		}
+	}
+
+	//Updating ui player life
+	if (!menu && !pause_menu) {
+		float lifePercent = (float)player->life / 100;
+		lifeUI->quad.w = lifePercent * 31;
+		lifeUI->quad.x = 6;
 	}
 
 	return true;
@@ -475,5 +484,6 @@ bool j1Scene::CreateInGameMenu() {
 
 	App->gui->ClearUI();
 	lifeBar = App->gui->CreateUIElement(Type::IMAGE, nullptr, { 5, 5, 32, 9 }, { 0, 36, 32, 9 });
+	lifeUI = App->gui->CreateUIElement(Type::IMAGE, nullptr, { 5, 6, 32, 7 }, { 161, 128, 30, 7 });
 	return true;
 }
