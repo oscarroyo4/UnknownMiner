@@ -44,10 +44,12 @@ public:
 	bool ChargeSecondLevel();
 	bool ChargeFirstLevel();
 
+	//Menus creation functions
 	bool CreateUI();
 	bool CreateOptions();
 	bool CreateCredits();
 	bool CreatePauseMenu();
+	bool CreateInGameMenu();
 
 	Collider* finishCol;
 	int level_Loaded;

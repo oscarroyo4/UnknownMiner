@@ -57,8 +57,6 @@ bool j1Scene::Start()
 	coin2->position = coin1->initialPos2;
 	coin3 = App->entitymanager->CreateEntity(Types::coin);
 	coin3->position = coin1->initialPos3;
-
-	//App->map->Load(tex1.GetString());
 	
 	if (App->map->Load(tex1.GetString()) == true)
 	{
@@ -129,9 +127,10 @@ bool j1Scene::Update(float dt)
 bool j1Scene::PostUpdate()
 {
 	bool ret = true;
-	//Input for quiting
+	//Input for menu
 	if (App->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
 		if (!menu && !pause_menu) { CreatePauseMenu(); player->input = false; menu = false; pause_menu = true; }
+	//Input for quit
 	if(App->input->GetKey(SDL_SCANCODE_F4) == KEY_DOWN || quit)
 		ret = false;
 
@@ -151,7 +150,7 @@ bool j1Scene::CleanUp()
 bool j1Scene::ChargeFirstLevel() //Changing to level 1
 {	
 	player->input = false;
-	if(player != nullptr)			App->entitymanager->DeleteEntity(player);
+	if (player != nullptr)			App->entitymanager->DeleteEntity(player);
 	if (air_enemy != nullptr)		App->entitymanager->DeleteEntity(air_enemy);
 	if (air_enemy2 != nullptr)		App->entitymanager->DeleteEntity(air_enemy2);
 	if (ground_enemy != nullptr)	App->entitymanager->DeleteEntity(ground_enemy);
@@ -417,6 +416,13 @@ bool j1Scene::CreatePauseMenu() {
 	resumeButton = App->gui->CreateUIElement(Type::BUTTON, window, { window_pos_x + 9, window_pos_y + 15, 40, 12 }, { 161, 100, 32, 9 }, "RESUME", { 161, 100, 32, 9 }, { 161, 100, 32, 9 }, false, { 161, 100, 32, 9 }, this);
 	optionsButton = App->gui->CreateUIElement(Type::BUTTON, window, { window_pos_x + 13, window_pos_y + 40, 32, 9 }, { 0, 9, 32, 9 }, "OPTIONS", { 0, 9, 32, 9 }, { 0, 9, 32, 9 }, false, { 0,0,0,0 }, this);
 	menuButton = App->gui->CreateUIElement(Type::BUTTON, window, { window_pos_x + 13, window_pos_y + 55, 32, 9 }, { 161, 109, 32, 9 }, "MENU", { 161, 109, 32, 9 }, { 161, 109, 32, 9 }, false, { 0,0,0,0 }, this);
+
+	return true;
+}
+
+bool j1Scene::CreateInGameMenu() {
+
+	App->gui->ClearUI();
 
 	return true;
 }
