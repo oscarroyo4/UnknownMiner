@@ -106,6 +106,8 @@ public:
 	j1PathFinding*		pathfinding;
 	EntityManager*		entitymanager;
 
+	bool				capped = true;
+
 private:
 
 	p2List<j1Module*>	modules;

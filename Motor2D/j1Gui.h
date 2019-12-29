@@ -18,6 +18,61 @@ enum class Type
 	UNKNOWN
 };
 
+// ---------------------------------------------------
+class j1Gui : public j1Module
+{
+public:
+
+	j1Gui();
+
+	// Destructor
+	virtual ~j1Gui();
+
+	// Called when before render is available
+	bool Awake(pugi::xml_node&);
+
+	// Call before first frame
+	bool Start();
+
+	// Called before all Updates
+	bool PreUpdate();
+
+	// Called after all Updates
+	bool PostUpdate();
+
+	// Called before quitting
+	bool CleanUp();
+
+	// Gui creation functions
+	UI* CreateUIElement(Type type, UI* p, SDL_Rect r, SDL_Rect sprite = { 0,0,0,0 }, p2SString str = "", SDL_Rect sprite2 = { 0,0,0,0 }, SDL_Rect sprite3 = { 0,0,0,0 }, bool drageable = false,
+		SDL_Rect drag_area = { 0,0,0,0 }, j1Module* s_listener = nullptr);
+	bool DeleteUIElement(UI*);
+
+	void ChangeDebug();
+
+	void ChangeFocus();
+
+	void DeleteFocus();
+
+	const SDL_Texture* GetAtlas() const;
+
+	void ClearUI();
+
+private:
+
+	p2List <UI*> UIs;
+	SDL_Texture* atlas;
+	p2SString atlas_file_name;
+
+public:
+
+	//Audio
+	int click_sfx;
+
+	int slider;
+
+};
+
 class UI :public j1Module
 {
 public:
@@ -71,6 +126,19 @@ private:
 	bool focusable;
 	SDL_Rect drag_area;
 };
+
+class WindowUI :public UI
+{
+public:
+	WindowUI(Type type, UI* p, SDL_Rect r, SDL_Rect sprite, bool d, bool f, SDL_Rect d_area);
+
+	// Destructor
+	virtual ~WindowUI() {}
+
+	// Called after all Updates
+	bool PostUpdate();
+};
+
 class ImageUI :public UI
 {
 public:
@@ -91,17 +159,7 @@ public:
 	iPoint drag_position_0;
 	iPoint drag_position_1;
 };
-class WindowUI :public UI
-{
-public:
-	WindowUI(Type type, UI* p, SDL_Rect r, SDL_Rect sprite, bool d, bool f, SDL_Rect d_area);
 
-	// Destructor
-	virtual ~WindowUI() {}
-
-	// Called after all Updates
-	bool PostUpdate();
-};
 class TextUI :public UI
 {
 public:
@@ -173,62 +231,6 @@ private:
 
 	iPoint mouse;
 	bool clickRet;
-};
-
-
-// ---------------------------------------------------
-class j1Gui : public j1Module
-{
-public:
-
-	j1Gui();
-
-	// Destructor
-	virtual ~j1Gui();
-
-	// Called when before render is available
-	bool Awake(pugi::xml_node&);
-
-	// Call before first frame
-	bool Start();
-
-	// Called before all Updates
-	bool PreUpdate();
-
-	// Called after all Updates
-	bool PostUpdate();
-
-	// Called before quitting
-	bool CleanUp();
-
-	// Gui creation functions
-	UI* CreateUIElement(Type type, UI* p, SDL_Rect r, SDL_Rect sprite = { 0,0,0,0 }, p2SString str = "", SDL_Rect sprite2 = { 0,0,0,0 }, SDL_Rect sprite3 = { 0,0,0,0 }, bool drageable = false,
-		SDL_Rect drag_area = { 0,0,0,0 }, j1Module* s_listener = nullptr);
-	bool DeleteUIElement(UI*);
-
-	void ChangeDebug();
-
-	void ChangeFocus();
-
-	void DeleteFocus();
-
-	const SDL_Texture* GetAtlas() const;
-
-	void ClearUI();
-
-private:
-
-	p2List <UI*> UIs;
-	SDL_Texture* atlas;
-	p2SString atlas_file_name;
-
-public:
-
-	//Audio
-	int click_sfx;
-
-	int slider;
-
 };
 
 #endif // __j1GUI_H__

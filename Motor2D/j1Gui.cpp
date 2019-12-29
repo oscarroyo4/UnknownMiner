@@ -98,45 +98,39 @@ const SDL_Texture* j1Gui::GetAtlas() const
 
 UI* j1Gui::CreateUIElement(Type type, UI* p, SDL_Rect r, SDL_Rect sprite, p2SString str, SDL_Rect sprite2, SDL_Rect sprite3, bool drageable, SDL_Rect drag_area, j1Module* s_listener)
 {
-	UI* ui = nullptr;
+	UI* ui_element = nullptr;
 	switch (type)
 	{
 	case Type::BUTTON:
-		ui = new ButtonUI(Type::BUTTON, p, r, sprite, sprite2, sprite3, true, true, drag_area);
+		ui_element = new ButtonUI(Type::BUTTON, p, r, sprite, sprite2, sprite3, true, true, drag_area);
 		break;
 	case Type::IMAGE:
-		ui = new ImageUI(Type::IMAGE, p, r, sprite, drageable, drageable, drag_area);
+		ui_element = new ImageUI(Type::IMAGE, p, r, sprite, drageable, drageable, drag_area);
 		break;
 	case Type::WINDOW:
-		ui = new WindowUI(Type::WINDOW, p, r, sprite, drageable, drageable, drag_area);
+		ui_element = new WindowUI(Type::WINDOW, p, r, sprite, drageable, drageable, drag_area);
 		break;
 	case Type::TEXT:
-		ui = new TextUI(Type::TEXT, p, r, str, drageable, drageable, drag_area);
+		ui_element = new TextUI(Type::TEXT, p, r, str, drageable, drageable, drag_area);
 		break;
 	case Type::SLIDER:
-		ui = new SliderUI(Type::SLIDER, p, r, sprite, sprite2, drageable, drageable, drag_area);
+		ui_element = new SliderUI(Type::SLIDER, p, r, sprite, sprite2, drageable, drageable, drag_area);
 		break;
 	}
 	
+	ui_element->name = str;
 
-	
-	ui->name = str;
+	if (s_listener) ui_element->listener = s_listener;
+	else ui_element->listener = nullptr;
 
-	if (s_listener)
-	{ 
-		ui->listener = s_listener; 
-	}
-	else
-	{
-		ui->listener = nullptr;
-	}
-
-	return UIs.add(ui)->data;
+	return UIs.add(ui_element)->data;
 }
 
 bool j1Gui::DeleteUIElement(UI* ui) {
 	int n = UIs.find(ui);
-	if (n == -1)return false;
+	if (n == -1) {
+		return false;
+	}
 	else
 	{
 		UIs.At(n)->data->CleanUp();
@@ -312,19 +306,19 @@ bool UI::Move() {
 	return true;
 }
 
-SDL_Rect UI::Check_Printable_Rect(SDL_Rect sprite, iPoint& dif_sprite) {
+SDL_Rect UI::Check_Printable_Rect(SDL_Rect sprite, iPoint& spirte_dif) {
 	if (mask_rect.x > screen_rect.x) {
-		dif_sprite.x = mask_rect.x - screen_rect.x;
-		sprite.x += dif_sprite.x;
-		sprite.w -= dif_sprite.x;
+		spirte_dif.x = mask_rect.x - screen_rect.x;
+		sprite.x += spirte_dif.x;
+		sprite.w -= spirte_dif.x;
 	}
 	else if (mask_rect.w < screen_rect.w) {
 		sprite.w -= screen_rect.w - mask_rect.w;
 	}
 	if (mask_rect.y > screen_rect.y) {
-		dif_sprite.y = mask_rect.y - screen_rect.y;
-		sprite.y += dif_sprite.y;
-		sprite.h -= dif_sprite.y;
+		spirte_dif.y = mask_rect.y - screen_rect.y;
+		sprite.y += spirte_dif.y;
+		sprite.h -= spirte_dif.y;
 	}
 	else if (mask_rect.h < screen_rect.h) {
 		sprite.h -= screen_rect.h - mask_rect.h;
@@ -363,10 +357,10 @@ bool ImageUI::PreUpdate() {
 }
 
 bool ImageUI::PostUpdate() {
-	iPoint dif_sprite = { 0,0 };
-	SDL_Rect sprite = UI::Check_Printable_Rect(sprite1, dif_sprite);
-	quad.x = GetScreenPos().x + dif_sprite.x;
-	quad.y = GetScreenPos().y + dif_sprite.y;
+	iPoint spirte_dif = { 0,0 };
+	SDL_Rect sprite = UI::Check_Printable_Rect(sprite1, spirte_dif);
+	quad.x = GetScreenPos().x + spirte_dif.x;
+	quad.y = GetScreenPos().y + spirte_dif.y;
 
 	App->render->BlitInQuad((SDL_Texture*)App->gui->GetAtlas(), sprite, quad);
 	UI::PostUpdate();
@@ -389,9 +383,9 @@ WindowUI::WindowUI(Type type, UI* p, SDL_Rect r, SDL_Rect sprite, bool d, bool f
 }
 
 bool WindowUI::PostUpdate() {
-	iPoint dif_sprite = { 0,0 };
-	SDL_Rect sprite = UI::Check_Printable_Rect(sprite1, dif_sprite);
-	App->render->Blit((SDL_Texture*)App->gui->GetAtlas(), GetScreenPos().x + dif_sprite.x, GetScreenPos().y + dif_sprite.y, &sprite, 0.f);
+	iPoint spirte_dif = { 0,0 };
+	SDL_Rect sprite = UI::Check_Printable_Rect(sprite1, spirte_dif);
+	App->render->Blit((SDL_Texture*)App->gui->GetAtlas(), GetScreenPos().x + spirte_dif.x, GetScreenPos().y + spirte_dif.y, &sprite, 0.f);
 	UI::PostUpdate();
 	return true;
 }
@@ -404,15 +398,15 @@ TextUI::TextUI(Type type, UI* p, SDL_Rect r, p2SString str, bool d, bool f, SDL_
 
 bool TextUI::PostUpdate() {
 	SDL_Rect rect = { 0,0,0,0 };
-	iPoint dif_sprite = { 0,0 };
+	iPoint spirte_dif = { 0,0 };
 
 	SDL_Texture* text = App->fonts->Print(stri.GetString());
 
 	SDL_QueryTexture(text, NULL, NULL, &rect.w, &rect.h);
 
 
-	SDL_Rect sprite = UI::Check_Printable_Rect(rect, dif_sprite);
-	App->render->Blit(text, GetScreenToWorldPos().x + dif_sprite.x, GetScreenToWorldPos().y + dif_sprite.y, &sprite, 0.f);
+	SDL_Rect sprite = UI::Check_Printable_Rect(rect, spirte_dif);
+	App->render->Blit(text, GetScreenToWorldPos().x + spirte_dif.x, GetScreenToWorldPos().y + spirte_dif.y, &sprite, 0.f);
 	UI::PostUpdate();
 
 	App->tex->UnLoad(text);
@@ -437,20 +431,19 @@ ButtonUI::ButtonUI(Type type, UI* p, SDL_Rect r, SDL_Rect sprite, SDL_Rect sprit
 
 bool ButtonUI::PostUpdate() {
 	SDL_Rect sprite;
-	iPoint dif_sprite = { 0,0 };
+	iPoint spirte_dif = { 0,0 };
 	if (pushed == true) {
-		sprite = UI::Check_Printable_Rect(sprite2, dif_sprite);
+		sprite = UI::Check_Printable_Rect(sprite2, spirte_dif);
 	}
 	else if (over == true) {
-		sprite = UI::Check_Printable_Rect(sprite1, dif_sprite);
+		sprite = UI::Check_Printable_Rect(sprite1, spirte_dif);
 	}
 	else {
-		sprite = UI::Check_Printable_Rect(sprite3, dif_sprite);
+		sprite = UI::Check_Printable_Rect(sprite3, spirte_dif);
 	}
-	//App->render->Blit((SDL_Texture*)App->gui->GetAtlas(), GetScreenToWorldPos().x + dif_sprite.x, GetScreenToWorldPos().y + dif_sprite.y, &sprite, 0.f);
 
-	quad.x = GetScreenPos().x + dif_sprite.x;
-	quad.y = GetScreenPos().y + dif_sprite.y;
+	quad.x = GetScreenPos().x + spirte_dif.x;
+	quad.y = GetScreenPos().y + spirte_dif.y;
 	App->render->BlitInQuad((SDL_Texture*)App->gui->GetAtlas(), sprite, quad);
 
 	UI::PostUpdate();
@@ -506,12 +499,12 @@ SliderUI::SliderUI(Type type, UI* p, SDL_Rect r, SDL_Rect sprite, SDL_Rect sprit
 
 bool SliderUI::PostUpdate()
 {
-	iPoint dif_sprite = { 0,0 };
-	iPoint dif_sprite1 = { 0,0 };
-	SDL_Rect sprite = UI::Check_Printable_Rect(sprite1, dif_sprite);
-	SDL_Rect sprite_ = UI::Check_Printable_Rect(sprite2, dif_sprite1);
-	base.x = GetScreenPos().x + dif_sprite.x;
-	base.y = GetScreenPos().y + dif_sprite.y;
+	iPoint spirte_dif = { 0,0 };
+	iPoint spirte_dif1 = { 0,0 };
+	SDL_Rect sprite = UI::Check_Printable_Rect(sprite1, spirte_dif);
+	SDL_Rect sprite_ = UI::Check_Printable_Rect(sprite2, spirte_dif1);
+	base.x = GetScreenPos().x + spirte_dif.x;
+	base.y = GetScreenPos().y + spirte_dif.y;
 
 	App->render->BlitInQuad((SDL_Texture*)App->gui->GetAtlas(), sprite, base);
 	

@@ -79,6 +79,7 @@ private:
 	p2SString tex2;
 	p2SString tex3;
 	p2SString ambient_audio;
+	p2SString ambient_audio_2;
 
 	iPoint tempP;
 	iPoint tempE1;
