@@ -47,6 +47,7 @@ public:
 	bool CreateUI();
 	bool CreateOptions();
 	bool CreateCredits();
+	bool CreatePauseMenu();
 
 	Collider* finishCol;
 	int level_Loaded;
@@ -80,6 +81,7 @@ private:
 
 	//UI	
 	bool menu = true;
+	bool pause_menu = false;
 	bool quit = false;
 	UI* window = nullptr;
 	UI* image = nullptr;
@@ -89,6 +91,8 @@ private:
 	UI* creditsButton = nullptr;
 	UI* quitButton = nullptr;
 	UI* backButton = nullptr;
+	UI* resumeButton = nullptr;
+	UI* menuButton = nullptr;
 };
 
 #endif // __j1SCENE_H__
