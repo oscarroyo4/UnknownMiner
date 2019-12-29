@@ -472,37 +472,9 @@ bool ButtonUI::PreUpdate() {
 		//Button clicked
 		if (listener) 
 		{
-			listener->OnClick(this);
-			//App->scene->OnClick(this);
-			
-				ButtonUI* button = (ButtonUI*)this;
-				switch (button->action)
-				{
-				case ButtonAction::ENTER:
-					LOG("ENTER");
-					break;
-
-				case ButtonAction::OPTIONS:
-					LOG("OPTIONS");
-					break;
-
-				case ButtonAction::CREDITS:
-					LOG("CREDITS");
-					break;
-
-				case ButtonAction::QUIT:
-					LOG("QUIT");
-					break;
-
-				default:
-					break;
-				}
-			
+			listener->OnClick(this);			
 		}
-		LOG("Click");
 	}
-
-	
 
 	UI::PreUpdate();
 

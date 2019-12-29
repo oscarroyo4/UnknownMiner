@@ -34,7 +34,7 @@ public:
 	// Called before quitting
 	bool CleanUp();
 
-	//void OnClick(UI* element);
+	void OnClick(UI* element);
 
 	// Load / Save
 	bool Load(pugi::xml_node&);

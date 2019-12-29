@@ -17,15 +17,6 @@ enum class Type
 	UNKNOWN
 };
 
-enum class ButtonAction {
-	PLAY,
-	OPTIONS,
-	CREDITS,
-	QUIT,
-	ENTER,
-	NONE
-};
-
 class UI :public j1Module
 {
 public:
@@ -154,7 +145,6 @@ public:
 	SDL_Rect sprite3;
 	bool pushed;
 	bool over;
-	ButtonAction	action;
 };
 // ---------------------------------------------------
 class j1Gui : public j1Module
