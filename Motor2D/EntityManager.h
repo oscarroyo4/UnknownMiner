@@ -6,6 +6,7 @@
 #include "j1Player.h"
 #include "j1AirEnemy.h"
 #include "j1GroundEnemy.h"
+#include "j1Coin.h"
 #include "p2List.h"
 #include "PugiXml\src\pugixml.hpp"
 

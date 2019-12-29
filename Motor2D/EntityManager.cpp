@@ -80,7 +80,7 @@ bool EntityManager::Save(pugi::xml_node& s) const
 //Called when creating a new Entity
 Entity* EntityManager::CreateEntity(Types type)
 {
-	static_assert(Types::unknown == (Types)4, "Types need update");
+	static_assert(Types::unknown == (Types)5, "Types need update");
 	Entity* ret = nullptr;
 	switch (type)
 	{
@@ -95,6 +95,10 @@ Entity* EntityManager::CreateEntity(Types type)
 	case Types::enemy_ground:
 		ret = new j1GroundEnemy();
 		ret->entity_type = Types::enemy_ground;
+		break;
+	case Types::coin:
+		ret = new j1Coin();
+		ret->entity_type = Types::coin;
 		break;
 	}
 

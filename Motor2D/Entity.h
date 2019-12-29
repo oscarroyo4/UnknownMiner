@@ -12,6 +12,7 @@ enum class Types
 	player,
 	enemy_ground,
 	enemy_air,
+	coin,
 	unknown
 };
 

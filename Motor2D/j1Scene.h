@@ -34,7 +34,7 @@ public:
 	// Called before quitting
 	bool CleanUp();
 
-	void OnClick(UI* element);
+	//void OnClick(UI* element);
 
 	// Load / Save
 	bool Load(pugi::xml_node&);
@@ -56,6 +56,7 @@ public:
 	Entity* air_enemy2;
 	Entity* ground_enemy;
 	Entity* ground_enemy2;
+	Entity* coin;
 
 	SDL_Texture* path_tex = nullptr;
 	SDL_Texture* map_line;

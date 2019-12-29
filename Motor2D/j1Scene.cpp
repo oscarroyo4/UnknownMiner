@@ -51,6 +51,7 @@ bool j1Scene::Start()
 	ground_enemy->position = ground_enemy->initialPos1;
 	ground_enemy2 = App->entitymanager->CreateEntity(Types::enemy_ground);
 	ground_enemy2->position = ground_enemy->initialPos2;
+	coin = App->entitymanager->CreateEntity(Types::coin);
 
 	//App->map->Load(tex1.GetString());
 	
@@ -146,6 +147,8 @@ bool j1Scene::ChargeFirstLevel() //Changing to level 1
 	if (air_enemy2 != nullptr)		App->entitymanager->DeleteEntity(air_enemy2);
 	if (ground_enemy != nullptr)	App->entitymanager->DeleteEntity(ground_enemy);
 	if (ground_enemy2 != nullptr)	App->entitymanager->DeleteEntity(ground_enemy2);
+	if (coin != nullptr)			App->entitymanager->DeleteEntity(coin);
+
 
 	p2List_item<Collider*>* item;
 	for (item = App->map->groundCol.start; item != NULL; item = item->next) //deleting all colliders
@@ -173,6 +176,8 @@ bool j1Scene::ChargeFirstLevel() //Changing to level 1
 	ground_enemy->position = ground_enemy->initialPos1;
 	ground_enemy2 = App->entitymanager->CreateEntity(Types::enemy_ground);
 	ground_enemy2->position = ground_enemy->initialPos2;
+	coin = App->entitymanager->CreateEntity(Types::coin);
+
 	if (!loaded) {
 		player->position = player->initialPos1; //Load position from config_file
 	}
@@ -195,6 +200,7 @@ bool j1Scene::ChargeSecondLevel() //Changing to level 2
 	if (air_enemy2 != nullptr)		App->entitymanager->DeleteEntity(air_enemy2);
 	if (ground_enemy != nullptr)	App->entitymanager->DeleteEntity(ground_enemy);
 	if (ground_enemy2 != nullptr)	App->entitymanager->DeleteEntity(ground_enemy2);
+	if (coin != nullptr)			App->entitymanager->DeleteEntity(coin);
 
 	p2List_item<Collider*>* item;
 	for (item = App->map->groundCol.start; item != NULL; item = item->next) //deleting all colliders
@@ -224,6 +230,8 @@ bool j1Scene::ChargeSecondLevel() //Changing to level 2
 	ground_enemy->position = ground_enemy->initialPos3;
 	ground_enemy2 = App->entitymanager->CreateEntity(Types::enemy_ground);
 	ground_enemy2->position = ground_enemy->initialPos4;
+	coin = App->entitymanager->CreateEntity(Types::coin);
+
 	if (!loaded) {
 		player->position = player->initialPos2; //Load position from config_file
 	}
@@ -285,7 +293,7 @@ bool j1Scene::CreateUI() {
 	return true;
 }
 
-void j1Scene::OnClick(UI* element) {
+/*void j1Scene::OnClick(UI* element) {
 	if (element->type == Type::BUTTON)
 	{
 		ButtonUI* button = (ButtonUI*)element;
@@ -312,4 +320,4 @@ void j1Scene::OnClick(UI* element) {
 	}
 	//LOG("Yeah fuck it");
 	//return true;
-}
+}*/
