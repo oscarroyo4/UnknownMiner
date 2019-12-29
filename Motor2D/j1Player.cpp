@@ -86,6 +86,7 @@ bool j1Player::Start()
 {
 	bool ret = true;
 	//Loading assets and propierties from config file
+	coins = 0;
 	position = initialPos1;
 	graphics = App->tex->Load(texPath.GetString());
 	swoshFx = App->audio->LoadFx(swoshPath.GetString());
@@ -470,6 +471,10 @@ bool j1Player::WallCollision() {
 	}
 
 	return ret;
+}
+
+void j1Player::CollectCoin() {
+	coins++;
 }
 
 bool j1Player::Save(pugi::xml_node& data) const{
