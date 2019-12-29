@@ -45,6 +45,8 @@ public:
 	bool ChargeFirstLevel();
 
 	bool CreateUI();
+	bool CreateOptions();
+	bool CreateCredits();
 
 	Collider* finishCol;
 	int level_Loaded;
@@ -86,6 +88,7 @@ private:
 	UI* optionsButton = nullptr;
 	UI* creditsButton = nullptr;
 	UI* quitButton = nullptr;
+	UI* backButton = nullptr;
 };
 
 #endif // __j1SCENE_H__
