@@ -33,6 +33,7 @@ bool j1Scene::Awake(pugi::xml_node& config)
 	tex2 = config.child("textures").attribute("tex2").as_string();
 	tex3 = config.child("textures").attribute("path_tex").as_string();
 	ambient_audio = config.child("audio").attribute("src").as_string();
+	ambient_audio_2 = config.child("audio2").attribute("src").as_string();
 
 	return ret;
 }
@@ -72,7 +73,7 @@ bool j1Scene::Start()
 
 	CreateUI();
 
-	App->audio->PlayMusic(ambient_audio.GetString(), 1.0f);
+	App->audio->PlayMusic(ambient_audio_2.GetString(), 1.0f);
 	level_Loaded = 1;
 
 	container = new SDL_Rect{ 0,0,3000,1000 };
@@ -148,15 +149,11 @@ bool j1Scene::Update(float dt)
 	if (App->input->GetKey(SDL_SCANCODE_F6) == KEY_DOWN) 
 		App->LoadGame("saves/save_game.xml");
 	
-		
+	if (App->input->GetKey(SDL_SCANCODE_F11) == KEY_DOWN)
+		App->capped = !App->capped;
 
 	//Render Map
 	App->map->Draw();
-
-	//render preogress bar
-	//map_line_pos.x = 0;
-	//map_line_pos.y = 0;
-	//App->render->Blit(map_line, map_line_pos.x, map_line_pos.y, container);
 
 	return true;
 }
@@ -366,6 +363,7 @@ void j1Scene::OnClick(UI* element) {
 			menu = false;
 			pause_menu = false;
 			CreateInGameMenu();
+			App->audio->PlayMusic(ambient_audio.GetString(), 1.0f);
 			LOG("enter");
 		}
 		else if (button->name == "OPTIONS") {
@@ -410,7 +408,8 @@ void j1Scene::OnClick(UI* element) {
 		}
 		else if (button->name == "MENU") {
 			App->gui->ClearUI();
-			CreateUI();			
+			CreateUI();	
+			App->audio->PlayMusic(ambient_audio_2.GetString(), 1.0f);
 			LOG("menu");
 		}
 		else if (button->name == "FULLSCREEN") {

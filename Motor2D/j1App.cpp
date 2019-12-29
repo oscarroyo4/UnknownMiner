@@ -218,7 +218,7 @@ void j1App::FinishUpdate()
 		avg_fps, last_frame_ms, frames_on_last_update, dt, seconds_since_startup, frame_count);
 	App->win->SetTitle(title);
 
-	if (capped_ms > 0 && last_frame_ms < capped_ms)
+	if (capped_ms > 0 && last_frame_ms < capped_ms && capped)
 	{
 		j1PerfTimer t;
 		SDL_Delay(capped_ms - last_frame_ms);
