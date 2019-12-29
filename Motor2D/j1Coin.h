@@ -28,6 +28,8 @@ private:
 	Animation		rotation;
 	SDL_Texture*	coin_tex;
 	Collider*		colCoin;
+	p2SString sound_text;
+	int sound;
 };
 
 #endif // !_j1COIN_H

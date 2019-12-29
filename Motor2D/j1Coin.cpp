@@ -55,6 +55,7 @@ bool j1Coin::Awake(pugi::xml_node& config)
 	initialPos5.y = config.child("initialPos5").attribute("y").as_int();
 	initialPos6.x = config.child("initialPos6").attribute("x").as_int();
 	initialPos6.y = config.child("initialPos6").attribute("y").as_int();
+	sound_text = config.child("audio").attribute("src").as_string();
 
 	return ret;
 }
@@ -64,6 +65,7 @@ bool j1Coin::Start()
 	bool ret = true;
 
 	coin_tex = App->tex->Load("textures/Coin.png");
+	sound = App->audio->LoadFx(sound_text.GetString());
 	r_collider = { position.x, position.y, 16, 16 };
 	colCoin = App->collision->AddCollider(r_collider, COLLIDER_COIN);
 
@@ -77,7 +79,7 @@ bool j1Coin::PreUpdate()
 	if (colCoin->CheckCollision(App->scene->player->r_collider) && !collected)
 	{
 		App->scene->coins++;
-		LOG("Coin collected");
+		App->audio->PlayFx(sound);
 		collected = true;
 	}
 	
