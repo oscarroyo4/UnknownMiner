@@ -9,11 +9,14 @@ In this platformer game you must get the miner to leave the mine, to reach that 
 <img src="https://raw.githubusercontent.com/oscarroyo4/UnknownMiner/Images/Semafor_Mias_1.jpg" width="200">
 
 * Oscar Royo
-  * Code and some art
+  * (explicar mas o menos que he hecho)
   * Github account: [oscarroyo4](https://github.com/oscarroyo4)
   
+<img src="https://github.com/oscarroyo4/UnknownMiner/blob/Images/Foto_Carlos.jpg" width="200">
+
 * Carlos Redolar
-  * Code and some art
+  * (explicar mas o menos que he hecho)
+  * Due to some problems I have joined the group later, and I have been part of this proyect only in the final term (third assignment)
   * Github account: [carlosredolar](https://github.com/carlosredolar)
 
 * Special thanks to:
