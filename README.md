@@ -1,12 +1,12 @@
 ### INTRODUCTION
 Unknown Miner is a platformer game developed by Oscar Royo and Carlos Redolar. We are studying videogame design and development in CITM, Terrassa, Spain. And this project is made for the Game Development subject.
 
+hello
+
 ### ABOUT THE GAME
 In this platformer game you must get the miner to leave the mine, to reach that you have to defeat or dodge the enemies that inhabit into the cave.
 
 ### TEAM MEMBERS
-
-bitch
 
 <img src="https://raw.githubusercontent.com/oscarroyo4/UnknownMiner/Images/Semafor_Mias_1.jpg" width="200">
 
