@@ -29,7 +29,8 @@ In this platformer game you must get the miner to leave the mine, to reach that 
   * link: https://opengameart.org/users/blarget2
   * Elthen (Ahmet Avci) for the bat sprites
   * link: https://www.patreon.com/elthen
-  
+  * My Ass
+
 ### Controls
  * A - Walk forward   
  * D - Walk backwards
@@ -49,7 +50,6 @@ In this platformer game you must get the miner to leave the mine, to reach that 
  * Fade to black in every scene change (load game included)
  * Game can be paused
  * Hit enemy and it knocks back
- * Shite
  
 ### Gameplay Video
 
