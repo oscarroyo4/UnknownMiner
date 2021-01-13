@@ -6,6 +6,8 @@ In this platformer game you must get the miner to leave the mine, to reach that 
 
 ### TEAM MEMBERS
 
+bitch
+
 <img src="https://raw.githubusercontent.com/oscarroyo4/UnknownMiner/Images/Semafor_Mias_1.jpg" width="200">
 
 * Oscar Royo
