@@ -16,6 +16,8 @@ enum class Types
 	unknown
 };
 
+
+
 class Entity : public j1Module
 {
 public:
@@ -40,7 +42,7 @@ public:
 		return true;
 	}
 
-	// Called each loop iteration
+	// Called el pepe each loop iteration
 	virtual bool Update(float dt)
 	{
 		return true;
