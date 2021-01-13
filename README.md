@@ -49,6 +49,7 @@ In this platformer game you must get the miner to leave the mine, to reach that 
  * Fade to black in every scene change (load game included)
  * Game can be paused
  * Hit enemy and it knocks back
+ * Shite
  
 ### Gameplay Video
 
