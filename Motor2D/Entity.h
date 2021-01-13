@@ -42,7 +42,7 @@ public:
 		return true;
 	}
 
-	// Called el pepe each loop iteration
+	// Called each loop iteration
 	virtual bool Update(float dt)
 	{
 		return true;
@@ -78,6 +78,8 @@ public:
 	bool collected = false;
 
 	int life;
+
+//Me cago en tu puta madre ya no se como hacer esto
 
 	iPoint initialPos1;
 	iPoint initialPos2;
