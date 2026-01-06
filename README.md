@@ -61,7 +61,7 @@ Here is the link of the video : [Unknown Miner Gameplay](https://www.youtube.com
 
 ### Download link
 
-[Download Alpha Here](https://github.com/oscarroyo4/UnkownMiner/releases/download/0.1/UnkownMiner.rar)
+[Download Alpha Here](https://github.com/oscarroyo4/UnknownMiner/releases/download/0.4/Unknown.Miner.zip)
 
 
 ### License
